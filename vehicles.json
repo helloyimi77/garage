@@ -1,0 +1,202 @@
+{
+  "owner": "とんこつしょうゆ",
+  "title": "GARAGE",
+  "vehicles": [
+    {
+      "id": "nd-roadster-2019",
+      "category": "car",
+      "status": "active",
+      "name": "ロードスター",
+      "maker": "マツダ",
+      "model": "ND5RC",
+      "grade": "S Special Package",
+      "year": 2019,
+      "color": "ソウルレッドクリスタル",
+      "purchase": { "date": "2019-06-01", "type": "used", "price": 2500000 },
+      "sold": { "date": null, "price": null },
+      "specs": {
+        "排気量": "1,496cc",
+        "エンジン": "P5-VP[RS] 直4 DOHC",
+        "駆動方式": "FR",
+        "トランスミッション": "6MT",
+        "最高出力": "132ps / 7,000rpm",
+        "車両重量": "1,010kg"
+      },
+      "customs": [
+        { "part": "車高調キット FLEX Z", "maker": "TEIN", "type": "足回り", "date": "2020-03-10", "price": 180000, "note": "街乗り寄りのセッティング" },
+        { "part": "マフラー Ti", "maker": "柿本改", "type": "吸排気", "date": "2020-08-22", "price": 120000, "note": "" },
+        { "part": "ホイール ZE40 17inch", "maker": "RAYS", "type": "外装", "date": "2021-05-05", "price": 240000, "note": "タイヤはPS4S 205/45R17" }
+      ],
+      "equipment": [
+        { "name": "ドライブレコーダー ZDR035", "maker": "コムテック", "price": 32000 },
+        { "name": "ETC2.0車載器", "maker": "パナソニック", "price": 15000 }
+      ],
+      "photos": { "main": "", "gallery": [] },
+      "memo": "週末専用。オープンで箱根に行くのが定番。"
+    },
+    {
+      "id": "mt-09-2021",
+      "category": "bike",
+      "status": "active",
+      "name": "MT-09",
+      "maker": "ヤマハ",
+      "model": "RN69J",
+      "grade": "ABS",
+      "year": 2021,
+      "color": "アイコンブルー",
+      "purchase": { "date": "2021-09-12", "type": "new", "price": 1210000 },
+      "sold": { "date": null, "price": null },
+      "specs": {
+        "排気量": "888cc",
+        "エンジン": "水冷4ストDOHC 3気筒",
+        "区分": "大型二輪",
+        "シート高": "825mm",
+        "車両重量": "189kg",
+        "燃料タンク": "14L"
+      },
+      "customs": [
+        { "part": "フルエキゾースト", "maker": "アクラポヴィッチ", "type": "吸排気", "date": "2022-02-14", "price": 165000, "note": "" },
+        { "part": "スクリーン", "maker": "プーチ", "type": "外装", "date": "2022-04-01", "price": 18000, "note": "" }
+      ],
+      "equipment": [
+        { "name": "ヘルメット Z-8", "maker": "SHOEI", "price": 62000 },
+        { "name": "インカム 50S", "maker": "SENA", "price": 45000 },
+        { "name": "ディスクロック", "maker": "ABUS", "price": 9800 }
+      ],
+      "photos": { "main": "", "gallery": [] },
+      "memo": ""
+    },
+    {
+      "id": "segway-e2-2024",
+      "category": "escooter",
+      "status": "active",
+      "name": "Ninebot E2 Plus",
+      "maker": "Segway-Ninebot",
+      "model": "E2 Plus",
+      "grade": "",
+      "year": 2024,
+      "color": "ブラック",
+      "purchase": { "date": "2024-04-20", "type": "new", "price": 54800 },
+      "sold": { "date": null, "price": null },
+      "specs": {
+        "区分": "特定小型原動機付自転車",
+        "モーター出力": "300W",
+        "バッテリー": "220Wh",
+        "航続距離": "約25km",
+        "最高速度": "20km/h",
+        "重量": "14.4kg"
+      },
+      "customs": [],
+      "equipment": [
+        { "name": "スマホホルダー", "maker": "デイトナ", "price": 3200 }
+      ],
+      "photos": { "main": "", "gallery": [] },
+      "memo": "蒲田周辺の移動用。"
+    },
+    {
+      "id": "tarmac-sl7-2022",
+      "category": "roadbike",
+      "status": "active",
+      "name": "Tarmac SL7",
+      "maker": "スペシャライズド",
+      "model": "Tarmac SL7 Expert",
+      "grade": "Expert",
+      "year": 2022,
+      "color": "サテンカーボン",
+      "purchase": { "date": "2022-11-03", "type": "new", "price": 880000 },
+      "sold": { "date": null, "price": null },
+      "specs": {
+        "フレーム": "FACT 10r カーボン",
+        "サイズ": "54",
+        "コンポーネント": "SRAM Force eTap AXS",
+        "ホイール": "Roval Rapide CL",
+        "重量": "7.4kg"
+      },
+      "customs": [
+        { "part": "サドル Power Pro", "maker": "スペシャライズド", "type": "パーツ", "date": "2023-01-10", "price": 28000, "note": "" },
+        { "part": "パワーメーター", "maker": "4iiii", "type": "電装", "date": "2023-03-15", "price": 55000, "note": "左クランク片側" }
+      ],
+      "equipment": [
+        { "name": "サイクルコンピューター Edge 540", "maker": "Garmin", "price": 58000 },
+        { "name": "ヘルメット Evade 3", "maker": "スペシャライズド", "price": 38000 }
+      ],
+      "photos": { "main": "", "gallery": [] },
+      "memo": ""
+    },
+    {
+      "id": "fumi-florence",
+      "category": "horse",
+      "status": "active",
+      "name": "フミフローレンス",
+      "maker": "",
+      "model": "",
+      "grade": "",
+      "year": 2021,
+      "color": "鹿毛",
+      "purchase": { "date": "2023-10-01", "type": "used", "price": 0 },
+      "sold": { "date": null, "price": null },
+      "specs": {
+        "性別": "牝",
+        "生年": "2021年",
+        "父": "（父馬名）",
+        "母": "（母馬名）",
+        "所属": "笠松競馬",
+        "厩舎": "（厩舎名）"
+      },
+      "customs": [],
+      "equipment": [
+        { "name": "勝負服", "maker": "", "price": 0 }
+      ],
+      "photos": { "main": "", "gallery": [] },
+      "memo": "サンプル値。血統・厩舎は実データに置き換え。"
+    },
+    {
+      "id": "swift-sport-2015",
+      "category": "car",
+      "status": "sold",
+      "name": "スイフトスポーツ",
+      "maker": "スズキ",
+      "model": "ZC32S",
+      "grade": "ベースグレード",
+      "year": 2013,
+      "color": "チャンピオンイエロー",
+      "purchase": { "date": "2015-04-10", "type": "used", "price": 1350000 },
+      "sold": { "date": "2019-05-20", "price": 700000 },
+      "specs": {
+        "排気量": "1,586cc",
+        "駆動方式": "FF",
+        "トランスミッション": "6MT",
+        "最高出力": "136ps / 6,900rpm"
+      },
+      "customs": [
+        { "part": "スポーツマフラー", "maker": "HKS", "type": "吸排気", "date": "2016-01-15", "price": 78000, "note": "売却時も装着" }
+      ],
+      "equipment": [],
+      "photos": { "main": "", "gallery": [] },
+      "memo": "初めてのMT車。"
+    },
+    {
+      "id": "cb400sf-2017",
+      "category": "bike",
+      "status": "sold",
+      "name": "CB400 SUPER FOUR",
+      "maker": "ホンダ",
+      "model": "NC42",
+      "grade": "VTEC Revo",
+      "year": 2015,
+      "color": "キャンディークロモスフィアレッド",
+      "purchase": { "date": "2017-07-01", "type": "used", "price": 620000 },
+      "sold": { "date": "2021-08-30", "price": 450000 },
+      "specs": {
+        "排気量": "399cc",
+        "区分": "普通二輪",
+        "シート高": "755mm",
+        "車両重量": "201kg"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": { "main": "", "gallery": [] },
+      "memo": ""
+    }
+  ]
+}
