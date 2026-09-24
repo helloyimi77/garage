@@ -186,6 +186,11 @@ const GROUPS = {
   vehicle: { label: '乗り物', cats: ['car','bike','escooter','roadbike','horse'] },
   hobby:   { label: '趣味',   cats: ['golf','fishing','camping'] }
 };
+const HOBBY_COVERS = {
+  golf: 'images/hobby-covers/golf.jpg',
+  fishing: 'images/hobby-covers/fishing.jpg',
+  camping: 'images/hobby-covers/camping.jpg'
+};
 const CATS = {
   all:      { label: 'すべて' },
   car:      { label: '車',              glyph: '車', tint: 'var(--car)' },
@@ -272,7 +277,7 @@ function renderGrid(){
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
       return `
         <button class="card summary-card" data-jump="${k}">
-          <div class="photo" style="--tint:${c.tint}"><span class="glyph">${c.glyph}</span></div>
+          <div class="photo" style="--tint:${c.tint}">${HOBBY_COVERS[k]?`<img src="${HOBBY_COVERS[k]}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
           <div class="body">
             <div class="maker">趣味コレクション</div>
             <div class="name">${esc(c.label.replace(/^[⛳🎣⛺]\s*/,''))}</div>

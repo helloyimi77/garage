@@ -2667,8 +2667,10 @@
         }
       ],
       "photos": {
-        "main": "",
-        "gallery": []
+        "main": "images/fishing-seabass/seabass_01_main.jpg",
+        "gallery": [
+          "images/fishing-seabass/seabass_02_gallery.jpg"
+        ]
       },
       "memo": ""
     },
@@ -2876,7 +2878,7 @@
         }
       ],
       "photos": {
-        "main": "",
+        "main": "images/fishing-ajing/ajing_01_main.jpg",
         "gallery": []
       },
       "memo": ""
@@ -3229,7 +3231,7 @@
         }
       ],
       "photos": {
-        "main": "",
+        "main": "images/camp-chair/chair_01_main.jpg",
         "gallery": []
       },
       "memo": ""
