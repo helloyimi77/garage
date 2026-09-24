@@ -4601,6 +4601,14 @@
         "main": "images/hobby-covers/camping.jpg",
         "gallery": []
       }
+    },
+    "airsoft": {
+      "id": "cover-airsoft",
+      "name": "サバゲーの表紙",
+      "photos": {
+        "main": "images/hobby-covers/airsoft_01_2026-09-24.jpg",
+        "gallery": []
+      }
     }
   }
 }
