@@ -67,19 +67,26 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .groupseg button[aria-pressed="true"]{background:var(--ink);color:#fff}
 
 /* hobby list view (used by golf, fishing, camping) */
-.golf-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.golf-list table{width:100%;border-collapse:collapse;font-size:14px;border:0}
-.golf-list th,.golf-list td{padding:10px 12px;text-align:left;vertical-align:middle;border-top:1px solid var(--line)}
-.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:12px;border-top:0;position:sticky;top:0}
+.golf-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
+.golf-list table{width:100%;border-collapse:collapse;font-size:13px;border:0}
+.golf-list th,.golf-list td{padding:9px 10px;text-align:left;vertical-align:middle;border-top:1px solid var(--line);white-space:nowrap}
+.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:11px;border-top:0;position:sticky;top:0}
+.golf-list th.num,.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums}
 .golf-list tbody tr{cursor:pointer;transition:background .15s}
 .golf-list[data-cat="golf"] tbody tr:hover{background:var(--golf)}
 .golf-list[data-cat="fishing"] tbody tr:hover{background:var(--fishing)}
 .golf-list[data-cat="camping"] tbody tr:hover{background:var(--camping)}
-.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.golf-list td.club{font-weight:700;font-size:15px;white-space:nowrap}
-.golf-list td.maker small{color:var(--ink-2);display:block;font-size:11px;margin-top:1px}
-.golf-list tr.sub td{color:var(--ink-2)}
+.golf-list td.club{font-weight:700;font-size:14px;color:var(--ink)}
+.golf-list td.model .model-name{font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.15}
+.golf-list td.model .maker-sub{color:var(--ink-2);display:block;font-size:11px;margin-top:1px;font-weight:400}
+.golf-list td.shaft{color:var(--ink-2);font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.golf-list td.dist{font-weight:700}
+.golf-list td.dist-sim{color:var(--ink-2)}
+.golf-list td.price{font-weight:500}
+.golf-list tr.sub td{color:var(--ink-2);opacity:.75}
 .golf-list tr.sub td.club::after{content:' (2軍)';font-size:11px;color:var(--ink-2);font-weight:400}
+.golf-list.wide{overflow-x:auto}
+.golf-list.wide table{min-width:1100px}
 @media (max-width:700px){
   .golf-list{overflow-x:auto}
   .golf-list table{min-width:640px}
@@ -316,31 +323,44 @@ function renderGrid(){
 
   // Golf: リスト表示（表形式）
   if(group==='hobby' && cat==='golf'){
-    const clubOrder=['ドライバー','3W','5W','4U','5U','6I','7I','8I','9I','PW','52°ウェッジ','58°ウェッジ','チッパー','パター','LW (2軍)','ドライバー (2軍)'];
+    const clubOrder=['ドライバー','3W','5W','4U','5U','6I','7I','8I','9I','PW','52°ウェッジ','58°ウェッジ','チッパー','パター','LW','ドライバー'];
     const sorted=[...list].sort((a,b)=>{
-      const ai=clubOrder.findIndex(k=>a.name.startsWith(k.replace(/ \(2軍\)$/,'')));
-      const bi=clubOrder.findIndex(k=>b.name.startsWith(k.replace(/ \(2軍\)$/,'')));
       const aSub=a.role==='sub'?1:0, bSub=b.role==='sub'?1:0;
-      return aSub-bSub || ai-bi;
+      if(aSub!==bSub) return aSub-bSub;
+      const ai=clubOrder.findIndex(k=>a.name.startsWith(k));
+      const bi=clubOrder.findIndex(k=>b.name.startsWith(k));
+      return ai-bi;
     });
     const rows=sorted.map(v=>{
-      const loft=v.specs?.['ロフト']||'';
-      const dist=(v.specs?.['飛距離']||'').split(' ')[0];
-      const shaft=v.specs?.['シャフト']||'';
-      const length=v.specs?.['長さ']||'';
+      const s=v.specs||{};
       const price=v.purchase?.price?yen(v.purchase.price):'';
       return `<tr class="${v.role==='sub'?'sub':''}" data-id="${esc(v.id)}">
         <td class="club">${esc(v.name.replace(/ \(2軍\)$/,''))}</td>
-        <td class="maker">${esc(v.maker)}<small>${esc(v.model||'')}</small></td>
-        <td class="num">${esc(loft)}</td>
-        <td class="num">${esc(dist)}</td>
-        <td>${esc(length)}</td>
-        <td class="num" style="color:var(--ink-2);font-size:12px">${esc(shaft)}</td>
-        <td class="num">${price}</td>
+        <td class="model">
+          <div class="model-name">${esc(v.model||'')}</div>
+          <small class="maker-sub">${esc(v.maker)}${v.year?` · ${v.year}`:''}</small>
+        </td>
+        <td class="shaft">${esc(s['シャフト']||'')}</td>
+        <td class="num">${esc(s['ロフト']||'')}</td>
+        <td class="num">${esc(s['ライ角']||'')}</td>
+        <td class="num">${esc(s['バランス']||'')}</td>
+        <td class="num">${esc(s['トルク']||'')}</td>
+        <td class="num">${esc(s['長さ']||'')}</td>
+        <td class="num">${esc(s['クラブ重量']||'')}</td>
+        <td class="num">${esc(s['シャフト重量']||'')}</td>
+        <td class="num dist">${esc(s['飛距離']||'')}</td>
+        <td class="num dist-sim">${esc(s['Sim']||'')}</td>
+        <td class="num">${esc(s['体積']||'')}</td>
+        <td class="num price">${price}</td>
       </tr>`;
     }).join('');
-    g.innerHTML=`<div class="golf-list" data-cat="golf"><table>
-      <thead><tr><th>番手</th><th>メーカー・モデル</th><th>ロフト</th><th>飛距離</th><th>長さ</th><th>シャフト</th><th>定価</th></tr></thead>
+    g.innerHTML=`<div class="golf-list wide" data-cat="golf"><table>
+      <thead><tr>
+        <th>番手</th><th>モデル</th><th>シャフト</th>
+        <th class="num">ロフト</th><th class="num">ライ角</th><th class="num">バランス</th><th class="num">トルク</th>
+        <th class="num">長さ</th><th class="num">クラブ重量</th><th class="num">シャフト重量</th>
+        <th class="num">飛距離</th><th class="num">Sim</th><th class="num">体積</th><th class="num">定価</th>
+      </tr></thead>
       <tbody>${rows}</tbody>
     </table></div>`;
     return;
