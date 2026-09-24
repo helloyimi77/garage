@@ -77,6 +77,9 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .golf-list[data-cat="fishing"] tbody tr:hover{background:var(--fishing)}
 .golf-list[data-cat="camping"] tbody tr:hover{background:var(--camping)}
 .golf-list td.club{font-weight:700;font-size:15px;color:var(--ink)}
+/* fishing table specific */
+.fishing-list table{table-layout:fixed}
+.fishing-list td.tackle{font-size:13px;color:var(--ink);word-break:keep-all;overflow-wrap:break-word;line-height:1.4}
 /* wide (golf only) — compact typography, no wrap, min-width */
 .golf-list.wide table{min-width:1100px;font-size:13px}
 .golf-list.wide th,.golf-list.wide td{padding:9px 10px;white-space:nowrap}
@@ -372,23 +375,26 @@ function renderGrid(){
 
   // Fishing: リスト表示
   if(group==='hobby' && cat==='fishing'){
+    // ロッド/リール文字列から余計な詳細を落として表示用テキストにする
+    const shortRod = s => (s||'').replace(/\s*\(¥[\d,]+\)\s*$/,'').split(' / ')[0].trim();
+    const shortReel = s => (s||'').replace(/\s*\(¥[\d,]+\)\s*$/,'').trim();
     const rows=list.map(v=>{
       const target=v.specs?.['ターゲット']||'';
-      const rod=(v.specs?.['ロッド']||'').replace(/\s*\(¥[\d,]+\)\s*$/,'');
-      const reel=(v.specs?.['リール']||'').replace(/\s*\(¥[\d,]+\)\s*$/,'');
+      const rod=shortRod(v.specs?.['ロッド']);
+      const reel=shortReel(v.specs?.['リール']);
       const lureCount=(v.equipment||[]).length;
       const total=total_hobby(v);
       return `<tr data-id="${esc(v.id)}">
         <td class="club">${esc(v.name)}</td>
         <td>${esc(target)}</td>
-        <td style="font-size:12px">${esc(rod)||'—'}</td>
-        <td style="font-size:12px">${esc(reel)||'—'}</td>
+        <td class="tackle">${esc(rod)||'—'}</td>
+        <td class="tackle">${esc(reel)||'—'}</td>
         <td class="num">${lureCount?lureCount+'点':'—'}</td>
         <td class="num">${yen(total)}</td>
       </tr>`;
     }).join('');
-    g.innerHTML=`<div class="golf-list" data-cat="fishing"><table>
-      <thead><tr><th>セット</th><th>ターゲット</th><th>ロッド</th><th>リール</th><th>ルアー</th><th>合計</th></tr></thead>
+    g.innerHTML=`<div class="golf-list fishing-list" data-cat="fishing"><table>
+      <thead><tr><th style="width:14%">セット</th><th style="width:10%">ターゲット</th><th style="width:30%">ロッド</th><th style="width:22%">リール</th><th class="num" style="width:8%">ルアー</th><th class="num" style="width:16%">合計</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>`;
     return;
