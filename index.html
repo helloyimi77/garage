@@ -233,7 +233,8 @@ const GROUPS = {
 const HOBBY_COVERS = {
   golf: 'images/hobby-covers/golf.jpg',
   fishing: 'images/hobby-covers/fishing.jpg',
-  camping: 'images/hobby-covers/camping.jpg'
+  camping: 'images/hobby-covers/camping.jpg',
+  plant: 'images/plants/JO-004.jpg'
 };
 const coverOf = k => DATA.covers?.[k]?.photos?.main || HOBBY_COVERS[k] || '';
 const CATS = {
@@ -365,7 +366,7 @@ function renderGrid(){
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
       return `
         <button class="card summary-card" data-jump="${k}">
-          <div class="photo" style="--tint:${c.tint}">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
+          <div class="photo" style="--tint:${c.tint}">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}"${k==='plant'?' onload="if(this.naturalHeight>this.naturalWidth)this.parentElement.classList.add(\'portrait\')"':''}>`:`<span class="glyph">${c.glyph}</span>`}</div>
           <div class="body">
             <div class="maker">趣味コレクション</div>
             <div class="name">${esc(c.label.replace(/^\S+\s+/,''))}</div>
