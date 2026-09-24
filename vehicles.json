@@ -452,7 +452,7 @@
       "model": "CF4MA",
       "grade": "",
       "year": 2017,
-      "color": "",
+      "color": "ブルー",
       "purchase": {
         "date": "2017-07-15",
         "type": "new",
@@ -472,7 +472,7 @@
       "customs": [],
       "equipment": [],
       "photos": {
-        "main": "",
+        "main": "images/address-v125s/address_01_main.jpg",
         "gallery": []
       },
       "memo": "弟に譲渡（¥60,000）。",
@@ -486,8 +486,8 @@
       "maker": "ヤマハ",
       "model": "",
       "grade": "",
-      "year": null,
-      "color": "",
+      "year": 2006,
+      "color": "ホワイト",
       "purchase": {
         "date": "2007-07-01",
         "type": "used",
@@ -507,10 +507,10 @@
       "customs": [],
       "equipment": [],
       "photos": {
-        "main": "",
+        "main": "images/cygnus-x/cygnus_01_main.jpg",
         "gallery": []
       },
-      "memo": "30歳頃に購入、31歳（2008年）の結婚・引っ越しで手放す。約18ヶ月所有、10万円で売却。",
+      "memo": "30歳頃に購入、31歳（2008年）の結婚・引っ越しで手放す。約18ヶ月所有、10万円で売却。 年式2006は推定（2005〜2007年頃、中古購入のため不明）。",
       "group": "vehicle"
     },
     {
@@ -2443,7 +2443,14 @@
         "date": null,
         "price": null
       },
-      "specs": {},
+      "specs": {
+        "ヘッド": "マレット（スチールワイヤーフレーム＋アルミコア）",
+        "ロフト": "2.5°",
+        "ライ角": "70°",
+        "インサート": "Titallium AGSI+（14本溝）",
+        "ウェイト": "可変ウェイト（ヒール・トウ）",
+        "仕上げ": "ブラックニッケル"
+      },
       "customs": [],
       "equipment": [],
       "photos": {
@@ -4084,7 +4091,7 @@
         {
           "name": "シェルコン25",
           "maker": "snow peak",
-          "price": null,
+          "price": 15000,
           "note": "約3.5kg / 家用コンテナ"
         },
         {

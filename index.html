@@ -66,42 +66,6 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .groupseg button{padding:9px 22px;font-size:14px;font-weight:500;color:var(--ink-2)}
 .groupseg button[aria-pressed="true"]{background:var(--ink);color:#fff}
 
-/* hobby list view (used by golf, fishing, camping) */
-.golf-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
-.golf-list table{width:100%;border-collapse:collapse;font-size:14px;border:0}
-.golf-list th,.golf-list td{padding:11px 12px;text-align:left;vertical-align:middle;border-top:1px solid var(--line)}
-.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:12px;border-top:0;position:sticky;top:0;white-space:nowrap}
-.golf-list th.num,.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.golf-list tbody tr{cursor:pointer;transition:background .15s}
-.golf-list[data-cat="golf"] tbody tr:hover{background:var(--golf)}
-.golf-list[data-cat="fishing"] tbody tr:hover{background:var(--fishing)}
-.golf-list[data-cat="camping"] tbody tr:hover{background:var(--camping)}
-.golf-list td.club{font-weight:700;font-size:15px;color:var(--ink)}
-/* fishing table specific */
-.fishing-list table{table-layout:fixed}
-.fishing-list td,.fishing-list th{word-break:keep-all;overflow-wrap:break-word}
-.fishing-list td.tackle{font-size:13px;color:var(--ink);line-height:1.4}
-.fishing-list td.tackle small,.fishing-list td.num small{display:block;color:var(--ink-2);font-size:11px;font-weight:400;margin-top:2px;font-variant-numeric:tabular-nums}
-.fishing-list td.total{font-weight:700}
-/* wide (golf only) — compact typography, no wrap, min-width */
-.golf-list.wide table{min-width:1100px;font-size:13px}
-.golf-list.wide th,.golf-list.wide td{padding:9px 10px;white-space:nowrap}
-.golf-list.wide thead th{font-size:11px}
-.golf-list.wide td.club{font-size:14px}
-.golf-list.wide td.model .model-name{font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.15}
-.golf-list.wide td.model .maker-sub{color:var(--ink-2);display:block;font-size:11px;margin-top:1px;font-weight:400}
-.golf-list.wide td.shaft{color:var(--ink-2);font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis}
-.golf-list.wide td.dist{font-weight:700}
-.golf-list.wide td.dist-sim{color:var(--ink-2)}
-.golf-list.wide td.price{font-weight:500}
-.golf-list.wide tr.sub td{color:var(--ink-2);opacity:.75}
-.golf-list.wide tr.sub td.club::after{content:' (2軍)';font-size:11px;color:var(--ink-2);font-weight:400}
-@media (max-width:700px){
-  .golf-list.wide table{min-width:900px}
-  .golf-list td.club{font-size:14px}
-  .golf-list th,.golf-list td{padding:9px 10px}
-}
-
 /* timeline */
 .timeline{margin-top:48px}
 .timeline h2{font-size:18px;font-weight:700;margin:0 0 4px}
@@ -258,7 +222,7 @@ async function load(){
     return;
   }
   document.getElementById('title').textContent = DATA.title || 'GARAGE';
-  document.getElementById('owner').textContent = DATA.owner ? DATA.owner + ' の愛車リスト' : '';
+  document.getElementById('owner').textContent = '';
   renderTabs(); renderSummary(); renderGrid(); renderTimeline();
   if(location.hash) openDetail(location.hash.slice(1));
 }
@@ -274,14 +238,12 @@ function renderTabs(){
 function renderSummary(){
   const items = DATA.vehicles.filter(v=>(v.group||'vehicle')===group);
   if(group==='hobby'){
-    const total = items.reduce((a,v)=>a+total_hobby(v),0);
     document.getElementById('summary').innerHTML =
-      `<span><b>${items.length}</b>件 登録</span><span><b>${yen(total)}</b>合計投入額</span>`;
+      `<span><b>${items.length}</b>件 登録</span>`;
   } else {
     const act = items.filter(v=>!isSold(v));
-    const invested = act.reduce((a,v)=>a+total(v),0);
     document.getElementById('summary').innerHTML =
-      `<span><b>${act.length}</b>台 現役</span><span><b>${items.length-act.length}</b>台 過去</span><span><b>${yen(invested)}</b>現役への総投入額</span>`;
+      `<span><b>${act.length}</b>台 現役</span><span><b>${items.length-act.length}</b>台 過去</span>`;
   }
 }
 function total(v){ return (Number(v.purchase?.price)||0) + sum(v.customs) + sum(v.equipment); }
@@ -330,105 +292,6 @@ function renderGrid(){
   }
   const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
   if(!list.length){ g.innerHTML = `<div class="empty">この条件のアイテムはありません。vehicles.json に追加すると表示されます。</div>`; return; }
-
-  // Golf: リスト表示（表形式）
-  if(group==='hobby' && cat==='golf'){
-    const clubOrder=['ドライバー','3W','5W','4U','5U','6I','7I','8I','9I','PW','52°ウェッジ','58°ウェッジ','チッパー','パター','LW','ドライバー'];
-    const sorted=[...list].sort((a,b)=>{
-      const aSub=a.role==='sub'?1:0, bSub=b.role==='sub'?1:0;
-      if(aSub!==bSub) return aSub-bSub;
-      const ai=clubOrder.findIndex(k=>a.name.startsWith(k));
-      const bi=clubOrder.findIndex(k=>b.name.startsWith(k));
-      return ai-bi;
-    });
-    const rows=sorted.map(v=>{
-      const s=v.specs||{};
-      const price=v.purchase?.price?yen(v.purchase.price):'';
-      return `<tr class="${v.role==='sub'?'sub':''}" data-id="${esc(v.id)}">
-        <td class="club">${esc(v.name.replace(/ \(2軍\)$/,''))}</td>
-        <td class="model">
-          <div class="model-name">${esc(v.model||'')}</div>
-          <small class="maker-sub">${esc(v.maker)}${v.year?` · ${v.year}`:''}</small>
-        </td>
-        <td class="shaft">${esc(s['シャフト']||'')}</td>
-        <td class="num">${esc(s['ロフト']||'')}</td>
-        <td class="num">${esc(s['ライ角']||'')}</td>
-        <td class="num">${esc(s['バランス']||'')}</td>
-        <td class="num">${esc(s['トルク']||'')}</td>
-        <td class="num">${esc(s['長さ']||'')}</td>
-        <td class="num">${esc(s['クラブ重量']||'')}</td>
-        <td class="num">${esc(s['シャフト重量']||'')}</td>
-        <td class="num dist">${esc(s['飛距離']||'')}</td>
-        <td class="num dist-sim">${esc(s['Sim']||'')}</td>
-        <td class="num">${esc(s['体積']||'')}</td>
-        <td class="num price">${price}</td>
-      </tr>`;
-    }).join('');
-    g.innerHTML=`<div class="golf-list wide" data-cat="golf"><table>
-      <thead><tr>
-        <th>番手</th><th>モデル</th><th>シャフト</th>
-        <th class="num">ロフト</th><th class="num">ライ角</th><th class="num">バランス</th><th class="num">トルク</th>
-        <th class="num">長さ</th><th class="num">クラブ重量</th><th class="num">シャフト重量</th>
-        <th class="num">飛距離</th><th class="num">Sim</th><th class="num">体積</th><th class="num">定価</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
-    return;
-  }
-
-  // Fishing: リスト表示
-  if(group==='hobby' && cat==='fishing'){
-    // ロッド/リール文字列から名前と価格を分離
-    const parseTackle = s => {
-      if(!s) return {name:'',price:''};
-      const m=s.match(/^(.*?)\s*(?:\(¥([\d,]+)\))?\s*$/);
-      const name=(m[1]||'').split(' / ')[0].trim();
-      const price=m[2]?`¥${m[2]}`:'';
-      return {name, price};
-    };
-    const rows=list.map(v=>{
-      const target=v.specs?.['ターゲット']||'';
-      const rod=parseTackle(v.specs?.['ロッド']);
-      const reel=parseTackle(v.specs?.['リール']);
-      const lureCount=(v.equipment||[]).length;
-      const lureTotal=sum(v.equipment);
-      const total=total_hobby(v);
-      return `<tr data-id="${esc(v.id)}">
-        <td class="club">${esc(v.name)}</td>
-        <td>${esc(target)}</td>
-        <td class="tackle">${esc(rod.name)||'—'}${rod.price?`<small>${esc(rod.price)}</small>`:''}</td>
-        <td class="tackle">${esc(reel.name)||'—'}${reel.price?`<small>${esc(reel.price)}</small>`:''}</td>
-        <td class="num">${lureCount?lureCount+'点':'—'}${lureTotal?`<small>${yen(lureTotal)}</small>`:''}</td>
-        <td class="num total">${yen(total)}</td>
-      </tr>`;
-    }).join('');
-    g.innerHTML=`<div class="golf-list fishing-list" data-cat="fishing"><table>
-      <thead><tr><th style="width:14%">セット</th><th style="width:10%">ターゲット</th><th style="width:28%">ロッド</th><th style="width:22%">リール</th><th class="num" style="width:10%">ルアー</th><th class="num" style="width:16%">合計</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
-    return;
-  }
-
-  // Camping: リスト表示
-  if(group==='hobby' && cat==='camping'){
-    const rows=list.map(v=>{
-      const count=v.specs?.['点数']||`${(v.equipment||[]).length}点`;
-      const weight=v.specs?.['総重量目安']||'';
-      const total=sum(v.equipment);
-      return `<tr data-id="${esc(v.id)}">
-        <td class="club">${esc(v.name)}</td>
-        <td class="num">${esc(count)}</td>
-        <td class="num" style="color:var(--ink-2);font-size:12px">${esc(weight)}</td>
-        <td class="num">${yen(total)}</td>
-      </tr>`;
-    }).join('');
-    g.innerHTML=`<div class="golf-list" data-cat="camping"><table>
-      <thead><tr><th>カテゴリ</th><th>点数</th><th>総重量目安</th><th>合計金額</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
-    return;
-  }
-
   g.innerHTML = list.map(v => {
     const isHobby = (v.group||'vehicle')==='hobby';
     let footL='', footR='';
@@ -495,8 +358,6 @@ function openDetail(id){
   const cust = sum(v.customs), eq = sum(v.equipment), buy = Number(v.purchase?.price)||0;
   const own = isHorse
     ? `${fmtDate(v.purchase?.date)||''} 中古（セリで購入）` + (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す` : ' → 現役')
-    : v.group==='hobby'
-    ? (v.purchase?.date ? `${fmtDate(v.purchase.date)} 購入` : '所有中')
     : `${fmtDate(v.purchase?.date)} ${v.purchase?.type==='new'?'新車':v.purchase?.type==='used'?'中古':''}で購入` +
       (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す${v.sold?.price!=null?`（${yen(v.sold.price)}）`:''}` : ' → 現在も所有');
   const specRows = Object.entries(v.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
@@ -504,12 +365,7 @@ function openDetail(id){
     <div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
   const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
-  const gal = (v.photos?.gallery||[]).map(p=>{
-    if(/\.(mp4|mov|webm)$/i.test(p)){
-      return `<video src="${esc(p)}" controls playsinline preload="metadata" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:#000"></video>`;
-    }
-    return `<img src="${esc(p)}" alt="">`;
-  }).join('');
+  const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="">`).join('');
 
   // horse-specific: race log + stats
   let raceSection='', statsBlock='';
@@ -563,9 +419,8 @@ function openDetail(id){
           <div><span>役割</span><b style="font-size:15px">${v.role==='sub'?'2軍':'メイン装備'}</b></div>
          </div>`
       : `<div class="money">
-          <div><span>${v.category==='fishing'?'ロッド一式':'点数'}</span><b>${v.category==='fishing'?yen(buy):(v.equipment||[]).length+'点'}</b></div>
-          <div><span>${v.category==='fishing'?'ルアー・小物':'合計金額'}</span><b>${v.category==='fishing'?yen(sum(v.equipment)):yen(sum(v.equipment))}</b></div>
-          <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
+          <div><span>点数</span><b>${(v.equipment||[]).length}点</b></div>
+          <div><span>合計金額</span><b>${yen(sum(v.equipment))}</b></div>
          </div>`)
     : `<div class="money">
         <div><span>購入価格</span><b>${yen(buy)}</b></div>
@@ -624,7 +479,6 @@ document.getElementById('seg').addEventListener('click', e=>{
 document.getElementById('grid').addEventListener('click', e=>{
   const j = e.target.closest('[data-jump]');
   if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
-  const row = e.target.closest('tr[data-id]'); if(row){ openDetail(row.dataset.id); return; }
   const c = e.target.closest('.card'); if(c && c.dataset.id) openDetail(c.dataset.id);
 });
 document.getElementById('drawer').addEventListener('click', e=>{ if(e.target.closest('#close')) closeDetail(); });
