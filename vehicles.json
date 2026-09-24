@@ -2998,8 +2998,10 @@
         }
       ],
       "photos": {
-        "main": "images/fishing-ajing/ajing_01_main.jpg",
-        "gallery": []
+        "main": "images/fishing-ajing/ajing_02_2026-09-24.jpg",
+        "gallery": [
+          "images/fishing-ajing/ajing_01_main.jpg"
+        ]
       },
       "memo": "ロッド・リール・ライン等の定価目安"
     },
