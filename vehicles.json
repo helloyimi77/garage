@@ -263,7 +263,7 @@
       "maker": "ホンダ",
       "model": "DC2",
       "grade": "TYPE R",
-      "year": null,
+      "year": 2000,
       "color": "チャンピオンシップホワイト",
       "purchase": {
         "date": "2000-01-01",
@@ -724,12 +724,13 @@
       "maker": "ストリーモ（Honda発ベンチャー）",
       "model": "S01JTA",
       "grade": "",
-      "year": null,
+      "year": 2024,
       "color": "ホワイト",
       "purchase": {
         "date": "2024-04-30",
         "type": "new",
-        "price": 313760
+        "price": 313760,
+        "note": "領収書で確定（本体＋送料・税込）"
       },
       "sold": {
         "date": null,
