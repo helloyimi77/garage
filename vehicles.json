@@ -451,13 +451,13 @@
       "maker": "スズキ",
       "model": "CF4MA",
       "grade": "",
-      "year": null,
+      "year": 2017,
       "color": "",
       "purchase": {
         "date": "2017-07-15",
-        "type": "used",
-        "price": 150000,
-        "note": "購入日確定（平成29年7月15日）"
+        "type": "new",
+        "price": 235360,
+        "note": "購入日・価格とも確定（平成29年7月15日）"
       },
       "sold": {
         "date": "2025-12-31",
@@ -659,16 +659,17 @@
       "id": "giant-road",
       "category": "roadbike",
       "status": "sold",
-      "name": "GIANT ロードバイク",
+      "name": "GIANT OCR3",
       "maker": "ジャイアント",
-      "model": "",
+      "model": "OCR3",
       "grade": "",
-      "year": null,
+      "year": 2008,
       "color": "ライトブルー×ホワイト",
       "purchase": {
         "date": "2009-01-01",
-        "type": "used",
-        "price": 60000
+        "type": "new",
+        "price": 85000,
+        "note": "小物込み・記憶ベース（車体は約8万円）"
       },
       "sold": {
         "date": "2016-01-01",
@@ -677,7 +678,7 @@
       "specs": {
         "フレーム": "アルミ",
         "サイズ": "465mm（S）",
-        "コンポーネント": "シマノ 105（RD）",
+        "コンポーネント": "シマノ エントリーグレード（3×8速）",
         "ホイール": "GIANT P-R2",
         "ブレーキ": "リムブレーキ"
       },
@@ -712,7 +713,7 @@
         "main": "images/giant-road/giant_01_main.jpg",
         "gallery": []
       },
-      "memo": "2009年に中古で購入。CAAD12購入時（2016年頃）に手放す。",
+      "memo": "2009年に型落ち新車で購入（小物込み約8.5万円）。CAAD12購入時（2016年頃）に手放す。",
       "group": "vehicle"
     },
     {
