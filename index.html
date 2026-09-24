@@ -68,28 +68,32 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 
 /* hobby list view (used by golf, fishing, camping) */
 .golf-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
-.golf-list table{width:100%;border-collapse:collapse;font-size:13px;border:0}
-.golf-list th,.golf-list td{padding:9px 10px;text-align:left;vertical-align:middle;border-top:1px solid var(--line);white-space:nowrap}
-.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:11px;border-top:0;position:sticky;top:0}
-.golf-list th.num,.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums}
+.golf-list table{width:100%;border-collapse:collapse;font-size:14px;border:0}
+.golf-list th,.golf-list td{padding:11px 12px;text-align:left;vertical-align:middle;border-top:1px solid var(--line)}
+.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:12px;border-top:0;position:sticky;top:0;white-space:nowrap}
+.golf-list th.num,.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .golf-list tbody tr{cursor:pointer;transition:background .15s}
 .golf-list[data-cat="golf"] tbody tr:hover{background:var(--golf)}
 .golf-list[data-cat="fishing"] tbody tr:hover{background:var(--fishing)}
 .golf-list[data-cat="camping"] tbody tr:hover{background:var(--camping)}
-.golf-list td.club{font-weight:700;font-size:14px;color:var(--ink)}
-.golf-list td.model .model-name{font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.15}
-.golf-list td.model .maker-sub{color:var(--ink-2);display:block;font-size:11px;margin-top:1px;font-weight:400}
-.golf-list td.shaft{color:var(--ink-2);font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis}
-.golf-list td.dist{font-weight:700}
-.golf-list td.dist-sim{color:var(--ink-2)}
-.golf-list td.price{font-weight:500}
-.golf-list tr.sub td{color:var(--ink-2);opacity:.75}
-.golf-list tr.sub td.club::after{content:' (2軍)';font-size:11px;color:var(--ink-2);font-weight:400}
-.golf-list.wide{overflow-x:auto}
-.golf-list.wide table{min-width:1100px}
+.golf-list td.club{font-weight:700;font-size:15px;color:var(--ink)}
+/* wide (golf only) — compact typography, no wrap, min-width */
+.golf-list.wide table{min-width:1100px;font-size:13px}
+.golf-list.wide th,.golf-list.wide td{padding:9px 10px;white-space:nowrap}
+.golf-list.wide thead th{font-size:11px}
+.golf-list.wide td.club{font-size:14px}
+.golf-list.wide td.model .model-name{font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.15}
+.golf-list.wide td.model .maker-sub{color:var(--ink-2);display:block;font-size:11px;margin-top:1px;font-weight:400}
+.golf-list.wide td.shaft{color:var(--ink-2);font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.golf-list.wide td.dist{font-weight:700}
+.golf-list.wide td.dist-sim{color:var(--ink-2)}
+.golf-list.wide td.price{font-weight:500}
+.golf-list.wide tr.sub td{color:var(--ink-2);opacity:.75}
+.golf-list.wide tr.sub td.club::after{content:' (2軍)';font-size:11px;color:var(--ink-2);font-weight:400}
 @media (max-width:700px){
-  .golf-list{overflow-x:auto}
-  .golf-list table{min-width:640px}
+  .golf-list.wide table{min-width:900px}
+  .golf-list td.club{font-size:14px}
+  .golf-list th,.golf-list td{padding:9px 10px}
 }
 
 /* timeline */
