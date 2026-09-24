@@ -4418,7 +4418,13 @@
         "特徴": "ワルサー社正式ライセンス、可変ホップ、3ポジショントリガー"
       },
       "equipment": [],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/airsoft-p99/airsoft_01_2026-09-24.jpg",
+        "gallery": [
+          "images/airsoft-p99/airsoft_02_2026-09-24.jpg"
+        ]
+      }
     },
     {
       "id": "rc-ta08r",
