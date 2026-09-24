@@ -15,7 +15,7 @@
       "purchase": {
         "date": "2025-03-10",
         "type": "new",
-        "price": 4220000,
+        "price": 5089380,
         "note": "概算"
       },
       "sold": {
@@ -79,6 +79,12 @@
           "note": ""
         },
         {
+          "name": "ETCセットアップ",
+          "maker": "SUBARU",
+          "price": 2850,
+          "note": ""
+        },
+        {
           "name": "TVフリーキット@STR-38",
           "maker": "SUBARU",
           "price": 28100,
@@ -115,7 +121,7 @@
           "images/bt5-outback/bt5_02_front.jpg"
         ]
       },
-      "memo": "現在のメインの愛車。ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。",
+      "memo": "現在のメインの愛車。ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。\n購入価格は乗り出し価格（車両本体¥4,220,000＋諸費用・保証延長・点検パック等）。付属品は装備欄に個別記載。",
       "group": "vehicle"
     },
     {
@@ -325,7 +331,7 @@
       "purchase": {
         "date": "2025-09-01",
         "type": "new",
-        "price": 1210000,
+        "price": 1412230,
         "note": "日は仮"
       },
       "sold": {
@@ -430,7 +436,7 @@
         "main": "images/zx-4rr/zx4rr_01_main.jpg",
         "gallery": []
       },
-      "memo": "3台目のバイク。",
+      "memo": "3台目のバイク。\n購入価格は乗り出し価格（車両本体¥1,210,000＋登録料・重量税・自賠責・メンテナンスパック・延長保証等）。ETC・キズ防止フィルム・ローダウンリンクは装備／カスタム欄に個別記載。",
       "group": "vehicle"
     },
     {
@@ -1895,8 +1901,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 95700
       },
       "sold": {
         "date": null,
@@ -1922,7 +1928,7 @@
           "images/golf-driver-prgr-rsx-f/driver_swing_bestshot.mp4"
         ]
       },
-      "memo": "ベストショット動画付き。"
+      "memo": "ベストショット動画付き。 定価目安"
     },
     {
       "id": "golf-3w-stealth2-hd",
@@ -1938,8 +1944,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 66000
       },
       "sold": {
         "date": null,
@@ -1962,7 +1968,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-5w-stealth2-hd",
@@ -1978,8 +1984,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 66000
       },
       "sold": {
         "date": null,
@@ -2002,7 +2008,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-4u-stealth2-hd",
@@ -2018,8 +2024,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 44000
       },
       "sold": {
         "date": null,
@@ -2042,7 +2048,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-5u-stealth2-hd",
@@ -2058,8 +2064,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 44000
       },
       "sold": {
         "date": null,
@@ -2082,7 +2088,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-6i-p790",
@@ -2098,8 +2104,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 33000
       },
       "sold": {
         "date": null,
@@ -2122,7 +2128,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-7i-p790",
@@ -2138,8 +2144,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 33000
       },
       "sold": {
         "date": null,
@@ -2162,7 +2168,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-8i-p790",
@@ -2178,8 +2184,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 33000
       },
       "sold": {
         "date": null,
@@ -2202,7 +2208,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-9i-p790",
@@ -2218,8 +2224,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 33000
       },
       "sold": {
         "date": null,
@@ -2242,7 +2248,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-pw-p790",
@@ -2258,8 +2264,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 33000
       },
       "sold": {
         "date": null,
@@ -2282,7 +2288,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-52-dolphin-dw123",
@@ -2298,8 +2304,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 16500
       },
       "sold": {
         "date": null,
@@ -2320,7 +2326,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-58-rtx3",
@@ -2336,8 +2342,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 22000
       },
       "sold": {
         "date": null,
@@ -2357,7 +2363,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-chipper-dpw119",
@@ -2373,8 +2379,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 13200
       },
       "sold": {
         "date": null,
@@ -2394,7 +2400,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-putter-monza-spider",
@@ -2410,8 +2416,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 42000
       },
       "sold": {
         "date": null,
@@ -2424,7 +2430,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-lw-tom-watson",
@@ -2440,8 +2446,8 @@
       "role": "sub",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 15000
       },
       "sold": {
         "date": null,
@@ -2456,7 +2462,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "golf-driver-id-nabla-rs01",
@@ -2472,8 +2478,8 @@
       "role": "sub",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 50000
       },
       "sold": {
         "date": null,
@@ -2496,7 +2502,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "定価目安"
     },
     {
       "id": "fishing-seabass",
@@ -2532,139 +2538,139 @@
         {
           "name": "PB-20 デイグリーン",
           "maker": "Coreman",
-          "price": null,
+          "price": 1650,
           "note": "レンジを定めてゆっくり巻き。リフトアンドフォール、フォールカウント"
         },
         {
           "name": "VJ-16 イワシゴールド",
           "maker": "Coreman",
-          "price": null,
+          "price": 2310,
           "note": "活性高→高速巻き、低→低めのレンジ"
         },
         {
           "name": "VJ-16 ヒラメピンク",
           "maker": "Coreman",
-          "price": null,
+          "price": 2310,
           "note": ""
         },
         {
           "name": "BC-26 マコイワシ",
           "maker": "Coreman",
-          "price": null,
+          "price": 2200,
           "note": "ただ巻き"
         },
         {
           "name": "RJ-10",
           "maker": "Coreman",
-          "price": null,
+          "price": 1650,
           "note": "ゆっくり。擦れ切り札"
         },
         {
           "name": "Aizer125F 房州アジ",
           "maker": "BlueBlue",
-          "price": null,
+          "price": 3410,
           "note": "フローティングミノー。超低速のイレギュラーふらつき"
         },
         {
           "name": "Blooowin80S フラッシュレッド",
           "maker": "BlueBlue",
-          "price": null,
+          "price": 2700,
           "note": "シンキングペンシル。1m潜行スローS字"
         },
         {
           "name": "Blooowin80S アカキン",
           "maker": "BlueBlue",
-          "price": null,
+          "price": 2700,
           "note": ""
         },
         {
           "name": "Blooowin80S ブルーブルー",
           "maker": "BlueBlue",
-          "price": null,
+          "price": 2700,
           "note": ""
         },
         {
           "name": "Blooowin140S ピンクキャンディ",
           "maker": "BlueBlue",
-          "price": null,
+          "price": 3300,
           "note": "シンキングペンシル。1秒1回転"
         },
         {
           "name": "エクスセンス サルベージ 70S PKC",
           "maker": "Shimano",
-          "price": null,
+          "price": 1650,
           "note": "バイブレーション。ただ巻き+速度変化+トゥイッチ"
         },
         {
           "name": "モアザン スライスリム 125F ライトニングパープル",
           "maker": "Daiwa",
-          "price": null,
+          "price": 2200,
           "note": "フローティングミノー。超ゆっくり漂う揺らぎ"
         },
         {
           "name": "ガルバスリム80S ハッピーレモン",
           "maker": "Daiwa",
-          "price": null,
+          "price": 1800,
           "note": "シンキングペンシル。細身軽引き"
         },
         {
           "name": "セットアッパー 125S-DR Li LIチャートバック",
           "maker": "Daiwa",
-          "price": null,
+          "price": 2200,
           "note": "スローシンキング。5秒待ち1秒2-3回転"
         },
         {
           "name": "セットアッパー 125S-DR Li LIレッドヘッド",
           "maker": "Daiwa",
-          "price": null,
+          "price": 2200,
           "note": "スローシンキング"
         },
         {
           "name": "エリア10 ミラージュイワシ",
           "maker": "ガイア",
-          "price": null,
+          "price": 1800,
           "note": "フローティングミノー。流れ任せドリフト"
         },
         {
           "name": "エリア10 荒川サンライズ",
           "maker": "ガイア",
-          "price": null,
+          "price": 1800,
           "note": "フローティングミノー"
         },
         {
           "name": "manic 115 江戸前パール",
           "maker": "DUO",
-          "price": null,
+          "price": 1650,
           "note": "シンキングミノー。スローリトリーブで流れに乗せる"
         },
         {
           "name": "manic slow 95 マッドピンクギーゴ",
           "maker": "DUO",
-          "price": null,
+          "price": 1650,
           "note": "スローシンキング。超ゆっくり"
         },
         {
           "name": "feel120fg ブラックピンク",
           "maker": "reed",
-          "price": null,
+          "price": 1650,
           "note": "フローティングミノー。ゆっくり"
         },
         {
           "name": "コモモ2 ピンク＆ピンク",
           "maker": "アムズデザイン",
-          "price": null,
+          "price": 1870,
           "note": "フローティングミノー。ただ巻き or トゥウィッチ"
         },
         {
           "name": "コルセア50 マットパープルパール",
           "maker": "エバーグリーン",
-          "price": null,
+          "price": 1650,
           "note": "シンキングペンシル。1秒1回転"
         },
         {
           "name": "謎のメタルジグ 20g",
           "maker": "",
-          "price": null,
+          "price": 500,
           "note": ""
         }
       ],
@@ -2710,19 +2716,19 @@
         {
           "name": "ビンビンスイッチ 35g ブライトオレンジ",
           "maker": "ジャッカル",
-          "price": null,
+          "price": 1400,
           "note": "リフトフォール"
         },
         {
           "name": "ビンビンスイッチ 60g グリーンゴールド",
           "maker": "ジャッカル",
-          "price": null,
+          "price": 1600,
           "note": ""
         },
         {
           "name": "ビンビンスイッチ 80g レッドゴールド",
           "maker": "ジャッカル",
-          "price": null,
+          "price": 1800,
           "note": ""
         }
       ],
@@ -2803,79 +2809,79 @@
         {
           "name": "月下美人 しずる ケイムラシラス",
           "maker": "Daiwa",
-          "price": null,
+          "price": 770,
           "note": ""
         },
         {
           "name": "ナノラバ 10g ケイムラ ピンクシルバー",
           "maker": "メジャークラフト",
-          "price": null,
+          "price": 900,
           "note": ""
         },
         {
           "name": "ナノラバ 10g ケイムラ グリーンゴールド",
           "maker": "メジャークラフト",
-          "price": null,
+          "price": 900,
           "note": ""
         },
         {
           "name": "ナノラバ 5g グロー",
           "maker": "メジャークラフト",
-          "price": null,
+          "price": 800,
           "note": ""
         },
         {
           "name": "ナノラバ 5g ケイムラ レッドゴールド",
           "maker": "メジャークラフト",
-          "price": null,
+          "price": 800,
           "note": ""
         },
         {
           "name": "ナノラバ 1.5g ケイムラ グリーンゴールド",
           "maker": "メジャークラフト",
-          "price": null,
+          "price": 700,
           "note": ""
         },
         {
           "name": "ナノラバ 1.5g ケイムラ レッドゴールド",
           "maker": "メジャークラフト",
-          "price": null,
+          "price": 700,
           "note": ""
         },
         {
           "name": "魚子バイブ 2g アカキンラメ",
           "maker": "ルーディーズ",
-          "price": null,
+          "price": 800,
           "note": ""
         },
         {
           "name": "月下美人プリズナー CV 12g ピンクイワシ",
           "maker": "ルーディーズ",
-          "price": null,
+          "price": 1700,
           "note": ""
         },
         {
           "name": "ストーム 五目ボトム 3g 緑っぽい",
           "maker": "ラパラ",
-          "price": null,
+          "price": 990,
           "note": ""
         },
         {
           "name": "ストーム 五目ミノー 2g 赤っぽい",
           "maker": "ラパラ",
-          "price": null,
+          "price": 990,
           "note": ""
         },
         {
           "name": "ストーム 五目スピン レインボー",
           "maker": "ラパラ",
-          "price": null,
+          "price": 990,
           "note": ""
         },
         {
           "name": "Lミノー 3.5g 33mm 青銀",
           "maker": "YO-ZURI",
-          "price": null,
+          "price": 660,
           "note": ""
         }
       ],
@@ -2956,19 +2962,19 @@
         {
           "name": "ZEXUS ライト ZX-195",
           "maker": "ZEXUS",
-          "price": null,
+          "price": 3300,
           "note": ""
         },
         {
           "name": "リーディングアーム3",
           "maker": "Daiwa",
-          "price": null,
+          "price": 3500,
           "note": ""
         },
         {
           "name": "ライトビシ 40",
           "maker": "Daiwa",
-          "price": null,
+          "price": 1500,
           "note": ""
         }
       ],
