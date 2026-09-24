@@ -1917,10 +1917,12 @@
       "customs": [],
       "equipment": [],
       "photos": {
-        "main": "",
-        "gallery": []
+        "main": "images/golf-driver-prgr-rsx-f/driver_01_main.jpg",
+        "gallery": [
+          "images/golf-driver-prgr-rsx-f/driver_swing_bestshot.mp4"
+        ]
       },
-      "memo": ""
+      "memo": "ベストショット動画付き。"
     },
     {
       "id": "golf-3w-stealth2-hd",

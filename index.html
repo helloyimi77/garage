@@ -367,7 +367,12 @@ function openDetail(id){
     <div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
   const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
-  const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="">`).join('');
+  const gal = (v.photos?.gallery||[]).map(p=>{
+    if(/\.(mp4|mov|webm)$/i.test(p)){
+      return `<video src="${esc(p)}" controls playsinline preload="metadata" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:#000"></video>`;
+    }
+    return `<img src="${esc(p)}" alt="">`;
+  }).join('');
 
   // horse-specific: race log + stats
   let raceSection='', statsBlock='';
