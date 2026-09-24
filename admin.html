@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>GARAGE / 写真管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ECEAE4;--surface:#fff;--ink:#1B1F24;--ink-2:#5C636C;--line:#D6D3CB;--oil:#1F4E79;--hazard:#F2B705;--ng:#B3261E;--radius:6px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New",-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6}
+button,input,select{font:inherit;color:inherit}
+main{max-width:760px;margin:0 auto;padding:24px 16px 80px}
+h1{font-size:28px;font-weight:900;letter-spacing:.04em;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+h1 .tag{font-size:12px;background:var(--hazard);padding:2px 8px;border-radius:3px;letter-spacing:.1em}
+.sub{color:var(--ink-2);font-size:13px;margin:0 0 20px}
+.sub a{color:var(--oil)}
+section{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+section h2{font-size:14px;margin:0 0 10px;letter-spacing:.08em;color:var(--ink-2)}
+label{display:block;font-size:13px;color:var(--ink-2);margin:8px 0 4px}
+input[type=text],input[type=password],select{width:100%;padding:10px;border:1px solid var(--line);border-radius:4px;background:#fff}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{padding:10px 16px;border-radius:4px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;font-weight:700}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.sm{padding:4px 10px;font-size:12px;font-weight:500}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.danger{border-color:var(--ng);color:var(--ng);background:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ph{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fafaf8}
+.ph img,.ph video{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#ddd}
+.ph .meta{padding:6px;font-size:11px;word-break:break-all}
+.ph .acts{display:flex;gap:4px;padding:0 6px 6px;flex-wrap:wrap}
+.badge{display:inline-block;background:var(--oil);color:#fff;font-size:10px;padding:1px 6px;border-radius:3px;margin-right:4px}
+.drop{border:2px dashed var(--line);border-radius:var(--radius);padding:24px;text-align:center;color:var(--ink-2);cursor:pointer}
+.drop.on{border-color:var(--oil);background:#eef3f8}
+.status{font-size:13px;white-space:pre-wrap;color:var(--ink-2)}
+.status.err{color:var(--ng)}
+.hide{display:none}
+.hint{font-size:12px;color:var(--ink-2);margin:6px 0 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>GARAGE <span class="tag">写真管理</span></h1>
+  <p class="sub">画像を選ぶ → 縮小 → images/&lt;id&gt;/ にコミット → vehicles.json を自動更新。<a href="./">サイトへ戻る</a></p>
+
+  <!-- 認証 -->
+  <section id="authBox">
+    <h2>GITHUB 接続</h2>
+    <div class="row">
+      <div style="flex:1;min-width:140px"><label>owner</label><input type="text" id="owner" value="helloyimi77"></div>
+      <div style="flex:1;min-width:140px"><label>repo</label><input type="text" id="repo" value="garage"></div>
+      <div style="width:110px"><label>branch</label><input type="text" id="branch" value="main"></div>
+    </div>
+    <label>Personal Access Token（Fine-grained / garageのみ / Contents: Read and write）</label>
+    <input type="password" id="token" autocomplete="off" placeholder="github_pat_...">
+    <div class="row" style="margin-top:10px">
+      <button class="btn" id="connect">接続</button>
+      <button class="btn ghost" id="forget">トークンを消去</button>
+      <span class="status" id="authStatus"></span>
+    </div>
+    <p class="hint">トークンはこのブラウザのlocalStorageにだけ保存されます。コードやリポジトリには残りません。</p>
+  </section>
+
+  <div id="app" class="hide">
+    <section>
+      <h2>対象アイテム</h2>
+      <select id="item"></select>
+    </section>
+
+    <section>
+      <h2>現在の写真</h2>
+      <div class="grid" id="current"></div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="saveJson" disabled>並び・メイン変更を保存</button>
+        <span class="status" id="jsonStatus"></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>追加する写真</h2>
+      <div class="drop" id="drop">タップして選択 / ここにドロップ<br><small>JPEG・PNG・HEIC(Safari)・動画(mp4)</small></div>
+      <input type="file" id="file" accept="image/*,video/mp4" multiple class="hide">
+      <div class="row" style="margin-top:10px">
+        <label style="margin:0">長辺</label>
+        <select id="maxSize" style="width:auto"><option>1200</option><option selected>1600</option><option>2400</option></select>
+        <label style="margin:0">品質</label>
+        <select id="quality" style="width:auto"><option value="0.75">0.75</option><option value="0.85" selected>0.85</option><option value="0.92">0.92</option></select>
+      </div>
+      <div class="grid" id="queue" style="margin-top:10px"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="upload" disabled>アップロードしてコミット</button>
+        <span class="status" id="upStatus"></span>
+      </div>
+      <p class="hint">反映はGitHub Pagesのビルド後（通常1〜2分）。写り込み（ナンバー等）に注意。</p>
+    </section>
+  </div>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const LS = 'garage-admin';
+const cfg = () => ({owner:$('#owner').value.trim(), repo:$('#repo').value.trim(), branch:$('#branch').value.trim(), token:$('#token').value.trim()});
+const CATS = {car:'車',bike:'バイク',escooter:'電動キックボード',roadbike:'ロードバイク',horse:'愛馬',golf:'ゴルフ',fishing:'釣り',camping:'キャンプ'};
+
+let data = null, jsonSha = null, eol = '\n', queue = [], dirty = false;
+
+// ---------- 設定保存 ----------
+try{ const s = JSON.parse(localStorage.getItem(LS)||'{}'); for(const k of ['owner','repo','branch','token']) if(s[k]) $('#'+k).value = s[k]; }catch(e){}
+function saveCfg(){ try{ localStorage.setItem(LS, JSON.stringify(cfg())); }catch(e){} }
+$('#forget').onclick = () => { try{ localStorage.removeItem(LS); }catch(e){} $('#token').value=''; msg('#authStatus','消去しました'); };
+
+function msg(sel, t, err){ const el=$(sel); el.textContent=t; el.classList.toggle('err',!!err); }
+
+// ---------- GitHub API ----------
+async function gh(path, opt={}){
+  const {owner,repo,token} = cfg();
+  const r = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURI(path)}${opt.method?'':'?ref='+encodeURIComponent(cfg().branch)}`, {
+    method: opt.method||'GET',
+    headers: {Authorization:`Bearer ${token}`, Accept:'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28'},
+    body: opt.body ? JSON.stringify(opt.body) : undefined
+  });
+  if(!r.ok && !(opt.allow404 && r.status===404)){ const t = await r.text(); throw new Error(`${r.status} ${t.slice(0,200)}`); }
+  return r.status===404 ? null : r.json();
+}
+const b64ToUtf8 = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g,'')), c=>c.charCodeAt(0)));
+function utf8ToB64(s){ const bytes = new TextEncoder().encode(s); let bin=''; for(let i=0;i<bytes.length;i+=0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i,i+0x8000)); return btoa(bin); }
+const blobToB64 = blob => new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result.split(',')[1]); fr.onerror=rej; fr.readAsDataURL(blob); });
+
+async function loadJson(){
+  const f = await gh('vehicles.json');
+  jsonSha = f.sha;
+  const text = b64ToUtf8(f.content);
+  eol = text.includes('\r\n') ? '\r\n' : '\n';
+  data = JSON.parse(text);
+}
+async function commitJson(message){
+  let text = JSON.stringify(data, null, 2) + '\n';
+  if(eol==='\r\n') text = text.replace(/\n/g,'\r\n');
+  const r = await gh('vehicles.json', {method:'PUT', body:{message, content:utf8ToB64(text), sha:jsonSha, branch:cfg().branch}});
+  jsonSha = r.content.sha;
+}
+
+// ---------- 接続 ----------
+$('#connect').onclick = async () => {
+  saveCfg(); msg('#authStatus','読み込み中…');
+  try{
+    await loadJson();
+    msg('#authStatus', `OK：${data.vehicles.length}件`);
+    renderItems(); $('#app').classList.remove('hide');
+  }catch(e){ msg('#authStatus', '失敗：'+e.message, true); }
+};
+
+function renderItems(){
+  const sel = $('#item'), prev = sel.value;
+  const groups = {};
+  data.vehicles.forEach(v => (groups[v.category] ||= []).push(v));
+  sel.innerHTML = Object.keys(groups).map(c =>
+    `<optgroup label="${CATS[c]||c}">` + groups[c].map(v =>
+      `<option value="${esc(v.id)}">${esc(v.name)}${v.status==='sold'?'（売却済）':''} — ${(v.photos?.gallery?.length||0)+(v.photos?.main?1:0)}枚</option>`).join('') + '</optgroup>'
+  ).join('');
+  if(prev) sel.value = prev;
+  renderCurrent();
+}
+$('#item').onchange = () => { if(dirty && !confirm('未保存の変更を破棄しますか？')){ return; } dirty=false; reloadSoft(); };
+async function reloadSoft(){ await loadJson(); renderItems(); }
+
+const cur = () => data.vehicles.find(v => v.id === $('#item').value);
+const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const mediaTag = p => /\.(mp4|webm|mov)$/i.test(p) ? `<video src="${esc(p)}" muted playsinline></video>` : `<img src="${esc(p)}" loading="lazy" alt="">`;
+
+// ---------- 現在の写真（メイン切替・並び替え・外す） ----------
+function renderCurrent(){
+  const v = cur(); v.photos ||= {main:null, gallery:[]}; v.photos.gallery ||= [];
+  const list = [...(v.photos.main?[v.photos.main]:[]), ...v.photos.gallery];
+  $('#current').innerHTML = list.length ? list.map((p,i) => `
+    <div class="ph">${mediaTag(p)}
+      <div class="meta">${i===0&&v.photos.main?'<span class="badge">MAIN</span>':''}${esc(p.split('/').pop())}</div>
+      <div class="acts">
+        ${i===0&&v.photos.main?'':`<button class="btn ghost sm" data-a="main" data-p="${esc(p)}">メインに</button>`}
+        <button class="btn ghost sm" data-a="up" data-p="${esc(p)}">←</button>
+        <button class="btn ghost sm" data-a="down" data-p="${esc(p)}">→</button>
+        <button class="btn danger sm" data-a="rm" data-p="${esc(p)}">外す</button>
+      </div></div>`).join('') : '<p class="hint">まだ写真がありません</p>';
+  $('#saveJson').disabled = !dirty;
+}
+$('#current').onclick = e => {
+  const b = e.target.closest('button'); if(!b) return;
+  const v = cur(), p = b.dataset.p, a = b.dataset.a;
+  let list = [...(v.photos.main?[v.photos.main]:[]), ...v.photos.gallery];
+  const i = list.indexOf(p);
+  if(a==='main'){ list.splice(i,1); list.unshift(p); }
+  if(a==='up' && i>0) [list[i-1],list[i]]=[list[i],list[i-1]];
+  if(a==='down' && i<list.length-1) [list[i+1],list[i]]=[list[i],list[i+1]];
+  if(a==='rm'){ if(!confirm('JSONから外します（画像ファイル自体は残ります）')) return; list.splice(i,1); }
+  v.photos.main = list[0] || null; v.photos.gallery = list.slice(1);
+  dirty = true; renderCurrent();
+};
+$('#saveJson').onclick = async () => {
+  msg('#jsonStatus','保存中…');
+  try{ await commitJson(`photos: reorder ${cur().id}`); dirty=false; msg('#jsonStatus','保存しました'); renderItems(); }
+  catch(e){ msg('#jsonStatus','失敗：'+e.message+'\n（別の場所で更新された可能性。接続し直してください）',true); }
+};
+
+// ---------- 追加キュー ----------
+$('#drop').onclick = () => $('#file').click();
+$('#file').onchange = e => { addFiles(e.target.files); e.target.value=''; };
+['dragover','dragenter'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();$('#drop').classList.add('on');}));
+['dragleave','drop'].forEach(t=>$('#drop').addEventListener(t,e=>{e.preventDefault();$('#drop').classList.remove('on');}));
+$('#drop').addEventListener('drop', e => addFiles(e.dataTransfer.files));
+
+function addFiles(files){
+  for(const f of files) queue.push({file:f, url:URL.createObjectURL(f), video:f.type.startsWith('video/'), asMain:false});
+  renderQueue();
+}
+function renderQueue(){
+  $('#queue').innerHTML = queue.map((q,i)=>`
+    <div class="ph">${q.video?`<video src="${q.url}" muted playsinline></video>`:`<img src="${q.url}" alt="">`}
+      <div class="meta">${esc(q.file.name)}<br>${(q.file.size/1024/1024).toFixed(1)}MB</div>
+      <div class="acts">
+        ${q.video?'':`<label style="margin:0;font-size:12px"><input type="radio" name="asMain" data-i="${i}" ${q.asMain?'checked':''}> メインにする</label>`}
+        <button class="btn danger sm" data-i="${i}">×</button>
+      </div></div>`).join('');
+  $('#upload').disabled = !queue.length;
+}
+$('#queue').onclick = e => {
+  const b = e.target.closest('button'); if(b){ URL.revokeObjectURL(queue[b.dataset.i].url); queue.splice(b.dataset.i,1); renderQueue(); return; }
+  const r = e.target.closest('input[type=radio]'); if(r){ queue.forEach((q,i)=>q.asMain = i==r.dataset.i); }
+};
+
+async function resize(file){
+  const max = +$('#maxSize').value, q = +$('#quality').value;
+  const bmp = await createImageBitmap(file, {imageOrientation:'from-image'}).catch(async()=>{
+    const img = new Image(); img.src = URL.createObjectURL(file); await img.decode(); return img;
+  });
+  const w = bmp.width, h = bmp.height, s = Math.min(1, max/Math.max(w,h));
+  const c = document.createElement('canvas'); c.width = Math.round(w*s); c.height = Math.round(h*s);
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  return new Promise(res => c.toBlob(res, 'image/jpeg', q));
+}
+function prefixOf(v){
+  // 既存ファイル名から接頭辞（例 dc2_03_meter.jpg → dc2）と次の連番を推定
+  const all = [v.photos?.main, ...(v.photos?.gallery||[])].filter(Boolean).map(p=>p.split('/').pop());
+  const m = all.map(n=>n.match(/^([a-z0-9-]+)_(\d+)/i)).filter(Boolean);
+  const prefix = m[0]?.[1] || v.id.split('-')[0];
+  const next = Math.max(0, ...m.map(x=>+x[2])) + 1;
+  const dir = (v.photos?.main||v.photos?.gallery?.[0]||'').split('/').slice(0,-1).join('/') || `images/${v.id}`;
+  return {prefix, next, dir};
+}
+
+$('#upload').onclick = async () => {
+  const v = cur(); $('#upload').disabled = true;
+  try{
+    await loadJson();                 // 最新のshaとデータを取り直す
+    const fresh = data.vehicles.find(x=>x.id===v.id);
+    fresh.photos ||= {main:null, gallery:[]}; fresh.photos.gallery ||= [];
+    let {prefix, next, dir} = prefixOf(fresh);
+    const stamp = new Date().toISOString().slice(0,10);
+    for(let i=0;i<queue.length;i++){
+      const q = queue[i];
+      msg('#upStatus', `${i+1}/${queue.length} 処理中…`);
+      const blob = q.video ? q.file : await resize(q.file);
+      if(blob.size > 45*1024*1024) throw new Error(`${q.file.name} が大きすぎます（GitHub API上限）`);
+      const ext = q.video ? (q.file.name.split('.').pop()||'mp4').toLowerCase() : 'jpg';
+      const path = `${dir}/${prefix}_${String(next++).padStart(2,'0')}_${stamp}.${ext}`;
+      await gh(path, {method:'PUT', body:{message:`photos: add ${path}`, content: await blobToB64(blob), branch:cfg().branch}});
+      if(q.asMain){ if(fresh.photos.main) fresh.photos.gallery.unshift(fresh.photos.main); fresh.photos.main = path; }
+      else if(!fresh.photos.main && !q.video) fresh.photos.main = path;
+      else fresh.photos.gallery.push(path);
+    }
+    msg('#upStatus','vehicles.json を更新中…');
+    await commitJson(`photos: update ${fresh.id} (+${queue.length})`);
+    queue.forEach(q=>URL.revokeObjectURL(q.url)); queue = []; renderQueue(); dirty=false; renderItems();
+    msg('#upStatus','完了！1〜2分でサイトに反映されます');
+  }catch(e){ msg('#upStatus','失敗：'+e.message, true); $('#upload').disabled = false; }
+};
+</script>
+</body>
+</html>
