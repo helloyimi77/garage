@@ -4602,7 +4602,11 @@
         "ボディ": "ASC フェラーリ 360 モデナ（ナロー）"
       },
       "equipment": [],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/rc-miniz-360modena/rc_02_2026-09-24.jpg",
+        "gallery": []
+      }
     }
   ],
   "covers": {
