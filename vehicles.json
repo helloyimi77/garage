@@ -66,7 +66,8 @@
           "images/bt5-outback/bt5_02_front.jpg"
         ]
       },
-      "memo": "現在のメインの愛車。ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。"
+      "memo": "現在のメインの愛車。ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。",
+      "group": "vehicle"
     },
     {
       "id": "bs9-outback",
@@ -103,7 +104,8 @@
         "main": "images/bs9-outback/bs9_01_main.jpg",
         "gallery": []
       },
-      "memo": "THULE Dynamic MはBT5へ引き継ぎ。"
+      "memo": "THULE Dynamic MはBT5へ引き継ぎ。",
+      "group": "vehicle"
     },
     {
       "id": "grf-wrx-sti-a-line",
@@ -141,7 +143,8 @@
           "images/grf-wrx-sti-a-line/grf_02_side.jpg"
         ]
       },
-      "memo": "フルノーマル。"
+      "memo": "フルノーマル。",
+      "group": "vehicle"
     },
     {
       "id": "r53-mini-cooper-s",
@@ -190,7 +193,8 @@
           "images/r53-mini-cooper-s/r53_04_interior.jpg"
         ]
       },
-      "memo": ""
+      "memo": "",
+      "group": "vehicle"
     },
     {
       "id": "dc2-integra-type-r",
@@ -256,7 +260,8 @@
           "images/dc2-integra-type-r/dc2_05_console-monitor.jpg"
         ]
       },
-      "memo": "初めてのマイカー。新車購入。"
+      "memo": "初めてのマイカー。新車購入。",
+      "group": "vehicle"
     },
     {
       "id": "zx-4rr",
@@ -364,7 +369,8 @@
         "main": "images/zx-4rr/zx4rr_01_main.jpg",
         "gallery": []
       },
-      "memo": "3台目のバイク。"
+      "memo": "3台目のバイク。",
+      "group": "vehicle"
     },
     {
       "id": "address-v125s",
@@ -398,7 +404,8 @@
         "main": "",
         "gallery": []
       },
-      "memo": "2台目のバイク。"
+      "memo": "2台目のバイク。",
+      "group": "vehicle"
     },
     {
       "id": "cygnus-x",
@@ -432,7 +439,8 @@
         "main": "",
         "gallery": []
       },
-      "memo": "初めてのバイク。"
+      "memo": "初めてのバイク。",
+      "group": "vehicle"
     },
     {
       "id": "caad12",
@@ -573,7 +581,8 @@
         "main": "images/caad12/caad12_01_main.jpg",
         "gallery": []
       },
-      "memo": "現在のメイン。完成車付属の105 5800コンポは弟に譲渡し、ULTEGRA R8000系にフル換装。"
+      "memo": "現在のメイン。完成車付属の105 5800コンポは弟に譲渡し、ULTEGRA R8000系にフル換装。",
+      "group": "vehicle"
     },
     {
       "id": "giant-road",
@@ -632,7 +641,8 @@
         "main": "images/giant-road/giant_01_main.jpg",
         "gallery": []
       },
-      "memo": "モデル名要確認（DEFY / OCR系）。"
+      "memo": "モデル名要確認（DEFY / OCR系）。",
+      "group": "vehicle"
     },
     {
       "id": "striemo",
@@ -676,7 +686,8 @@
         "main": "images/striemo/striemo_01_main.jpg",
         "gallery": []
       },
-      "memo": ""
+      "memo": "",
+      "group": "vehicle"
     },
     {
       "id": "fumi-florence",
@@ -1806,7 +1817,2375 @@
           "images/fumi-florence/fumi_02_kasamatsu-2025-11-04-r4-win.jpg"
         ]
       },
-      "memo": "2022年北海道オータムセールで主取り（495万円）となったところを、20万円で購入。園田でデビュー後、笠松に移籍。"
+      "memo": "2022年北海道オータムセールで主取り（495万円）となったところを、20万円で購入。園田でデビュー後、笠松に移籍。",
+      "group": "vehicle"
+    },
+    {
+      "id": "golf-driver-prgr-rsx-f",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "ドライバー",
+      "maker": "PRGR",
+      "model": "RSX F",
+      "year": 2024,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "10°",
+        "ライ角": "56°",
+        "バランス": "D3",
+        "トルク": "4.3",
+        "長さ": "45.5in",
+        "クラブ重量": "310g",
+        "シャフト重量": "56g",
+        "シャフト": "Tour AD for PRGR",
+        "飛距離": "260y (Sim 245y)",
+        "体積": "460cc"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-3w-stealth2-hd",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "3W",
+      "maker": "Taylormade",
+      "model": "Stealth 2 HD",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "16°",
+        "ライ角": "58°",
+        "バランス": "D2.5",
+        "トルク": "4.3",
+        "長さ": "43.25in",
+        "クラブ重量": "311g",
+        "シャフト重量": "57g",
+        "シャフト": "TENSEI RED TM50 ('22)",
+        "飛距離": "220y (Sim 200y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-5w-stealth2-hd",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "5W",
+      "maker": "Taylormade",
+      "model": "Stealth 2 HD",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "19°",
+        "ライ角": "58.5°",
+        "バランス": "D2.5",
+        "トルク": "4.3",
+        "長さ": "43.25in",
+        "クラブ重量": "311g",
+        "シャフト重量": "57g",
+        "シャフト": "TENSEI RED TM50 ('22)",
+        "飛距離": "200y (Sim 190y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-4u-stealth2-hd",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "4U",
+      "maker": "Taylormade",
+      "model": "Stealth 2 HD",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "23°",
+        "ライ角": "59.5°",
+        "バランス": "D0",
+        "トルク": "2.9",
+        "長さ": "39.75in",
+        "クラブ重量": "340g",
+        "シャフト重量": "68g",
+        "シャフト": "TENSEI RED TM60 ('22)",
+        "飛距離": "190y (Sim 180y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-5u-stealth2-hd",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "5U",
+      "maker": "Taylormade",
+      "model": "Stealth 2 HD",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "27°",
+        "ライ角": "60°",
+        "バランス": "D0",
+        "トルク": "2.9",
+        "長さ": "39.25in",
+        "クラブ重量": "340g",
+        "シャフト重量": "68g",
+        "シャフト": "TENSEI RED TM60 ('22)",
+        "飛距離": "180y (Sim 170y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-6i-p790",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "6I",
+      "maker": "Taylormade",
+      "model": "P790",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "26.5°",
+        "ライ角": "61.5°",
+        "バランス": "D1",
+        "トルク": "1.7",
+        "長さ": "37.5in",
+        "クラブ重量": "418g",
+        "シャフト重量": "98g",
+        "シャフト": "N.S.PRO 950GH neo",
+        "飛距離": "170y (Sim 160y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-7i-p790",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "7I",
+      "maker": "Taylormade",
+      "model": "P790",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "30.5°",
+        "ライ角": "62°",
+        "バランス": "D1",
+        "トルク": "1.7",
+        "長さ": "37in",
+        "クラブ重量": "418g",
+        "シャフト重量": "98g",
+        "シャフト": "N.S.PRO 950GH neo",
+        "飛距離": "155y (Sim 150y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-8i-p790",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "8I",
+      "maker": "Taylormade",
+      "model": "P790",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "35°",
+        "ライ角": "62.5°",
+        "バランス": "D1",
+        "トルク": "1.7",
+        "長さ": "36.5in",
+        "クラブ重量": "418g",
+        "シャフト重量": "98g",
+        "シャフト": "N.S.PRO 950GH neo",
+        "飛距離": "140y"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-9i-p790",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "9I",
+      "maker": "Taylormade",
+      "model": "P790",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "40°",
+        "ライ角": "63°",
+        "バランス": "D1",
+        "トルク": "1.7",
+        "長さ": "36in",
+        "クラブ重量": "418g",
+        "シャフト重量": "98g",
+        "シャフト": "N.S.PRO 950GH neo",
+        "飛距離": "130y (Sim 125y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-pw-p790",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "PW",
+      "maker": "Taylormade",
+      "model": "P790",
+      "year": 2023,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "45°",
+        "ライ角": "63.5°",
+        "バランス": "D2",
+        "トルク": "1.7",
+        "長さ": "35.75in",
+        "クラブ重量": "418g",
+        "シャフト重量": "98g",
+        "シャフト": "N.S.PRO 950GH neo",
+        "飛距離": "115y (ハーフc 62y / 総 75y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-52-dolphin-dw123",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "52°ウェッジ",
+      "maker": "キャスコ",
+      "model": "DOLPHIN WEDGE DW-123",
+      "year": 2024,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "52°",
+        "ライ角": "63°",
+        "バランス": "D2",
+        "長さ": "35.25in",
+        "クラブ重量": "446g",
+        "シャフト": "N.S.PRO 950GH neo",
+        "飛距離": "95y (Sim 80y / ハーフc 46y / 総 57y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-58-rtx3",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "58°ウェッジ",
+      "maker": "Cleveland",
+      "model": "RTX-3",
+      "year": 2017,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "58°",
+        "ライ角": "64°",
+        "バランス": "D5",
+        "長さ": "35in",
+        "クラブ重量": "450g",
+        "飛距離": "80y (Sim 70y / ハーフc 40y / 総 50y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-chipper-dpw119",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "チッパー",
+      "maker": "キャスコ",
+      "model": "DOLPHIN DPW-119",
+      "year": 2024,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "48°",
+        "ライ角": "67°",
+        "長さ": "34in",
+        "クラブ重量": "539g",
+        "シャフト": "スチール",
+        "飛距離": "85y (総 45y / 25y)"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-putter-monza-spider",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "パター",
+      "maker": "Taylormade",
+      "model": "ROSSA MONZA SPIDER AGSI+",
+      "year": 2008,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {},
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-lw-tom-watson",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "LW (2軍)",
+      "maker": "アダムスゴルフ",
+      "model": "トムワトソンモデル",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "sub",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "60°"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "golf-driver-id-nabla-rs01",
+      "group": "hobby",
+      "category": "golf",
+      "status": "active",
+      "name": "ドライバー (2軍)",
+      "maker": "PRGR",
+      "model": "iD nabla RS01",
+      "year": 2014,
+      "grade": "",
+      "color": "",
+      "role": "sub",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ロフト": "10.5°",
+        "ライ角": "59°",
+        "バランス": "D1.5",
+        "トルク": "4.2",
+        "長さ": "45.25in",
+        "クラブ重量": "311g",
+        "シャフト重量": "56g",
+        "飛距離": "250y",
+        "体積": "450cc"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "fishing-seabass",
+      "group": "hobby",
+      "category": "fishing",
+      "status": "active",
+      "name": "シーバス釣り",
+      "maker": "Shimano",
+      "model": "23ディアルーナ",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ターゲット": "シーバス",
+        "エリア": "海用",
+        "ロッド": "Shimano 23ディアルーナ S96ML / 9'6\"/2ピース/max35g (¥31,000)",
+        "リール": "Shimano アルテグラ C3000HG (¥10,000)",
+        "ライン": "PE1号 8本編み xブレイド アップグレード ペンタグラム",
+        "リーダー": "フロロ4号 16lb"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "PB-20 デイグリーン",
+          "maker": "Coreman",
+          "price": null,
+          "note": "レンジを定めてゆっくり巻き。リフトアンドフォール、フォールカウント"
+        },
+        {
+          "name": "VJ-16 イワシゴールド",
+          "maker": "Coreman",
+          "price": null,
+          "note": "活性高→高速巻き、低→低めのレンジ"
+        },
+        {
+          "name": "VJ-16 ヒラメピンク",
+          "maker": "Coreman",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "BC-26 マコイワシ",
+          "maker": "Coreman",
+          "price": null,
+          "note": "ただ巻き"
+        },
+        {
+          "name": "RJ-10",
+          "maker": "Coreman",
+          "price": null,
+          "note": "ゆっくり。擦れ切り札"
+        },
+        {
+          "name": "Aizer125F 房州アジ",
+          "maker": "BlueBlue",
+          "price": null,
+          "note": "フローティングミノー。超低速のイレギュラーふらつき"
+        },
+        {
+          "name": "Blooowin80S フラッシュレッド",
+          "maker": "BlueBlue",
+          "price": null,
+          "note": "シンキングペンシル。1m潜行スローS字"
+        },
+        {
+          "name": "Blooowin80S アカキン",
+          "maker": "BlueBlue",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "Blooowin80S ブルーブルー",
+          "maker": "BlueBlue",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "Blooowin140S ピンクキャンディ",
+          "maker": "BlueBlue",
+          "price": null,
+          "note": "シンキングペンシル。1秒1回転"
+        },
+        {
+          "name": "エクスセンス サルベージ 70S PKC",
+          "maker": "Shimano",
+          "price": null,
+          "note": "バイブレーション。ただ巻き+速度変化+トゥイッチ"
+        },
+        {
+          "name": "モアザン スライスリム 125F ライトニングパープル",
+          "maker": "Daiwa",
+          "price": null,
+          "note": "フローティングミノー。超ゆっくり漂う揺らぎ"
+        },
+        {
+          "name": "ガルバスリム80S ハッピーレモン",
+          "maker": "Daiwa",
+          "price": null,
+          "note": "シンキングペンシル。細身軽引き"
+        },
+        {
+          "name": "セットアッパー 125S-DR Li LIチャートバック",
+          "maker": "Daiwa",
+          "price": null,
+          "note": "スローシンキング。5秒待ち1秒2-3回転"
+        },
+        {
+          "name": "セットアッパー 125S-DR Li LIレッドヘッド",
+          "maker": "Daiwa",
+          "price": null,
+          "note": "スローシンキング"
+        },
+        {
+          "name": "エリア10 ミラージュイワシ",
+          "maker": "ガイア",
+          "price": null,
+          "note": "フローティングミノー。流れ任せドリフト"
+        },
+        {
+          "name": "エリア10 荒川サンライズ",
+          "maker": "ガイア",
+          "price": null,
+          "note": "フローティングミノー"
+        },
+        {
+          "name": "manic 115 江戸前パール",
+          "maker": "DUO",
+          "price": null,
+          "note": "シンキングミノー。スローリトリーブで流れに乗せる"
+        },
+        {
+          "name": "manic slow 95 マッドピンクギーゴ",
+          "maker": "DUO",
+          "price": null,
+          "note": "スローシンキング。超ゆっくり"
+        },
+        {
+          "name": "feel120fg ブラックピンク",
+          "maker": "reed",
+          "price": null,
+          "note": "フローティングミノー。ゆっくり"
+        },
+        {
+          "name": "コモモ2 ピンク＆ピンク",
+          "maker": "アムズデザイン",
+          "price": null,
+          "note": "フローティングミノー。ただ巻き or トゥウィッチ"
+        },
+        {
+          "name": "コルセア50 マットパープルパール",
+          "maker": "エバーグリーン",
+          "price": null,
+          "note": "シンキングペンシル。1秒1回転"
+        },
+        {
+          "name": "謎のメタルジグ 20g",
+          "maker": "",
+          "price": null,
+          "note": ""
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "fishing-gomoku",
+      "group": "hobby",
+      "category": "fishing",
+      "status": "active",
+      "name": "五目釣り",
+      "maker": "Shimano",
+      "model": "トラスティック",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ターゲット": "五目",
+        "エリア": "どこでも",
+        "ロッド": "Shimano トラスティック S610-710ML / 7'1\"/4ピース/6-28g (¥20,600)",
+        "リール": "Shimano 13Aernos 2500S (¥6,000)",
+        "ライン": "PE1号",
+        "リーダー": "16lb"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "ビンビンスイッチ 35g ブライトオレンジ",
+          "maker": "ジャッカル",
+          "price": null,
+          "note": "リフトフォール"
+        },
+        {
+          "name": "ビンビンスイッチ 60g グリーンゴールド",
+          "maker": "ジャッカル",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ビンビンスイッチ 80g レッドゴールド",
+          "maker": "ジャッカル",
+          "price": null,
+          "note": ""
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "fishing-tairaba",
+      "group": "hobby",
+      "category": "fishing",
+      "status": "active",
+      "name": "タイラバ",
+      "maker": "Daiwa",
+      "model": "紅牙 x",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ターゲット": "真鯛",
+        "エリア": "海用",
+        "ロッド": "Daiwa 紅牙 x 69HB / 2.06m/2ピース/40-100g (¥15,000)",
+        "リール": "Daiwa ライトゲーム ICV 150H",
+        "ライン": "PE 0.8（推定）",
+        "リーダー": "16lbくらい"
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "fishing-ajing",
+      "group": "hobby",
+      "category": "fishing",
+      "status": "active",
+      "name": "アジング",
+      "maker": "Shimano",
+      "model": "Soare SS ajing",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ターゲット": "アジ",
+        "エリア": "海用",
+        "ロッド": "Shimano Soare SS ajing S58UL-S / 5'8\"/2ピース/0.4-8g (¥28,100)",
+        "リール": "Daiwa クレスト LT2000S (¥5,000)",
+        "ライン": "エステル0.4 月下美人type-e白",
+        "リーダー": "月下美人ワンタッチ0.8 / 月下美人フロロリーダー0.8"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "月下美人 しずる ケイムラシラス",
+          "maker": "Daiwa",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ナノラバ 10g ケイムラ ピンクシルバー",
+          "maker": "メジャークラフト",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ナノラバ 10g ケイムラ グリーンゴールド",
+          "maker": "メジャークラフト",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ナノラバ 5g グロー",
+          "maker": "メジャークラフト",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ナノラバ 5g ケイムラ レッドゴールド",
+          "maker": "メジャークラフト",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ナノラバ 1.5g ケイムラ グリーンゴールド",
+          "maker": "メジャークラフト",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ナノラバ 1.5g ケイムラ レッドゴールド",
+          "maker": "メジャークラフト",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "魚子バイブ 2g アカキンラメ",
+          "maker": "ルーディーズ",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "月下美人プリズナー CV 12g ピンクイワシ",
+          "maker": "ルーディーズ",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ストーム 五目ボトム 3g 緑っぽい",
+          "maker": "ラパラ",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ストーム 五目ミノー 2g 赤っぽい",
+          "maker": "ラパラ",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ストーム 五目スピン レインボー",
+          "maker": "ラパラ",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "Lミノー 3.5g 33mm 青銀",
+          "maker": "YO-ZURI",
+          "price": null,
+          "note": ""
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "fishing-area",
+      "group": "hobby",
+      "category": "fishing",
+      "status": "active",
+      "name": "管理釣り場",
+      "maker": "Major craft",
+      "model": "Tralara",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ターゲット": "エリアトラウト",
+        "エリア": "淡水/海",
+        "ロッド": "Major craft Tralara TPS-562UL / 5'6\"/2ピース/1-4g (¥7,500)",
+        "リール": "",
+        "ライン": "",
+        "リーダー": ""
+      },
+      "customs": [],
+      "equipment": [],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "fishing-choinage",
+      "group": "hobby",
+      "category": "fishing",
+      "status": "active",
+      "name": "ちょい投げ",
+      "maker": "solfiesta",
+      "model": "波止万能 MALTZ 180",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "ターゲット": "五目",
+        "エリア": "どこでも",
+        "ロッド": "solfiesta 波止万能 MALTZ 180 180cm/6本継/錘1-5号 (¥2,500)",
+        "リール": "",
+        "ライン": "",
+        "リーダー": ""
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "ZEXUS ライト ZX-195",
+          "maker": "ZEXUS",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "リーディングアーム3",
+          "maker": "Daiwa",
+          "price": null,
+          "note": ""
+        },
+        {
+          "name": "ライトビシ 40",
+          "maker": "Daiwa",
+          "price": null,
+          "note": ""
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-tent",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "テント",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "5点",
+        "総重量目安": "約30.2kg",
+        "合計金額": "¥220,500"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "ハバNX",
+          "maker": "MSR",
+          "price": 50000,
+          "note": "約1.6kg / 山岳/3シーズン"
+        },
+        {
+          "name": "サーカスTC",
+          "maker": "テンマクデザイン",
+          "price": 32000,
+          "note": "約11kg / ワンポール"
+        },
+        {
+          "name": "モノポール インナーテント メッシュ",
+          "maker": "テンマクデザイン",
+          "price": 3500,
+          "note": "1.14kg"
+        },
+        {
+          "name": "HIDEOUT TC",
+          "maker": "鎌倉天幕",
+          "price": 85000,
+          "note": "約9kg / 3シーズン"
+        },
+        {
+          "name": "ダイヤフォートTC",
+          "maker": "Tokyo Craft",
+          "price": 50000,
+          "note": "約7.5kg / カーキャリア常備"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-tarp",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "タープ",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "1点",
+        "総重量目安": "約2.1kg",
+        "合計金額": "¥20,000"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "ムササビウイング13ft.TC 焚き火ver",
+          "maker": "テンマクデザイン",
+          "price": 20000,
+          "note": "約2.15kg"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-cot-mat",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "コット・マット",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "10点",
+        "総重量目安": "約28.0kg",
+        "合計金額": "¥113,920"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "2WAY アジャスタブル コット",
+          "maker": "VENTLAX",
+          "price": 15800,
+          "note": "約3.2kg / カーキャリア常備"
+        },
+        {
+          "name": "ライトコット",
+          "maker": "Helinox",
+          "price": 39930,
+          "note": "約1.2kg"
+        },
+        {
+          "name": "折り畳みコット",
+          "maker": "テンマクデザイン",
+          "price": 6000,
+          "note": "約5.0kg / 会社用"
+        },
+        {
+          "name": "バグプルーフスタンモック",
+          "maker": "mont-bell",
+          "price": 20000,
+          "note": "約14kg / 家用ハンモック"
+        },
+        {
+          "name": "インフレーターマット",
+          "maker": "VENTLAX",
+          "price": 7000,
+          "note": "約2.5kg / カーキャリア常備"
+        },
+        {
+          "name": "キャンプマット IXPE シングル",
+          "maker": "CAPTAIN STAG",
+          "price": 3220,
+          "note": "約0.37kg"
+        },
+        {
+          "name": "クローズドセルマット IXPE 20mm",
+          "maker": "BlackishGear",
+          "price": 2970,
+          "note": "約0.38kg"
+        },
+        {
+          "name": "エアーマット",
+          "maker": "KOOLSEN",
+          "price": 3000,
+          "note": "約0.5kg"
+        },
+        {
+          "name": "コンパクト折りたたみシート",
+          "maker": "Mozambique",
+          "price": 2000,
+          "note": "約76g / UL"
+        },
+        {
+          "name": "WAQ Ultra Light AirMat",
+          "maker": "WAQ",
+          "price": 14000,
+          "note": "765g"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-chair",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "チェア",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "4点",
+        "総重量目安": "約6.0kg",
+        "合計金額": "¥62,000"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "サンセットチェア",
+          "maker": "Helinox",
+          "price": 17000,
+          "note": "約1.5kg / カーキャリア常備"
+        },
+        {
+          "name": "チェアワン",
+          "maker": "Helinox",
+          "price": 14000,
+          "note": "約0.9kg"
+        },
+        {
+          "name": "スターゲイズ リクライナー ラグジュアリー",
+          "maker": "nimo",
+          "price": 30000,
+          "note": "約3.3kg / 家用"
+        },
+        {
+          "name": "折りたたみ椅子",
+          "maker": "créer",
+          "price": 1000,
+          "note": "約270g / UL"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-sleep",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "寝袋・スリーピング",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "5点",
+        "総重量目安": "約3.3kg",
+        "合計金額": "¥95,300"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "ダウンハガー800 #2",
+          "maker": "mont-bell",
+          "price": 42000,
+          "note": "約730g / 快適0℃/使用可-6℃、カーキャリア常備"
+        },
+        {
+          "name": "M180 210T防水",
+          "maker": "Naturehike",
+          "price": 5000,
+          "note": "1.2kg / 快適12℃/使用可8℃、中空綿180g"
+        },
+        {
+          "name": "LW180 380T防水",
+          "maker": "Naturehike",
+          "price": 4000,
+          "note": "約680g / 快適15℃/使用可10℃"
+        },
+        {
+          "name": "NANGA AURORA TEX light 750DX NS2443-2A006",
+          "maker": "nanga",
+          "price": 38700,
+          "note": "1,280g / 快適-8℃/使用可-16℃、メルカリで購入"
+        },
+        {
+          "name": "ウォータープルーフ スリーピングバッグカバー",
+          "maker": "nanga",
+          "price": 5600,
+          "note": "420g"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-sheet",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "シート",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "5点",
+        "総重量目安": "約4.9kg",
+        "合計金額": "¥19,800"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "国防色グランドシート ポケット 50×34cm",
+          "maker": "HOBI",
+          "price": 800,
+          "note": "100g"
+        },
+        {
+          "name": "200×200 キルティングピクニックマット エクリュN",
+          "maker": "Viaggio+",
+          "price": 4200,
+          "note": "1.85kg"
+        },
+        {
+          "name": "200×145 グランドシート 耐水圧8000mm",
+          "maker": "BZGLAM",
+          "price": 3500,
+          "note": "1.3kg"
+        },
+        {
+          "name": "サーカス グランドシートハーフ",
+          "maker": "テンマクデザイン",
+          "price": 10000,
+          "note": "1.3kg"
+        },
+        {
+          "name": "スパッタシート 24×16×3.5cm",
+          "maker": "taiiti",
+          "price": 1300,
+          "note": "300g / 耐火"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-lantern",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "ランタン・光",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "18点",
+        "総重量目安": "約7.0kg",
+        "合計金額": "¥204,825"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "HW-999H 230lm",
+          "maker": "Gentos",
+          "price": 3000,
+          "note": "約200g / ヘッドライト"
+        },
+        {
+          "name": "EX-77 280lm",
+          "maker": "Gentos",
+          "price": 3000,
+          "note": "約800g / 2軍"
+        },
+        {
+          "name": "SOL-013C 530lm",
+          "maker": "Gentos",
+          "price": 4200,
+          "note": "約400g / 2軍"
+        },
+        {
+          "name": "UL360 70lm",
+          "maker": "NEXTORCH",
+          "price": 3000,
+          "note": "約70g"
+        },
+        {
+          "name": "キャンドルランタン",
+          "maker": "UCO",
+          "price": 3000,
+          "note": "約180g / ろうそく"
+        },
+        {
+          "name": "ビーコンライトLED 2.0",
+          "maker": "Barebones",
+          "price": 4200,
+          "note": "約127g / USB"
+        },
+        {
+          "name": "リモコンランタン",
+          "maker": "JOYOUS",
+          "price": 2600,
+          "note": "300g / USB"
+        },
+        {
+          "name": "ライトハウスマイクロ チャージ",
+          "maker": "Goal Zero",
+          "price": 3825,
+          "note": "約87g / USB"
+        },
+        {
+          "name": "UL1.5 充電式LEDランタン",
+          "maker": "HEXAR",
+          "price": 5500,
+          "note": "約48g / UL"
+        },
+        {
+          "name": "GD2 超ミニ LEDライト",
+          "maker": "DOKEEP",
+          "price": 1000,
+          "note": "約11g / UL"
+        },
+        {
+          "name": "アドマラルティー フルブラス",
+          "maker": "E.Thomas & Williams",
+          "price": 25000,
+          "note": "約1.2kg / オイル"
+        },
+        {
+          "name": "ハリケーンランタン ブラス",
+          "maker": "デイツ",
+          "price": 8000,
+          "note": "約0.47kg / オイル"
+        },
+        {
+          "name": "マットブラック小型オイルランタン",
+          "maker": "NATURA",
+          "price": 8000,
+          "note": "約0.21kg / オイル"
+        },
+        {
+          "name": "テーブルランタン",
+          "maker": "雪丘工房",
+          "price": 30000,
+          "note": "約0.2kg / オイル"
+        },
+        {
+          "name": "武井バーナー 301A",
+          "maker": "武井バーナー",
+          "price": 80000,
+          "note": "約1.8kg / 灯油"
+        },
+        {
+          "name": "リトルランプ ノクターン",
+          "maker": "snow peak",
+          "price": 4500,
+          "note": "約100g / OD缶"
+        },
+        {
+          "name": "ギガパワー ランタン \"天\" オート",
+          "maker": "snow peak",
+          "price": 8000,
+          "note": "約225g / OD缶"
+        },
+        {
+          "name": "サンセットハンガー",
+          "maker": "Tokyo Craft",
+          "price": 8000,
+          "note": "600g / ハンガー"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-table",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "テーブル",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "5点",
+        "総重量目安": "約9.4kg",
+        "合計金額": "¥48,100"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "焚き火テーブル",
+          "maker": "UNIFLAME",
+          "price": 8000,
+          "note": "約2.3kg"
+        },
+        {
+          "name": "フィールドラック",
+          "maker": "UNIFLAME",
+          "price": 4500,
+          "note": "約1.7kg"
+        },
+        {
+          "name": "テーブルワン",
+          "maker": "Helinox",
+          "price": 18000,
+          "note": "約610g"
+        },
+        {
+          "name": "折り畳み式ミニテーブル",
+          "maker": "Boundless Voyage",
+          "price": 1800,
+          "note": "約320g / UL"
+        },
+        {
+          "name": "ウッドパネルテーブル",
+          "maker": "RATEL WORKS",
+          "price": 15800,
+          "note": "4.5kg"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-fire",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "焚火台",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "3点",
+        "総重量目安": "約4.6kg",
+        "合計金額": "¥28,390"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "ファイアスタンド2",
+          "maker": "UNIFLAME",
+          "price": 6000,
+          "note": "約490g / 薪"
+        },
+        {
+          "name": "マクライト2",
+          "maker": "Tokyo Craft",
+          "price": 10000,
+          "note": "約500g（シート込 約1kg） / 薪"
+        },
+        {
+          "name": "ユニセラTG-3",
+          "maker": "UNIFLAME",
+          "price": 12390,
+          "note": "約3.1kg / 炭"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-stove",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "ストーブ",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "1点",
+        "総重量目安": "約11.0kg",
+        "合計金額": "¥30,000"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "KS-67H",
+          "maker": "トヨトミ",
+          "price": 30000,
+          "note": "約11kg / 灯油/暖房"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-burner-cooker",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "バーナー・クッカー",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "33点",
+        "総重量目安": "約13.0kg",
+        "合計金額": "¥177,009"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "HOME&CAMPバーナー",
+          "maker": "snow peak",
+          "price": 17000,
+          "note": "約1.4kg / CB缶"
+        },
+        {
+          "name": "トレックマスター ST-331",
+          "maker": "SOTO",
+          "price": 12000,
+          "note": "195g / CB缶"
+        },
+        {
+          "name": "フラットバーナー",
+          "maker": "snow peak",
+          "price": 14000,
+          "note": "約1.9kg / OD缶"
+        },
+        {
+          "name": "ヤエン ストーブ レギ",
+          "maker": "snow peak",
+          "price": 10000,
+          "note": "約220g / OD缶"
+        },
+        {
+          "name": "BRS 3000T",
+          "maker": "BRS",
+          "price": 2400,
+          "note": "26g / OD缶"
+        },
+        {
+          "name": "アルコールストーブ",
+          "maker": "trangia",
+          "price": 2500,
+          "note": "約110g / アルコール"
+        },
+        {
+          "name": "アルコールストーブ",
+          "maker": "TITAN MANIA",
+          "price": 2500,
+          "note": "約30g / アルコール"
+        },
+        {
+          "name": "アルコールストーブ",
+          "maker": "SOLO STOVE",
+          "price": 2500,
+          "note": "約100g / アルコール"
+        },
+        {
+          "name": "ストームクッカーL",
+          "maker": "trangia",
+          "price": 12000,
+          "note": "約1.0kg / アルコール用"
+        },
+        {
+          "name": "スキレット 8inch",
+          "maker": "LODGE",
+          "price": 7000,
+          "note": "約1.5kg"
+        },
+        {
+          "name": "メスティン",
+          "maker": "trangia",
+          "price": 2000,
+          "note": "約160g"
+        },
+        {
+          "name": "SPテーブルウエア",
+          "maker": "snow peak",
+          "price": 2000,
+          "note": "130g / プレート"
+        },
+        {
+          "name": "ケトル No.1",
+          "maker": "snow peak",
+          "price": 3000,
+          "note": "290g"
+        },
+        {
+          "name": "トラメジーノ",
+          "maker": "snow peak",
+          "price": 12000,
+          "note": "約880g / ホットサンド"
+        },
+        {
+          "name": "チタンシェラカップ×2",
+          "maker": "snow peak",
+          "price": 2000,
+          "note": "約39g/個"
+        },
+        {
+          "name": "アルミシェラカップ×2",
+          "maker": "snow peak",
+          "price": 1200,
+          "note": "約100g/個"
+        },
+        {
+          "name": "ワッパークッカー",
+          "maker": "snow peak",
+          "price": 16500,
+          "note": "580g"
+        },
+        {
+          "name": "トレック900",
+          "maker": "snow peak",
+          "price": 6000,
+          "note": "175g"
+        },
+        {
+          "name": "ソロセットチタン クッカーセット SCS-004TR",
+          "maker": "snow peak",
+          "price": 9000,
+          "note": "約265g"
+        },
+        {
+          "name": "チタンシングルマグ 450",
+          "maker": "snow peak",
+          "price": 3000,
+          "note": "70g"
+        },
+        {
+          "name": "真空断熱カップ 360ml",
+          "maker": "サーモス",
+          "price": 1000,
+          "note": "200g"
+        },
+        {
+          "name": "銅おちょこ",
+          "maker": "不明",
+          "price": 2000,
+          "note": "約50g"
+        },
+        {
+          "name": "チタンダブルマグ 450",
+          "maker": "Belmont",
+          "price": 4000,
+          "note": "約110-120g / 会社用"
+        },
+        {
+          "name": "鉄板 250×165×4.5mm",
+          "maker": "oka-d-art",
+          "price": 6600,
+          "note": "1.5kg"
+        },
+        {
+          "name": "マルチグリドル 36cm",
+          "maker": "ザイグル",
+          "price": 7000,
+          "note": "約1.4kg"
+        },
+        {
+          "name": "マルチグリドル 25cm",
+          "maker": "ダイソー",
+          "price": 1000,
+          "note": "約300g"
+        },
+        {
+          "name": "フレックス ウォーターパック 1.0L",
+          "maker": "mont-bell",
+          "price": 2000,
+          "note": "43g"
+        },
+        {
+          "name": "フレックス ウォーターパック 2.0L",
+          "maker": "mont-bell",
+          "price": 2600,
+          "note": "75g"
+        },
+        {
+          "name": "Ti 400FD Cup ECA530 チタン",
+          "maker": "EVERNEW",
+          "price": 1890,
+          "note": "50g"
+        },
+        {
+          "name": "Ti 250 Cup NH ECA081",
+          "maker": "EVERNEW",
+          "price": 2420,
+          "note": "24g"
+        },
+        {
+          "name": "Apex cup t0.2 チタンカップ ECAL731",
+          "maker": "EVERNEW",
+          "price": 4730,
+          "note": "29g"
+        },
+        {
+          "name": "Ti Demitasse 220 NH ECA544",
+          "maker": "EVERNEW",
+          "price": 1827,
+          "note": "30g"
+        },
+        {
+          "name": "mulTiDish マルチディッシュ チタン EBY280",
+          "maker": "EVERNEW",
+          "price": 1342,
+          "note": "13g"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-cooler",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "クーラー",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "3点",
+        "総重量目安": "約2.6kg",
+        "合計金額": "¥20,700"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "AURORA SOFT COOLER S",
+          "maker": "RATEL WORKS",
+          "price": 5500,
+          "note": "1kg"
+        },
+        {
+          "name": "クーラーバッグ ハイパー氷点下クーラー L",
+          "maker": "LOGOS",
+          "price": 13000,
+          "note": "1.5kg"
+        },
+        {
+          "name": "ロールトップクーラー M",
+          "maker": "ZEN Camps",
+          "price": 2200,
+          "note": "128g"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-knife",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "ナイフ",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "5点",
+        "総重量目安": "約0.8kg",
+        "合計金額": "¥38,850"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "黒打 白紙鋼 腰鉈 120mm",
+          "maker": "東周作",
+          "price": 7100,
+          "note": "390g"
+        },
+        {
+          "name": "関孫六 ダマスカス ペティ 120mm",
+          "maker": "貝印",
+          "price": 8000,
+          "note": "100g / 包丁"
+        },
+        {
+          "name": "サンガ OW-SG1-OD",
+          "maker": "OLFA WORKS",
+          "price": 10000,
+          "note": "約120g"
+        },
+        {
+          "name": "カーボンスチール #9",
+          "maker": "OPINEL",
+          "price": 2750,
+          "note": "約57g"
+        },
+        {
+          "name": "折畳式料理ナイフ 名栗ブラック",
+          "maker": "FEDECA",
+          "price": 11000,
+          "note": "約120g"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-misc",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "その他収納・小物",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "15点",
+        "総重量目安": "約19.7kg",
+        "合計金額": "¥76,599"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "一酸化炭素チェッカー",
+          "maker": "KZMART",
+          "price": 9000,
+          "note": "約100g / COチェッカー"
+        },
+        {
+          "name": "シェルコン25",
+          "maker": "snow peak",
+          "price": null,
+          "note": "約3.5kg / 家用コンテナ"
+        },
+        {
+          "name": "シェルコン25 ブリッジ",
+          "maker": "CAMP GEEGS",
+          "price": null,
+          "note": "1.5kg / 家用"
+        },
+        {
+          "name": "2WAYロングキャリーカート",
+          "maker": "SAHARA",
+          "price": 19800,
+          "note": "約11kg"
+        },
+        {
+          "name": "CAMP GEAR BAG",
+          "maker": "RATEL WORKS",
+          "price": 8700,
+          "note": "2.2kg"
+        },
+        {
+          "name": "SIDE STORAGE BOX",
+          "maker": "RATEL WORKS",
+          "price": 4200,
+          "note": "400g"
+        },
+        {
+          "name": "CUCINA BOX",
+          "maker": "RATEL WORKS",
+          "price": 4200,
+          "note": "400g / 料理道具"
+        },
+        {
+          "name": "CUSHION GEAR CASE",
+          "maker": "RATEL WORKS",
+          "price": 4700,
+          "note": "400g / ワッパークッカー用"
+        },
+        {
+          "name": "SIERRACUP CASE",
+          "maker": "RATEL WORKS",
+          "price": 2000,
+          "note": "200g"
+        },
+        {
+          "name": "キャンプシャトル",
+          "maker": "Oregonian Camper",
+          "price": 4500,
+          "note": "Cucina/Cushion/Sierra/SideStorage/焚火台"
+        },
+        {
+          "name": "ストレージボックス S",
+          "maker": "Helinox",
+          "price": 4500,
+          "note": ""
+        },
+        {
+          "name": "タクティカル サイドストレージ スリム S",
+          "maker": "Helinox",
+          "price": 7500,
+          "note": "調味料入れ"
+        },
+        {
+          "name": "コーデュラ ギアバッグ 14 ブラック",
+          "maker": "Alpen outdoors",
+          "price": 3499,
+          "note": ""
+        },
+        {
+          "name": "NPクッカーケース深型 EBY233",
+          "maker": "EVERNEW",
+          "price": 1700,
+          "note": ""
+        },
+        {
+          "name": "NPクッカーケース 400FD EBY647",
+          "maker": "EVERNEW",
+          "price": 2300,
+          "note": ""
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-power",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "ポタ電",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "2点",
+        "総重量目安": "約5.9kg",
+        "合計金額": "¥0"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "Solix C300 Portable Power Station",
+          "maker": "Anker",
+          "price": null,
+          "note": "4.1kg"
+        },
+        {
+          "name": "Solix PS60 Compact Portable Solar Panel",
+          "maker": "Anker",
+          "price": null,
+          "note": "1.8kg"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
+    },
+    {
+      "id": "camp-backpack",
+      "group": "hobby",
+      "category": "camping",
+      "status": "active",
+      "name": "バックパック",
+      "maker": "",
+      "model": "",
+      "year": null,
+      "grade": "",
+      "color": "",
+      "role": "main",
+      "purchase": {
+        "date": "",
+        "type": "",
+        "price": null
+      },
+      "sold": {
+        "date": null,
+        "price": null
+      },
+      "specs": {
+        "点数": "4点",
+        "総重量目安": "約7.0kg",
+        "合計金額": "¥86,300"
+      },
+      "customs": [],
+      "equipment": [
+        {
+          "name": "サースフェー NX 50+",
+          "maker": "MILLET",
+          "price": 30000,
+          "note": "約1.8kg"
+        },
+        {
+          "name": "サースフェー NX 30",
+          "maker": "MILLET",
+          "price": 22000,
+          "note": "約1.5kg"
+        },
+        {
+          "name": "バックパック K-3596",
+          "maker": "クシタニ",
+          "price": 20900,
+          "note": "約1.5kg / 18L"
+        },
+        {
+          "name": "デイトナ ツーリング シートバッグ BASIC2 S",
+          "maker": "Henly Begins",
+          "price": 13400,
+          "note": "2.2kg / 22-29L可変"
+        }
+      ],
+      "photos": {
+        "main": "",
+        "gallery": []
+      },
+      "memo": ""
     }
   ]
 }

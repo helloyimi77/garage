@@ -16,6 +16,7 @@
   --oil:#1F4E79;
   --hazard:#F2B705;
   --car:#DCE6EF; --bike:#E7DED2; --escooter:#DDE9E1; --roadbike:#EEE1DD; --horse:#E9E4D3;
+  --golf:#DDE7D0; --fishing:#D4E4EC; --camping:#E5DBC8;
   --radius:6px;
 }
 *{box-sizing:border-box}
@@ -60,6 +61,10 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .status{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;background:var(--hazard);color:var(--ink)}
 .status.sold{background:var(--ink);color:#fff}
 .empty{padding:60px 0;color:var(--ink-2);text-align:center}
+.groupbar{max-width:1120px;margin:14px auto 0;padding:0 20px;display:flex;justify-content:center}
+.groupseg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);overflow:hidden}
+.groupseg button{padding:9px 22px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.groupseg button[aria-pressed="true"]{background:var(--ink);color:#fff}
 
 /* timeline */
 .timeline{margin-top:48px}
@@ -152,6 +157,13 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
   <div class="summary" id="summary"></div>
 </header>
 
+<div class="groupbar">
+  <div class="groupseg" id="groupseg" role="tablist">
+    <button data-g="vehicle" aria-pressed="true">🚗 乗り物</button>
+    <button data-g="hobby" aria-pressed="false">⛳ 趣味</button>
+  </div>
+</div>
+
 <div class="filters">
   <div class="tabs" role="tablist" id="tabs"></div>
   <div class="seg" id="seg">
@@ -170,6 +182,10 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 <aside class="drawer" id="drawer" aria-label="車両の詳細"></aside>
 
 <script>
+const GROUPS = {
+  vehicle: { label: '乗り物', cats: ['car','bike','escooter','roadbike','horse'] },
+  hobby:   { label: '趣味',   cats: ['golf','fishing','camping'] }
+};
 const CATS = {
   all:      { label: 'すべて' },
   car:      { label: '車',              glyph: '車', tint: 'var(--car)' },
@@ -177,6 +193,9 @@ const CATS = {
   escooter: { label: '電動キックボード', glyph: '電', tint: 'var(--escooter)' },
   roadbike: { label: 'ロードバイク',    glyph: '自', tint: 'var(--roadbike)' },
   horse:    { label: '愛馬',            glyph: '馬', tint: 'var(--horse)' },
+  golf:     { label: '⛳ ゴルフ',        glyph: '⛳', tint: 'var(--golf)' },
+  fishing:  { label: '🎣 釣り',         glyph: '🎣', tint: 'var(--fishing)' },
+  camping:  { label: '⛺ キャンプ',      glyph: '⛺', tint: 'var(--camping)' },
 };
 const yen = n => (n == null || n === '' ? '—' : '¥' + Number(n).toLocaleString('ja-JP'));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -185,7 +204,7 @@ const fmtDate = d => d ? d.replace(/-/g,'.') : '';
 const isSold = v => v.status !== 'active';
 
 let DATA = { vehicles: [] };
-let cat = 'all', stat = 'active';
+let group = 'vehicle', cat = 'all', stat = 'active';
 
 async function load(){
   try{
@@ -204,21 +223,34 @@ async function load(){
 }
 
 function renderTabs(){
-  const present = new Set(DATA.vehicles.map(v=>v.category));
-  const keys = ['all', ...Object.keys(CATS).filter(k=>k!=='all' && present.has(k))];
+  const items = DATA.vehicles.filter(v=>(v.group||'vehicle')===group);
+  const present = new Set(items.map(v=>v.category));
+  const allowed = GROUPS[group].cats;
+  const keys = ['all', ...allowed.filter(k=>present.has(k))];
   document.getElementById('tabs').innerHTML = keys.map(k =>
     `<button class="tab" role="tab" data-c="${k}" aria-selected="${k===cat}">${CATS[k].label}</button>`).join('');
 }
 function renderSummary(){
-  const vs = DATA.vehicles, act = vs.filter(v=>!isSold(v));
-  const invested = act.reduce((a,v)=>a+total(v),0);
-  document.getElementById('summary').innerHTML =
-    `<span><b>${act.length}</b>台 現役</span><span><b>${vs.length-act.length}</b>台 過去</span><span><b>${yen(invested)}</b>現役への総投入額</span>`;
+  const items = DATA.vehicles.filter(v=>(v.group||'vehicle')===group);
+  if(group==='hobby'){
+    const total = items.reduce((a,v)=>a+total_hobby(v),0);
+    document.getElementById('summary').innerHTML =
+      `<span><b>${items.length}</b>件 登録</span><span><b>${yen(total)}</b>合計投入額</span>`;
+  } else {
+    const act = items.filter(v=>!isSold(v));
+    const invested = act.reduce((a,v)=>a+total(v),0);
+    document.getElementById('summary').innerHTML =
+      `<span><b>${act.length}</b>台 現役</span><span><b>${items.length-act.length}</b>台 過去</span><span><b>${yen(invested)}</b>現役への総投入額</span>`;
+  }
 }
 function total(v){ return (Number(v.purchase?.price)||0) + sum(v.customs) + sum(v.equipment); }
+function total_hobby(v){ return (Number(v.purchase?.price)||0) + sum(v.equipment); }
 
 function filtered(){
-  return DATA.vehicles.filter(v => (cat==='all'||v.category===cat) && (stat==='all' || (stat==='active' ? !isSold(v) : isSold(v))));
+  return DATA.vehicles.filter(v =>
+    (v.group||'vehicle')===group &&
+    (cat==='all'||v.category===cat) &&
+    (group==='hobby' || stat==='all' || (stat==='active' ? !isSold(v) : isSold(v))));
 }
 function photoBlock(v, cls){
   const c = CATS[v.category] || {};
@@ -228,26 +260,49 @@ function photoBlock(v, cls){
 function renderGrid(){
   const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
   const g = document.getElementById('grid');
-  if(!list.length){ g.innerHTML = `<div class="empty">この条件の車両はありません。vehicles.json に追加すると表示されます。</div>`; return; }
-  g.innerHTML = list.map(v => `
+  if(!list.length){ g.innerHTML = `<div class="empty">この条件のアイテムはありません。vehicles.json に追加すると表示されます。</div>`; return; }
+  g.innerHTML = list.map(v => {
+    const isHobby = (v.group||'vehicle')==='hobby';
+    let footL='', footR='';
+    if(isHobby){
+      if(v.category==='golf'){
+        const loft=v.specs?.['ロフト']||'';
+        const dist=(v.specs?.['飛距離']||'').split(' ')[0];
+        footL=[loft,dist].filter(Boolean).join(' / ');
+        footR=v.purchase?.price?yen(v.purchase.price):'';
+      } else {
+        const items=(v.equipment||[]).length;
+        footL=`${items}点`;
+        footR=yen(total_hobby(v));
+      }
+    } else if(v.category==='horse'){
+      footL='通算 '+(v.specs?.['通算成績']||'—');
+      footR=v.specs?.['獲得賞金']||'';
+    } else {
+      footL=`カスタム ${(v.customs||[]).length}件 / 装備 ${(v.equipment||[]).length}点`;
+      footR=yen(total(v));
+    }
+    return `
     <button class="card ${isSold(v)?'sold':''}" data-id="${esc(v.id)}">
       ${photoBlock(v,'photo')}
-      <span class="status ${isSold(v)?'sold':''}">${isSold(v)?'過去':'現役'}</span>
+      ${isHobby?'':`<span class="status ${isSold(v)?'sold':''}">${isSold(v)?'過去':'現役'}</span>`}
       <div class="body">
         <div class="maker">${esc(v.maker)}${v.model?` <span style="opacity:.7">${esc(v.model)}</span>`:''}</div>
         <div class="name">${esc(v.name)}</div>
-        <div class="grade">${[v.grade, v.year?v.year+'年式':'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
+        <div class="grade">${[v.grade, v.year?v.year+(v.category==='horse'?'年生':'年式'):'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
         <div class="foot">
-          <span>${v.category==='horse' ? ('通算 '+(v.specs?.['通算成績']||'—')) : ('カスタム '+ (v.customs||[]).length +' 件 / 装備 '+ (v.equipment||[]).length +' 点')}</span>
-          <span class="total">${v.category==='horse' ? (v.specs?.['獲得賞金']||'') : yen(total(v))}</span>
+          <span>${esc(footL)}</span>
+          <span class="total">${footR}</span>
         </div>
       </div>
-    </button>`).join('');
+    </button>`;
+  }).join('');
 }
 
 function renderTimeline(){
-  const vs = DATA.vehicles.filter(v=>v.purchase?.date).sort((a,b)=>a.purchase.date.localeCompare(b.purchase.date));
   const el = document.getElementById('timeline');
+  if(group!=='vehicle'){ el.innerHTML=''; return; }
+  const vs = DATA.vehicles.filter(v=>(v.group||'vehicle')==='vehicle' && v.purchase?.date).sort((a,b)=>a.purchase.date.localeCompare(b.purchase.date));
   if(!vs.length){ el.innerHTML=''; return; }
   const today = new Date();
   const t0 = new Date(vs[0].purchase.date); t0.setMonth(0,1);
@@ -278,7 +333,7 @@ function openDetail(id){
   const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div>
     <div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
-  const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
+  const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
   const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="">`).join('');
 
   // horse-specific: race log + stats
@@ -326,13 +381,23 @@ function openDetail(id){
         <div><span>取得価格</span><b>${yen(buy)}</b></div>
         <div><span>獲得賞金</span><b>${v.specs?.['獲得賞金']||'—'}</b></div>
        </div>`
+    : (v.group==='hobby'
+    ? (v.category==='golf'
+      ? `<div class="money">
+          <div><span>購入価格</span><b>${yen(buy)}</b></div>
+          <div><span>役割</span><b style="font-size:15px">${v.role==='sub'?'2軍':'メイン装備'}</b></div>
+         </div>`
+      : `<div class="money">
+          <div><span>点数</span><b>${(v.equipment||[]).length}点</b></div>
+          <div><span>合計金額</span><b>${yen(sum(v.equipment))}</b></div>
+         </div>`)
     : `<div class="money">
         <div><span>購入価格</span><b>${yen(buy)}</b></div>
         <div><span>カスタム合計</span><b>${yen(cust)}</b></div>
         <div><span>装備品合計</span><b>${yen(eq)}</b></div>
         <div><span>1台あたりの内訳</span><b style="font-size:13px;font-weight:500;color:var(--ink-2)">${(v.customs||[]).length}件のカスタム / ${(v.equipment||[]).length}点の装備</b></div>
         <div class="total"><span>総投入額</span><b>${yen(buy+cust+eq)}</b></div>
-      </div>`;
+      </div>`);
 
   document.getElementById('drawer').innerHTML = `
     ${photoBlock(v,'hero')}<button class="close" id="close" aria-label="閉じる">×</button>
@@ -345,8 +410,9 @@ function openDetail(id){
       ${statsBlock}
       <section class="sec"><h3>${isHorse?'プロフィール':'スペック'}</h3>${specRows?`<table>${specRows}</table>`:'<div class="none">未登録</div>'}</section>
       ${raceSection}
-      ${!isHorse?`<section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
+      ${!isHorse && v.group!=='hobby'?`<section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
       <section class="sec"><h3>装備品</h3>${eqRows?`<table>${eqRows}</table>`:'<div class="none">未登録</div>'}</section>`:''}
+      ${v.group==='hobby' && v.category!=='golf' && eqRows?`<section class="sec"><h3>${v.category==='fishing'?'ルアー・小物':'内訳'} <small>${(v.equipment||[]).length}点</small></h3><table>${eqRows}</table></section>`:''}
       ${gal?`<section class="sec"><h3>ギャラリー</h3><div class="gallery">${gal}</div></section>`:''}
       ${v.memo?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(v.memo)}</div></section>`:''}
     </div>`;
@@ -362,6 +428,13 @@ function closeDetail(){
   history.replaceState(null,'',location.pathname);
 }
 
+document.getElementById('groupseg').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  group = b.dataset.g; cat = 'all';
+  document.querySelectorAll('#groupseg button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+  document.getElementById('seg').style.display = group==='hobby' ? 'none' : '';
+  renderTabs(); renderSummary(); renderGrid(); renderTimeline();
+});
 document.getElementById('tabs').addEventListener('click', e=>{
   const b = e.target.closest('.tab'); if(!b) return;
   cat = b.dataset.c; renderTabs(); renderGrid();
