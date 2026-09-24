@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GARAGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEAE4;
+  --surface:#FFFFFF;
+  --ink:#1B1F24;
+  --ink-2:#5C636C;
+  --line:#D6D3CB;
+  --oil:#1F4E79;
+  --hazard:#F2B705;
+  --car:#DCE6EF; --bike:#E7DED2; --escooter:#DDE9E1; --roadbike:#EEE1DD; --horse:#E9E4D3;
+  --golf:#DDE7D0; --fishing:#D4E4EC; --camping:#E5DBC8; --airsoft:#DCDCD4; --rc:#F2DDD4; --plant:#DCE9D3;
+  --radius:6px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New",-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--oil);outline-offset:2px}
+
+/* header */
+header{padding:28px 20px 12px;max-width:1120px;margin:0 auto}
+.brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand h1{margin:0;font-size:clamp(40px,8vw,72px);font-weight:900;letter-spacing:-.03em;line-height:1}
+.brand .sub{color:var(--ink-2);font-size:14px}
+.summary{margin-top:14px;display:flex;gap:28px;flex-wrap:wrap;color:var(--ink-2);font-size:14px}
+.summary b{color:var(--ink);font-size:22px;font-weight:700;margin-right:4px;letter-spacing:-.01em}
+
+/* filters */
+.filters{max-width:1120px;margin:16px auto 0;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);z-index:5;padding-top:8px;padding-bottom:8px}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:8px 14px;border-radius:999px;white-space:nowrap;color:var(--ink-2);font-weight:500;border:1px solid transparent}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.seg button{padding:7px 14px;font-size:13px;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--oil);color:#fff}
+
+/* grid */
+main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border-radius:var(--radius);overflow:hidden;text-align:left;display:flex;flex-direction:column;border:1px solid var(--line);position:relative}
+.card:hover{border-color:var(--ink)}
+.card.sold{opacity:.72}
+.card .photo{aspect-ratio:4/3;background:var(--tint,#ddd);display:grid;place-items:center;overflow:hidden;position:relative}
+.card .photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.card .photo.portrait{display:flex;align-items:stretch;justify-content:center}
+.card .photo.portrait img{width:auto!important;height:100%!important;max-width:none!important;object-fit:fill!important;flex:0 0 auto;margin:0}
+.card .photo .glyph{font-size:96px;font-weight:900;color:rgba(27,31,36,.14);letter-spacing:-.05em;line-height:1}
+.card .body{padding:14px 16px 16px}
+.card .maker{font-size:13px;color:var(--ink-2)}
+.card .name{font-size:22px;font-weight:900;letter-spacing:-.02em;line-height:1.15;margin:2px 0 4px}
+.card .grade{font-size:13px;color:var(--ink-2)}
+.card .foot{margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-2)}
+.card .foot .total{font-weight:700;color:var(--ink)}
+.status{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;background:var(--hazard);color:var(--ink)}
+.status.sold{background:var(--ink);color:#fff}
+.empty{padding:60px 0;color:var(--ink-2);text-align:center}
+.groupbar{max-width:1120px;margin:14px auto 0;padding:0 20px;display:flex;justify-content:center}
+.groupseg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);overflow:hidden}
+.groupseg button{padding:9px 22px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.groupseg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* hobby list view (used by golf, fishing, camping) */
+.golf-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
+.golf-list table{width:100%;border-collapse:collapse;font-size:14px;border:0}
+.golf-list th,.golf-list td{padding:11px 12px;text-align:left;vertical-align:middle;border-top:1px solid var(--line)}
+.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:12px;border-top:0;position:sticky;top:0;white-space:nowrap}
+.golf-list th.num,.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.golf-list tbody tr{cursor:pointer;transition:background .15s}
+.golf-list[data-cat="golf"] tbody tr:hover{background:var(--golf)}
+.golf-list[data-cat="fishing"] tbody tr:hover{background:var(--fishing)}
+.golf-list[data-cat="camping"] tbody tr:hover{background:var(--camping)}
+.golf-list td.club{font-weight:700;font-size:15px;color:var(--ink)}
+/* fishing table specific */
+.fishing-list table{table-layout:fixed}
+.fishing-list td,.fishing-list th{word-break:keep-all;overflow-wrap:break-word}
+.fishing-list td.tackle{font-size:13px;color:var(--ink);line-height:1.4}
+.fishing-list td.tackle small,.fishing-list td.num small{display:block;color:var(--ink-2);font-size:11px;font-weight:400;margin-top:2px;font-variant-numeric:tabular-nums}
+.fishing-list td.total{font-weight:700}
+.fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
+.fish-sec h3{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--ink)}
+.fishing-list td.use{white-space:normal;line-height:2}
+.use-chip{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--fishing);color:var(--ink);font-size:12px;font-weight:700;line-height:1.4}
+.fish-total{display:flex;justify-content:flex-end;gap:14px;align-items:baseline;color:var(--ink-2);font-size:13px}
+.fish-total b{color:var(--ink);font-size:20px}
+/* wide (golf only) — compact typography, no wrap, min-width */
+.golf-list.wide table{min-width:1100px;font-size:13px}
+.golf-list.wide th,.golf-list.wide td{padding:9px 10px;white-space:nowrap}
+.golf-list.wide thead th{font-size:11px}
+.golf-list.wide td.club{font-size:14px}
+.golf-list.wide td.model .model-name{font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.15}
+.golf-list.wide td.model .maker-sub{color:var(--ink-2);display:block;font-size:11px;margin-top:1px;font-weight:400}
+.golf-list.wide td.shaft{color:var(--ink-2);font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.golf-list.wide td.dist{font-weight:700}
+.golf-list.wide td.dist-sim{color:var(--ink-2)}
+.golf-list.wide td.price{font-weight:500}
+.golf-list.wide tr.sub td{color:var(--ink-2);opacity:.75}
+.golf-list.wide tr.sub td.club::after{content:' (2軍)';font-size:11px;color:var(--ink-2);font-weight:400}
+@media (max-width:700px){
+  .golf-list.wide table{min-width:900px}
+  .golf-list td.club{font-size:14px}
+  .golf-list th,.golf-list td{padding:9px 10px}
+}
+
+/* timeline */
+.timeline{margin-top:48px}
+.timeline h2{font-size:18px;font-weight:700;margin:0 0 4px}
+.timeline p{margin:0 0 16px;color:var(--ink-2);font-size:13px}
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;overflow-x:auto}
+.tl-inner{min-width:560px}
+.tl-years{position:relative;height:20px;font-size:11px;color:var(--ink-2)}
+.tl-years span{position:absolute;transform:translateX(-50%)}
+.tl-row{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;padding:5px 0;border-top:1px dashed var(--line)}
+.tl-row .lbl{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-row .lbl small{display:block;font-weight:400;color:var(--ink-2);font-size:11px}
+.tl-row .track{position:relative;height:18px}
+.tl-row .bar{position:absolute;top:0;height:100%;border-radius:3px;background:var(--oil)}
+.tl-row .bar.sold{background:#9AA3AD}
+.tl-row .bar.open{border-top-right-radius:0;border-bottom-right-radius:0;background:linear-gradient(90deg,var(--oil) 85%,transparent)}
+
+/* drawer */
+.overlay{position:fixed;inset:0;background:rgba(27,31,36,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(640px,100%);background:var(--bg);z-index:21;transform:translateX(100%);transition:transform .25s;overflow-y:auto;box-shadow:-8px 0 30px rgba(0,0,0,.15)}
+.drawer.on{transform:none}
+.drawer .hero{background:var(--tint,#ddd);aspect-ratio:16/9;display:grid;place-items:center;position:relative}
+.drawer .hero img{width:100%;height:100%;object-fit:cover;display:block}
+.drawer .hero .glyph{font-size:140px;font-weight:900;color:rgba(27,31,36,.14);line-height:1}
+.close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:var(--surface);font-size:20px;display:grid;place-items:center;border:1px solid var(--line)}
+.d-body{padding:20px 22px 48px}
+.d-body .maker{color:var(--ink-2);font-size:14px}
+.d-body h2{margin:2px 0 2px;font-size:34px;font-weight:900;letter-spacing:-.03em;line-height:1.1}
+.d-body .grade{font-size:15px;color:var(--ink-2)}
+.d-body .own{margin:14px 0 0;font-size:13px;color:var(--ink-2)}
+.d-body .own b{color:var(--ink)}
+.money{margin:18px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.money div{background:var(--surface);padding:12px 14px}
+.money div span{display:block;font-size:12px;color:var(--ink-2)}
+.money div b{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.money div.total{grid-column:1/-1;background:var(--ink);color:#fff}
+.money div.total span{color:#B9C0C8}
+.money div.total b{font-size:26px}
+section.sec{margin-top:28px}
+section.sec h3{margin:0 0 10px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:baseline}
+section.sec h3 small{font-weight:400;color:var(--ink-2);font-size:12px}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:14px}
+th,td{padding:9px 12px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+tr:first-child th,tr:first-child td{border-top:0}
+th{width:38%;font-weight:500;color:var(--ink-2)}
+td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cust{display:flex;flex-direction:column;gap:8px}
+.cust .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.cust .item .p{font-weight:700;font-size:15px;line-height:1.35}
+.cust .item .y{font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.cust .item .m{font-size:12px;color:var(--ink-2)}
+.cust .item .n{font-size:13px;color:var(--ink-2);margin-top:2px}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:3px;background:var(--bg);border:1px solid var(--line);margin-right:6px;vertical-align:middle}
+.memo{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;font-size:14px;white-space:pre-wrap}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px}
+.none{color:var(--ink-2);font-size:13px}
+.racelog{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
+.racelog table{border:0;font-size:12px;min-width:640px}
+.racelog th,.racelog td{padding:6px 8px;white-space:nowrap}
+.racelog thead th{background:var(--bg);color:var(--ink-2);font-weight:500;border-top:0;font-size:11px}
+.racelog td.rc{text-align:center;font-weight:700}
+.racelog td.rc.win{background:#F2B705;color:var(--ink)}
+.racelog td.rc.p2{background:#E7DED2}
+.racelog td.rc.p3{background:#DCE6EF}
+.racelog td.num{text-align:right;font-variant-numeric:tabular-nums}
+.racelog td.rn{white-space:normal;min-width:140px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px}
+.stat-grid .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px}
+.stat-grid .box span{display:block;font-size:11px;color:var(--ink-2)}
+.stat-grid .box b{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.err{max-width:1120px;margin:40px auto;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.err code{background:var(--bg);padding:2px 6px;border-radius:3px}
+
+@media (max-width:600px){
+  header{padding-top:20px}
+  .filters{gap:8px}
+  .card .name{font-size:20px}
+  .money div.total b{font-size:22px}
+  th{width:42%}
+}
+@media (prefers-reduced-motion:reduce){.drawer,.overlay{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><h1 id="title">GARAGE</h1></div>
+  <div class="summary" id="summary"></div>
+</header>
+
+<div class="groupbar">
+  <div class="groupseg" id="groupseg" role="tablist">
+    <button data-g="vehicle" aria-pressed="true">🚗 乗り物</button>
+    <button data-g="hobby" aria-pressed="false">⛳ 趣味</button>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="seg" id="seg">
+    <button data-s="active" aria-pressed="true">現役</button>
+    <button data-s="sold" aria-pressed="false">過去</button>
+    <button data-s="all" aria-pressed="false">すべて</button>
+  </div>
+</div>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <section class="timeline" id="timeline"></section>
+</main>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="車両の詳細"></aside>
+
+<script>
+const GROUPS = {
+  vehicle: { label: '乗り物', cats: ['car','bike','escooter','roadbike','horse'] },
+  hobby:   { label: '趣味',   cats: ['golf','fishing','camping','airsoft','rc','plant'] }
+};
+const HOBBY_COVERS = {
+  golf: 'images/hobby-covers/golf.jpg',
+  fishing: 'images/hobby-covers/fishing.jpg',
+  camping: 'images/hobby-covers/camping.jpg'
+};
+const coverOf = k => DATA.covers?.[k]?.photos?.main || HOBBY_COVERS[k] || '';
+const CATS = {
+  all:      { label: 'すべて' },
+  car:      { label: '車',              glyph: '車', tint: 'var(--car)' },
+  bike:     { label: 'バイク',          glyph: '輪', tint: 'var(--bike)' },
+  escooter: { label: '電動キックボード', glyph: '電', tint: 'var(--escooter)' },
+  roadbike: { label: 'ロードバイク',    glyph: '自', tint: 'var(--roadbike)' },
+  horse:    { label: '愛馬',            glyph: '馬', tint: 'var(--horse)' },
+  golf:     { label: '⛳ ゴルフ',        glyph: '⛳', tint: 'var(--golf)' },
+  fishing:  { label: '🎣 釣り',         glyph: '🎣', tint: 'var(--fishing)' },
+  camping:  { label: '⛺ キャンプ',      glyph: '⛺', tint: 'var(--camping)' },
+  airsoft:  { label: '🎯 サバゲー',      glyph: '🎯', tint: 'var(--airsoft)' },
+  rc:       { label: '🏎️ ラジコン',      glyph: '🏎️', tint: 'var(--rc)' },
+  plant:    { label: '🌿 植物',          glyph: '🌿', tint: 'var(--plant)' },
+};
+const VEHICLE_CATEGORY_ORDER = { car:0, bike:1, escooter:2, roadbike:3, horse:4 };
+const yen = n => (n == null || n === '' ? '—' : '¥' + Number(n).toLocaleString('ja-JP'));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sum = (arr, k='price') => (arr||[]).reduce((a,x)=>a+(Number(x[k])||0),0);
+const fmtDate = d => d ? d.replace(/-/g,'.') : '';
+const isSold = v => v.status !== 'active';
+
+let DATA = { vehicles: [] };
+let group = 'vehicle', cat = 'all', stat = 'active';
+
+async function load(){
+  try{
+    const r = await fetch('vehicles.json', {cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    DATA = await r.json();
+
+    // Plants are kept in separate JSON files, then adapted to the existing hobby-card model.
+    const [plantsData, casesData] = await Promise.all([
+      fetch('plants.json', {cache:'no-store'}).then(x=>x.ok?x.json():null).catch(()=>null),
+      fetch('plant_cases.json', {cache:'no-store'}).then(x=>x.ok?x.json():null).catch(()=>null)
+    ]);
+    if(plantsData?.plants?.length){
+      const caseMap = Object.fromEntries((casesData?.plant_cases||[]).map(x=>[x.id,x]));
+      const plantItems = plantsData.plants.map(p=>{
+        const linked = (p.case_ids||[]).map(id=>caseMap[id]).filter(Boolean);
+        const caseText = linked.map(x=>`#${x.id} ${x.name||x.purpose||'ケース'}`).join(' / ');
+        const lights = [...new Set(linked.map(x=>x.lighting?.name).filter(Boolean))].join(' / ');
+        const specs = Object.fromEntries([
+          ['管理No.', p.id],
+          ['学名', p.taxonomy?.scientific_name],
+          ['科', p.taxonomy?.family],
+          ['属', p.taxonomy?.genus],
+          ['種', p.taxonomy?.species],
+          ['品種・流通名', p.cultivar],
+          ['用土', p.medium],
+          ['状態', p.status_label],
+          ['育成ケース', caseText],
+          ['照明', lights]
+        ].filter(([,v])=>v));
+        return {
+          id: 'plant-' + p.id,
+          group: 'hobby',
+          category: 'plant',
+          status: 'active',
+          name: p.name,
+          maker: p.taxonomy?.family || '',
+          model: p.taxonomy?.scientific_name || '',
+          purchase: p.purchase || {date:null,price:null},
+          specs,
+          equipment: [],
+          photos: p.photos || {},
+          memo: p.note || ''
+        };
+      });
+      DATA.vehicles.push(...plantItems);
+    }
+  }catch(e){
+    document.querySelector('main').innerHTML =
+      `<div class="err"><b>vehicles.json を読み込めませんでした。</b><br>GitHub Pages 上か、ローカルでは <code>python3 -m http.server</code> などで配信して開いてください。（file:// 直開きでは fetch が動きません）</div>`;
+    return;
+  }
+  document.getElementById('title').textContent = DATA.title || 'GARAGE';
+  renderTabs(); renderSummary(); renderGrid(); renderTimeline();
+  if(location.hash) openDetail(location.hash.slice(1));
+}
+
+function renderTabs(){
+  const items = DATA.vehicles.filter(v=>(v.group||'vehicle')===group);
+  const present = new Set(items.map(v=>v.category));
+  const allowed = GROUPS[group].cats;
+  const keys = ['all', ...allowed.filter(k=>present.has(k))];
+  document.getElementById('tabs').innerHTML = keys.map(k =>
+    `<button class="tab" role="tab" data-c="${k}" aria-selected="${k===cat}">${CATS[k].label}</button>`).join('');
+}
+function renderSummary(){
+  const items = DATA.vehicles.filter(v=>(v.group||'vehicle')===group);
+  if(group==='hobby'){
+    document.getElementById('summary').innerHTML = '';
+  } else {
+    const act = items.filter(v=>!isSold(v));
+    document.getElementById('summary').innerHTML =
+      `<span><b>${act.length}</b>台 現役</span><span><b>${items.length-act.length}</b>台 過去</span>`;
+  }
+}
+function total(v){ return (Number(v.purchase?.price)||0) + sum(v.customs) + sum(v.equipment); }
+function total_hobby(v){ return (Number(v.purchase?.price)||0) + sum(v.equipment); }
+
+function filtered(){
+  return DATA.vehicles.filter(v =>
+    (v.group||'vehicle')===group &&
+    (cat==='all'||v.category===cat) &&
+    (group==='hobby' || stat==='all' || (stat==='active' ? !isSold(v) : isSold(v))));
+}
+function photoBlock(v, cls){
+  const c = CATS[v.category] || {};
+  const portraitCheck = v.category==='plant' ? ` onload="if(this.naturalHeight>this.naturalWidth)this.parentElement.classList.add('portrait')"` : '';
+  const img = v.photos?.main ? `<img src="${esc(v.photos.main)}" alt="${esc(v.name)}"${portraitCheck}>` : `<span class="glyph">${c.glyph||'?'}</span>`;
+  return `<div class="${cls}" style="--tint:${c.tint||'#ddd'}">${img}</div>`;
+}
+function renderGrid(){
+  const g = document.getElementById('grid');
+  // Hobby + all → show category aggregate cards
+  if(group==='hobby' && cat==='all'){
+    const items = DATA.vehicles.filter(v=>(v.group||'vehicle')==='hobby');
+    const cards = GROUPS.hobby.cats.map(k=>{
+      const list = items.filter(v=>v.category===k);
+      if(!list.length) return '';
+      const c = CATS[k];
+      const perItem = ['golf','airsoft','rc','plant'].includes(k);
+      const itemsCount = perItem ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).length,0);
+      const unit = {golf:'本', airsoft:'丁', rc:'台', plant:'種'}[k] || '点';
+      const setsCount = perItem ? '' : `${list.length}カテゴリ / `;
+      const total = list.reduce((a,v)=>a+total_hobby(v),0);
+      return `
+        <button class="card summary-card" data-jump="${k}">
+          <div class="photo" style="--tint:${c.tint}">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
+          <div class="body">
+            <div class="maker">趣味コレクション</div>
+            <div class="name">${esc(c.label.replace(/^\S+\s+/,''))}</div>
+            <div class="grade">${setsCount}${itemsCount}${unit}</div>
+            <div class="foot">
+              <span>詳細を見る →</span>
+              <span class="total">${k==='plant'?'':yen(total)}</span>
+            </div>
+          </div>
+        </button>`;
+    }).filter(Boolean).join('');
+    g.innerHTML = cards || `<div class="empty">趣味アイテムがまだ登録されていません。</div>`;
+    return;
+  }
+  const list = filtered().sort((a,b)=>{
+    const aRank = VEHICLE_CATEGORY_ORDER[a.category] ?? 99;
+    const bRank = VEHICLE_CATEGORY_ORDER[b.category] ?? 99;
+    if(group === 'vehicle' && aRank !== bRank) return aRank - bRank;
+    return (b.purchase?.date || '').localeCompare(a.purchase?.date || '');
+  });
+  if(!list.length){ g.innerHTML = `<div class="empty">この条件のアイテムはありません。vehicles.json に追加すると表示されます。</div>`; return; }
+
+  // Golf: リスト表示（表形式）
+  if(group==='hobby' && cat==='golf'){
+    const clubOrder=['ドライバー','3W','5W','4U','5U','6I','7I','8I','9I','PW','52°ウェッジ','58°ウェッジ','チッパー','パター','LW','ドライバー'];
+    const sorted=[...list].sort((a,b)=>{
+      const aSub=a.role==='sub'?1:0, bSub=b.role==='sub'?1:0;
+      if(aSub!==bSub) return aSub-bSub;
+      const ai=clubOrder.findIndex(k=>a.name.startsWith(k));
+      const bi=clubOrder.findIndex(k=>b.name.startsWith(k));
+      return ai-bi;
+    });
+    const rows=sorted.map(v=>{
+      const s=v.specs||{};
+      const price=v.purchase?.price?yen(v.purchase.price):'';
+      return `<tr class="${v.role==='sub'?'sub':''}" data-id="${esc(v.id)}">
+        <td class="club">${esc(v.name.replace(/ \(2軍\)$/,''))}</td>
+        <td class="model">
+          <div class="model-name">${esc(v.model||'')}</div>
+          <small class="maker-sub">${esc(v.maker)}${v.year?` · ${v.year}`:''}</small>
+        </td>
+        <td class="shaft">${esc(s['シャフト']||'')}</td>
+        <td class="num">${esc(s['ロフト']||'')}</td>
+        <td class="num">${esc(s['ライ角']||'')}</td>
+        <td class="num">${esc(s['バランス']||'')}</td>
+        <td class="num">${esc(s['トルク']||'')}</td>
+        <td class="num">${esc(s['長さ']||'')}</td>
+        <td class="num">${esc(s['クラブ重量']||'')}</td>
+        <td class="num">${esc(s['シャフト重量']||'')}</td>
+        <td class="num dist">${esc(s['飛距離']||'')}</td>
+        <td class="num dist-sim">${esc(s['Sim']||'')}</td>
+        <td class="num">${esc(s['体積']||'')}</td>
+        <td class="num price">${price}</td>
+      </tr>`;
+    }).join('');
+    g.innerHTML=`<div class="golf-list wide" data-cat="golf"><table>
+      <thead><tr>
+        <th>番手</th><th>モデル</th><th>シャフト</th>
+        <th class="num">ロフト</th><th class="num">ライ角</th><th class="num">バランス</th><th class="num">トルク</th>
+        <th class="num">長さ</th><th class="num">クラブ重量</th><th class="num">シャフト重量</th>
+        <th class="num">飛距離</th><th class="num">Sim</th><th class="num">体積</th><th class="num">定価</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+    return;
+  }
+
+  // Fishing: 道具ごとのリスト表示
+  if(group==='hobby' && cat==='fishing'){
+    const parseTackle = s => {
+      if(!s) return {name:'',detail:'',price:''};
+      const m=s.match(/^(.*?)\s*(?:\(¥([\d,]+)\))?\s*$/);
+      const parts=(m[1]||'').split(' / ');
+      return {name:parts[0].trim(), detail:parts.slice(1).join(' / ').trim(), price:m[2]?`¥${m[2]}`:''};
+    };
+    const useLabel = v => (v.name||'').replace(/釣り$/,'');
+    // 釣る魚（specs.ターゲット）ごとの色
+    const FISH_COLORS = {
+      'シーバス':    ['#D6E4F0','#1F4E79'],
+      '真鯛':        ['#F6D9DC','#8E2A36'],
+      'アジ':        ['#DCEFE3','#1E6B45'],
+      '五目':        ['#F3E7C9','#7A5A12'],
+      'エリアトラウト':['#E6DDF2','#553C8B'],
+    };
+    const chipStyle = v => {
+      const c = FISH_COLORS[v.specs?.['ターゲット']] || ['var(--fishing)','var(--ink)'];
+      return `background:${c[0]};color:${c[1]}`;
+    };
+    const SECTIONS = [
+      {key:'ロッド',  label:'竿'},
+      {key:'リール',  label:'リール'},
+      {key:'ライン',  label:'ライン'},
+      {key:'リーダー',label:'リーダー'},
+    ];
+    const row = (v, main, sub, price) => `<tr data-id="${esc(v.id)}">
+        <td class="use"><span class="use-chip" style="${chipStyle(v)}" title="${esc(v.specs?.['ターゲット']||'')}">${esc(useLabel(v))}</span></td>
+        <td class="tackle">${esc(main)}${sub?`<small>${esc(sub)}</small>`:''}</td>
+        <td class="num">${price?esc(price):'—'}</td>
+      </tr>`;
+    const block = (label, rows, foot='') => rows ? `<section class="fish-sec">
+        <h3>${esc(label)}</h3>
+        <div class="golf-list fishing-list" data-cat="fishing"><table>
+          <colgroup><col style="width:22%"><col><col style="width:18%"></colgroup>
+          <tbody>${rows}</tbody>${foot}
+        </table></div></section>` : '';
+    let html = SECTIONS.map(sec => {
+      const rows = list.map(v => {
+        const t = parseTackle(v.specs?.[sec.key]);
+        return t.name ? row(v, t.name, t.detail, t.price) : '';
+      }).join('');
+      return block(sec.label, rows);
+    }).join('');
+    const lureRows = list.filter(v=>(v.equipment||[]).length).map(v => {
+      const eq = v.equipment;
+      const names = eq.slice(0,3).map(e=>e.name).join('、') + (eq.length>3?` ほか${eq.length-3}点`:'');
+      return row(v, `${eq.length}点`, names, yen(sum(eq)));
+    }).join('');
+    html += block('ルアー・小物', lureRows);
+    const grand = list.reduce((a,v)=>a+total_hobby(v),0);
+    html += `<div class="fish-total"><span>釣り道具 合計</span><b>${yen(grand)}</b></div>`;
+    g.innerHTML = `<div class="fish-wrap">${html}</div>`;
+    return;
+  }
+
+  // Camping: 道具カテゴリごとのリスト表示（用途・燃料をラベル化）
+  if(group==='hobby' && cat==='camping'){
+    const CAMP_TAGS = [
+      ['カーキャリア常備',['#D6E4F0','#1F4E79']],
+      ['家用',   ['#F3E7C9','#7A5A12']],
+      ['会社用', ['#E6E6E6','#444']],
+      ['UL',     ['#DCEFE3','#1E6B45']],
+      ['OD缶',   ['#F6D9DC','#8E2A36']],
+      ['CB缶',   ['#F9E0CF','#8A4A1C']],
+      ['オイル', ['#EFE2D0','#6B4A22']],
+      ['灯油',   ['#FBE9C4','#7A5200']],
+      ['アルコール',['#E6DDF2','#553C8B']],
+      ['USB',    ['#D9EEF0','#1D5F66']],
+      ['薪',     ['#EAD9CB','#6E3B1E']],
+      ['炭',     ['#DDDDDD','#333']],
+    ];
+    const parseNote = note => {
+      let rest = note||'';
+      const tags = CAMP_TAGS.filter(([t])=>rest.includes(t));
+      tags.forEach(([t])=>{ rest = rest.split(t).join(''); });
+      const parts = rest.split(/\s*\/\s*/).map(x=>x.replace(/^[、,\s]+|[、,\s]+$/g,'')).filter(Boolean);
+      const wIdx = parts.findIndex(x=>/\d\s*(kg|g)\b|\d(kg|g)/.test(x));
+      const weight = wIdx>=0 ? parts.splice(wIdx,1)[0] : '';
+      return {tags, weight, memo: parts.join(' / ')};
+    };
+    const chip = ([t,c]) => `<span class="use-chip" style="background:${c[0]};color:${c[1]}">${esc(t)}</span>`;
+    const html = list.map(v => {
+      const eq = v.equipment||[];
+      if(!eq.length) return '';
+      const rows = eq.map(e => {
+        const n = parseNote(e.note);
+        return `<tr data-id="${esc(v.id)}">
+          <td class="use">${n.tags.map(chip).join(' ')}</td>
+          <td class="tackle">${esc(e.name)}<small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></td>
+          <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
+          <td class="num">${e.price!=null?yen(e.price):'—'}</td>
+        </tr>`;
+      }).join('');
+      return `<section class="fish-sec">
+        <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
+        <div class="golf-list fishing-list" data-cat="camping"><table>
+          <colgroup><col style="width:20%"><col><col style="width:14%"><col style="width:13%"></colgroup>
+          <tbody>${rows}</tbody>
+        </table></div></section>`;
+    }).join('');
+    g.innerHTML = `<div class="fish-wrap">${html}</div>`;
+    return;
+  }
+
+  g.innerHTML = list.map(v => {
+    const isHobby = (v.group||'vehicle')==='hobby';
+    let footL='', footR='';
+    if(isHobby){
+      if(v.category==='golf'){
+        const loft=v.specs?.['ロフト']||'';
+        const dist=(v.specs?.['飛距離']||'').split(' ')[0];
+        footL=[loft,dist].filter(Boolean).join(' / ');
+        footR=v.purchase?.price?yen(v.purchase.price):'';
+      } else if(v.category==='plant'){
+        footL=v.model || '';
+        footR=v.specs?.['状態'] || '育成中';
+      } else if(v.category==='airsoft' || v.category==='rc'){
+        footL=v.specs?.['シャーシ'] || v.specs?.['方式'] || '';
+        footR=(v.purchase?.price==null && !(v.equipment||[]).length) ? '—' : yen(total_hobby(v));
+      } else {
+        const items=(v.equipment||[]).length;
+        footL=`${items}点`;
+        footR=yen(total_hobby(v));
+      }
+    } else if(v.category==='horse'){
+      footL='通算 '+(v.specs?.['通算成績']||'—');
+      footR=v.specs?.['獲得賞金']||'';
+    } else {
+      footL=`カスタム ${(v.customs||[]).length}件 / 装備 ${(v.equipment||[]).length}点`;
+      footR=yen(total(v));
+    }
+    return `
+    <button class="card ${!isHobby && isSold(v)?'sold':''}" data-id="${esc(v.id)}">
+      ${photoBlock(v,'photo')}
+      ${isHobby?'':`<span class="status ${isSold(v)?'sold':''}">${isSold(v)?'過去':'現役'}</span>`}
+      <div class="body">
+        <div class="maker">${esc(v.maker)}${v.model?` <span style="opacity:.7">${esc(v.model)}</span>`:''}</div>
+        <div class="name">${esc(v.name)}</div>
+        <div class="grade">${[v.grade, v.year?v.year+(v.category==='horse'?'年生':'年式'):'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
+        <div class="foot">
+          <span>${esc(footL)}</span>
+          <span class="total">${footR}</span>
+        </div>
+      </div>
+    </button>`;
+  }).join('');
+}
+
+function renderTimeline(){
+  const el = document.getElementById('timeline');
+  if(group!=='vehicle'){ el.innerHTML=''; return; }
+  const vs = DATA.vehicles.filter(v=>(v.group||'vehicle')==='vehicle' && v.purchase?.date).sort((a,b)=>a.purchase.date.localeCompare(b.purchase.date));
+  if(!vs.length){ el.innerHTML=''; return; }
+  const today = new Date();
+  const t0 = new Date(vs[0].purchase.date); t0.setMonth(0,1);
+  const t1 = new Date(today.getFullYear()+1, 0, 1);
+  const span = t1 - t0;
+  const pct = d => ((new Date(d) - t0) / span * 100);
+  let years = '';
+  for(let y=t0.getFullYear(); y<=today.getFullYear(); y++) years += `<span style="left:${pct(y+'-01-01')}%">${y}</span>`;
+  el.innerHTML = `<h2>愛車ヒストリー</h2><p>購入から手放すまでの所有期間。濃い青は現在も所有中。</p>
+  <div class="tl"><div class="tl-inner"><div class="tl-years">${years}</div>
+  ${vs.map(v=>{
+    const s = pct(v.purchase.date), e = isSold(v) && v.sold?.date ? pct(v.sold.date) : pct(today);
+    return `<div class="tl-row"><div class="lbl">${esc(v.name)}<small>${CATS[v.category]?.label||''} / ${fmtDate(v.purchase.date)} →${isSold(v)&&v.sold?.date?' '+fmtDate(v.sold.date):' 現在'}</small></div>
+    <div class="track"><div class="bar ${isSold(v)?'sold':'open'}" style="left:${s}%;width:${Math.max(e-s,0.6)}%"></div></div></div>`;
+  }).join('')}</div></div>`;
+}
+
+function openDetail(id){
+  const v = DATA.vehicles.find(x=>x.id===id); if(!v) return;
+  const c = CATS[v.category]||{};
+  const isHorse = v.category==='horse';
+  const cust = sum(v.customs), eq = sum(v.equipment), buy = Number(v.purchase?.price)||0;
+  const own = isHorse
+    ? `${fmtDate(v.purchase?.date)||''} 中古（セリで購入）` + (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す` : ' → 現役')
+    : v.group==='hobby'
+    ? (v.purchase?.date ? `${fmtDate(v.purchase.date)} 購入` : '所有中')
+    : `${fmtDate(v.purchase?.date)} ${v.purchase?.type==='new'?'新車':v.purchase?.type==='used'?'中古':''}で購入` +
+      (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す${v.sold?.price!=null?`（${yen(v.sold.price)}）`:''}` : ' → 現在も所有');
+  const specRows = Object.entries(v.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
+  const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div>
+    <div class="y">${yen(x.price)}</div>
+    <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
+  const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
+  const gal = (v.photos?.gallery||[]).map(p=>{
+    if(/\.(mp4|mov|webm)$/i.test(p)){
+      return `<video src="${esc(p)}" controls playsinline preload="metadata" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:#000"></video>`;
+    }
+    return `<img src="${esc(p)}" alt="">`;
+  }).join('');
+
+  // horse-specific: race log + stats
+  let raceSection='', statsBlock='';
+  if(isHorse && Array.isArray(v.race_log) && v.race_log.length){
+    const rl=[...v.race_log].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    const n=rl.length;
+    const win=rl.filter(r=>r.place_finish==='1').length;
+    const p2=rl.filter(r=>r.place_finish==='2').length;
+    const p3=rl.filter(r=>r.place_finish==='3').length;
+    const prize=rl.reduce((a,r)=>a+(Number(r.prize)||0),0);
+    statsBlock=`<div class="stat-grid">
+      <div class="box"><span>出走</span><b>${n}戦</b></div>
+      <div class="box"><span>1着</span><b>${win}</b></div>
+      <div class="box"><span>2着</span><b>${p2}</b></div>
+      <div class="box"><span>3着</span><b>${p3}</b></div>
+      <div class="box"><span>獲得賞金</span><b>${prize.toFixed(1)}万</b></div>
+    </div>`;
+    const rows=rl.map(r=>{
+      const cls=r.place_finish==='1'?'win':r.place_finish==='2'?'p2':r.place_finish==='3'?'p3':'';
+      return `<tr>
+        <td>${fmtDate(r.date)}</td>
+        <td>${esc(r.place)}${r.race_no?` ${esc(r.race_no)}R`:''}</td>
+        <td class="rn">${esc(r.race_name||'')}</td>
+        <td class="num">${esc(r.field||'')}${r.num?`頭 / ${esc(r.num)}番`:''}</td>
+        <td class="num">${esc(r.popularity||'-')}人</td>
+        <td class="rc ${cls}">${esc(r.place_finish||'-')}</td>
+        <td>${esc(r.jockey||'')}</td>
+        <td>${esc(r.distance||'')}/${esc(r.track||'')}</td>
+        <td class="num">${esc(r.time||'')}</td>
+        <td class="num">${esc(r.body_weight||'')}</td>
+        <td>${esc(r.other||'')}</td>
+        <td class="num">${r.prize?esc(r.prize)+'万':''}</td>
+      </tr>`;
+    }).join('');
+    raceSection=`<section class="sec"><h3>戦績 <small>直近から</small></h3>
+      <div class="racelog"><table>
+        <thead><tr><th>日付</th><th>開催</th><th>レース</th><th>頭数/馬番</th><th>人気</th><th>着</th><th>騎手</th><th>距離/馬場</th><th>タイム</th><th>馬体重</th><th>勝ち馬(2着馬)</th><th>賞金</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div></section>`;
+  }
+
+  const moneyBlock = isHorse
+    ? `<div class="money">
+        <div><span>取得価格</span><b>${yen(buy)}</b></div>
+        <div><span>獲得賞金</span><b>${v.specs?.['獲得賞金']||'—'}</b></div>
+       </div>`
+    : (v.group==='hobby'
+    ? (v.category==='plant'
+      ? `<div class="money">
+          <div><span>購入価格</span><b>${yen(v.purchase?.price)}</b></div>
+          <div><span>状態</span><b style="font-size:15px">${esc(v.specs?.['状態']||'育成中')}</b></div>
+         </div>`
+      : v.category==='golf'
+      ? `<div class="money">
+          <div><span>購入価格</span><b>${yen(buy)}</b></div>
+          <div><span>役割</span><b style="font-size:15px">${v.role==='sub'?'2軍':'メイン装備'}</b></div>
+         </div>`
+      : (v.category==='airsoft' || v.category==='rc')
+      ? `<div class="money">
+          <div><span>${esc(v.purchase?.price_note||'購入価格')}</span><b>${yen(v.purchase?.price)}</b></div>
+          <div><span>装備品</span><b>${yen(sum(v.equipment))}</b></div>
+          <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
+         </div>`
+      : `<div class="money">
+          <div><span>${v.category==='fishing'?'ロッド一式':'点数'}</span><b>${v.category==='fishing'?yen(buy):(v.equipment||[]).length+'点'}</b></div>
+          <div><span>${v.category==='fishing'?'ルアー・小物':'合計金額'}</span><b>${v.category==='fishing'?yen(sum(v.equipment)):yen(sum(v.equipment))}</b></div>
+          <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
+         </div>`)
+    : `<div class="money">
+        <div><span>購入価格</span><b>${yen(buy)}</b></div>
+        <div><span>カスタム合計</span><b>${yen(cust)}</b></div>
+        <div><span>装備品合計</span><b>${yen(eq)}</b></div>
+        <div><span>1台あたりの内訳</span><b style="font-size:13px;font-weight:500;color:var(--ink-2)">${(v.customs||[]).length}件のカスタム / ${(v.equipment||[]).length}点の装備</b></div>
+        <div class="total"><span>総投入額</span><b>${yen(buy+cust+eq)}</b></div>
+      </div>`);
+
+  document.getElementById('drawer').innerHTML = `
+    ${photoBlock(v,'hero')}<button class="close" id="close" aria-label="閉じる">×</button>
+    <div class="d-body">
+      <div class="maker">${esc(v.maker)}${v.model?` ${esc(v.model)}`:''}</div>
+      <h2>${esc(v.name)}</h2>
+      <div class="grade">${[v.grade, v.year?v.year+(isHorse?'年生':'年式'):'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
+      <p class="own"><b>${isSold(v)?'過去':'現役'}</b> ・ ${own}</p>
+      ${moneyBlock}
+      ${statsBlock}
+      <section class="sec"><h3>${isHorse?'プロフィール':'スペック'}</h3>${specRows?`<table>${specRows}</table>`:'<div class="none">未登録</div>'}</section>
+      ${raceSection}
+      ${!isHorse && v.group!=='hobby'?`<section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
+      <section class="sec"><h3>装備品</h3>${eqRows?`<table>${eqRows}</table>`:'<div class="none">未登録</div>'}</section>`:''}
+      ${v.group==='hobby' && v.category!=='golf' && eqRows?`<section class="sec"><h3>${v.category==='fishing'?'ルアー・小物':(v.category==='airsoft'||v.category==='rc')?'装備品':'内訳'} <small>${(v.equipment||[]).length}点</small></h3><table>${eqRows}</table></section>`:''}
+      ${gal?`<section class="sec"><h3>ギャラリー</h3><div class="gallery">${gal}</div></section>`:''}
+      ${v.memo?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(v.memo)}</div></section>`:''}
+    </div>`;
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('drawer').scrollTop = 0;
+  history.replaceState(null,'','#'+id);
+  document.getElementById('close').focus();
+}
+function closeDetail(){
+  document.getElementById('drawer').classList.remove('on');
+  document.getElementById('overlay').classList.remove('on');
+  history.replaceState(null,'',location.pathname);
+}
+
+document.getElementById('groupseg').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  group = b.dataset.g; cat = 'all';
+  document.querySelectorAll('#groupseg button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+  document.getElementById('seg').style.display = group==='hobby' ? 'none' : '';
+  renderTabs(); renderSummary(); renderGrid(); renderTimeline();
+});
+document.getElementById('tabs').addEventListener('click', e=>{
+  const b = e.target.closest('.tab'); if(!b) return;
+  cat = b.dataset.c; renderTabs(); renderGrid();
+});
+document.getElementById('seg').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  stat = b.dataset.s;
+  document.querySelectorAll('#seg button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+  renderGrid();
+});
+document.getElementById('grid').addEventListener('click', e=>{
+  const j = e.target.closest('[data-jump]');
+  if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  const row = e.target.closest('tr[data-id]'); if(row){ openDetail(row.dataset.id); return; }
+  const c = e.target.closest('.card'); if(c && c.dataset.id) openDetail(c.dataset.id);
+});
+document.getElementById('drawer').addEventListener('click', e=>{ if(e.target.closest('#close')) closeDetail(); });
+document.getElementById('overlay').addEventListener('click', closeDetail);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDetail(); });
+
+load();
+</script>
+</body>
+</html>
