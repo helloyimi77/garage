@@ -678,11 +678,6 @@
           "price": null
         },
         {
-          "name": "テールライト",
-          "maker": "",
-          "price": null
-        },
-        {
           "name": "Moto マウント6 クランプショートタイプ R+Moto6BK",
           "maker": "レックマウントプラス",
           "price": 3392,
@@ -705,6 +700,36 @@
           "maker": "一澤信三郎帆布",
           "price": 19800,
           "note": "綿帆布"
+        },
+        {
+          "name": "SEEMEE30 テールライト",
+          "maker": "OLIGHT",
+          "price": 1895,
+          "note": "30lm・環境光センサー"
+        },
+        {
+          "name": "バイクライト XB-356B ブルーメタル",
+          "maker": "GENTOS",
+          "price": 3142,
+          "note": "フロント 200lm"
+        },
+        {
+          "name": "ミニロケット iグロウ PPM09200",
+          "maker": "TOPEAK",
+          "price": 3270,
+          "note": "テールライト一体型ミニポンプ"
+        },
+        {
+          "name": "バーエンドミラー BM-45",
+          "maker": "CAT EYE",
+          "price": 1154,
+          "note": ""
+        },
+        {
+          "name": "トップチューブバッグ（スマホ対応）",
+          "maker": "BestFire",
+          "price": 1790,
+          "note": ""
         }
       ],
       "photos": {
