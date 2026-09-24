@@ -44,6 +44,12 @@
           "name": "ルーフベース",
           "maker": "",
           "price": null
+        },
+        {
+          "name": "CarPlay AIボックス CB6（8GB+128GB）",
+          "maker": "ATOTOZONE",
+          "price": 26746,
+          "note": "2025-04-20購入。ワイヤレスCarPlay/Android Auto対応、GPSトラッキング、AIボイス"
         }
       ],
       "photos": {
@@ -274,8 +280,78 @@
         "車両重量": "189kg",
         "燃料タンク": "15L"
       },
-      "customs": [],
-      "equipment": [],
+      "customs": [
+        {
+          "part": "ローダウンリンクキット",
+          "maker": "TRICK STAR",
+          "type": "足回り",
+          "date": "",
+          "price": 20350,
+          "note": "プラザで取付"
+        },
+        {
+          "part": "ウィンドアーマー（グラファイトブラック 純正比20mmロング/70mmアップ）",
+          "maker": "ヨシムラ",
+          "type": "外装",
+          "date": "",
+          "price": 25300,
+          "note": "現在装着中"
+        },
+        {
+          "part": "スクリーン（スモーク）",
+          "maker": "TRICK STAR",
+          "type": "外装",
+          "date": "",
+          "price": 21450,
+          "note": "予備（未装着）。ヨシムラに換装済み"
+        },
+        {
+          "part": "ラジエターコアガード（ブラックメッキ）",
+          "maker": "TRICK STAR",
+          "type": "エンジン",
+          "date": "",
+          "price": 22550,
+          "note": ""
+        },
+        {
+          "part": "フレームスライダー TYPE-E",
+          "maker": "TRICK STAR",
+          "type": "プロテクション",
+          "date": "",
+          "price": 21340,
+          "note": ""
+        },
+        {
+          "part": "フロントアクスルスライダー",
+          "maker": "TRICK STAR",
+          "type": "プロテクション",
+          "date": "",
+          "price": 15180,
+          "note": ""
+        },
+        {
+          "part": "USB電源 タイプA/C 2ポート（PD30W/QC3.0 18W）",
+          "maker": "Kaedear",
+          "type": "電装",
+          "date": "",
+          "price": 2998,
+          "note": ""
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Moto マウント12 ステムホールマウント PRO",
+          "maker": "レックマウントプラス",
+          "price": 4807,
+          "note": "スマホ・GPS用"
+        },
+        {
+          "name": "シートバッグ PRO2 Lサイズ（42-56L）DH-759",
+          "maker": "Henly Begins",
+          "price": 18684,
+          "note": ""
+        }
+      ],
       "photos": {
         "main": "images/zx-4rr/zx4rr_01_main.jpg",
         "gallery": []
