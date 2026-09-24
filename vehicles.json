@@ -402,7 +402,7 @@
           "note": ""
         },
         {
-          "part": "USB電源 タイプA/C 2ポート（PD30W/QC3.0 18W）",
+          "part": "USB電源 タイプA/C 2ポート（PD30W/QC3.0 18W）KDR-M3D",
           "maker": "Kaedear",
           "type": "電装",
           "date": "",
@@ -456,6 +456,18 @@
           "maker": "Henly Begins",
           "price": 7521,
           "note": "普段使い（キャンプ時はPRO2 Lに交換）"
+        },
+        {
+          "name": "バイク用インカム H6（QIK-Mesh2.0）",
+          "maker": "JESIMAIK",
+          "price": 7791,
+          "note": "6人同時通話・IP67"
+        },
+        {
+          "name": "Z-8 CAPRICCIO",
+          "maker": "SHOEI",
+          "price": 74800,
+          "note": "ヘルメット"
         }
       ],
       "photos": {
