@@ -233,6 +233,7 @@ const HOBBY_COVERS = {
   fishing: 'images/hobby-covers/fishing.jpg',
   camping: 'images/hobby-covers/camping.jpg'
 };
+const coverOf = k => DATA.covers?.[k]?.photos?.main || HOBBY_COVERS[k] || '';
 const CATS = {
   all:      { label: 'すべて' },
   car:      { label: '車',              glyph: '車', tint: 'var(--car)' },
@@ -319,7 +320,7 @@ function renderGrid(){
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
       return `
         <button class="card summary-card" data-jump="${k}">
-          <div class="photo" style="--tint:${c.tint}">${HOBBY_COVERS[k]?`<img src="${HOBBY_COVERS[k]}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
+          <div class="photo" style="--tint:${c.tint}">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
           <div class="body">
             <div class="maker">趣味コレクション</div>
             <div class="name">${esc(c.label.replace(/^\S+\s+/,''))}</div>

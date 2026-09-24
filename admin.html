@@ -102,7 +102,10 @@ input[type=text],input[type=password],select{width:100%;padding:10px;border:1px 
 const $ = s => document.querySelector(s);
 const LS = 'garage-admin';
 const cfg = () => ({owner:$('#owner').value.trim(), repo:$('#repo').value.trim(), branch:$('#branch').value.trim(), token:$('#token').value.trim()});
-const CATS = {car:'車',bike:'バイク',escooter:'電動キックボード',roadbike:'ロードバイク',horse:'愛馬',golf:'ゴルフ',fishing:'釣り',camping:'キャンプ'};
+const CATS = {car:'車',bike:'バイク',escooter:'電動キックボード',roadbike:'ロードバイク',horse:'愛馬',golf:'ゴルフ',fishing:'釣り',camping:'キャンプ',airsoft:'サバゲー',rc:'ラジコン'};
+const COVER_CATS = ['golf','fishing','camping','airsoft','rc'];
+function coverItem(k){ data.covers ||= {}; const o = (data.covers[k] ||= {}); o.id = 'cover-'+k; o.name = (CATS[k]||k)+'の表紙'; o.photos ||= {main:null, gallery:[]}; o.photos.gallery ||= []; return o; }
+const findItem = id => id.startsWith('cover-') ? coverItem(id.slice(6)) : data.vehicles.find(v => v.id === id);
 
 let data = null, jsonSha = null, eol = '\n', queue = [], dirty = false;
 
@@ -156,7 +159,7 @@ function renderItems(){
   const sel = $('#item'), prev = sel.value;
   const groups = {};
   data.vehicles.forEach(v => (groups[v.category] ||= []).push(v));
-  sel.innerHTML = Object.keys(groups).map(c =>
+  sel.innerHTML = `<optgroup label="表紙（趣味カテゴリ）">` + COVER_CATS.map(k => { const o = coverItem(k); return `<option value="${o.id}">${esc(o.name)} — ${o.photos.main?'設定済':'未設定'}</option>`; }).join('') + '</optgroup>' + Object.keys(groups).map(c =>
     `<optgroup label="${CATS[c]||c}">` + groups[c].map(v =>
       `<option value="${esc(v.id)}">${esc(v.name)}${v.status==='sold'?'（売却済）':''} — ${(v.photos?.gallery?.length||0)+(v.photos?.main?1:0)}枚</option>`).join('') + '</optgroup>'
   ).join('');
@@ -166,7 +169,7 @@ function renderItems(){
 $('#item').onchange = () => { if(dirty && !confirm('未保存の変更を破棄しますか？')){ return; } dirty=false; reloadSoft(); };
 async function reloadSoft(){ await loadJson(); renderItems(); }
 
-const cur = () => data.vehicles.find(v => v.id === $('#item').value);
+const cur = () => findItem($('#item').value);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mediaTag = p => /\.(mp4|webm|mov)$/i.test(p) ? `<video src="${esc(p)}" muted playsinline></video>` : `<img src="${esc(p)}" loading="lazy" alt="">`;
 
@@ -243,6 +246,7 @@ function prefixOf(v){
   // 既存ファイル名から接頭辞（例 dc2_03_meter.jpg → dc2）と次の連番を推定
   const all = [v.photos?.main, ...(v.photos?.gallery||[])].filter(Boolean).map(p=>p.split('/').pop());
   const m = all.map(n=>n.match(/^([a-z0-9-]+)_(\d+)/i)).filter(Boolean);
+  if(v.id.startsWith('cover-')){ const k=v.id.slice(6); return {prefix:k, next:Math.max(0,...m.map(x=>+x[2]))+1, dir:'images/hobby-covers'}; }
   const prefix = m[0]?.[1] || v.id.split('-')[0];
   const next = Math.max(0, ...m.map(x=>+x[2])) + 1;
   const dir = (v.photos?.main||v.photos?.gallery?.[0]||'').split('/').slice(0,-1).join('/') || `images/${v.id}`;
@@ -253,7 +257,7 @@ $('#upload').onclick = async () => {
   const v = cur(); $('#upload').disabled = true;
   try{
     await loadJson();                 // 最新のshaとデータを取り直す
-    const fresh = data.vehicles.find(x=>x.id===v.id);
+    const fresh = findItem(v.id);
     fresh.photos ||= {main:null, gallery:[]}; fresh.photos.gallery ||= [];
     let {prefix, next, dir} = prefixOf(fresh);
     const stamp = new Date().toISOString().slice(0,10);
@@ -265,7 +269,7 @@ $('#upload').onclick = async () => {
       const ext = q.video ? (q.file.name.split('.').pop()||'mp4').toLowerCase() : 'jpg';
       const path = `${dir}/${prefix}_${String(next++).padStart(2,'0')}_${stamp}.${ext}`;
       await gh(path, {method:'PUT', body:{message:`photos: add ${path}`, content: await blobToB64(blob), branch:cfg().branch}});
-      if(q.asMain){ if(fresh.photos.main) fresh.photos.gallery.unshift(fresh.photos.main); fresh.photos.main = path; }
+      if(q.asMain || (fresh.id.startsWith('cover-') && !q.video && i===queue.length-1)){ if(fresh.photos.main) fresh.photos.gallery.unshift(fresh.photos.main); fresh.photos.main = path; }
       else if(!fresh.photos.main && !q.video) fresh.photos.main = path;
       else fresh.photos.gallery.push(path);
     }

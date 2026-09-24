@@ -4576,5 +4576,31 @@
       "equipment": [],
       "status": "active"
     }
-  ]
+  ],
+  "covers": {
+    "golf": {
+      "id": "cover-golf",
+      "name": "ゴルフの表紙",
+      "photos": {
+        "main": "images/hobby-covers/golf.jpg",
+        "gallery": []
+      }
+    },
+    "fishing": {
+      "id": "cover-fishing",
+      "name": "釣りの表紙",
+      "photos": {
+        "main": "images/hobby-covers/fishing.jpg",
+        "gallery": []
+      }
+    },
+    "camping": {
+      "id": "cover-camping",
+      "name": "キャンプの表紙",
+      "photos": {
+        "main": "images/hobby-covers/camping.jpg",
+        "gallery": []
+      }
+    }
+  }
 }
