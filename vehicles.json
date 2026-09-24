@@ -4420,10 +4420,8 @@
       "equipment": [],
       "status": "active",
       "photos": {
-        "main": "images/airsoft-p99/airsoft_01_2026-09-24.jpg",
-        "gallery": [
-          "images/airsoft-p99/airsoft_02_2026-09-24.jpg"
-        ]
+        "main": "images/airsoft-p99/airsoft_02_2026-09-24.jpg",
+        "gallery": []
       }
     },
     {
