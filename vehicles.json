@@ -442,7 +442,7 @@
         {
           "name": "Moto マウント12 ステムホールマウント PRO",
           "maker": "レックマウントプラス",
-          "price": 4807,
+          "price": 4747,
           "note": "スマホ・GPS用"
         },
         {
@@ -468,6 +468,12 @@
           "maker": "SHOEI",
           "price": 74800,
           "note": "ヘルメット"
+        },
+        {
+          "name": "Moto マウント 専用ダンパー R+Damper",
+          "maker": "レックマウントプラス",
+          "price": 1996,
+          "note": "衝撃振動吸収（Moto12用）"
         }
       ],
       "photos": {
@@ -677,9 +683,28 @@
           "price": null
         },
         {
-          "name": "スマホホルダー",
-          "maker": "",
-          "price": null
+          "name": "Moto マウント6 クランプショートタイプ R+Moto6BK",
+          "maker": "レックマウントプラス",
+          "price": 3392,
+          "note": "スマホ用"
+        },
+        {
+          "name": "スマートタグ（Apple「探す」対応）",
+          "maker": "MiLi",
+          "price": 1599,
+          "note": "盗難・紛失対策"
+        },
+        {
+          "name": "Q2 AirTag用サイクルベル",
+          "maker": "RAVEMEN",
+          "price": 1699,
+          "note": "スマートタグ収納"
+        },
+        {
+          "name": "ショルダーバッグ S-24（黒×オリーブ）",
+          "maker": "一澤信三郎帆布",
+          "price": 19800,
+          "note": "綿帆布"
         }
       ],
       "photos": {
