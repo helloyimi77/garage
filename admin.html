@@ -267,7 +267,10 @@ $('#upload').onclick = async () => {
       const blob = q.video ? q.file : await resize(q.file);
       if(blob.size > 45*1024*1024) throw new Error(`${q.file.name} が大きすぎます（GitHub API上限）`);
       const ext = q.video ? (q.file.name.split('.').pop()||'mp4').toLowerCase() : 'jpg';
-      const path = `${dir}/${prefix}_${String(next++).padStart(2,'0')}_${stamp}.${ext}`;
+      let path;
+      do {
+        path = `${dir}/${prefix}_${String(next++).padStart(2,'0')}_${stamp}.${ext}`;
+      } while (await gh(path, {allow404: true}));   // 既存ファイルと衝突したら次の番号へ
       await gh(path, {method:'PUT', body:{message:`photos: add ${path}`, content: await blobToB64(blob), branch:cfg().branch}});
       if(q.asMain || (fresh.id.startsWith('cover-') && !q.video && i===queue.length-1)){ if(fresh.photos.main) fresh.photos.gallery.unshift(fresh.photos.main); fresh.photos.main = path; }
       else if(!fresh.photos.main && !q.video) fresh.photos.main = path;
