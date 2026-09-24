@@ -387,6 +387,18 @@ function renderGrid(){
       return {name:parts[0].trim(), detail:parts.slice(1).join(' / ').trim(), price:m[2]?`¥${m[2]}`:''};
     };
     const useLabel = v => (v.name||'').replace(/釣り$/,'');
+    // 釣る魚（specs.ターゲット）ごとの色
+    const FISH_COLORS = {
+      'シーバス':    ['#D6E4F0','#1F4E79'],
+      '真鯛':        ['#F6D9DC','#8E2A36'],
+      'アジ':        ['#DCEFE3','#1E6B45'],
+      '五目':        ['#F3E7C9','#7A5A12'],
+      'エリアトラウト':['#E6DDF2','#553C8B'],
+    };
+    const chipStyle = v => {
+      const c = FISH_COLORS[v.specs?.['ターゲット']] || ['var(--fishing)','var(--ink)'];
+      return `background:${c[0]};color:${c[1]}`;
+    };
     const SECTIONS = [
       {key:'ロッド',  label:'竿'},
       {key:'リール',  label:'リール'},
@@ -394,7 +406,7 @@ function renderGrid(){
       {key:'リーダー',label:'リーダー'},
     ];
     const row = (v, main, sub, price) => `<tr data-id="${esc(v.id)}">
-        <td class="use"><span class="use-chip">${esc(useLabel(v))}</span></td>
+        <td class="use"><span class="use-chip" style="${chipStyle(v)}" title="${esc(v.specs?.['ターゲット']||'')}">${esc(useLabel(v))}</span></td>
         <td class="tackle">${esc(main)}${sub?`<small>${esc(sub)}</small>`:''}</td>
         <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
