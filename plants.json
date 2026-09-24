@@ -209,7 +209,7 @@
         "family": "ラン科",
         "genus": "アネクトキルス属（Anoectochilus）",
         "species": "roxburghii",
-        "scientific_name": "Anoectochilus lobbianus"
+        "scientific_name": "Anoectochilus roxburghii"
       },
       "purchase": {
         "date": "2026-07-12",
@@ -219,7 +219,7 @@
       "case_ids": [
         "007"
       ],
-      "note": "Notion元データでは種=roxburghii、学名=Anoectochilus lobbianus。要確認。"
+      "note": "流通名「アネクトキルス・ロビアヌス」。Kew POWOでは Anoectochilus lobbianus は Anoectochilus roxburghii のシノニム扱い。"
     },
     {
       "id": "JO-005",
