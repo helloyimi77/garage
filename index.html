@@ -244,6 +244,7 @@ const CATS = {
   fishing:  { label: '🎣 釣り',         glyph: '🎣', tint: 'var(--fishing)' },
   camping:  { label: '⛺ キャンプ',      glyph: '⛺', tint: 'var(--camping)' },
 };
+const VEHICLE_CATEGORY_ORDER = { car:0, bike:1, escooter:2, roadbike:3, horse:4 };
 const yen = n => (n == null || n === '' ? '—' : '¥' + Number(n).toLocaleString('ja-JP'));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sum = (arr, k='price') => (arr||[]).reduce((a,x)=>a+(Number(x[k])||0),0);
@@ -330,7 +331,12 @@ function renderGrid(){
     g.innerHTML = cards || `<div class="empty">趣味アイテムがまだ登録されていません。</div>`;
     return;
   }
-  const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
+  const list = filtered().sort((a,b)=>{
+    const aRank = VEHICLE_CATEGORY_ORDER[a.category] ?? 99;
+    const bRank = VEHICLE_CATEGORY_ORDER[b.category] ?? 99;
+    if(group === 'vehicle' && aRank !== bRank) return aRank - bRank;
+    return (b.purchase?.date || '').localeCompare(a.purchase?.date || '');
+  });
   if(!list.length){ g.innerHTML = `<div class="empty">この条件のアイテムはありません。vehicles.json に追加すると表示されます。</div>`; return; }
 
   // Golf: リスト表示（表形式）
