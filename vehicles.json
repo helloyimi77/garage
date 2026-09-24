@@ -1902,7 +1902,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 95700
+        "price": 80000
       },
       "sold": {
         "date": null,
@@ -1929,7 +1929,7 @@
           "images/golf-driver-prgr-rsx-f/driver_swing_bestshot.mp4"
         ]
       },
-      "memo": "ベストショット動画付き。 定価目安"
+      "memo": "実額 ¥80,000 で購入。"
     },
     {
       "id": "golf-3w-stealth2-hd",
@@ -1946,7 +1946,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 66000
+        "price": 20000
       },
       "sold": {
         "date": null,
@@ -1970,7 +1970,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "1本 ¥20,000 で購入（Stealth 2 HD ウッド・UT 4本セット）"
     },
     {
       "id": "golf-5w-stealth2-hd",
@@ -1987,7 +1987,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 66000
+        "price": 20000
       },
       "sold": {
         "date": null,
@@ -2011,7 +2011,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "1本 ¥20,000 で購入（Stealth 2 HD ウッド・UT 4本セット）"
     },
     {
       "id": "golf-4u-stealth2-hd",
@@ -2028,7 +2028,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 44000
+        "price": 20000
       },
       "sold": {
         "date": null,
@@ -2052,7 +2052,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "1本 ¥20,000 で購入（Stealth 2 HD ウッド・UT 4本セット）"
     },
     {
       "id": "golf-5u-stealth2-hd",
@@ -2069,7 +2069,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 44000
+        "price": 20000
       },
       "sold": {
         "date": null,
@@ -2093,7 +2093,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "1本 ¥20,000 で購入（Stealth 2 HD ウッド・UT 4本セット）"
     },
     {
       "id": "golf-6i-p790",
@@ -2110,7 +2110,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 33000
+        "price": 15840
       },
       "sold": {
         "date": null,
@@ -2134,7 +2134,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "P790 アイアン 5本セット（6-PW）を ¥79,200 で購入。1本あたり ¥15,840。"
     },
     {
       "id": "golf-7i-p790",
@@ -2151,7 +2151,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 33000
+        "price": 15840
       },
       "sold": {
         "date": null,
@@ -2175,7 +2175,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "P790 アイアン 5本セット（6-PW）を ¥79,200 で購入。1本あたり ¥15,840。"
     },
     {
       "id": "golf-8i-p790",
@@ -2192,7 +2192,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 33000
+        "price": 15840
       },
       "sold": {
         "date": null,
@@ -2215,7 +2215,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "P790 アイアン 5本セット（6-PW）を ¥79,200 で購入。1本あたり ¥15,840。"
     },
     {
       "id": "golf-9i-p790",
@@ -2232,7 +2232,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 33000
+        "price": 15840
       },
       "sold": {
         "date": null,
@@ -2256,7 +2256,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "P790 アイアン 5本セット（6-PW）を ¥79,200 で購入。1本あたり ¥15,840。"
     },
     {
       "id": "golf-pw-p790",
@@ -2273,7 +2273,7 @@
       "purchase": {
         "date": "",
         "type": "new",
-        "price": 33000
+        "price": 15840
       },
       "sold": {
         "date": null,
@@ -2297,7 +2297,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "P790 アイアン 5本セット（6-PW）を ¥79,200 で購入。1本あたり ¥15,840。"
     },
     {
       "id": "golf-52-dolphin-dw123",
@@ -2337,7 +2337,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "実額 ¥16,500 で購入。"
     },
     {
       "id": "golf-58-rtx3",
@@ -2353,8 +2353,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "new",
-        "price": 22000
+        "type": "used",
+        "price": 8000
       },
       "sold": {
         "date": null,
@@ -2376,7 +2376,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "実額 ¥8,000 で購入。"
     },
     {
       "id": "golf-chipper-dpw119",
@@ -2414,7 +2414,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "実額 ¥13,200 で購入。"
     },
     {
       "id": "golf-putter-monza-spider",
@@ -2430,8 +2430,8 @@
       "role": "main",
       "purchase": {
         "date": "",
-        "type": "new",
-        "price": 42000
+        "type": "gift",
+        "price": 0
       },
       "sold": {
         "date": null,
@@ -2444,7 +2444,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "商品（景品）としてもらった。"
     },
     {
       "id": "golf-lw-tom-watson",
@@ -2460,8 +2460,8 @@
       "role": "sub",
       "purchase": {
         "date": "",
-        "type": "new",
-        "price": 15000
+        "type": "used",
+        "price": 5000
       },
       "sold": {
         "date": null,
@@ -2476,7 +2476,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "中古で ¥5,000 購入。2軍。"
     },
     {
       "id": "golf-driver-id-nabla-rs01",
@@ -2516,7 +2516,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "定価目安"
+      "memo": "実額 ¥50,000 で購入。2軍。"
     },
     {
       "id": "fishing-seabass",
@@ -2533,7 +2533,7 @@
       "purchase": {
         "date": "",
         "type": "",
-        "price": null
+        "price": 44200
       },
       "sold": {
         "date": null,
@@ -2694,7 +2694,7 @@
           "images/fishing-seabass/seabass_02_gallery.jpg"
         ]
       },
-      "memo": ""
+      "memo": "ロッド・リール・ライン等の定価目安"
     },
     {
       "id": "fishing-gomoku",
@@ -2711,7 +2711,7 @@
       "purchase": {
         "date": "",
         "type": "",
-        "price": null
+        "price": 26600
       },
       "sold": {
         "date": null,
@@ -2750,7 +2750,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "ロッド・リール・ライン等の定価目安"
     },
     {
       "id": "fishing-tairaba",
@@ -2767,7 +2767,7 @@
       "purchase": {
         "date": "",
         "type": "",
-        "price": null
+        "price": 33000
       },
       "sold": {
         "date": null,
@@ -2777,7 +2777,7 @@
         "ターゲット": "真鯛",
         "エリア": "海用",
         "ロッド": "Daiwa 紅牙 x 69HB / 2.06m/2ピース/40-100g (¥15,000)",
-        "リール": "Daiwa ライトゲーム ICV 150H",
+        "リール": "Daiwa ライトゲーム ICV 150H (¥18,000)",
         "ライン": "PE 0.8（推定）",
         "リーダー": "16lbくらい"
       },
@@ -2787,7 +2787,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "ロッド・リール・ライン等の定価目安"
     },
     {
       "id": "fishing-ajing",
@@ -2804,7 +2804,7 @@
       "purchase": {
         "date": "",
         "type": "",
-        "price": null
+        "price": 35100
       },
       "sold": {
         "date": null,
@@ -2903,7 +2903,7 @@
         "main": "images/fishing-ajing/ajing_01_main.jpg",
         "gallery": []
       },
-      "memo": ""
+      "memo": "ロッド・リール・ライン等の定価目安"
     },
     {
       "id": "fishing-area",
@@ -2920,7 +2920,7 @@
       "purchase": {
         "date": "",
         "type": "",
-        "price": null
+        "price": 7500
       },
       "sold": {
         "date": null,
@@ -2940,7 +2940,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "ロッド・リール・ライン等の定価目安"
     },
     {
       "id": "fishing-choinage",
@@ -2957,7 +2957,7 @@
       "purchase": {
         "date": "",
         "type": "",
-        "price": null
+        "price": 2500
       },
       "sold": {
         "date": null,
@@ -2996,7 +2996,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "ロッド・リール・ライン等の定価目安"
     },
     {
       "id": "camp-tent",
