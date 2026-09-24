@@ -4548,7 +4548,11 @@
         "デザイン": "pdc_designworks"
       },
       "equipment": [],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/rc-dualridge-bk/rc_02_2026-09-24.jpg",
+        "gallery": []
+      }
     },
     {
       "id": "rc-miniz-86",
