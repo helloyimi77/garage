@@ -79,7 +79,10 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .golf-list td.club{font-weight:700;font-size:15px;color:var(--ink)}
 /* fishing table specific */
 .fishing-list table{table-layout:fixed}
-.fishing-list td.tackle{font-size:13px;color:var(--ink);word-break:keep-all;overflow-wrap:break-word;line-height:1.4}
+.fishing-list td,.fishing-list th{word-break:keep-all;overflow-wrap:break-word}
+.fishing-list td.tackle{font-size:13px;color:var(--ink);line-height:1.4}
+.fishing-list td.tackle small,.fishing-list td.num small{display:block;color:var(--ink-2);font-size:11px;font-weight:400;margin-top:2px;font-variant-numeric:tabular-nums}
+.fishing-list td.total{font-weight:700}
 /* wide (golf only) — compact typography, no wrap, min-width */
 .golf-list.wide table{min-width:1100px;font-size:13px}
 .golf-list.wide th,.golf-list.wide td{padding:9px 10px;white-space:nowrap}
@@ -375,26 +378,32 @@ function renderGrid(){
 
   // Fishing: リスト表示
   if(group==='hobby' && cat==='fishing'){
-    // ロッド/リール文字列から余計な詳細を落として表示用テキストにする
-    const shortRod = s => (s||'').replace(/\s*\(¥[\d,]+\)\s*$/,'').split(' / ')[0].trim();
-    const shortReel = s => (s||'').replace(/\s*\(¥[\d,]+\)\s*$/,'').trim();
+    // ロッド/リール文字列から名前と価格を分離
+    const parseTackle = s => {
+      if(!s) return {name:'',price:''};
+      const m=s.match(/^(.*?)\s*(?:\(¥([\d,]+)\))?\s*$/);
+      const name=(m[1]||'').split(' / ')[0].trim();
+      const price=m[2]?`¥${m[2]}`:'';
+      return {name, price};
+    };
     const rows=list.map(v=>{
       const target=v.specs?.['ターゲット']||'';
-      const rod=shortRod(v.specs?.['ロッド']);
-      const reel=shortReel(v.specs?.['リール']);
+      const rod=parseTackle(v.specs?.['ロッド']);
+      const reel=parseTackle(v.specs?.['リール']);
       const lureCount=(v.equipment||[]).length;
+      const lureTotal=sum(v.equipment);
       const total=total_hobby(v);
       return `<tr data-id="${esc(v.id)}">
         <td class="club">${esc(v.name)}</td>
         <td>${esc(target)}</td>
-        <td class="tackle">${esc(rod)||'—'}</td>
-        <td class="tackle">${esc(reel)||'—'}</td>
-        <td class="num">${lureCount?lureCount+'点':'—'}</td>
-        <td class="num">${yen(total)}</td>
+        <td class="tackle">${esc(rod.name)||'—'}${rod.price?`<small>${esc(rod.price)}</small>`:''}</td>
+        <td class="tackle">${esc(reel.name)||'—'}${reel.price?`<small>${esc(reel.price)}</small>`:''}</td>
+        <td class="num">${lureCount?lureCount+'点':'—'}${lureTotal?`<small>${yen(lureTotal)}</small>`:''}</td>
+        <td class="num total">${yen(total)}</td>
       </tr>`;
     }).join('');
     g.innerHTML=`<div class="golf-list fishing-list" data-cat="fishing"><table>
-      <thead><tr><th style="width:14%">セット</th><th style="width:10%">ターゲット</th><th style="width:30%">ロッド</th><th style="width:22%">リール</th><th class="num" style="width:8%">ルアー</th><th class="num" style="width:16%">合計</th></tr></thead>
+      <thead><tr><th style="width:14%">セット</th><th style="width:10%">ターゲット</th><th style="width:28%">ロッド</th><th style="width:22%">リール</th><th class="num" style="width:10%">ルアー</th><th class="num" style="width:16%">合計</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>`;
     return;
@@ -486,6 +495,8 @@ function openDetail(id){
   const cust = sum(v.customs), eq = sum(v.equipment), buy = Number(v.purchase?.price)||0;
   const own = isHorse
     ? `${fmtDate(v.purchase?.date)||''} 中古（セリで購入）` + (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す` : ' → 現役')
+    : v.group==='hobby'
+    ? (v.purchase?.date ? `${fmtDate(v.purchase.date)} 購入` : '所有中')
     : `${fmtDate(v.purchase?.date)} ${v.purchase?.type==='new'?'新車':v.purchase?.type==='used'?'中古':''}で購入` +
       (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す${v.sold?.price!=null?`（${yen(v.sold.price)}）`:''}` : ' → 現在も所有');
   const specRows = Object.entries(v.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
@@ -552,8 +563,9 @@ function openDetail(id){
           <div><span>役割</span><b style="font-size:15px">${v.role==='sub'?'2軍':'メイン装備'}</b></div>
          </div>`
       : `<div class="money">
-          <div><span>点数</span><b>${(v.equipment||[]).length}点</b></div>
-          <div><span>合計金額</span><b>${yen(sum(v.equipment))}</b></div>
+          <div><span>${v.category==='fishing'?'ロッド一式':'点数'}</span><b>${v.category==='fishing'?yen(buy):(v.equipment||[]).length+'点'}</b></div>
+          <div><span>${v.category==='fishing'?'ルアー・小物':'合計金額'}</span><b>${v.category==='fishing'?yen(sum(v.equipment)):yen(sum(v.equipment))}</b></div>
+          <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
          </div>`)
     : `<div class="money">
         <div><span>購入価格</span><b>${yen(buy)}</b></div>
