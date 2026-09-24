@@ -85,7 +85,7 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .fishing-list td.total{font-weight:700}
 .fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
 .fish-sec h3{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--ink)}
-.fishing-list td.use{white-space:nowrap}
+.fishing-list td.use{white-space:normal;line-height:2}
 .use-chip{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--fishing);color:var(--ink);font-size:12px;font-weight:700;line-height:1.4}
 .fish-total{display:flex;justify-content:flex-end;gap:14px;align-items:baseline;color:var(--ink-2);font-size:13px}
 .fish-total b{color:var(--ink);font-size:20px}
@@ -435,23 +435,52 @@ function renderGrid(){
     return;
   }
 
-  // Camping: リスト表示
+  // Camping: 道具カテゴリごとのリスト表示（用途・燃料をラベル化）
   if(group==='hobby' && cat==='camping'){
-    const rows=list.map(v=>{
-      const count=v.specs?.['点数']||`${(v.equipment||[]).length}点`;
-      const weight=v.specs?.['総重量目安']||'';
-      const total=sum(v.equipment);
-      return `<tr data-id="${esc(v.id)}">
-        <td class="club">${esc(v.name)}</td>
-        <td class="num">${esc(count)}</td>
-        <td class="num" style="color:var(--ink-2);font-size:12px">${esc(weight)}</td>
-        <td class="num">${yen(total)}</td>
-      </tr>`;
+    const CAMP_TAGS = [
+      ['カーキャリア常備',['#D6E4F0','#1F4E79']],
+      ['家用',   ['#F3E7C9','#7A5A12']],
+      ['会社用', ['#E6E6E6','#444']],
+      ['UL',     ['#DCEFE3','#1E6B45']],
+      ['OD缶',   ['#F6D9DC','#8E2A36']],
+      ['CB缶',   ['#F9E0CF','#8A4A1C']],
+      ['オイル', ['#EFE2D0','#6B4A22']],
+      ['灯油',   ['#FBE9C4','#7A5200']],
+      ['アルコール',['#E6DDF2','#553C8B']],
+      ['USB',    ['#D9EEF0','#1D5F66']],
+      ['薪',     ['#EAD9CB','#6E3B1E']],
+      ['炭',     ['#DDDDDD','#333']],
+    ];
+    const parseNote = note => {
+      let rest = note||'';
+      const tags = CAMP_TAGS.filter(([t])=>rest.includes(t));
+      tags.forEach(([t])=>{ rest = rest.split(t).join(''); });
+      const parts = rest.split(/\s*\/\s*/).map(x=>x.replace(/^[、,\s]+|[、,\s]+$/g,'')).filter(Boolean);
+      const wIdx = parts.findIndex(x=>/\d\s*(kg|g)\b|\d(kg|g)/.test(x));
+      const weight = wIdx>=0 ? parts.splice(wIdx,1)[0] : '';
+      return {tags, weight, memo: parts.join(' / ')};
+    };
+    const chip = ([t,c]) => `<span class="use-chip" style="background:${c[0]};color:${c[1]}">${esc(t)}</span>`;
+    const html = list.map(v => {
+      const eq = v.equipment||[];
+      if(!eq.length) return '';
+      const rows = eq.map(e => {
+        const n = parseNote(e.note);
+        return `<tr data-id="${esc(v.id)}">
+          <td class="use">${n.tags.map(chip).join(' ')}</td>
+          <td class="tackle">${esc(e.name)}<small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></td>
+          <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
+          <td class="num">${e.price!=null?yen(e.price):'—'}</td>
+        </tr>`;
+      }).join('');
+      return `<section class="fish-sec">
+        <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
+        <div class="golf-list fishing-list" data-cat="camping"><table>
+          <colgroup><col style="width:20%"><col><col style="width:14%"><col style="width:13%"></colgroup>
+          <tbody>${rows}</tbody>
+        </table></div></section>`;
     }).join('');
-    g.innerHTML=`<div class="golf-list" data-cat="camping"><table>
-      <thead><tr><th>カテゴリ</th><th>点数</th><th>総重量目安</th><th>合計金額</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
+    g.innerHTML = `<div class="fish-wrap">${html}</div>`;
     return;
   }
 
