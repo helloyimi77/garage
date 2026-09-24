@@ -108,11 +108,11 @@ tr:first-child th,tr:first-child td{border-top:0}
 th{width:38%;font-weight:500;color:var(--ink-2)}
 td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .cust{display:flex;flex-direction:column;gap:8px}
-.cust .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 12px}
-.cust .item .p{font-weight:700}
-.cust .item .m{font-size:12px;color:var(--ink-2);grid-column:1}
-.cust .item .y{text-align:right;font-variant-numeric:tabular-nums;grid-row:1/span 2;align-self:center;font-weight:700}
-.cust .item .n{grid-column:1/-1;font-size:13px;color:var(--ink-2);margin-top:4px}
+.cust .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.cust .item .p{font-weight:700;font-size:15px;line-height:1.35}
+.cust .item .y{font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.cust .item .m{font-size:12px;color:var(--ink-2)}
+.cust .item .n{font-size:13px;color:var(--ink-2);margin-top:2px}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:3px;background:var(--bg);border:1px solid var(--line);margin-right:6px;vertical-align:middle}
 .memo{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;font-size:14px;white-space:pre-wrap}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
@@ -275,7 +275,8 @@ function openDetail(id){
     : `${fmtDate(v.purchase?.date)} ${v.purchase?.type==='new'?'新車':v.purchase?.type==='used'?'中古':''}で購入` +
       (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す${v.sold?.price!=null?`（${yen(v.sold.price)}）`:''}` : ' → 現在も所有');
   const specRows = Object.entries(v.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
-  const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div><div class="y">${yen(x.price)}</div>
+  const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div>
+    <div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
   const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
   const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="">`).join('');
