@@ -1,0 +1,328 @@
+{
+  "owner": "とんこつしょうゆ",
+  "title": "GARAGE",
+  "plant_cases": [
+    {
+      "id": "001",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "グラスアクア シリンダー",
+      "maker": "GEX",
+      "size": null,
+      "purpose": "パルダリウム",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "なし（ADA DOOA テラベース）",
+      "fertilizer": "テトラ イニシャルスティック",
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "JO-001",
+        "BU-001",
+        "MO-001"
+      ],
+      "note": "2026年7月28日ポンプミニ導入"
+    },
+    {
+      "id": "002",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "フィット200×100 Low",
+      "maker": "道草",
+      "size": "200×100×100mm",
+      "purpose": "ブセファランドラ育成",
+      "lighting": {
+        "name": "GEX LED リーフグロー",
+        "hours_per_day": 12
+      },
+      "medium": "JUN プラチナソイル",
+      "fertilizer": "テトラ イニシャルスティック",
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "BU-001"
+      ],
+      "note": "ブセファランドラ sp. クダガン（9株）"
+    },
+    {
+      "id": "003",
+      "category": "plant_case",
+      "status": "standby",
+      "status_label": "待機中",
+      "name": "KINTO SCHALE",
+      "maker": "KINTO",
+      "size": "100×130mm",
+      "purpose": null,
+      "lighting": {
+        "name": null,
+        "hours_per_day": null
+      },
+      "medium": null,
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [],
+      "note": ""
+    },
+    {
+      "id": "004",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "KINTO SCHALE",
+      "maker": "KINTO",
+      "size": "100×130mm",
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": "GFベンレート水和剤",
+      "purchase": {
+        "price": 2700
+      },
+      "plant_ids": [
+        "JO-002"
+      ],
+      "note": "2026年7月12日購入、15日植え替え"
+    },
+    {
+      "id": "005",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "KINTO SCHALE",
+      "maker": "KINTO",
+      "size": "100×130mm",
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": null,
+      "purchase": {
+        "price": 2000
+      },
+      "plant_ids": [
+        "JO-005"
+      ],
+      "note": "2026年7月30日購入"
+    },
+    {
+      "id": "006",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "KINTO SCHALE",
+      "maker": "KINTO",
+      "size": "100×130mm",
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": "GFベンレート水和剤",
+      "purchase": {
+        "price": 2400
+      },
+      "plant_ids": [
+        "JO-003"
+      ],
+      "note": "2026年7月12日購入、15日植え替え"
+    },
+    {
+      "id": "007",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "KINTO SCHALE",
+      "maker": "KINTO",
+      "size": "100×130mm",
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": "GFベンレート水和剤",
+      "purchase": {
+        "price": 3000
+      },
+      "plant_ids": [
+        "JO-004"
+      ],
+      "note": "2026年7月12日購入、15日植え替え"
+    },
+    {
+      "id": "008",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "庭のビオトープ",
+      "maker": "植木鉢",
+      "size": "深型",
+      "purpose": "アクアリウム",
+      "lighting": {
+        "name": "太陽",
+        "hours_per_day": 12
+      },
+      "medium": "JUN プラチナソイル",
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "AN-001"
+      ],
+      "note": ""
+    },
+    {
+      "id": "009",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "Duo Covered Glass Jar",
+      "maker": "Standard Products",
+      "size": null,
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "JO-001"
+      ],
+      "note": "ルディシア・ディスカラー2株"
+    },
+    {
+      "id": "010",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "Duo Covered Glass Jar",
+      "maker": "Standard Products",
+      "size": null,
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "JO-001"
+      ],
+      "note": "ルディシア・ディスカラー2株"
+    },
+    {
+      "id": "011",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": "Duo Covered Glass Jar",
+      "maker": "Standard Products",
+      "size": null,
+      "purpose": "ジュエルオーキッド",
+      "lighting": {
+        "name": "HaruDesign GL-BOARD1500 PRO",
+        "hours_per_day": 12
+      },
+      "medium": "水苔",
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "JO-001"
+      ],
+      "note": "ルディシア・ディスカラー3株"
+    },
+    {
+      "id": "012",
+      "category": "plant_case",
+      "status": "propagation_ready",
+      "status_label": "株分け可能",
+      "name": "グラスアクア ティアー",
+      "maker": "GEX",
+      "size": null,
+      "purpose": "ブセファランドラ育成",
+      "lighting": {
+        "name": "GEX LED リーフグロー",
+        "hours_per_day": 12
+      },
+      "medium": "JUN プラチナソイル",
+      "fertilizer": "ハイポ液",
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "BU-001"
+      ],
+      "note": "2026年7月28日植え替え（TC-003,004統合）。ブセファランドラ sp. クダガン（7株）"
+    },
+    {
+      "id": "013",
+      "category": "plant_case",
+      "status": "unknown",
+      "status_label": "",
+      "name": null,
+      "maker": null,
+      "size": null,
+      "purpose": null,
+      "lighting": {
+        "name": null,
+        "hours_per_day": null
+      },
+      "medium": null,
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "CW-001"
+      ],
+      "note": "斑入りハートカズラ「レディハート」"
+    },
+    {
+      "id": "014",
+      "category": "plant_case",
+      "status": "active",
+      "status_label": "稼働中",
+      "name": null,
+      "maker": null,
+      "size": null,
+      "purpose": "ハオルチア育成",
+      "lighting": {
+        "name": null,
+        "hours_per_day": null
+      },
+      "medium": null,
+      "fertilizer": null,
+      "purchase": {
+        "price": null
+      },
+      "plant_ids": [
+        "HA-001"
+      ],
+      "note": "HA-001"
+    }
+  ]
+}

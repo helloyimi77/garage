@@ -16,7 +16,7 @@
   --oil:#1F4E79;
   --hazard:#F2B705;
   --car:#DCE6EF; --bike:#E7DED2; --escooter:#DDE9E1; --roadbike:#EEE1DD; --horse:#E9E4D3;
-  --golf:#DDE7D0; --fishing:#D4E4EC; --camping:#E5DBC8; --airsoft:#DCDCD4; --rc:#F2DDD4;
+  --golf:#DDE7D0; --fishing:#D4E4EC; --camping:#E5DBC8; --airsoft:#DCDCD4; --rc:#F2DDD4; --plant:#DCE9D3;
   --radius:6px;
 }
 *{box-sizing:border-box}
@@ -50,7 +50,9 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .card:hover{border-color:var(--ink)}
 .card.sold{opacity:.72}
 .card .photo{aspect-ratio:4/3;background:var(--tint,#ddd);display:grid;place-items:center;overflow:hidden;position:relative}
-.card .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.card .photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.card .photo.portrait{display:flex;align-items:stretch;justify-content:center}
+.card .photo.portrait img{width:auto!important;height:100%!important;max-width:none!important;object-fit:fill!important;flex:0 0 auto;margin:0}
 .card .photo .glyph{font-size:96px;font-weight:900;color:rgba(27,31,36,.14);letter-spacing:-.05em;line-height:1}
 .card .body{padding:14px 16px 16px}
 .card .maker{font-size:13px;color:var(--ink-2)}
@@ -226,12 +228,13 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 <script>
 const GROUPS = {
   vehicle: { label: '乗り物', cats: ['car','bike','escooter','roadbike','horse'] },
-  hobby:   { label: '趣味',   cats: ['golf','fishing','camping','airsoft','rc'] }
+  hobby:   { label: '趣味',   cats: ['golf','fishing','camping','airsoft','rc','plant'] }
 };
 const HOBBY_COVERS = {
   golf: 'images/hobby-covers/golf.jpg',
   fishing: 'images/hobby-covers/fishing.jpg',
-  camping: 'images/hobby-covers/camping.jpg'
+  camping: 'images/hobby-covers/camping.jpg',
+  plant: 'images/plants/JO-004.jpg'
 };
 const coverOf = k => DATA.covers?.[k]?.photos?.main || HOBBY_COVERS[k] || '';
 const CATS = {
@@ -246,6 +249,7 @@ const CATS = {
   camping:  { label: '⛺ キャンプ',      glyph: '⛺', tint: 'var(--camping)' },
   airsoft:  { label: '🎯 サバゲー',      glyph: '🎯', tint: 'var(--airsoft)' },
   rc:       { label: '🏎️ ラジコン',      glyph: '🏎️', tint: 'var(--rc)' },
+  plant:    { label: '🌿 植物',          glyph: '🌿', tint: 'var(--plant)' },
 };
 const VEHICLE_CATEGORY_ORDER = { car:0, bike:1, escooter:2, roadbike:3, horse:4 };
 const yen = n => (n == null || n === '' ? '—' : '¥' + Number(n).toLocaleString('ja-JP'));
@@ -262,6 +266,47 @@ async function load(){
     const r = await fetch('vehicles.json', {cache:'no-store'});
     if(!r.ok) throw new Error(r.status);
     DATA = await r.json();
+
+    // Plants are kept in separate JSON files, then adapted to the existing hobby-card model.
+    const [plantsData, casesData] = await Promise.all([
+      fetch('plants.json', {cache:'no-store'}).then(x=>x.ok?x.json():null).catch(()=>null),
+      fetch('plant_cases.json', {cache:'no-store'}).then(x=>x.ok?x.json():null).catch(()=>null)
+    ]);
+    if(plantsData?.plants?.length){
+      const caseMap = Object.fromEntries((casesData?.plant_cases||[]).map(x=>[x.id,x]));
+      const plantItems = plantsData.plants.map(p=>{
+        const linked = (p.case_ids||[]).map(id=>caseMap[id]).filter(Boolean);
+        const caseText = linked.map(x=>`#${x.id} ${x.name||x.purpose||'ケース'}`).join(' / ');
+        const lights = [...new Set(linked.map(x=>x.lighting?.name).filter(Boolean))].join(' / ');
+        const specs = Object.fromEntries([
+          ['管理No.', p.id],
+          ['学名', p.taxonomy?.scientific_name],
+          ['科', p.taxonomy?.family],
+          ['属', p.taxonomy?.genus],
+          ['種', p.taxonomy?.species],
+          ['品種・流通名', p.cultivar],
+          ['用土', p.medium],
+          ['状態', p.status_label],
+          ['育成ケース', caseText],
+          ['照明', lights]
+        ].filter(([,v])=>v));
+        return {
+          id: 'plant-' + p.id,
+          group: 'hobby',
+          category: 'plant',
+          status: 'active',
+          name: p.name,
+          maker: p.taxonomy?.family || '',
+          model: p.taxonomy?.scientific_name || '',
+          purchase: p.purchase || {date:null,price:null},
+          specs,
+          equipment: [],
+          photos: p.photos || {},
+          memo: p.note || ''
+        };
+      });
+      DATA.vehicles.push(...plantItems);
+    }
   }catch(e){
     document.querySelector('main').innerHTML =
       `<div class="err"><b>vehicles.json を読み込めませんでした。</b><br>GitHub Pages 上か、ローカルでは <code>python3 -m http.server</code> などで配信して開いてください。（file:// 直開きでは fetch が動きません）</div>`;
@@ -301,33 +346,34 @@ function filtered(){
 }
 function photoBlock(v, cls){
   const c = CATS[v.category] || {};
-  const img = v.photos?.main ? `<img src="${esc(v.photos.main)}" alt="${esc(v.name)}">` : `<span class="glyph">${c.glyph||'?'}</span>`;
+  const portraitCheck = v.category==='plant' ? ` onload="if(this.naturalHeight>this.naturalWidth)this.parentElement.classList.add('portrait')"` : '';
+  const img = v.photos?.main ? `<img src="${esc(v.photos.main)}" alt="${esc(v.name)}"${portraitCheck}>` : `<span class="glyph">${c.glyph||'?'}</span>`;
   return `<div class="${cls}" style="--tint:${c.tint||'#ddd'}">${img}</div>`;
 }
 function renderGrid(){
   const g = document.getElementById('grid');
-  // Hobby + all → show 3 category aggregate cards
+  // Hobby + all → show category aggregate cards
   if(group==='hobby' && cat==='all'){
     const items = DATA.vehicles.filter(v=>(v.group||'vehicle')==='hobby');
     const cards = GROUPS.hobby.cats.map(k=>{
       const list = items.filter(v=>v.category===k);
       if(!list.length) return '';
       const c = CATS[k];
-      const perItem = ['golf','airsoft','rc'].includes(k);
+      const perItem = ['golf','airsoft','rc','plant'].includes(k);
       const itemsCount = perItem ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).length,0);
-      const unit = {golf:'本', airsoft:'丁', rc:'台'}[k] || '点';
+      const unit = {golf:'本', airsoft:'丁', rc:'台', plant:'種'}[k] || '点';
       const setsCount = perItem ? '' : `${list.length}カテゴリ / `;
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
       return `
         <button class="card summary-card" data-jump="${k}">
-          <div class="photo" style="--tint:${c.tint}">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
+          <div class="photo" style="--tint:${c.tint}">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}"${k==='plant'?' onload="if(this.naturalHeight>this.naturalWidth)this.parentElement.classList.add(\'portrait\')"':''}>`:`<span class="glyph">${c.glyph}</span>`}</div>
           <div class="body">
             <div class="maker">趣味コレクション</div>
             <div class="name">${esc(c.label.replace(/^\S+\s+/,''))}</div>
             <div class="grade">${setsCount}${itemsCount}${unit}</div>
             <div class="foot">
               <span>詳細を見る →</span>
-              <span class="total">${yen(total)}</span>
+              <span class="total">${k==='plant'?'':yen(total)}</span>
             </div>
           </div>
         </button>`;
@@ -503,6 +549,9 @@ function renderGrid(){
         const dist=(v.specs?.['飛距離']||'').split(' ')[0];
         footL=[loft,dist].filter(Boolean).join(' / ');
         footR=v.purchase?.price?yen(v.purchase.price):'';
+      } else if(v.category==='plant'){
+        footL=v.model || '';
+        footR=v.specs?.['状態'] || '育成中';
       } else if(v.category==='airsoft' || v.category==='rc'){
         footL=v.specs?.['シャーシ'] || v.specs?.['方式'] || '';
         footR=(v.purchase?.price==null && !(v.equipment||[]).length) ? '—' : yen(total_hobby(v));
@@ -519,7 +568,7 @@ function renderGrid(){
       footR=yen(total(v));
     }
     return `
-    <button class="card ${isSold(v)?'sold':''}" data-id="${esc(v.id)}">
+    <button class="card ${!isHobby && isSold(v)?'sold':''}" data-id="${esc(v.id)}">
       ${photoBlock(v,'photo')}
       ${isHobby?'':`<span class="status ${isSold(v)?'sold':''}">${isSold(v)?'過去':'現役'}</span>`}
       <div class="body">
@@ -625,7 +674,12 @@ function openDetail(id){
         <div><span>獲得賞金</span><b>${v.specs?.['獲得賞金']||'—'}</b></div>
        </div>`
     : (v.group==='hobby'
-    ? (v.category==='golf'
+    ? (v.category==='plant'
+      ? `<div class="money">
+          <div><span>購入価格</span><b>${yen(v.purchase?.price)}</b></div>
+          <div><span>状態</span><b style="font-size:15px">${esc(v.specs?.['状態']||'育成中')}</b></div>
+         </div>`
+      : v.category==='golf'
       ? `<div class="money">
           <div><span>購入価格</span><b>${yen(buy)}</b></div>
           <div><span>役割</span><b style="font-size:15px">${v.role==='sub'?'2軍':'メイン装備'}</b></div>
