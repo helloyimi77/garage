@@ -4371,6 +4371,210 @@
         "gallery": []
       },
       "memo": "価格はすべて実購入額。"
+    },
+    {
+      "id": "airsoft-p90tr",
+      "group": "hobby",
+      "category": "airsoft",
+      "name": "P90 TR",
+      "maker": "東京マルイ",
+      "model": "スタンダード電動ガン P-90 TR",
+      "purchase": {
+        "date": null,
+        "price": 32780,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "方式": "電動（フルオート/セミオート）",
+        "全長": "504mm（サイレンサー装着時 670mm）",
+        "重量": "2,100g（空マガジン・バッテリー含む）",
+        "銃身長": "247mm",
+        "装弾数": "68発",
+        "バッテリー": "8.4V ニッケル水素 ミニS",
+        "特徴": "トリプルレイル（20mm）、SOCOMタイプサイレンサー付属"
+      },
+      "equipment": [],
+      "status": "active"
+    },
+    {
+      "id": "airsoft-p99",
+      "group": "hobby",
+      "category": "airsoft",
+      "name": "ワルサー P99",
+      "maker": "マルゼン",
+      "model": "ワルサー P99 ガスブローバック",
+      "purchase": {
+        "date": null,
+        "price": 19580,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "方式": "ガスブローバック（セミオート）",
+        "全長": "180mm",
+        "重量": "約620g",
+        "インナーバレル": "88mm",
+        "装弾数": "24発",
+        "初速": "約73.6m/s（0.20g弾）",
+        "特徴": "ワルサー社正式ライセンス、可変ホップ、3ポジショントリガー"
+      },
+      "equipment": [],
+      "status": "active"
+    },
+    {
+      "id": "rc-ta08r",
+      "group": "hobby",
+      "category": "rc",
+      "name": "TA08R マクラーレン セナ",
+      "maker": "タミヤ",
+      "model": "1/10RC TA08R シャーシキット（47498）",
+      "purchase": {
+        "date": null,
+        "price": 65780,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "スケール": "1/10",
+        "シャーシ": "TA08R",
+        "駆動": "横置きモーター・2ベルトドライブ4WD",
+        "ホイールベース": "257mm",
+        "デフ": "F:ダイレクト / R:オイル封入ギヤデフ",
+        "サス": "4輪ダブルウィッシュボーン / TRF-SSBBダンパー"
+      },
+      "equipment": [
+        {
+          "name": "SP.1693 マクラーレン セナ スペアボディセット",
+          "maker": "タミヤ",
+          "price": 5060,
+          "note": "51693 / 定価（税込）"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "rc-porsche-gt3r",
+      "group": "hobby",
+      "category": "rc",
+      "name": "ポルシェ 911 GT3 R (992)",
+      "maker": "タミヤ",
+      "model": "1/10RC ポルシェ 911 GT3 R (992) TT-02シャーシ（58745）",
+      "purchase": {
+        "date": null,
+        "price": 20900,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "スケール": "1/10",
+        "シャーシ": "TT-02",
+        "駆動": "シャフトドライブ4WD",
+        "ホイールベース": "251mm（ショート）",
+        "サス": "4輪ダブルウィッシュボーン / フリクションダンパー",
+        "モーター": "540タイプ（キット付属）",
+        "ボディ": "塗装済み（ブラック）"
+      },
+      "equipment": [
+        {
+          "name": "SP.1705 ポルシェ 911 GT3 (992) スペアボディ",
+          "maker": "タミヤ",
+          "price": null,
+          "note": "51705 / TT-02用 / ピンク塗装"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "rc-unimog406",
+      "group": "hobby",
+      "category": "rc",
+      "name": "メルセデス・ベンツ ウニモグ 406",
+      "maker": "タミヤ",
+      "model": "1/10RC ウニモグ 406 CR-01シャーシ（58414）",
+      "purchase": {
+        "date": null,
+        "price": 43780,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "スケール": "1/10",
+        "シャーシ": "CR-01",
+        "駆動": "シャフトドライブ4WD（デフロック可）",
+        "フレーム": "ラダーフレーム（アルミサイドメンバー）",
+        "サス": "4リンク / オイルダンパー"
+      },
+      "equipment": [],
+      "status": "active"
+    },
+    {
+      "id": "rc-dualridge-bk",
+      "group": "hobby",
+      "category": "rc",
+      "name": "デュアルリッジ ブラックメタリック",
+      "maker": "タミヤ",
+      "model": "1/10RC デュアルリッジ ブラックメタリック TT-02Bシャーシ（47355）",
+      "purchase": {
+        "date": null,
+        "price": 14740,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "スケール": "1/10",
+        "種別": "4WDバギー（オン・オフ兼用）",
+        "シャーシ": "TT-02B",
+        "駆動": "シャフトドライブ4WD",
+        "サス": "4輪ダブルウィッシュボーン / CVAオイルダンパー",
+        "デフ": "前後 4ベベル樹脂製ギヤデフ",
+        "全長": "380mm",
+        "ボディ": "ブラックメッキ（カット済み）",
+        "ホイール": "半ツヤ クロームメッキ",
+        "デザイン": "pdc_designworks"
+      },
+      "equipment": [],
+      "status": "active"
+    },
+    {
+      "id": "rc-miniz-86",
+      "group": "hobby",
+      "category": "rc",
+      "name": "トヨタ 86 MF GHOST",
+      "maker": "京商",
+      "model": "ミニッツRWD レディセット（32335MF）",
+      "purchase": {
+        "date": null,
+        "price": 23980,
+        "price_note": "定価（税込）"
+      },
+      "specs": {
+        "スケール": "1/27",
+        "シャーシ": "MR-03 N-RM",
+        "駆動": "RWD",
+        "ホイールベース": "94mm（L）",
+        "全長": "162mm",
+        "プロポ": "Syncro KT-531P（2.4GHz）",
+        "電源": "単4×4本（送信機も単4×4本）"
+      },
+      "equipment": [],
+      "status": "active"
+    },
+    {
+      "id": "rc-miniz-360modena",
+      "group": "hobby",
+      "category": "rc",
+      "name": "フェラーリ 360 モデナ",
+      "maker": "京商",
+      "model": "ミニッツレーサー レディセット フェラーリ 360 モデナ（30201系）",
+      "purchase": {
+        "date": null,
+        "price": null,
+        "price_note": "定価不明"
+      },
+      "specs": {
+        "スケール": "1/27（ミニッツ）",
+        "シャーシ": "MR-01",
+        "駆動": "RWD",
+        "セット": "送信機付きレディセット",
+        "ボディ": "ASC フェラーリ 360 モデナ（ナロー）"
+      },
+      "equipment": [],
+      "status": "active"
     }
   ]
 }

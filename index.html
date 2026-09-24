@@ -16,7 +16,7 @@
   --oil:#1F4E79;
   --hazard:#F2B705;
   --car:#DCE6EF; --bike:#E7DED2; --escooter:#DDE9E1; --roadbike:#EEE1DD; --horse:#E9E4D3;
-  --golf:#DDE7D0; --fishing:#D4E4EC; --camping:#E5DBC8;
+  --golf:#DDE7D0; --fishing:#D4E4EC; --camping:#E5DBC8; --airsoft:#DCDCD4; --rc:#F2DDD4;
   --radius:6px;
 }
 *{box-sizing:border-box}
@@ -226,7 +226,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 <script>
 const GROUPS = {
   vehicle: { label: '乗り物', cats: ['car','bike','escooter','roadbike','horse'] },
-  hobby:   { label: '趣味',   cats: ['golf','fishing','camping'] }
+  hobby:   { label: '趣味',   cats: ['golf','fishing','camping','airsoft','rc'] }
 };
 const HOBBY_COVERS = {
   golf: 'images/hobby-covers/golf.jpg',
@@ -243,6 +243,8 @@ const CATS = {
   golf:     { label: '⛳ ゴルフ',        glyph: '⛳', tint: 'var(--golf)' },
   fishing:  { label: '🎣 釣り',         glyph: '🎣', tint: 'var(--fishing)' },
   camping:  { label: '⛺ キャンプ',      glyph: '⛺', tint: 'var(--camping)' },
+  airsoft:  { label: '🎯 サバゲー',      glyph: '🎯', tint: 'var(--airsoft)' },
+  rc:       { label: '🏎️ ラジコン',      glyph: '🏎️', tint: 'var(--rc)' },
 };
 const VEHICLE_CATEGORY_ORDER = { car:0, bike:1, escooter:2, roadbike:3, horse:4 };
 const yen = n => (n == null || n === '' ? '—' : '¥' + Number(n).toLocaleString('ja-JP'));
@@ -310,16 +312,17 @@ function renderGrid(){
       const list = items.filter(v=>v.category===k);
       if(!list.length) return '';
       const c = CATS[k];
-      const itemsCount = k==='golf' ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).length,0);
-      const unit = k==='golf' ? '本' : (k==='fishing' ? '点' : '点');
-      const setsCount = k==='golf' ? '' : `${list.length}カテゴリ / `;
+      const perItem = ['golf','airsoft','rc'].includes(k);
+      const itemsCount = perItem ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).length,0);
+      const unit = {golf:'本', airsoft:'丁', rc:'台'}[k] || '点';
+      const setsCount = perItem ? '' : `${list.length}カテゴリ / `;
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
       return `
         <button class="card summary-card" data-jump="${k}">
           <div class="photo" style="--tint:${c.tint}">${HOBBY_COVERS[k]?`<img src="${HOBBY_COVERS[k]}" alt="${esc(c.label)}">`:`<span class="glyph">${c.glyph}</span>`}</div>
           <div class="body">
             <div class="maker">趣味コレクション</div>
-            <div class="name">${esc(c.label.replace(/^[⛳🎣⛺]\s*/,''))}</div>
+            <div class="name">${esc(c.label.replace(/^\S+\s+/,''))}</div>
             <div class="grade">${setsCount}${itemsCount}${unit}</div>
             <div class="foot">
               <span>詳細を見る →</span>
@@ -499,6 +502,9 @@ function renderGrid(){
         const dist=(v.specs?.['飛距離']||'').split(' ')[0];
         footL=[loft,dist].filter(Boolean).join(' / ');
         footR=v.purchase?.price?yen(v.purchase.price):'';
+      } else if(v.category==='airsoft' || v.category==='rc'){
+        footL=v.specs?.['シャーシ'] || v.specs?.['方式'] || '';
+        footR=(v.purchase?.price==null && !(v.equipment||[]).length) ? '—' : yen(total_hobby(v));
       } else {
         const items=(v.equipment||[]).length;
         footL=`${items}点`;
@@ -623,6 +629,12 @@ function openDetail(id){
           <div><span>購入価格</span><b>${yen(buy)}</b></div>
           <div><span>役割</span><b style="font-size:15px">${v.role==='sub'?'2軍':'メイン装備'}</b></div>
          </div>`
+      : (v.category==='airsoft' || v.category==='rc')
+      ? `<div class="money">
+          <div><span>${esc(v.purchase?.price_note||'購入価格')}</span><b>${yen(v.purchase?.price)}</b></div>
+          <div><span>装備品</span><b>${yen(sum(v.equipment))}</b></div>
+          <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
+         </div>`
       : `<div class="money">
           <div><span>${v.category==='fishing'?'ロッド一式':'点数'}</span><b>${v.category==='fishing'?yen(buy):(v.equipment||[]).length+'点'}</b></div>
           <div><span>${v.category==='fishing'?'ルアー・小物':'合計金額'}</span><b>${v.category==='fishing'?yen(sum(v.equipment)):yen(sum(v.equipment))}</b></div>
@@ -649,7 +661,7 @@ function openDetail(id){
       ${raceSection}
       ${!isHorse && v.group!=='hobby'?`<section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
       <section class="sec"><h3>装備品</h3>${eqRows?`<table>${eqRows}</table>`:'<div class="none">未登録</div>'}</section>`:''}
-      ${v.group==='hobby' && v.category!=='golf' && eqRows?`<section class="sec"><h3>${v.category==='fishing'?'ルアー・小物':'内訳'} <small>${(v.equipment||[]).length}点</small></h3><table>${eqRows}</table></section>`:''}
+      ${v.group==='hobby' && v.category!=='golf' && eqRows?`<section class="sec"><h3>${v.category==='fishing'?'ルアー・小物':(v.category==='airsoft'||v.category==='rc')?'装備品':'内訳'} <small>${(v.equipment||[]).length}点</small></h3><table>${eqRows}</table></section>`:''}
       ${gal?`<section class="sec"><h3>ギャラリー</h3><div class="gallery">${gal}</div></section>`:''}
       ${v.memo?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(v.memo)}</div></section>`:''}
     </div>`;
