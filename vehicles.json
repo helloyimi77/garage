@@ -4456,7 +4456,11 @@
           "note": "51693 / 定価（税込）"
         }
       ],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/rc-ta08r/rc_01_2026-09-24.jpg",
+        "gallery": []
+      }
     },
     {
       "id": "rc-porsche-gt3r",
