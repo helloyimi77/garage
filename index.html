@@ -118,6 +118,20 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px}
 .none{color:var(--ink-2);font-size:13px}
+.racelog{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
+.racelog table{border:0;font-size:12px;min-width:640px}
+.racelog th,.racelog td{padding:6px 8px;white-space:nowrap}
+.racelog thead th{background:var(--bg);color:var(--ink-2);font-weight:500;border-top:0;font-size:11px}
+.racelog td.rc{text-align:center;font-weight:700}
+.racelog td.rc.win{background:#F2B705;color:var(--ink)}
+.racelog td.rc.p2{background:#E7DED2}
+.racelog td.rc.p3{background:#DCE6EF}
+.racelog td.num{text-align:right;font-variant-numeric:tabular-nums}
+.racelog td.rn{white-space:normal;min-width:140px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px}
+.stat-grid .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px}
+.stat-grid .box span{display:block;font-size:11px;color:var(--ink-2)}
+.stat-grid .box b{font-size:18px;font-weight:700;letter-spacing:-.01em}
 .err{max-width:1120px;margin:40px auto;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .err code{background:var(--bg);padding:2px 6px;border-radius:3px}
 
@@ -224,8 +238,8 @@ function renderGrid(){
         <div class="name">${esc(v.name)}</div>
         <div class="grade">${[v.grade, v.year?v.year+'年式':'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
         <div class="foot">
-          <span>カスタム ${ (v.customs||[]).length } 件 / 装備 ${ (v.equipment||[]).length } 点</span>
-          <span class="total">${yen(total(v))}</span>
+          <span>${v.category==='horse' ? ('通算 '+(v.specs?.['通算成績']||'—')) : ('カスタム '+ (v.customs||[]).length +' 件 / 装備 '+ (v.equipment||[]).length +' 点')}</span>
+          <span class="total">${v.category==='horse' ? (v.specs?.['獲得賞金']||'') : yen(total(v))}</span>
         </div>
       </div>
     </button>`).join('');
@@ -254,32 +268,83 @@ function renderTimeline(){
 function openDetail(id){
   const v = DATA.vehicles.find(x=>x.id===id); if(!v) return;
   const c = CATS[v.category]||{};
+  const isHorse = v.category==='horse';
   const cust = sum(v.customs), eq = sum(v.equipment), buy = Number(v.purchase?.price)||0;
-  const own = `${fmtDate(v.purchase?.date)} ${v.purchase?.type==='new'?'新車':v.purchase?.type==='used'?'中古':''}で購入` +
-    (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す${v.sold?.price!=null?`（${yen(v.sold.price)}）`:''}` : ' → 現在も所有');
+  const own = isHorse
+    ? `${fmtDate(v.purchase?.date)||''} 中古（セリで購入）` + (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す` : ' → 現役')
+    : `${fmtDate(v.purchase?.date)} ${v.purchase?.type==='new'?'新車':v.purchase?.type==='used'?'中古':''}で購入` +
+      (isSold(v) ? ` → ${fmtDate(v.sold?.date)||'?'} 手放す${v.sold?.price!=null?`（${yen(v.sold.price)}）`:''}` : ' → 現在も所有');
   const specRows = Object.entries(v.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
   const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div><div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
   const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
   const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="">`).join('');
 
-  document.getElementById('drawer').innerHTML = `
-    ${photoBlock(v,'hero')}<button class="close" id="close" aria-label="閉じる">×</button>
-    <div class="d-body">
-      <div class="maker">${esc(v.maker)}${v.model?` ${esc(v.model)}`:''}</div>
-      <h2>${esc(v.name)}</h2>
-      <div class="grade">${[v.grade, v.year?v.year+'年式':'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
-      <p class="own"><b>${isSold(v)?'過去の愛車':'現役'}</b> ・ ${own}</p>
-      <div class="money">
+  // horse-specific: race log + stats
+  let raceSection='', statsBlock='';
+  if(isHorse && Array.isArray(v.race_log) && v.race_log.length){
+    const rl=[...v.race_log].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    const n=rl.length;
+    const win=rl.filter(r=>r.place_finish==='1').length;
+    const p2=rl.filter(r=>r.place_finish==='2').length;
+    const p3=rl.filter(r=>r.place_finish==='3').length;
+    const prize=rl.reduce((a,r)=>a+(Number(r.prize)||0),0);
+    statsBlock=`<div class="stat-grid">
+      <div class="box"><span>出走</span><b>${n}戦</b></div>
+      <div class="box"><span>1着</span><b>${win}</b></div>
+      <div class="box"><span>2着</span><b>${p2}</b></div>
+      <div class="box"><span>3着</span><b>${p3}</b></div>
+      <div class="box"><span>獲得賞金</span><b>${prize.toFixed(1)}万</b></div>
+    </div>`;
+    const rows=rl.map(r=>{
+      const cls=r.place_finish==='1'?'win':r.place_finish==='2'?'p2':r.place_finish==='3'?'p3':'';
+      return `<tr>
+        <td>${fmtDate(r.date)}</td>
+        <td>${esc(r.place)}${r.race_no?` ${esc(r.race_no)}R`:''}</td>
+        <td class="rn">${esc(r.race_name||'')}</td>
+        <td class="num">${esc(r.field||'')}${r.num?`頭 / ${esc(r.num)}番`:''}</td>
+        <td class="num">${esc(r.popularity||'-')}人</td>
+        <td class="rc ${cls}">${esc(r.place_finish||'-')}</td>
+        <td>${esc(r.jockey||'')}</td>
+        <td>${esc(r.distance||'')}/${esc(r.track||'')}</td>
+        <td class="num">${esc(r.time||'')}</td>
+        <td class="num">${esc(r.body_weight||'')}</td>
+        <td class="num">${r.prize?esc(r.prize)+'万':''}</td>
+      </tr>`;
+    }).join('');
+    raceSection=`<section class="sec"><h3>戦績 <small>直近から</small></h3>
+      <div class="racelog"><table>
+        <thead><tr><th>日付</th><th>開催</th><th>レース</th><th>頭数/馬番</th><th>人気</th><th>着</th><th>騎手</th><th>距離/馬場</th><th>タイム</th><th>馬体重</th><th>賞金</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div></section>`;
+  }
+
+  const moneyBlock = isHorse
+    ? `<div class="money">
+        <div><span>取得価格</span><b>${yen(buy)}</b></div>
+        <div><span>獲得賞金</span><b>${v.specs?.['獲得賞金']||'—'}</b></div>
+       </div>`
+    : `<div class="money">
         <div><span>購入価格</span><b>${yen(buy)}</b></div>
         <div><span>カスタム合計</span><b>${yen(cust)}</b></div>
         <div><span>装備品合計</span><b>${yen(eq)}</b></div>
         <div><span>1台あたりの内訳</span><b style="font-size:13px;font-weight:500;color:var(--ink-2)">${(v.customs||[]).length}件のカスタム / ${(v.equipment||[]).length}点の装備</b></div>
         <div class="total"><span>総投入額</span><b>${yen(buy+cust+eq)}</b></div>
-      </div>
-      <section class="sec"><h3>スペック</h3>${specRows?`<table>${specRows}</table>`:'<div class="none">未登録</div>'}</section>
-      <section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
-      <section class="sec"><h3>装備品</h3>${eqRows?`<table>${eqRows}</table>`:'<div class="none">未登録</div>'}</section>
+      </div>`;
+
+  document.getElementById('drawer').innerHTML = `
+    ${photoBlock(v,'hero')}<button class="close" id="close" aria-label="閉じる">×</button>
+    <div class="d-body">
+      <div class="maker">${esc(v.maker)}${v.model?` ${esc(v.model)}`:''}</div>
+      <h2>${esc(v.name)}</h2>
+      <div class="grade">${[v.grade, v.year?v.year+(isHorse?'年生':'年式'):'', v.color].filter(Boolean).map(esc).join(' / ')}</div>
+      <p class="own"><b>${isSold(v)?'過去':'現役'}</b> ・ ${own}</p>
+      ${moneyBlock}
+      ${statsBlock}
+      <section class="sec"><h3>${isHorse?'プロフィール':'スペック'}</h3>${specRows?`<table>${specRows}</table>`:'<div class="none">未登録</div>'}</section>
+      ${raceSection}
+      ${!isHorse?`<section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
+      <section class="sec"><h3>装備品</h3>${eqRows?`<table>${eqRows}</table>`:'<div class="none">未登録</div>'}</section>`:''}
       ${gal?`<section class="sec"><h3>ギャラリー</h3><div class="gallery">${gal}</div></section>`:''}
       ${v.memo?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(v.memo)}</div></section>`:''}
     </div>`;
