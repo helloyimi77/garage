@@ -1,0 +1,273 @@
+{
+  "owner": "とんこつしょうゆ",
+  "title": "GARAGE",
+  "plants": [
+    {
+      "id": "AN-001",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "アヌビアス・ナナ プチ",
+      "common_name": "アヌビアス・ナナ プチ",
+      "cultivar": "アヌビアス・ナナ プチ",
+      "taxonomy": {
+        "family": "サトイモ科",
+        "genus": "アヌビアス",
+        "species": "barteri",
+        "scientific_name": "Anubias barteri var. nana 'Petite'"
+      },
+      "purchase": {
+        "date": "2024-06-04",
+        "price": null
+      },
+      "medium": "JUN プラチナソイル",
+      "case_ids": [
+        "008"
+      ],
+      "note": ""
+    },
+    {
+      "id": "BU-001",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中（TC-004株分け可）",
+      "name": "ブセファランドラ sp. クダガン",
+      "common_name": "ブセファランドラ sp. クダガン",
+      "cultivar": "ブセファランドラ sp. クダガン",
+      "taxonomy": {
+        "family": "サトイモ科",
+        "genus": "ブセファランドラ",
+        "species": "sp. \"Kedagang”",
+        "scientific_name": "Bucephalandra sp. Kedagang"
+      },
+      "purchase": {
+        "date": null,
+        "price": null
+      },
+      "medium": "JUN プラチナソイル",
+      "case_ids": [
+        "001",
+        "002",
+        "012"
+      ],
+      "note": ""
+    },
+    {
+      "id": "CW-001",
+      "category": "plant",
+      "status": "unknown",
+      "status_label": "",
+      "name": "ハートカズラ レディハート（斑入り系統）",
+      "common_name": "ハートカズラ レディハート（斑入り系統）",
+      "cultivar": "レディハート",
+      "taxonomy": {
+        "family": "キョウチクトウ科",
+        "genus": "セロペギア属（Ceropegia）",
+        "species": "woodii",
+        "scientific_name": "Ceropegia woodii"
+      },
+      "purchase": {
+        "date": "2026-08-11",
+        "price": null
+      },
+      "medium": null,
+      "case_ids": [
+        "013"
+      ],
+      "note": ""
+    },
+    {
+      "id": "GJ-001",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "ガジュマル",
+      "common_name": "ガジュマル",
+      "cultivar": "ガジュマル",
+      "taxonomy": {
+        "family": null,
+        "genus": "ガジュマル",
+        "species": "microcarpa",
+        "scientific_name": "Ficus microcarpa"
+      },
+      "purchase": {
+        "date": null,
+        "price": null
+      },
+      "medium": null,
+      "case_ids": [],
+      "note": ""
+    },
+    {
+      "id": "HA-001",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "ハオルチア・オブツーサ",
+      "common_name": "ハオルチア・オブツーサ",
+      "cultivar": "オブツーサ",
+      "taxonomy": {
+        "family": "ツルボラン科",
+        "genus": "ハオルチア属（Haworthia）",
+        "species": "obtusa",
+        "scientific_name": "Haworthia obtusa"
+      },
+      "purchase": {
+        "date": "2026-08-13",
+        "price": 3500
+      },
+      "medium": null,
+      "case_ids": [
+        "014"
+      ],
+      "note": "Notion備考: 購入価格 3,500円"
+    },
+    {
+      "id": "JO-001",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "ルディシア・ディスカラー",
+      "common_name": "ルディシア・ディスカラー",
+      "cultivar": "ルディシア・ディスカラー",
+      "taxonomy": {
+        "family": "ラン科",
+        "genus": "ルディシア",
+        "species": "discolor",
+        "scientific_name": "Ludisia discolor"
+      },
+      "purchase": {
+        "date": null,
+        "price": null
+      },
+      "medium": "なし（テラベース）/ 水苔",
+      "case_ids": [
+        "001",
+        "009",
+        "010",
+        "011"
+      ],
+      "note": "2026/7/15 株分け7株"
+    },
+    {
+      "id": "JO-002",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "ドッシニア・マルモラータ",
+      "common_name": "ドッシニア・マルモラータ",
+      "cultivar": "ドッシニア・マルモラータ",
+      "taxonomy": {
+        "family": "ラン科",
+        "genus": "ドッシニア",
+        "species": "marmorata",
+        "scientific_name": "Dossinia marmorata"
+      },
+      "purchase": {
+        "date": "2026-07-12",
+        "price": null
+      },
+      "medium": "水苔",
+      "case_ids": [
+        "004"
+      ],
+      "note": ""
+    },
+    {
+      "id": "JO-003",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "アネクトキルス・アルボリネアタス 'Nok'",
+      "common_name": "アネクトキルス・アルボリネアタス 'Nok'",
+      "cultivar": "アネクトキルス・アルボリネアタス 'Nok’",
+      "taxonomy": {
+        "family": "ラン科",
+        "genus": "アネクトキルス属（Anoectochilus）",
+        "species": "albolineatus",
+        "scientific_name": "Anoectochilus albolineatus 'Nok'"
+      },
+      "purchase": {
+        "date": "2026-07-12",
+        "price": null
+      },
+      "medium": "水苔",
+      "case_ids": [
+        "006"
+      ],
+      "note": ""
+    },
+    {
+      "id": "JO-004",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "アネクトキルス・ロビアヌス",
+      "common_name": "アネクトキルス・ロビアヌス",
+      "cultivar": "アネクトキルス・ロビアヌス",
+      "taxonomy": {
+        "family": "ラン科",
+        "genus": "アネクトキルス属（Anoectochilus）",
+        "species": "roxburghii",
+        "scientific_name": "Anoectochilus lobbianus"
+      },
+      "purchase": {
+        "date": "2026-07-12",
+        "price": null
+      },
+      "medium": "水苔",
+      "case_ids": [
+        "007"
+      ],
+      "note": "Notion元データでは種=roxburghii、学名=Anoectochilus lobbianus。要確認。"
+    },
+    {
+      "id": "JO-005",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "アネクトキルス Lady's Best Friend",
+      "common_name": "アネクトキルス Lady's Best Friend",
+      "cultivar": "アネクトキルス Lady's Best Friend",
+      "taxonomy": {
+        "family": "ラン科",
+        "genus": "アネクトキルス属（Anoectochilus）",
+        "species": "albolineatus",
+        "scientific_name": "Anoectochilus albolineatus 'Lady's Best Friend'"
+      },
+      "purchase": {
+        "date": "2026-07-29",
+        "price": null
+      },
+      "medium": "水苔",
+      "case_ids": [
+        "005"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MO-001",
+      "category": "plant",
+      "status": "active",
+      "status_label": "運用中",
+      "name": "南米ウィローモス",
+      "common_name": "南米ウィローモス",
+      "cultivar": "南米ウィローモス",
+      "taxonomy": {
+        "family": "ハイゴケ科",
+        "genus": "ヴェシクラリア属（Vesicularia）",
+        "species": "sp.",
+        "scientific_name": "Vesicularia sp."
+      },
+      "purchase": {
+        "date": null,
+        "price": null
+      },
+      "medium": "なし（活着育成）",
+      "case_ids": [
+        "001"
+      ],
+      "note": "ケース001（パルダリウム）で育成。流通名「南米ウィローモス」は正確な種同定が不確かなため、学名は Vesicularia sp. として管理。"
+    }
+  ]
+}
