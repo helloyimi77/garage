@@ -38,18 +38,26 @@
         {
           "name": "ルーフボックス Dynamic M",
           "maker": "THULE",
-          "price": null
-        },
-        {
-          "name": "ルーフベース",
-          "maker": "",
-          "price": null
+          "price": 130000,
+          "note": "定価目安（廃盤モデル）"
         },
         {
           "name": "CarPlay AIボックス CB6（8GB+128GB）",
           "maker": "ATOTOZONE",
           "price": 26746,
           "note": "2025-04-20購入。ワイヤレスCarPlay/Android Auto対応、GPSトラッキング、AIボイス"
+        },
+        {
+          "name": "【ドラレコ】Y-119d",
+          "maker": "ユピテル",
+          "price": 25300,
+          "note": "2025-04-18購入。前後2カメラ、フロント4K"
+        },
+        {
+          "name": "【レーダー】H6-Chacha01",
+          "maker": "ユピテル",
+          "price": 29580,
+          "note": "2026-06-11購入"
         }
       ],
       "photos": {
@@ -218,24 +226,24 @@
           "maker": "柿本改",
           "type": "吸排気",
           "date": "",
-          "price": null,
-          "note": ""
+          "price": 75000,
+          "note": "定価目安（当時）"
         },
         {
           "part": "CDレシーバー",
           "maker": "KENWOOD",
           "type": "電装",
           "date": "",
-          "price": null,
-          "note": ""
+          "price": 20000,
+          "note": "定価目安"
         },
         {
           "part": "オンダッシュモニター",
           "maker": "",
           "type": "電装",
           "date": "",
-          "price": null,
-          "note": ""
+          "price": 30000,
+          "note": "定価目安"
         }
       ],
       "equipment": [],
@@ -290,12 +298,12 @@
           "note": "プラザで取付"
         },
         {
-          "part": "ウィンドアーマー（グラファイトブラック 純正比20mmロング/70mmアップ）",
+          "part": "ウィンドアーマー（グラファイトブラック）",
           "maker": "ヨシムラ",
           "type": "外装",
           "date": "",
           "price": 25300,
-          "note": "現在装着中"
+          "note": "現在装着中。純正比20mmロング/70mmアップ"
         },
         {
           "part": "スクリーン（スモーク）",
