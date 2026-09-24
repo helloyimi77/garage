@@ -83,6 +83,12 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .fishing-list td.tackle{font-size:13px;color:var(--ink);line-height:1.4}
 .fishing-list td.tackle small,.fishing-list td.num small{display:block;color:var(--ink-2);font-size:11px;font-weight:400;margin-top:2px;font-variant-numeric:tabular-nums}
 .fishing-list td.total{font-weight:700}
+.fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
+.fish-sec h3{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--ink)}
+.fishing-list td.use{white-space:nowrap}
+.use-chip{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--fishing);color:var(--ink);font-size:12px;font-weight:700;line-height:1.4}
+.fish-total{display:flex;justify-content:flex-end;gap:14px;align-items:baseline;color:var(--ink-2);font-size:13px}
+.fish-total b{color:var(--ink);font-size:20px}
 /* wide (golf only) — compact typography, no wrap, min-width */
 .golf-list.wide table{min-width:1100px;font-size:13px}
 .golf-list.wide th,.golf-list.wide td{padding:9px 10px;white-space:nowrap}
@@ -372,36 +378,48 @@ function renderGrid(){
     return;
   }
 
-  // Fishing: リスト表示
+  // Fishing: 道具ごとのリスト表示
   if(group==='hobby' && cat==='fishing'){
-    // ロッド/リール文字列から名前と価格を分離
     const parseTackle = s => {
-      if(!s) return {name:'',price:''};
+      if(!s) return {name:'',detail:'',price:''};
       const m=s.match(/^(.*?)\s*(?:\(¥([\d,]+)\))?\s*$/);
-      const name=(m[1]||'').split(' / ')[0].trim();
-      const price=m[2]?`¥${m[2]}`:'';
-      return {name, price};
+      const parts=(m[1]||'').split(' / ');
+      return {name:parts[0].trim(), detail:parts.slice(1).join(' / ').trim(), price:m[2]?`¥${m[2]}`:''};
     };
-    const rows=list.map(v=>{
-      const target=v.specs?.['ターゲット']||'';
-      const rod=parseTackle(v.specs?.['ロッド']);
-      const reel=parseTackle(v.specs?.['リール']);
-      const lureCount=(v.equipment||[]).length;
-      const lureTotal=sum(v.equipment);
-      const total=total_hobby(v);
-      return `<tr data-id="${esc(v.id)}">
-        <td class="club">${esc(v.name)}</td>
-        <td>${esc(target)}</td>
-        <td class="tackle">${esc(rod.name)||'—'}${rod.price?`<small>${esc(rod.price)}</small>`:''}</td>
-        <td class="tackle">${esc(reel.name)||'—'}${reel.price?`<small>${esc(reel.price)}</small>`:''}</td>
-        <td class="num">${lureCount?lureCount+'点':'—'}${lureTotal?`<small>${yen(lureTotal)}</small>`:''}</td>
-        <td class="num total">${yen(total)}</td>
+    const useLabel = v => (v.name||'').replace(/釣り$/,'');
+    const SECTIONS = [
+      {key:'ロッド',  label:'竿'},
+      {key:'リール',  label:'リール'},
+      {key:'ライン',  label:'ライン'},
+      {key:'リーダー',label:'リーダー'},
+    ];
+    const row = (v, main, sub, price) => `<tr data-id="${esc(v.id)}">
+        <td class="use"><span class="use-chip">${esc(useLabel(v))}</span></td>
+        <td class="tackle">${esc(main)}${sub?`<small>${esc(sub)}</small>`:''}</td>
+        <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
+    const block = (label, rows, foot='') => rows ? `<section class="fish-sec">
+        <h3>${esc(label)}</h3>
+        <div class="golf-list fishing-list" data-cat="fishing"><table>
+          <colgroup><col style="width:22%"><col><col style="width:18%"></colgroup>
+          <tbody>${rows}</tbody>${foot}
+        </table></div></section>` : '';
+    let html = SECTIONS.map(sec => {
+      const rows = list.map(v => {
+        const t = parseTackle(v.specs?.[sec.key]);
+        return t.name ? row(v, t.name, t.detail, t.price) : '';
+      }).join('');
+      return block(sec.label, rows);
     }).join('');
-    g.innerHTML=`<div class="golf-list fishing-list" data-cat="fishing"><table>
-      <thead><tr><th style="width:14%">セット</th><th style="width:10%">ターゲット</th><th style="width:28%">ロッド</th><th style="width:22%">リール</th><th class="num" style="width:10%">ルアー</th><th class="num" style="width:16%">合計</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
+    const lureRows = list.filter(v=>(v.equipment||[]).length).map(v => {
+      const eq = v.equipment;
+      const names = eq.slice(0,3).map(e=>e.name).join('、') + (eq.length>3?` ほか${eq.length-3}点`:'');
+      return row(v, `${eq.length}点`, names, yen(sum(eq)));
+    }).join('');
+    html += block('ルアー・小物', lureRows);
+    const grand = list.reduce((a,v)=>a+total_hobby(v),0);
+    html += `<div class="fish-total"><span>釣り道具 合計</span><b>${yen(grand)}</b></div>`;
+    g.innerHTML = `<div class="fish-wrap">${html}</div>`;
     return;
   }
 
