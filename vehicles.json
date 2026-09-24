@@ -4517,7 +4517,11 @@
         "サス": "4リンク / オイルダンパー"
       },
       "equipment": [],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/rc-unimog406/rc_02_2026-09-24.jpg",
+        "gallery": []
+      }
     },
     {
       "id": "rc-dualridge-bk",
