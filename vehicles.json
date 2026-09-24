@@ -13,9 +13,9 @@
       "year": 2025,
       "color": "ブリリアントブロンズ・メタリック",
       "purchase": {
-        "date": "",
+        "date": "2025-03-10",
         "type": "new",
-        "price": 5200000,
+        "price": 4220000,
         "note": "概算"
       },
       "sold": {
@@ -31,10 +31,59 @@
         "最高出力": "177ps / 5,200-5,600rpm",
         "最大トルク": "300N・m / 1,600-3,600rpm",
         "運転支援": "アイサイトX",
-        "内装": "タンカラーのナッパレザー"
+        "内装": "タンカラーのナッパレザー",
+        "型式": "BT5E5M8-4LC-CD90"
       },
       "customs": [],
       "equipment": [
+        {
+          "name": "ベースキット（スプラッシュ）",
+          "maker": "SUBARU",
+          "price": 88400,
+          "note": ""
+        },
+        {
+          "name": "ETC2.0車載器キット",
+          "maker": "DENSO",
+          "price": 27800,
+          "note": ""
+        },
+        {
+          "name": "ETCビルトインキット",
+          "maker": "SUBARU",
+          "price": 6200,
+          "note": ""
+        },
+        {
+          "name": "カーゴステップパネル 樹脂",
+          "maker": "SUBARU",
+          "price": 13800,
+          "note": ""
+        },
+        {
+          "name": "後席用ステップガード",
+          "maker": "SUBARU",
+          "price": 10600,
+          "note": ""
+        },
+        {
+          "name": "ボディサイドモールディング",
+          "maker": "SUBARU",
+          "price": 22800,
+          "note": ""
+        },
+        {
+          "name": "エクステリアパッケージ",
+          "maker": "SUBARU",
+          "price": 94200,
+          "note": ""
+        },
+        {
+          "name": "TVフリーキット@STR-38",
+          "maker": "SUBARU",
+          "price": 28100,
+          "note": ""
+        },
         {
           "name": "ルーフボックス Dynamic M",
           "maker": "THULE",
@@ -274,9 +323,9 @@
       "year": 2026,
       "color": "ライムグリーン×エボニー",
       "purchase": {
-        "date": "2025-11-01",
+        "date": "2025-09-01",
         "type": "new",
-        "price": null,
+        "price": 1210000,
         "note": "日は仮"
       },
       "sold": {
@@ -299,8 +348,8 @@
           "maker": "TRICK STAR",
           "type": "足回り",
           "date": "",
-          "price": 20350,
-          "note": "プラザで取付"
+          "price": 36850,
+          "note": "プラザ取付。本体¥18,500+工賃¥15,000（税抜合計¥33,500／税込¥36,850）"
         },
         {
           "part": "ウィンドアーマー（グラファイトブラック）",
@@ -353,6 +402,18 @@
       ],
       "equipment": [
         {
+          "name": "ETC-KIT 2.0",
+          "maker": "Kawasaki",
+          "price": 86900,
+          "note": "本体¥37,000+工賃¥42,000（税抜合計¥79,000／税込¥86,900）"
+        },
+        {
+          "name": "キズボウシフィルム",
+          "maker": "Kawasaki",
+          "price": 4554,
+          "note": "本体¥2,640+工賃¥1,500（税抜合計¥4,140／税込¥4,554）"
+        },
+        {
           "name": "Moto マウント12 ステムホールマウント PRO",
           "maker": "レックマウントプラス",
           "price": 4807,
@@ -384,8 +445,8 @@
       "color": "",
       "purchase": {
         "date": "2015-01-01",
-        "type": "",
-        "price": null,
+        "type": "used",
+        "price": 150000,
         "note": "年は概算・日は仮"
       },
       "sold": {
@@ -404,7 +465,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "2台目のバイク。",
+      "memo": "2台目のバイク。\n中古実勢価格目安",
       "group": "vehicle"
     },
     {
@@ -419,8 +480,8 @@
       "color": "",
       "purchase": {
         "date": "2010-01-01",
-        "type": "",
-        "price": null,
+        "type": "used",
+        "price": 150000,
         "note": "年は概算・日は仮"
       },
       "sold": {
@@ -439,7 +500,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": "初めてのバイク。",
+      "memo": "初めてのバイク。\n中古実勢価格目安",
       "group": "vehicle"
     },
     {
@@ -454,8 +515,8 @@
       "color": "ネオンイエロー（NSP）",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "new",
+        "price": 250000
       },
       "sold": {
         "date": null,
@@ -581,7 +642,7 @@
         "main": "images/caad12/caad12_01_main.jpg",
         "gallery": []
       },
-      "memo": "現在のメイン。完成車付属の105 5800コンポは弟に譲渡し、ULTEGRA R8000系にフル換装。",
+      "memo": "現在のメイン。完成車付属の105 5800コンポは弟に譲渡し、ULTEGRA R8000系にフル換装。\n2016年式完成車（105 5800仕様）定価目安",
       "group": "vehicle"
     },
     {
@@ -596,8 +657,8 @@
       "color": "ライトブルー×ホワイト",
       "purchase": {
         "date": "",
-        "type": "",
-        "price": null
+        "type": "used",
+        "price": 60000
       },
       "sold": {
         "date": "",
@@ -641,7 +702,7 @@
         "main": "images/giant-road/giant_01_main.jpg",
         "gallery": []
       },
-      "memo": "モデル名要確認（DEFY / OCR系）。",
+      "memo": "モデル名要確認（DEFY / OCR系）。\n中古実勢価格目安",
       "group": "vehicle"
     },
     {
@@ -650,14 +711,14 @@
       "status": "active",
       "name": "ストリーモ",
       "maker": "ストリーモ（Honda発ベンチャー）",
-      "model": "",
+      "model": "S01JTA",
       "grade": "",
       "year": null,
       "color": "ホワイト",
       "purchase": {
-        "date": "",
+        "date": "2024-04-30",
         "type": "new",
-        "price": null
+        "price": 313760
       },
       "sold": {
         "date": null,
@@ -686,7 +747,7 @@
         "main": "images/striemo/striemo_01_main.jpg",
         "gallery": []
       },
-      "memo": "",
+      "memo": "ストリーモ S01JTA。特定小型原付。",
       "group": "vehicle"
     },
     {
