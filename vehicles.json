@@ -4576,7 +4576,11 @@
         "電源": "単4×4本（送信機も単4×4本）"
       },
       "equipment": [],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/rc-miniz-86/rc_01_2026-09-24.jpg",
+        "gallery": []
+      }
     },
     {
       "id": "rc-miniz-360modena",
