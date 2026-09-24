@@ -66,6 +66,25 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .groupseg button{padding:9px 22px;font-size:14px;font-weight:500;color:var(--ink-2)}
 .groupseg button[aria-pressed="true"]{background:var(--ink);color:#fff}
 
+/* hobby list view (used by golf, fishing, camping) */
+.golf-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.golf-list table{width:100%;border-collapse:collapse;font-size:14px;border:0}
+.golf-list th,.golf-list td{padding:10px 12px;text-align:left;vertical-align:middle;border-top:1px solid var(--line)}
+.golf-list thead th{background:var(--bg);color:var(--ink-2);font-weight:500;font-size:12px;border-top:0;position:sticky;top:0}
+.golf-list tbody tr{cursor:pointer;transition:background .15s}
+.golf-list[data-cat="golf"] tbody tr:hover{background:var(--golf)}
+.golf-list[data-cat="fishing"] tbody tr:hover{background:var(--fishing)}
+.golf-list[data-cat="camping"] tbody tr:hover{background:var(--camping)}
+.golf-list td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.golf-list td.club{font-weight:700;font-size:15px;white-space:nowrap}
+.golf-list td.maker small{color:var(--ink-2);display:block;font-size:11px;margin-top:1px}
+.golf-list tr.sub td{color:var(--ink-2)}
+.golf-list tr.sub td.club::after{content:' (2軍)';font-size:11px;color:var(--ink-2);font-weight:400}
+@media (max-width:700px){
+  .golf-list{overflow-x:auto}
+  .golf-list table{min-width:640px}
+}
+
 /* timeline */
 .timeline{margin-top:48px}
 .timeline h2{font-size:18px;font-weight:700;margin:0 0 4px}
@@ -294,6 +313,83 @@ function renderGrid(){
   }
   const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
   if(!list.length){ g.innerHTML = `<div class="empty">この条件のアイテムはありません。vehicles.json に追加すると表示されます。</div>`; return; }
+
+  // Golf: リスト表示（表形式）
+  if(group==='hobby' && cat==='golf'){
+    const clubOrder=['ドライバー','3W','5W','4U','5U','6I','7I','8I','9I','PW','52°ウェッジ','58°ウェッジ','チッパー','パター','LW (2軍)','ドライバー (2軍)'];
+    const sorted=[...list].sort((a,b)=>{
+      const ai=clubOrder.findIndex(k=>a.name.startsWith(k.replace(/ \(2軍\)$/,'')));
+      const bi=clubOrder.findIndex(k=>b.name.startsWith(k.replace(/ \(2軍\)$/,'')));
+      const aSub=a.role==='sub'?1:0, bSub=b.role==='sub'?1:0;
+      return aSub-bSub || ai-bi;
+    });
+    const rows=sorted.map(v=>{
+      const loft=v.specs?.['ロフト']||'';
+      const dist=(v.specs?.['飛距離']||'').split(' ')[0];
+      const shaft=v.specs?.['シャフト']||'';
+      const length=v.specs?.['長さ']||'';
+      const price=v.purchase?.price?yen(v.purchase.price):'';
+      return `<tr class="${v.role==='sub'?'sub':''}" data-id="${esc(v.id)}">
+        <td class="club">${esc(v.name.replace(/ \(2軍\)$/,''))}</td>
+        <td class="maker">${esc(v.maker)}<small>${esc(v.model||'')}</small></td>
+        <td class="num">${esc(loft)}</td>
+        <td class="num">${esc(dist)}</td>
+        <td>${esc(length)}</td>
+        <td class="num" style="color:var(--ink-2);font-size:12px">${esc(shaft)}</td>
+        <td class="num">${price}</td>
+      </tr>`;
+    }).join('');
+    g.innerHTML=`<div class="golf-list" data-cat="golf"><table>
+      <thead><tr><th>番手</th><th>メーカー・モデル</th><th>ロフト</th><th>飛距離</th><th>長さ</th><th>シャフト</th><th>定価</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+    return;
+  }
+
+  // Fishing: リスト表示
+  if(group==='hobby' && cat==='fishing'){
+    const rows=list.map(v=>{
+      const target=v.specs?.['ターゲット']||'';
+      const rod=(v.specs?.['ロッド']||'').replace(/\s*\(¥[\d,]+\)\s*$/,'');
+      const reel=(v.specs?.['リール']||'').replace(/\s*\(¥[\d,]+\)\s*$/,'');
+      const lureCount=(v.equipment||[]).length;
+      const total=total_hobby(v);
+      return `<tr data-id="${esc(v.id)}">
+        <td class="club">${esc(v.name)}</td>
+        <td>${esc(target)}</td>
+        <td style="font-size:12px">${esc(rod)||'—'}</td>
+        <td style="font-size:12px">${esc(reel)||'—'}</td>
+        <td class="num">${lureCount?lureCount+'点':'—'}</td>
+        <td class="num">${yen(total)}</td>
+      </tr>`;
+    }).join('');
+    g.innerHTML=`<div class="golf-list" data-cat="fishing"><table>
+      <thead><tr><th>セット</th><th>ターゲット</th><th>ロッド</th><th>リール</th><th>ルアー</th><th>合計</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+    return;
+  }
+
+  // Camping: リスト表示
+  if(group==='hobby' && cat==='camping'){
+    const rows=list.map(v=>{
+      const count=v.specs?.['点数']||`${(v.equipment||[]).length}点`;
+      const weight=v.specs?.['総重量目安']||'';
+      const total=sum(v.equipment);
+      return `<tr data-id="${esc(v.id)}">
+        <td class="club">${esc(v.name)}</td>
+        <td class="num">${esc(count)}</td>
+        <td class="num" style="color:var(--ink-2);font-size:12px">${esc(weight)}</td>
+        <td class="num">${yen(total)}</td>
+      </tr>`;
+    }).join('');
+    g.innerHTML=`<div class="golf-list" data-cat="camping"><table>
+      <thead><tr><th>カテゴリ</th><th>点数</th><th>総重量目安</th><th>合計金額</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+    return;
+  }
+
   g.innerHTML = list.map(v => {
     const isHobby = (v.group||'vehicle')==='hobby';
     let footL='', footR='';
@@ -486,6 +582,7 @@ document.getElementById('seg').addEventListener('click', e=>{
 document.getElementById('grid').addEventListener('click', e=>{
   const j = e.target.closest('[data-jump]');
   if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  const row = e.target.closest('tr[data-id]'); if(row){ openDetail(row.dataset.id); return; }
   const c = e.target.closest('.card'); if(c && c.dataset.id) openDetail(c.dataset.id);
 });
 document.getElementById('drawer').addEventListener('click', e=>{ if(e.target.closest('#close')) closeDetail(); });
