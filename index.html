@@ -258,8 +258,36 @@ function photoBlock(v, cls){
   return `<div class="${cls}" style="--tint:${c.tint||'#ddd'}">${img}</div>`;
 }
 function renderGrid(){
-  const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
   const g = document.getElementById('grid');
+  // Hobby + all → show 3 category aggregate cards
+  if(group==='hobby' && cat==='all'){
+    const items = DATA.vehicles.filter(v=>(v.group||'vehicle')==='hobby');
+    const cards = GROUPS.hobby.cats.map(k=>{
+      const list = items.filter(v=>v.category===k);
+      if(!list.length) return '';
+      const c = CATS[k];
+      const itemsCount = k==='golf' ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).length,0);
+      const unit = k==='golf' ? '本' : (k==='fishing' ? '点' : '点');
+      const setsCount = k==='golf' ? '' : `${list.length}カテゴリ / `;
+      const total = list.reduce((a,v)=>a+total_hobby(v),0);
+      return `
+        <button class="card summary-card" data-jump="${k}">
+          <div class="photo" style="--tint:${c.tint}"><span class="glyph">${c.glyph}</span></div>
+          <div class="body">
+            <div class="maker">趣味コレクション</div>
+            <div class="name">${esc(c.label.replace(/^[⛳🎣⛺]\s*/,''))}</div>
+            <div class="grade">${setsCount}${itemsCount}${unit}</div>
+            <div class="foot">
+              <span>詳細を見る →</span>
+              <span class="total">${yen(total)}</span>
+            </div>
+          </div>
+        </button>`;
+    }).filter(Boolean).join('');
+    g.innerHTML = cards || `<div class="empty">趣味アイテムがまだ登録されていません。</div>`;
+    return;
+  }
+  const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
   if(!list.length){ g.innerHTML = `<div class="empty">この条件のアイテムはありません。vehicles.json に追加すると表示されます。</div>`; return; }
   g.innerHTML = list.map(v => {
     const isHobby = (v.group||'vehicle')==='hobby';
@@ -446,7 +474,9 @@ document.getElementById('seg').addEventListener('click', e=>{
   renderGrid();
 });
 document.getElementById('grid').addEventListener('click', e=>{
-  const c = e.target.closest('.card'); if(c) openDetail(c.dataset.id);
+  const j = e.target.closest('[data-jump]');
+  if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  const c = e.target.closest('.card'); if(c && c.dataset.id) openDetail(c.dataset.id);
 });
 document.getElementById('drawer').addEventListener('click', e=>{ if(e.target.closest('#close')) closeDetail(); });
 document.getElementById('overlay').addEventListener('click', closeDetail);
