@@ -30,7 +30,8 @@
         "トランスミッション": "リニアトロニックCVT",
         "最高出力": "177ps / 5,200-5,600rpm",
         "最大トルク": "300N・m / 1,600-3,600rpm",
-        "運転支援": "アイサイトX"
+        "運転支援": "アイサイトX",
+        "内装": "タンカラーのナッパレザー"
       },
       "customs": [],
       "equipment": [
@@ -51,7 +52,7 @@
           "images/bt5-outback/bt5_02_front.jpg"
         ]
       },
-      "memo": "ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。"
+      "memo": "現在のメインの愛車。ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。"
     },
     {
       "id": "bs9-outback",
@@ -172,8 +173,7 @@
         "gallery": [
           "images/r53-mini-cooper-s/r53_02_front.jpg",
           "images/r53-mini-cooper-s/r53_03_rear.jpg",
-          "images/r53-mini-cooper-s/r53_04_interior.jpg",
-          "images/r53-mini-cooper-s/r53_05_front2.jpg"
+          "images/r53-mini-cooper-s/r53_04_interior.jpg"
         ]
       },
       "memo": ""
@@ -239,9 +239,7 @@
           "images/dc2-integra-type-r/dc2_02_front.jpg",
           "images/dc2-integra-type-r/dc2_03_meter.jpg",
           "images/dc2-integra-type-r/dc2_04_console.jpg",
-          "images/dc2-integra-type-r/dc2_05_console-monitor.jpg",
-          "images/dc2-integra-type-r/dc2_06_front2.jpg",
-          "images/dc2-integra-type-r/dc2_07_meter2.jpg"
+          "images/dc2-integra-type-r/dc2_05_console-monitor.jpg"
         ]
       },
       "memo": "初めてのマイカー。新車購入。"
@@ -254,7 +252,7 @@
       "maker": "カワサキ",
       "model": "ZX400P",
       "grade": "KRT EDITION",
-      "year": 2025,
+      "year": 2026,
       "color": "ライムグリーン×エボニー",
       "purchase": {
         "date": "2025-11-01",
@@ -360,8 +358,8 @@
       "maker": "キャノンデール",
       "model": "CAAD12",
       "grade": "",
-      "year": null,
-      "color": "ボルト（イエロー）",
+      "year": 2016,
+      "color": "ネオンイエロー（NSP）",
       "purchase": {
         "date": "",
         "type": "",
@@ -372,22 +370,87 @@
         "price": null
       },
       "specs": {
-        "フレーム": "SmartFormed 6069アルミ",
+        "フレーム": "CAAD12 SmartFormed 6069アルミ",
         "フォーク": "カーボン",
-        "サイズ": "",
-        "コンポーネント": "シマノ ULTEGRA R8000（フル交換）",
-        "ホイール": "MAVIC AKSIUM",
-        "タイヤ": "CONTINENTAL",
-        "ブレーキ": "リムブレーキ"
+        "サイズ": "48",
+        "完成車重量": "約7.9kg",
+        "コンポーネント": "Shimano ULTEGRA R8000系（ミックス）",
+        "ホイール": "Cannondale C5 Alloy",
+        "タイヤ": "Continental Grand Prix 5000 25mm",
+        "ブレーキ": "リムブレーキ（BR-R8000）"
       },
       "customs": [
         {
-          "part": "コンポーネント一式 ULTEGRA R8000",
-          "maker": "シマノ",
+          "part": "STI ST-R8000（2×11s）",
+          "maker": "Shimano",
           "type": "駆動系",
           "date": "",
           "price": null,
-          "note": "純正コンポから総交換"
+          "note": ""
+        },
+        {
+          "part": "フロントディレイラー FD-R8000",
+          "maker": "Shimano",
+          "type": "駆動系",
+          "date": "",
+          "price": null,
+          "note": ""
+        },
+        {
+          "part": "リアディレイラー RD-R8000",
+          "maker": "Shimano",
+          "type": "駆動系",
+          "date": "",
+          "price": null,
+          "note": ""
+        },
+        {
+          "part": "クランク FC-R8000（50-34T / 170mm）",
+          "maker": "Shimano",
+          "type": "駆動系",
+          "date": "",
+          "price": null,
+          "note": ""
+        },
+        {
+          "part": "ブレーキ BR-R8000（前後）",
+          "maker": "Shimano",
+          "type": "ブレーキ",
+          "date": "",
+          "price": null,
+          "note": ""
+        },
+        {
+          "part": "BB BB30A24（42mm / 73mm）",
+          "maker": "WISHBONE",
+          "type": "駆動系",
+          "date": "",
+          "price": null,
+          "note": ""
+        },
+        {
+          "part": "スプロケット CS-R7000（11速 11-32T）",
+          "maker": "Shimano 105",
+          "type": "駆動系",
+          "date": "",
+          "price": null,
+          "note": "ワイドレシオ"
+        },
+        {
+          "part": "チェーン CN-HG901（11速 116L クイックリンク）",
+          "maker": "Shimano DURA-ACE",
+          "type": "駆動系",
+          "date": "",
+          "price": null,
+          "note": ""
+        },
+        {
+          "part": "タイヤ Grand Prix 5000（25mm）",
+          "maker": "Continental",
+          "type": "タイヤ",
+          "date": "",
+          "price": null,
+          "note": ""
         }
       ],
       "equipment": [

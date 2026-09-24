@@ -44,18 +44,18 @@ header{padding:28px 20px 12px;max-width:1120px;margin:0 auto}
 
 /* grid */
 main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.card{background:var(--surface);border-radius:var(--radius);overflow:hidden;text-align:left;display:flex;flex-direction:column;border:1px solid var(--line);position:relative}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;grid-auto-rows:1fr;align-items:stretch}
+.card{background:var(--surface);border-radius:var(--radius);overflow:hidden;text-align:left;display:flex;flex-direction:column;border:1px solid var(--line);position:relative;height:100%}
 .card:hover{border-color:var(--ink)}
 .card.sold{opacity:.72}
 .card .photo{aspect-ratio:4/3;background:var(--tint,#ddd);display:grid;place-items:center;overflow:hidden;position:relative}
-.card .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.card .photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .card .photo .glyph{font-size:96px;font-weight:900;color:rgba(27,31,36,.14);letter-spacing:-.05em;line-height:1}
-.card .body{padding:14px 16px 16px}
+.card .body{padding:14px 16px 16px;display:flex;flex:1;flex-direction:column}
 .card .maker{font-size:13px;color:var(--ink-2)}
 .card .name{font-size:22px;font-weight:900;letter-spacing:-.02em;line-height:1.15;margin:2px 0 4px}
 .card .grade{font-size:13px;color:var(--ink-2)}
-.card .foot{margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-2)}
+.card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-2)}
 .card .foot .total{font-weight:700;color:var(--ink)}
 .status{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;background:var(--hazard);color:var(--ink)}
 .status.sold{background:var(--ink);color:#fff}
@@ -83,7 +83,7 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(640px,100%);background:var(--bg);z-index:21;transform:translateX(100%);transition:transform .25s;overflow-y:auto;box-shadow:-8px 0 30px rgba(0,0,0,.15)}
 .drawer.on{transform:none}
 .drawer .hero{background:var(--tint,#ddd);aspect-ratio:16/9;display:grid;place-items:center;position:relative}
-.drawer .hero img{width:100%;height:100%;object-fit:cover;display:block}
+.drawer .hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .drawer .hero .glyph{font-size:140px;font-weight:900;color:rgba(27,31,36,.14);line-height:1}
 .close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:var(--surface);font-size:20px;display:grid;place-items:center;border:1px solid var(--line)}
 .d-body{padding:20px 22px 48px}
@@ -116,7 +116,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:3px;background:var(--bg);border:1px solid var(--line);margin-right:6px;vertical-align:middle}
 .memo{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;font-size:14px;white-space:pre-wrap}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center;border-radius:4px}
 .none{color:var(--ink-2);font-size:13px}
 .racelog{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
 .racelog table{border:0;font-size:12px;min-width:640px}
@@ -220,13 +220,39 @@ function total(v){ return (Number(v.purchase?.price)||0) + sum(v.customs) + sum(
 function filtered(){
   return DATA.vehicles.filter(v => (cat==='all'||v.category===cat) && (stat==='all' || (stat==='active' ? !isSold(v) : isSold(v))));
 }
+const PHOTO_POS = {
+  'images/striemo/striemo_01_main.jpg': 'center 42%',
+  'images/r53-mini-cooper-s/r53_01_main.jpg': 'center 58%',
+  'images/r53-mini-cooper-s/r53_05_front2.jpg': 'center 60%',
+  'images/dc2-integra-type-r/dc2_01_main.jpg': 'center 52%',
+  'images/dc2-integra-type-r/dc2_06_front2.jpg': 'center 55%',
+  'images/dc2-integra-type-r/dc2_07_meter2.jpg': 'center 52%',
+  'images/caad12/caad12_01_main.jpg': 'center 52%',
+  'images/giant-road/giant_01_main.jpg': 'center 48%',
+  'images/fumi-florence/fumi_01_main.jpg': 'center 42%',
+  'images/zx-4rr/zx4rr_01_main.jpg': 'center',
+};
+const CARD_PHOTO_POS = {
+  'images/striemo/striemo_01_main.jpg': 'center 42%',
+  'images/zx-4rr/zx4rr_01_main.jpg': 'center',
+  'images/r53-mini-cooper-s/r53_01_main.jpg': 'center 58%',
+  'images/dc2-integra-type-r/dc2_01_main.jpg': 'center 52%',
+};
+function photoStyle(src){
+  const pos = PHOTO_POS[src] || 'center';
+  return `style="object-position:${pos}"`;
+}
+function cardPhotoStyle(src){
+  const pos = CARD_PHOTO_POS[src] || photoStyle(src).match(/object-position:(.*)"/)?photoStyle(src).match(/object-position:(.*)"/)[1]:'center';
+  return `style="object-position:${pos}"`;
+}
 function photoBlock(v, cls){
   const c = CATS[v.category] || {};
-  const img = v.photos?.main ? `<img src="${esc(v.photos.main)}" alt="${esc(v.name)}">` : `<span class="glyph">${c.glyph||'?'}</span>`;
+  const img = v.photos?.main ? `<img src="${esc(v.photos.main)}" alt="${esc(v.name)}" ${cls === 'photo' ? cardPhotoStyle(v.photos.main) : photoStyle(v.photos.main)}>` : `<span class="glyph">${c.glyph||'?'}</span>`;
   return `<div class="${cls}" style="--tint:${c.tint||'#ddd'}">${img}</div>`;
 }
 function renderGrid(){
-  const list = filtered().sort((a,b)=>(b.purchase?.date||'').localeCompare(a.purchase?.date||''));
+  const list = filtered();
   const g = document.getElementById('grid');
   if(!list.length){ g.innerHTML = `<div class="empty">この条件の車両はありません。vehicles.json に追加すると表示されます。</div>`; return; }
   g.innerHTML = list.map(v => `
@@ -278,7 +304,7 @@ function openDetail(id){
   const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div><div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
   const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
-  const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="">`).join('');
+  const gal = (v.photos?.gallery||[]).map(p=>`<img src="${esc(p)}" alt="" ${photoStyle(p)}>`).join('');
 
   // horse-specific: race log + stats
   let raceSection='', statsBlock='';
