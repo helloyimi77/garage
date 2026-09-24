@@ -3061,7 +3061,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-tarp",
@@ -3102,7 +3102,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-cot-mat",
@@ -3197,7 +3197,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-chair",
@@ -3256,7 +3256,7 @@
         "main": "images/camp-chair/chair_01_main.jpg",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-sleep",
@@ -3321,7 +3321,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-sheet",
@@ -3386,7 +3386,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-lantern",
@@ -3529,7 +3529,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-table",
@@ -3594,7 +3594,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-fire",
@@ -3647,7 +3647,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-stove",
@@ -3688,7 +3688,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-burner-cooker",
@@ -3921,7 +3921,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-cooler",
@@ -3974,7 +3974,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-knife",
@@ -4039,7 +4039,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-misc",
@@ -4164,7 +4164,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-power",
@@ -4190,28 +4190,28 @@
       "specs": {
         "点数": "2点",
         "総重量目安": "約5.9kg",
-        "合計金額": "¥0"
+        "合計金額": "¥43,010"
       },
       "customs": [],
       "equipment": [
         {
           "name": "Solix C300 Portable Power Station",
           "maker": "Anker",
-          "price": null,
-          "note": "4.1kg"
+          "price": 25210,
+          "note": "4.1kg / 2025-10-21 ヨドバシ購入"
         },
         {
           "name": "Solix PS60 Compact Portable Solar Panel",
           "maker": "Anker",
-          "price": null,
-          "note": "1.8kg"
+          "price": 17800,
+          "note": "1.8kg / 2025-10-21 ヨドバシ購入"
         }
       ],
       "photos": {
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     },
     {
       "id": "camp-backpack",
@@ -4270,7 +4270,7 @@
         "main": "",
         "gallery": []
       },
-      "memo": ""
+      "memo": "価格はすべて実購入額。"
     }
   ]
 }
