@@ -4491,7 +4491,11 @@
           "note": "51705 / TT-02用 / ピンク塗装"
         }
       ],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/rc-porsche-gt3r/rc_01_2026-09-24.jpg",
+        "gallery": []
+      }
     },
     {
       "id": "rc-unimog406",
