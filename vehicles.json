@@ -46,9 +46,9 @@
         }
       ],
       "photos": {
-        "main": "images/bt5-outback/main.jpg",
+        "main": "images/bt5-outback/bt5_01_main.jpg",
         "gallery": [
-          "images/bt5-outback/front.jpg"
+          "images/bt5-outback/bt5_02_front.jpg"
         ]
       },
       "memo": "ふもとっぱらにて。ルーフボックスはBS9から引き継ぎ。"
@@ -85,7 +85,7 @@
       "customs": [],
       "equipment": [],
       "photos": {
-        "main": "images/bs9-outback/main.jpg",
+        "main": "images/bs9-outback/bs9_01_main.jpg",
         "gallery": []
       },
       "memo": "THULE Dynamic MはBT5へ引き継ぎ。"
@@ -121,9 +121,9 @@
       "customs": [],
       "equipment": [],
       "photos": {
-        "main": "images/grf-wrx-sti-a-line/main.jpg",
+        "main": "images/grf-wrx-sti-a-line/grf_01_main.jpg",
         "gallery": [
-          "images/grf-wrx-sti-a-line/side.jpg"
+          "images/grf-wrx-sti-a-line/grf_02_side.jpg"
         ]
       },
       "memo": "フルノーマル。"
@@ -168,11 +168,11 @@
       ],
       "equipment": [],
       "photos": {
-        "main": "images/r53-mini-cooper-s/main.jpg",
+        "main": "images/r53-mini-cooper-s/r53_01_main.jpg",
         "gallery": [
-          "images/r53-mini-cooper-s/front.jpg",
-          "images/r53-mini-cooper-s/rear.jpg",
-          "images/r53-mini-cooper-s/interior.jpg"
+          "images/r53-mini-cooper-s/r53_02_front.jpg",
+          "images/r53-mini-cooper-s/r53_03_rear.jpg",
+          "images/r53-mini-cooper-s/r53_04_interior.jpg"
         ]
       },
       "memo": ""
@@ -233,12 +233,12 @@
       ],
       "equipment": [],
       "photos": {
-        "main": "images/dc2-integra-type-r/main.jpg",
+        "main": "images/dc2-integra-type-r/dc2_01_main.jpg",
         "gallery": [
-          "images/dc2-integra-type-r/front.jpg",
-          "images/dc2-integra-type-r/meter.jpg",
-          "images/dc2-integra-type-r/console.jpg",
-          "images/dc2-integra-type-r/console-monitor.jpg"
+          "images/dc2-integra-type-r/dc2_02_front.jpg",
+          "images/dc2-integra-type-r/dc2_03_meter.jpg",
+          "images/dc2-integra-type-r/dc2_04_console.jpg",
+          "images/dc2-integra-type-r/dc2_05_console-monitor.jpg"
         ]
       },
       "memo": "初めてのマイカー。新車購入。"
@@ -276,7 +276,7 @@
       "customs": [],
       "equipment": [],
       "photos": {
-        "main": "images/zx-4rr/main.jpg",
+        "main": "images/zx-4rr/zx4rr_01_main.jpg",
         "gallery": []
       },
       "memo": "3台目のバイク。"
@@ -420,7 +420,7 @@
         }
       ],
       "photos": {
-        "main": "images/caad12/main.jpg",
+        "main": "images/caad12/caad12_01_main.jpg",
         "gallery": []
       },
       "memo": "現在のメイン。"
@@ -479,7 +479,7 @@
       ],
       "equipment": [],
       "photos": {
-        "main": "images/giant-road/main.jpg",
+        "main": "images/giant-road/giant_01_main.jpg",
         "gallery": []
       },
       "memo": "モデル名要確認（DEFY / OCR系）。"
@@ -523,7 +523,7 @@
         }
       ],
       "photos": {
-        "main": "images/striemo/main.jpg",
+        "main": "images/striemo/striemo_01_main.jpg",
         "gallery": []
       },
       "memo": ""
@@ -1651,9 +1651,9 @@
         }
       ],
       "photos": {
-        "main": "images/fumi-florence/main.jpg",
+        "main": "images/fumi-florence/fumi_01_main.jpg",
         "gallery": [
-          "images/fumi-florence/kasamatsu-2025-11-04-r4-win.jpg"
+          "images/fumi-florence/fumi_02_kasamatsu-2025-11-04-r4-win.jpg"
         ]
       },
       "memo": "2022年北海道オータムセールで主取り（495万円）となったところを、20万円で購入。園田でデビュー後、笠松に移籍。"
