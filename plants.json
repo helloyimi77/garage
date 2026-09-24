@@ -24,7 +24,13 @@
       "case_ids": [
         "008"
       ],
-      "note": ""
+      "note": "",
+      "photos": {
+        "main": "images/plants/AN-001.jpg",
+        "gallery": [
+          "images/plants/AN-001.jpg"
+        ]
+      }
     },
     {
       "id": "BU-001",
@@ -50,7 +56,13 @@
         "002",
         "012"
       ],
-      "note": ""
+      "note": "",
+      "photos": {
+        "main": "images/plants/BU-001.jpg",
+        "gallery": [
+          "images/plants/BU-001.jpg"
+        ]
+      }
     },
     {
       "id": "CW-001",
@@ -74,7 +86,13 @@
       "case_ids": [
         "013"
       ],
-      "note": ""
+      "note": "",
+      "photos": {
+        "main": "images/plants/CW-001.jpg",
+        "gallery": [
+          "images/plants/CW-001.jpg"
+        ]
+      }
     },
     {
       "id": "GJ-001",
@@ -120,7 +138,13 @@
       "case_ids": [
         "014"
       ],
-      "note": "Notion備考: 購入価格 3,500円"
+      "note": "Notion備考: 購入価格 3,500円",
+      "photos": {
+        "main": "images/plants/HA-001.jpg",
+        "gallery": [
+          "images/plants/HA-001.jpg"
+        ]
+      }
     },
     {
       "id": "JO-001",
@@ -147,7 +171,13 @@
         "010",
         "011"
       ],
-      "note": "2026/7/15 株分け7株"
+      "note": "2026/7/15 株分け7株",
+      "photos": {
+        "main": "images/plants/JO-001.jpg",
+        "gallery": [
+          "images/plants/JO-001.jpg"
+        ]
+      }
     },
     {
       "id": "JO-002",
@@ -171,7 +201,13 @@
       "case_ids": [
         "004"
       ],
-      "note": ""
+      "note": "",
+      "photos": {
+        "main": "images/plants/JO-002.jpg",
+        "gallery": [
+          "images/plants/JO-002.jpg"
+        ]
+      }
     },
     {
       "id": "JO-003",
@@ -195,7 +231,13 @@
       "case_ids": [
         "006"
       ],
-      "note": ""
+      "note": "",
+      "photos": {
+        "main": "images/plants/JO-003.jpg",
+        "gallery": [
+          "images/plants/JO-003.jpg"
+        ]
+      }
     },
     {
       "id": "JO-004",
@@ -219,7 +261,13 @@
       "case_ids": [
         "007"
       ],
-      "note": "流通名「アネクトキルス・ロビアヌス」。Kew POWOでは Anoectochilus lobbianus は Anoectochilus roxburghii のシノニム扱い。"
+      "note": "流通名「アネクトキルス・ロビアヌス」。Kew POWOでは Anoectochilus lobbianus は Anoectochilus roxburghii のシノニム扱い。",
+      "photos": {
+        "main": "images/plants/JO-004.jpg",
+        "gallery": [
+          "images/plants/JO-004.jpg"
+        ]
+      }
     },
     {
       "id": "JO-005",
@@ -243,7 +291,13 @@
       "case_ids": [
         "005"
       ],
-      "note": ""
+      "note": "",
+      "photos": {
+        "main": "images/plants/JO-005.jpg",
+        "gallery": [
+          "images/plants/JO-005.jpg"
+        ]
+      }
     },
     {
       "id": "MO-001",
@@ -267,7 +321,13 @@
       "case_ids": [
         "001"
       ],
-      "note": "ケース001（パルダリウム）で育成。流通名「南米ウィローモス」は正確な種同定が不確かなため、学名は Vesicularia sp. として管理。"
+      "note": "ケース001（パルダリウム）で育成。流通名「南米ウィローモス」は正確な種同定が不確かなため、学名は Vesicularia sp. として管理。",
+      "photos": {
+        "main": "images/plants/MO-001.jpg",
+        "gallery": [
+          "images/plants/MO-001.jpg"
+        ]
+      }
     }
   ]
 }
