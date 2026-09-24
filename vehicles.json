@@ -4394,7 +4394,11 @@
         "特徴": "トリプルレイル（20mm）、SOCOMタイプサイレンサー付属"
       },
       "equipment": [],
-      "status": "active"
+      "status": "active",
+      "photos": {
+        "main": "images/airsoft-p90tr/airsoft_02_2026-09-24.jpg",
+        "gallery": []
+      }
     },
     {
       "id": "airsoft-p99",
