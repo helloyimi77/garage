@@ -165,7 +165,7 @@
       },
       "purchase": {
         "date": "2026-07-12",
-        "price": null
+        "price": 2700
       },
       "medium": "水苔",
       "case_ids": [
@@ -195,7 +195,7 @@
       },
       "purchase": {
         "date": "2026-07-12",
-        "price": null
+        "price": 2400
       },
       "medium": "水苔",
       "case_ids": [
@@ -225,7 +225,7 @@
       },
       "purchase": {
         "date": "2026-07-12",
-        "price": null
+        "price": 3000
       },
       "medium": "水苔",
       "case_ids": [
@@ -255,7 +255,7 @@
       },
       "purchase": {
         "date": "2026-07-29",
-        "price": null
+        "price": 2000
       },
       "medium": "水苔",
       "case_ids": [
