@@ -18,7 +18,7 @@
       },
       "purchase": {
         "date": null,
-        "price": null
+        "price": 3780
       },
       "medium": "JUN プラチナソイル",
       "case_ids": [
@@ -50,7 +50,7 @@
       },
       "purchase": {
         "date": "2026-08-11",
-        "price": null
+        "price": 300
       },
       "medium": null,
       "case_ids": [
@@ -165,7 +165,7 @@
       },
       "purchase": {
         "date": "2026-07-12",
-        "price": 2700
+        "price": 3400
       },
       "medium": "水苔",
       "case_ids": [
@@ -195,7 +195,7 @@
       },
       "purchase": {
         "date": "2026-07-12",
-        "price": 2400
+        "price": 2600
       },
       "medium": "水苔",
       "case_ids": [
@@ -225,7 +225,7 @@
       },
       "purchase": {
         "date": "2026-07-12",
-        "price": 3000
+        "price": 1800
       },
       "medium": "水苔",
       "case_ids": [
@@ -285,7 +285,7 @@
       },
       "purchase": {
         "date": null,
-        "price": null
+        "price": 1000
       },
       "medium": "なし（活着育成）",
       "case_ids": [
