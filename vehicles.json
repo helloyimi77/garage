@@ -4646,8 +4646,10 @@
       "id": "cover-camping",
       "name": "キャンプの表紙",
       "photos": {
-        "main": "images/hobby-covers/camping.jpg",
-        "gallery": []
+        "main": "images/hobby-covers/camping_01_2026-09-25.jpg",
+        "gallery": [
+          "images/hobby-covers/camping.jpg"
+        ]
       }
     },
     "airsoft": {
