@@ -849,10 +849,7 @@
       ],
       "photos": {
         "main": "images/striemo/striemo_04_2026-09-25.jpg",
-        "gallery": [
-          "images/striemo/striemo_03_2026-09-25.jpg",
-          "images/striemo/striemo_01_main.jpg"
-        ]
+        "gallery": []
       },
       "memo": "ストリーモ S01JTA。特定小型原付。",
       "group": "vehicle"
