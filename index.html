@@ -370,7 +370,7 @@ function renderGrid(){
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
       return `
         <button class="card summary-card" data-jump="${k}">
-          <div class="photo category-cover" style="--tint:${c.tint};background:#000">${coverOf(k)?`<img src="${esc(coverOf(k))}" alt="${esc(c.label)}" style="width:100%;height:100%;object-fit:contain;object-position:center;background:#000;display:block">`:`<span class="glyph">${c.glyph}</span>`}</div>
+          <div class="photo category-cover" style="--tint:${c.tint};${coverOf(k)?`background-color:#000;background-image:url('${esc(coverOf(k))}');background-position:center;background-size:contain;background-repeat:no-repeat`:``}">${coverOf(k)?'':`<span class="glyph">${c.glyph}</span>`}</div>
           <div class="body">
             <div class="maker">趣味コレクション</div>
             <div class="name">${esc(c.label.replace(/^\S+\s+/,''))}</div>
