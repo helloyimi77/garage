@@ -43,7 +43,7 @@ input[type=text],input[type=password],select{width:100%;padding:10px;border:1px 
 <body>
 <main>
   <h1>GARAGE <span class="tag">写真管理</span></h1>
-  <p class="sub">画像を選ぶ → 縮小 → images/&lt;id&gt;/ にコミット → vehicles.json を自動更新。<a href="./">サイトへ戻る</a></p>
+  <p class="sub">画像を選ぶ → 縮小 → GitHubへコミット → vehicles.json / plants.json を自動更新。<a href="./">サイトへ戻る</a></p>
 
   <!-- 認証 -->
   <section id="authBox">
@@ -102,12 +102,13 @@ input[type=text],input[type=password],select{width:100%;padding:10px;border:1px 
 const $ = s => document.querySelector(s);
 const LS = 'garage-admin';
 const cfg = () => ({owner:$('#owner').value.trim(), repo:$('#repo').value.trim(), branch:$('#branch').value.trim(), token:$('#token').value.trim()});
-const CATS = {car:'車',bike:'バイク',escooter:'電動キックボード',roadbike:'ロードバイク',horse:'愛馬',golf:'ゴルフ',fishing:'釣り',camping:'キャンプ',airsoft:'サバゲー',rc:'ラジコン'};
-const COVER_CATS = ['golf','fishing','camping','airsoft','rc'];
+const CATS = {car:'車',bike:'バイク',escooter:'電動キックボード',roadbike:'ロードバイク',horse:'愛馬',golf:'ゴルフ',fishing:'釣り',camping:'キャンプ',airsoft:'サバゲー',rc:'ラジコン',plant:'植物'};
+const COVER_CATS = ['golf','fishing','camping','airsoft','rc','plant'];
 function coverItem(k){ data.covers ||= {}; const o = (data.covers[k] ||= {}); o.id = 'cover-'+k; o.name = (CATS[k]||k)+'の表紙'; o.photos ||= {main:null, gallery:[]}; o.photos.gallery ||= []; return o; }
-const findItem = id => id.startsWith('cover-') ? coverItem(id.slice(6)) : data.vehicles.find(v => v.id === id);
+const findItem = id => id.startsWith('cover-') ? coverItem(id.slice(6)) : id.startsWith('plant:') ? plantsData.plants.find(v => v.id === id.slice(6)) : data.vehicles.find(v => v.id === id);
+const sourceOfId = id => id.startsWith('plant:') ? 'plants' : 'vehicles';
 
-let data = null, jsonSha = null, eol = '\n', queue = [], dirty = false;
+let data = null, plantsData = null, jsonSha = null, plantsJsonSha = null, eol = '\n', plantsEol = '\n', queue = [], dirty = false;
 
 // ---------- 設定保存 ----------
 try{ const s = JSON.parse(localStorage.getItem(LS)||'{}'); for(const k of ['owner','repo','branch','token']) if(s[k]) $('#'+k).value = s[k]; }catch(e){}
@@ -132,17 +133,30 @@ function utf8ToB64(s){ const bytes = new TextEncoder().encode(s); let bin=''; fo
 const blobToB64 = blob => new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result.split(',')[1]); fr.onerror=rej; fr.readAsDataURL(blob); });
 
 async function loadJson(){
-  const f = await gh('vehicles.json');
+  const [f, pf] = await Promise.all([gh('vehicles.json'), gh('plants.json')]);
+
   jsonSha = f.sha;
   const text = b64ToUtf8(f.content);
   eol = text.includes('\r\n') ? '\r\n' : '\n';
   data = JSON.parse(text);
+
+  plantsJsonSha = pf.sha;
+  const ptext = b64ToUtf8(pf.content);
+  plantsEol = ptext.includes('\r\n') ? '\r\n' : '\n';
+  plantsData = JSON.parse(ptext);
 }
-async function commitJson(message){
-  let text = JSON.stringify(data, null, 2) + '\n';
-  if(eol==='\r\n') text = text.replace(/\n/g,'\r\n');
-  const r = await gh('vehicles.json', {method:'PUT', body:{message, content:utf8ToB64(text), sha:jsonSha, branch:cfg().branch}});
-  jsonSha = r.content.sha;
+async function commitJson(message, source='vehicles'){
+  const isPlants = source === 'plants';
+  const obj = isPlants ? plantsData : data;
+  const path = isPlants ? 'plants.json' : 'vehicles.json';
+  const sha = isPlants ? plantsJsonSha : jsonSha;
+  const lineEnding = isPlants ? plantsEol : eol;
+
+  let text = JSON.stringify(obj, null, 2) + '\n';
+  if(lineEnding==='\r\n') text = text.replace(/\n/g,'\r\n');
+  const r = await gh(path, {method:'PUT', body:{message, content:utf8ToB64(text), sha, branch:cfg().branch}});
+  if(isPlants) plantsJsonSha = r.content.sha;
+  else jsonSha = r.content.sha;
 }
 
 // ---------- 接続 ----------
@@ -150,7 +164,7 @@ $('#connect').onclick = async () => {
   saveCfg(); msg('#authStatus','読み込み中…');
   try{
     await loadJson();
-    msg('#authStatus', `OK：${data.vehicles.length}件`);
+    msg('#authStatus', `OK：GARAGE ${data.vehicles.length}件 / 植物 ${plantsData.plants.length}種`);
     renderItems(); $('#app').classList.remove('hide');
   }catch(e){ msg('#authStatus', '失敗：'+e.message, true); }
 };
@@ -159,17 +173,30 @@ function renderItems(){
   const sel = $('#item'), prev = sel.value;
   const groups = {};
   data.vehicles.forEach(v => (groups[v.category] ||= []).push(v));
-  sel.innerHTML = `<optgroup label="表紙（趣味カテゴリ）">` + COVER_CATS.map(k => { const o = coverItem(k); return `<option value="${o.id}">${esc(o.name)} — ${o.photos.main?'設定済':'未設定'}</option>`; }).join('') + '</optgroup>' + Object.keys(groups).map(c =>
+
+  const covers = `<optgroup label="表紙（趣味カテゴリ）">` + COVER_CATS.map(k => {
+    const o = coverItem(k);
+    return `<option value="${o.id}">${esc(o.name)} — ${o.photos.main?'設定済':'未設定'}</option>`;
+  }).join('') + '</optgroup>';
+
+  const regular = Object.keys(groups).map(c =>
     `<optgroup label="${CATS[c]||c}">` + groups[c].map(v =>
       `<option value="${esc(v.id)}">${esc(v.name)}${v.status==='sold'?'（売却済）':''} — ${(v.photos?.gallery?.length||0)+(v.photos?.main?1:0)}枚</option>`).join('') + '</optgroup>'
   ).join('');
-  if(prev) sel.value = prev;
+
+  const plants = `<optgroup label="植物">` + (plantsData?.plants||[]).map(v =>
+    `<option value="plant:${esc(v.id)}">${esc(v.name)}${v.status_label?`（${esc(v.status_label)}）`:''} — ${(v.photos?.gallery?.length||0)+(v.photos?.main?1:0)}枚</option>`
+  ).join('') + '</optgroup>';
+
+  sel.innerHTML = covers + regular + plants;
+  if(prev && [...sel.options].some(o=>o.value===prev)) sel.value = prev;
   renderCurrent();
 }
 $('#item').onchange = () => { if(dirty && !confirm('未保存の変更を破棄しますか？')){ return; } dirty=false; reloadSoft(); };
 async function reloadSoft(){ await loadJson(); renderItems(); }
 
 const cur = () => findItem($('#item').value);
+const curSource = () => sourceOfId($('#item').value);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mediaTag = p => /\.(mp4|webm|mov)$/i.test(p) ? `<video src="${esc(p)}" muted playsinline></video>` : `<img src="${esc(p)}" loading="lazy" alt="">`;
 
@@ -202,7 +229,7 @@ $('#current').onclick = e => {
 };
 $('#saveJson').onclick = async () => {
   msg('#jsonStatus','保存中…');
-  try{ await commitJson(`photos: reorder ${cur().id}`); dirty=false; msg('#jsonStatus','保存しました'); renderItems(); }
+  try{ await commitJson(`photos: reorder ${cur().id}`, curSource()); dirty=false; msg('#jsonStatus','保存しました'); renderItems(); }
   catch(e){ msg('#jsonStatus','失敗：'+e.message+'\n（別の場所で更新された可能性。接続し直してください）',true); }
 };
 
@@ -242,9 +269,17 @@ async function resize(file){
   c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
   return new Promise(res => c.toBlob(res, 'image/jpeg', q));
 }
-function prefixOf(v){
-  // 既存ファイル名から接頭辞（例 dc2_03_meter.jpg → dc2）と次の連番を推定
+function prefixOf(v, source='vehicles'){
+  // 既存ファイル名から接頭辞と次の連番を推定
   const all = [v.photos?.main, ...(v.photos?.gallery||[])].filter(Boolean).map(p=>p.split('/').pop());
+
+  if(source==='plants'){
+    const safeId = v.id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const re = new RegExp('^' + safeId + '_(\\d+)', 'i');
+    const nums = all.map(n=>n.match(re)).filter(Boolean).map(x=>+x[1]);
+    return {prefix:v.id, next:Math.max(0,...nums)+1, dir:'images/plants'};
+  }
+
   const m = all.map(n=>n.match(/^([a-z0-9-]+)_(\d+)/i)).filter(Boolean);
   if(v.id.startsWith('cover-')){ const k=v.id.slice(6); return {prefix:k, next:Math.max(0,...m.map(x=>+x[2]))+1, dir:'images/hobby-covers'}; }
   const prefix = m[0]?.[1] || v.id.split('-')[0];
@@ -254,12 +289,12 @@ function prefixOf(v){
 }
 
 $('#upload').onclick = async () => {
-  const v = cur(); $('#upload').disabled = true;
+  const key = $('#item').value, source = sourceOfId(key), v = cur(); $('#upload').disabled = true;
   try{
     await loadJson();                 // 最新のshaとデータを取り直す
-    const fresh = findItem(v.id);
+    const fresh = findItem(key);
     fresh.photos ||= {main:null, gallery:[]}; fresh.photos.gallery ||= [];
-    let {prefix, next, dir} = prefixOf(fresh);
+    let {prefix, next, dir} = prefixOf(fresh, source);
     const stamp = new Date().toISOString().slice(0,10);
     for(let i=0;i<queue.length;i++){
       const q = queue[i];
@@ -276,8 +311,8 @@ $('#upload').onclick = async () => {
       else if(!fresh.photos.main && !q.video) fresh.photos.main = path;
       else fresh.photos.gallery.push(path);
     }
-    msg('#upStatus','vehicles.json を更新中…');
-    await commitJson(`photos: update ${fresh.id} (+${queue.length})`);
+    msg('#upStatus', (source==='plants'?'plants.json':'vehicles.json') + ' を更新中…');
+    await commitJson(`photos: update ${fresh.id} (+${queue.length})`, source);
     queue.forEach(q=>URL.revokeObjectURL(q.url)); queue = []; renderQueue(); dirty=false; renderItems();
     msg('#upStatus','完了！1〜2分でサイトに反映されます');
   }catch(e){ msg('#upStatus','失敗：'+e.message, true); $('#upload').disabled = false; }
