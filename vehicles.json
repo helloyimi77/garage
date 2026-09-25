@@ -4503,8 +4503,11 @@
       ],
       "status": "active",
       "photos": {
-        "main": "images/rc-porsche-gt3r/rc_01_2026-09-24.jpg",
-        "gallery": []
+        "main": "images/rc-porsche-gt3r/rc_04_2026-09-25.jpg",
+        "gallery": [
+          "images/rc-porsche-gt3r/rc_01_2026-09-24.jpg",
+          "images/rc-porsche-gt3r/rc_05_2026-09-25.jpg"
+        ]
       }
     },
     {
