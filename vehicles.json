@@ -4466,8 +4466,10 @@
       ],
       "status": "active",
       "photos": {
-        "main": "images/rc-ta08r/rc_01_2026-09-24.jpg",
-        "gallery": []
+        "main": "images/rc-ta08r/rc_02_2026-09-25.jpg",
+        "gallery": [
+          "images/rc-ta08r/rc_01_2026-09-24.jpg"
+        ]
       }
     },
     {
