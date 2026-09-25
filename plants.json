@@ -3,36 +3,6 @@
   "title": "GARAGE",
   "plants": [
     {
-      "id": "AN-001",
-      "category": "plant",
-      "status": "active",
-      "status_label": "運用中",
-      "name": "アヌビアス・ナナ プチ",
-      "common_name": "アヌビアス・ナナ プチ",
-      "cultivar": "アヌビアス・ナナ プチ",
-      "taxonomy": {
-        "family": "サトイモ科",
-        "genus": "アヌビアス",
-        "species": "barteri",
-        "scientific_name": "Anubias barteri var. nana 'Petite'"
-      },
-      "purchase": {
-        "date": "2024-06-04",
-        "price": null
-      },
-      "medium": "JUN プラチナソイル",
-      "case_ids": [
-        "008"
-      ],
-      "note": "",
-      "photos": {
-        "main": "images/plants/AN-001.jpg",
-        "gallery": [
-          "images/plants/AN-001.jpg"
-        ]
-      }
-    },
-    {
       "id": "BU-001",
       "category": "plant",
       "status": "active",
