@@ -181,9 +181,7 @@
       "purchase": {
         "price": null
       },
-      "plant_ids": [
-        "AN-001"
-      ],
+      "plant_ids": [],
       "note": ""
     },
     {
