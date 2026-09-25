@@ -4630,8 +4630,10 @@
       "id": "cover-golf",
       "name": "ゴルフの表紙",
       "photos": {
-        "main": "images/hobby-covers/golf.jpg",
-        "gallery": []
+        "main": "images/hobby-covers/golf_02_2026-09-25.jpg",
+        "gallery": [
+          "images/hobby-covers/golf.jpg"
+        ]
       }
     },
     "fishing": {
