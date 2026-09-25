@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>GARAGE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -229,12 +232,25 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 <aside class="drawer" id="drawer" aria-label="車両の詳細"></aside>
 
 <script>
+const APP_BUILD = '20260925-0626';
+(async()=>{
+  try{
+    const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
+    if(!r.ok) return;
+    const latest = await r.json();
+    if(latest.build && latest.build !== APP_BUILD){
+      const u = new URL(location.href);
+      u.searchParams.set('v', latest.build);
+      location.replace(u.toString());
+    }
+  }catch(_){}
+})();
 const GROUPS = {
   vehicle: { label: '乗り物', cats: ['car','bike','escooter','roadbike','horse'] },
   hobby:   { label: '趣味',   cats: ['golf','fishing','camping','airsoft','rc','plant'] }
 };
 const HOBBY_COVERS = {
-  golf: 'images/hobby-covers/golf.jpg',
+  golf: 'images/hobby-covers/golf_03_2026-09-25.jpg',
   fishing: 'images/hobby-covers/fishing.jpg',
   camping: 'images/hobby-covers/camping.jpg',
   plant: 'images/plants/JO-004.jpg'
