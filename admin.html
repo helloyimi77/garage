@@ -174,7 +174,13 @@ function renderItems(){
   const groups = {};
   data.vehicles.forEach(v => (groups[v.category] ||= []).push(v));
 
-  const covers = `<optgroup label="表紙（趣味カテゴリ）">` + COVER_CATS.map(k => {
+  const vehicleTop = `<optgroup label="乗り物トップ画像">` + data.vehicles
+    .filter(v => (v.group||'vehicle')==='vehicle' && v.status!=='sold')
+    .sort((a,b)=>['car','bike','escooter','roadbike','horse'].indexOf(a.category)-['car','bike','escooter','roadbike','horse'].indexOf(b.category))
+    .map(v => `<option value="${esc(v.id)}">${esc(CATS[v.category]||v.category)}：${esc(v.name)} — ${(v.photos?.gallery?.length||0)+(v.photos?.main?1:0)}枚</option>`)
+    .join('') + '</optgroup>';
+
+  const covers = `<optgroup label="趣味トップ画像">` + COVER_CATS.map(k => {
     const o = coverItem(k);
     return `<option value="${o.id}">${esc(o.name)} — ${o.photos.main?'設定済':'未設定'}</option>`;
   }).join('') + '</optgroup>';
@@ -188,7 +194,7 @@ function renderItems(){
     `<option value="plant:${esc(v.id)}">${esc(v.name)}${v.status_label?`（${esc(v.status_label)}）`:''} — ${(v.photos?.gallery?.length||0)+(v.photos?.main?1:0)}枚</option>`
   ).join('') + '</optgroup>';
 
-  sel.innerHTML = covers + regular + plants;
+  sel.innerHTML = vehicleTop + covers + regular + plants;
   if(prev && [...sel.options].some(o=>o.value===prev)) sel.value = prev;
   renderCurrent();
 }
