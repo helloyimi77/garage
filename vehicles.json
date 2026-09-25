@@ -4656,8 +4656,10 @@
       "id": "cover-rc",
       "name": "ラジコンの表紙",
       "photos": {
-        "main": "images/hobby-covers/rc_01_2026-09-24.jpg",
-        "gallery": []
+        "main": "images/hobby-covers/rc_02_2026-09-25.jpg",
+        "gallery": [
+          "images/hobby-covers/rc_01_2026-09-24.jpg"
+        ]
       }
     },
     "plant": {
