@@ -4436,9 +4436,9 @@
         "price": null
       },
       "specs": {
-        "点数": "15点",
-        "総重量目安": "約19.7kg",
-        "合計金額": "¥76,599"
+        "点数": "16点",
+        "総重量目安": "約21.9kg",
+        "合計金額": "¥100,299"
       },
       "customs": [],
       "equipment": [
@@ -4562,6 +4562,14 @@
           "note": "",
           "image": "https://item-shopping.c.yimg.jp/i/n/mitsuyoshi_evn2-eby647-0-0_2_d_20221006162752",
           "imageSource": "https://store.shopping.yahoo.co.jp/mitsuyoshi/evn2-eby647-0-0.html"
+        },
+        {
+          "name": "CAMP GEAR BAG グレージュ",
+          "maker": "RATEL WORKS",
+          "price": 8700,
+          "note": "約2.2kg / RWS0056 / グレージュ",
+          "image": "https://item-shopping.c.yimg.jp/i/n/ratelworks_rws0056",
+          "imageSource": "https://ratelworks.jp/product/bag_pouch/camp-gear-bag2/"
         }
       ],
       "photos": {
