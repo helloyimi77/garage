@@ -98,6 +98,7 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .packing-sync b{color:var(--ink)}
 .packing-sync button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 10px;font-size:12px}
 .packing-sync button:hover{border-color:var(--ink)}
+.packing-sync input[type="email"]{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 10px;min-width:min(280px,70vw)}
 .packing-sync .ok{color:#1E6B45}
 .packing-sync .errtxt{color:#8E2A36}
 .fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
@@ -240,8 +241,9 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" aria-label="車両の詳細"></aside>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261003-2345';
+const APP_BUILD = '20261004-0005';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -288,10 +290,19 @@ const isSold = v => v.status !== 'active';
 
 const PACKING_STORAGE_KEY = 'garagePackingChecklistV1';
 const PACKING_PENDING_KEY = 'garagePackingPendingOpsV1';
-const PACKING_TOKEN_KEY = 'garageGithubTokenV1';
-const PACKING_MIGRATED_KEY = 'garagePackingMigratedToGithubV1';
-const GITHUB_STATE_REPO = 'helloyimi77/garage-state';
-const GITHUB_STATE_PATH = 'packing-checklist.json';
+const PACKING_MIGRATED_KEY = 'garagePackingMigratedToSupabaseV1';
+
+const SUPABASE_URL = 'https://vpkmhncjduyjoavnxejr.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_ENyF-hJ3lkSjo4JxiDVmlg_YHvnrqA9';
+const PACKING_REDIRECT_URL = 'https://helloyimi77.github.io/garage/';
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true
+  }
+});
 
 function loadPackingChecklist(){
   try{
@@ -313,7 +324,8 @@ function loadPackingPending(){
   }catch(_){ return []; }
 }
 let packingPendingOps = loadPackingPending();
-let packingSyncState = localStorage.getItem(PACKING_TOKEN_KEY) ? '待機中' : '未設定';
+let packingUser = null;
+let packingSyncState = '未ログイン';
 let packingSyncBusy = false;
 let packingSyncAgain = false;
 
@@ -338,19 +350,36 @@ function setPackingChecked(mode,key,checked){
   else delete packingChecklist[mode][key];
   savePackingLocal();
   queuePackingOp(mode,key,checked);
-  if(githubPackingToken()) syncPackingFromGitHub();
+  if(packingUser) syncPackingFromSupabase();
+  else {
+    packingSyncState = '未ログイン・端末内に保存';
+    updateVisiblePackingChecks();
+  }
 }
-function githubPackingToken(){
-  try{ return (localStorage.getItem(PACKING_TOKEN_KEY)||'').trim(); }catch(_){ return ''; }
+function packingStateFromRows(rows){
+  const state = {car:{}, bike:{}};
+  (rows||[]).forEach(r=>{
+    if(r.checked && (r.mode==='car' || r.mode==='bike') && r.item_key){
+      state[r.mode][r.item_key] = true;
+    }
+  });
+  return state;
 }
 function packingStatusHtml(){
-  const connected = !!githubPackingToken();
+  const loggedIn = !!packingUser;
   const cls = packingSyncState.startsWith('同期済') ? 'ok' : packingSyncState.startsWith('エラー') ? 'errtxt' : '';
+  if(loggedIn){
+    return `<div class="packing-sync">
+      <span>☁ Supabase: <b class="${cls}">${esc(packingSyncState)}</b></span>
+      <span>${esc(packingUser.email||'ログイン済み')}</span>
+      <button type="button" data-pack-action="sync">今すぐ同期</button>
+      <button type="button" data-pack-action="logout">ログアウト</button>
+    </div>`;
+  }
   return `<div class="packing-sync">
-    <span>☁ GitHub同期: <b class="${cls}">${esc(packingSyncState)}</b></span>
-    <span>${esc(GITHUB_STATE_REPO)}</span>
-    <button type="button" data-pack-action="setup">${connected?'トークン変更':'設定'}</button>
-    ${connected?'<button type="button" data-pack-action="sync">今すぐ同期</button><button type="button" data-pack-action="disconnect">解除</button>':''}
+    <span>☁ Supabase: <b class="${cls}">${esc(packingSyncState)}</b></span>
+    <input type="email" class="packing-email" autocomplete="email" placeholder="メールアドレス">
+    <button type="button" data-pack-action="login">ログインリンク送信</button>
   </div>`;
 }
 function updateVisiblePackingChecks(){
@@ -360,116 +389,61 @@ function updateVisiblePackingChecks(){
   const box = document.querySelector('.packing-sync');
   if(box) box.outerHTML = packingStatusHtml();
 }
-function utf8ToBase64(str){
-  const bytes = new TextEncoder().encode(str);
-  let binary = '';
-  bytes.forEach(b=>{ binary += String.fromCharCode(b); });
-  return btoa(binary);
+async function fetchPackingRows(){
+  const {data,error} = await sb
+    .from('packing_checklist')
+    .select('mode,item_key,checked,updated_at');
+  if(error) throw error;
+  return data || [];
 }
-function base64ToUtf8(str){
-  const clean = String(str||'').replace(/\s/g,'');
-  const binary = atob(clean);
-  const bytes = Uint8Array.from(binary, c=>c.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
+async function flushPackingOps(ops){
+  if(!ops.length || !packingUser) return;
+  const now = new Date().toISOString();
+  const rows = ops.map(op=>({
+    user_id: packingUser.id,
+    mode: op.mode,
+    item_key: op.key,
+    checked: !!op.checked,
+    updated_at: now
+  }));
+  const {error} = await sb
+    .from('packing_checklist')
+    .upsert(rows, {onConflict:'user_id,mode,item_key'});
+  if(error) throw error;
 }
-function normalizePackingState(d){
-  return {
-    version: 1,
-    updatedAt: d?.updatedAt || null,
-    car: d?.car && typeof d.car==='object' ? d.car : {},
-    bike: d?.bike && typeof d.bike==='object' ? d.bike : {}
-  };
-}
-function applyPackingOps(state, ops){
-  const next = normalizePackingState(state);
-  ops.forEach(op=>{
-    if(!['car','bike'].includes(op.mode) || !op.key) return;
-    if(op.checked) next[op.mode][op.key] = true;
-    else delete next[op.mode][op.key];
-  });
-  next.updatedAt = new Date().toISOString();
-  return next;
-}
-async function githubPackingFetch(){
-  const token = githubPackingToken();
-  if(!token) throw new Error('GitHubトークン未設定');
-  const url = `https://api.github.com/repos/${GITHUB_STATE_REPO}/contents/${GITHUB_STATE_PATH}`;
-  const r = await fetch(url, {
-    headers:{
-      'Accept':'application/vnd.github+json',
-      'Authorization':`Bearer ${token}`,
-      'X-GitHub-Api-Version':'2022-11-28'
-    },
-    cache:'no-store'
-  });
-  if(r.status===404) return {sha:null, data:null};
-  if(!r.ok) throw new Error(`GitHub GET ${r.status}`);
-  const j = await r.json();
-  return {sha:j.sha, data:normalizePackingState(JSON.parse(base64ToUtf8(j.content)))};
-}
-async function githubPackingPut(state, sha){
-  const token = githubPackingToken();
-  const url = `https://api.github.com/repos/${GITHUB_STATE_REPO}/contents/${GITHUB_STATE_PATH}`;
-  const body = {
-    message:'Update Garage packing checklist',
-    content:utf8ToBase64(JSON.stringify(state,null,2)+'\n')
-  };
-  if(sha) body.sha = sha;
-  const r = await fetch(url, {
-    method:'PUT',
-    headers:{
-      'Accept':'application/vnd.github+json',
-      'Authorization':`Bearer ${token}`,
-      'X-GitHub-Api-Version':'2022-11-28',
-      'Content-Type':'application/json'
-    },
-    body:JSON.stringify(body)
-  });
-  if(!r.ok){
-    const err = new Error(`GitHub PUT ${r.status}`);
-    err.status = r.status;
-    throw err;
-  }
-  return r.json();
-}
-async function syncPackingFromGitHub(){
-  if(!githubPackingToken()) return;
+async function syncPackingFromSupabase(){
+  if(!packingUser) return;
   if(packingSyncBusy){ packingSyncAgain = true; return; }
   packingSyncBusy = true;
   let syncSucceeded = false;
   packingSyncState = '同期中…';
   updateVisiblePackingChecks();
   try{
-    // First upgrade from the previous local-only version: preserve current checked items as pending changes.
+    // Preserve checks created before Supabase was enabled and upload them once.
     if(!localStorage.getItem(PACKING_MIGRATED_KEY)){
       for(const mode of ['car','bike']){
         for(const key of Object.keys(packingChecklist[mode]||{})){
-          if(!packingPendingOps.some(x=>x.mode===mode && x.key===key)) queuePackingOp(mode,key,true);
+          if(!packingPendingOps.some(x=>x.mode===mode && x.key===key)){
+            queuePackingOp(mode,key,true);
+          }
         }
       }
       localStorage.setItem(PACKING_MIGRATED_KEY,'1');
     }
 
     const snapshot = [...packingPendingOps];
-    let remote = await githubPackingFetch();
-    let merged = remote.data ? normalizePackingState(remote.data) : {version:1,updatedAt:null,car:{},bike:{}};
-    merged = applyPackingOps(merged, snapshot);
+    await flushPackingOps(snapshot);
 
-    // Retry once if another device updated the file between GET and PUT.
-    try{
-      await githubPackingPut(merged, remote.sha);
-    }catch(err){
-      if(err.status!==409 && err.status!==422) throw err;
-      remote = await githubPackingFetch();
-      merged = applyPackingOps(remote.data || {version:1,car:{},bike:{}}, snapshot);
-      await githubPackingPut(merged, remote.sha);
+    if(snapshot.length){
+      const sent = new Set(snapshot.map(x=>`${x.mode}\u0000${x.key}\u0000${x.ts}`));
+      packingPendingOps = packingPendingOps.filter(x=>!sent.has(`${x.mode}\u0000${x.key}\u0000${x.ts}`));
+      savePackingPending();
     }
 
-    packingChecklist = {car:merged.car||{}, bike:merged.bike||{}};
+    // Re-read after writes so changes made by another device are also visible.
+    const rows = await fetchPackingRows();
+    packingChecklist = packingStateFromRows(rows);
     savePackingLocal();
-    const sent = new Set(snapshot.map(x=>`${x.mode}\u0000${x.key}\u0000${x.ts}`));
-    packingPendingOps = packingPendingOps.filter(x=>!sent.has(`${x.mode}\u0000${x.key}\u0000${x.ts}`));
-    savePackingPending();
     packingSyncState = '同期済 ' + new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
     syncSucceeded = true;
   }catch(err){
@@ -479,29 +453,64 @@ async function syncPackingFromGitHub(){
     updateVisiblePackingChecks();
     if(packingSyncAgain || (syncSucceeded && packingPendingOps.length)){
       packingSyncAgain = false;
-      if(githubPackingToken()) setTimeout(syncPackingFromGitHub, 300);
+      if(packingUser) setTimeout(syncPackingFromSupabase, 300);
     }
   }
 }
-function configurePackingGitHub(){
-  const current = githubPackingToken();
-  const token = prompt(
-    'Fine-grained GitHub PAT を入力してください。\n対象repo: '+GITHUB_STATE_REPO+'\n権限: Contents = Read and write\n\nトークンはこの端末のブラウザ内だけに保存されます。既存トークンは画面には表示しません。',
-    ''
-  );
-  if(token===null) return;
-  const t = token.trim();
-  if(!t) return;
-  localStorage.setItem(PACKING_TOKEN_KEY,t);
-  packingSyncState = '待機中';
+async function sendPackingMagicLink(){
+  const input = document.querySelector('.packing-email');
+  const email = (input?.value||'').trim();
+  if(!email){
+    packingSyncState = 'メールアドレスを入力してください';
+    updateVisiblePackingChecks();
+    return;
+  }
+  packingSyncState = '送信中…';
   updateVisiblePackingChecks();
-  syncPackingFromGitHub();
+  const {error} = await sb.auth.signInWithOtp({
+    email,
+    options:{ emailRedirectTo: PACKING_REDIRECT_URL }
+  });
+  if(error){
+    packingSyncState = 'エラー: ' + error.message;
+  }else{
+    packingSyncState = 'ログインメール送信済み';
+  }
+  updateVisiblePackingChecks();
 }
-function disconnectPackingGitHub(){
-  if(!confirm('この端末のGitHub同期設定を解除しますか？\nチェック状態のローカルコピーは残ります。')) return;
-  localStorage.removeItem(PACKING_TOKEN_KEY);
-  packingSyncState = '未設定';
+async function logoutPacking(){
+  await sb.auth.signOut();
+  packingUser = null;
+  packingSyncState = '未ログイン';
   updateVisiblePackingChecks();
+}
+async function initPackingAuth(){
+  try{
+    const {data,error} = await sb.auth.getSession();
+    if(error) throw error;
+    packingUser = data.session?.user || null;
+    packingSyncState = packingUser ? '接続済み' : '未ログイン';
+    updateVisiblePackingChecks();
+    if(packingUser) syncPackingFromSupabase();
+  }catch(err){
+    packingSyncState = 'エラー: ' + (err?.message || '認証確認失敗');
+    updateVisiblePackingChecks();
+  }
+
+  sb.auth.onAuthStateChange((event,session)=>{
+    const nextUser = session?.user || null;
+    const changedUser = nextUser?.id !== packingUser?.id;
+    packingUser = nextUser;
+    if(packingUser){
+      packingSyncState = '接続済み';
+      if(changedUser || event==='SIGNED_IN' || event==='TOKEN_REFRESHED'){
+        setTimeout(syncPackingFromSupabase,0);
+      }
+    }else{
+      packingSyncState = '未ログイン';
+    }
+    updateVisiblePackingChecks();
+  });
 }
 
 let DATA = { vehicles: [] };
@@ -560,7 +569,6 @@ async function load(){
   }
   document.getElementById('title').textContent = DATA.title || 'GARAGE';
   renderTabs(); renderSummary(); renderGrid(); renderTimeline();
-  if(githubPackingToken()) syncPackingFromGitHub();
   if(location.hash) openDetail(location.hash.slice(1));
 }
 
@@ -788,7 +796,7 @@ function renderGrid(){
           <tbody>${rows}</tbody>
         </table></div></section>`;
     }).join('');
-    g.innerHTML = `<div class="fish-wrap">${packingStatusHtml()}<div class="packing-note">車・バイク別のチェック状態をGitHubへ保存。未接続時もこの端末に一時保存します。</div>${html}</div>`;
+    g.innerHTML = `<div class="fish-wrap">${packingStatusHtml()}<div class="packing-note">車・バイク別のチェック状態をSupabaseへ保存。未ログイン・通信不可のときもこの端末に一時保存します。</div>${html}</div>`;
     return;
   }
 
@@ -1011,9 +1019,9 @@ document.getElementById('grid').addEventListener('click', e=>{
   if(pa){
     e.preventDefault();
     const a = pa.dataset.packAction;
-    if(a==='setup') configurePackingGitHub();
-    else if(a==='sync') syncPackingFromGitHub();
-    else if(a==='disconnect') disconnectPackingGitHub();
+    if(a==='login') sendPackingMagicLink();
+    else if(a==='sync') syncPackingFromSupabase();
+    else if(a==='logout') logoutPacking();
     return;
   }
   if(e.target.closest('.packing-check')) return;
@@ -1026,6 +1034,7 @@ document.getElementById('drawer').addEventListener('click', e=>{ if(e.target.clo
 document.getElementById('overlay').addEventListener('click', closeDetail);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDetail(); });
 
+initPackingAuth();
 load();
 </script>
 </body>
