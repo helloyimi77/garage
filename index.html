@@ -569,7 +569,7 @@ async function load(){
   }
   document.getElementById('title').textContent = DATA.title || 'GARAGE';
   renderTabs(); renderSummary(); renderGrid(); renderTimeline();
-  if(location.hash) openDetail(location.hash.slice(1));
+  if(location.hash && !/(access_token|refresh_token|error_description|error_code|type=)/.test(location.hash)) openDetail(location.hash.slice(1));
 }
 
 function renderTabs(){
