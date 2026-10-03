@@ -436,6 +436,7 @@ async function syncPackingFromGitHub(){
   if(!githubPackingToken()) return;
   if(packingSyncBusy){ packingSyncAgain = true; return; }
   packingSyncBusy = true;
+  let syncSucceeded = false;
   packingSyncState = '同期中…';
   updateVisiblePackingChecks();
   try{
@@ -470,12 +471,13 @@ async function syncPackingFromGitHub(){
     packingPendingOps = packingPendingOps.filter(x=>!sent.has(`${x.mode}\u0000${x.key}\u0000${x.ts}`));
     savePackingPending();
     packingSyncState = '同期済 ' + new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+    syncSucceeded = true;
   }catch(err){
     packingSyncState = 'エラー: ' + (err?.message || '同期失敗');
   }finally{
     packingSyncBusy = false;
     updateVisiblePackingChecks();
-    if(packingSyncAgain || packingPendingOps.length){
+    if(packingSyncAgain || (syncSucceeded && packingPendingOps.length)){
       packingSyncAgain = false;
       if(githubPackingToken()) setTimeout(syncPackingFromGitHub, 300);
     }
@@ -484,8 +486,8 @@ async function syncPackingFromGitHub(){
 function configurePackingGitHub(){
   const current = githubPackingToken();
   const token = prompt(
-    'Fine-grained GitHub PAT を入力してください。\n対象repo: '+GITHUB_STATE_REPO+'\n権限: Contents = Read and write\n\nトークンはこの端末のブラウザ内だけに保存されます。',
-    current
+    'Fine-grained GitHub PAT を入力してください。\n対象repo: '+GITHUB_STATE_REPO+'\n権限: Contents = Read and write\n\nトークンはこの端末のブラウザ内だけに保存されます。既存トークンは画面には表示しません。',
+    ''
   );
   if(token===null) return;
   const t = token.trim();
