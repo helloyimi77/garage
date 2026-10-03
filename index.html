@@ -249,7 +249,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-0135';
+const APP_BUILD = '20261004-0145';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -809,10 +809,10 @@ function renderGrid(){
     const html = list.map(v => {
       const eq = v.equipment||[];
       if(!eq.length) return '';
-      const rows = eq.map(e => {
+      const rows = eq.map((e,eqIndex) => {
         const n = parseNote(e.note);
         const key = packingItemKey(v,e);
-        return `<tr data-id="${esc(v.id)}">
+        return `<tr data-id="${esc(v.id)}" data-equipment-index="${eqIndex}">
           <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="car" data-pack-key="${esc(key)}" aria-label="車チェック: ${esc(e.name)}" ${packingChecked('car',key)?'checked':''}></td>
           <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="winter" data-pack-key="${esc(key)}" aria-label="厳冬チェック: ${esc(e.name)}" ${packingChecked('winter',key)?'checked':''}></td>
           <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="bike" data-pack-key="${esc(key)}" aria-label="バイクチェック: ${esc(e.name)}" ${packingChecked('bike',key)?'checked':''}></td>
@@ -898,6 +898,51 @@ function renderTimeline(){
     return `<div class="tl-row"><div class="lbl">${esc(v.name)}<small>${CATS[v.category]?.label||''} / ${fmtDate(v.purchase.date)} →${isSold(v)&&v.sold?.date?' '+fmtDate(v.sold.date):' 現在'}</small></div>
     <div class="track"><div class="bar ${isSold(v)?'sold':'open'}" style="left:${s}%;width:${Math.max(e-s,0.6)}%"></div></div></div>`;
   }).join('')}</div></div>`;
+}
+
+function openCampingItemDetail(categoryId, equipmentIndex){
+  const v = DATA.vehicles.find(x=>x.id===categoryId);
+  const e = v?.equipment?.[equipmentIndex];
+  if(!v || !e) return;
+
+  const key = packingItemKey(v,e);
+  const profileLabels = [
+    ['car','車'],
+    ['winter','厳冬'],
+    ['bike','バイク'],
+    ['ul','UL']
+  ].filter(([mode])=>packingChecked(mode,key)).map(([,label])=>label);
+
+  const hero = e.image
+    ? `<div class="hero" style="background:#fff"><img src="${esc(e.image)}" alt="${esc(e.name)}" style="object-fit:contain"></div>`
+    : `<div class="hero" style="--tint:var(--camping)"><span class="glyph">⛺</span></div>`;
+
+  const source = e.imageSource
+    ? `<section class="sec"><h3>画像元</h3><div class="memo"><a href="${esc(e.imageSource)}" target="_blank" rel="noopener noreferrer">元ページを開く ↗</a>${e.imageApproximate?'<br><small style="color:var(--ink-2)">※ 現在は近似画像</small>':''}</div></section>`
+    : '';
+
+  document.getElementById('drawer').innerHTML = `
+    ${hero}
+    <button class="close" id="close" aria-label="閉じる">×</button>
+    <div class="d-body">
+      <div class="maker">${esc(e.maker||'メーカー不明')}</div>
+      <h2>${esc(e.name)}</h2>
+      <div class="grade">キャンプ / ${esc(v.name)}</div>
+      <p class="own"><b>所有中</b>${profileLabels.length?` ・ ${profileLabels.map(esc).join(' / ')}`:''}</p>
+
+      <div class="money">
+        <div><span>購入価格</span><b>${e.price!=null?yen(e.price):'—'}</b></div>
+        <div><span>カテゴリ</span><b style="font-size:15px">${esc(v.name)}</b></div>
+      </div>
+
+      ${e.note?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(e.note)}</div></section>`:''}
+      ${source}
+    </div>`;
+
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('drawer').scrollTop = 0;
+  document.getElementById('close').focus();
 }
 
 function openDetail(id){
@@ -1062,7 +1107,15 @@ document.getElementById('grid').addEventListener('click', e=>{
   if(e.target.closest('.packing-check')) return;
   const j = e.target.closest('[data-jump]');
   if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
-  const row = e.target.closest('tr[data-id]'); if(row){ openDetail(row.dataset.id); return; }
+  const row = e.target.closest('tr[data-id]');
+  if(row){
+    if(row.dataset.equipmentIndex !== undefined){
+      openCampingItemDetail(row.dataset.id, Number(row.dataset.equipmentIndex));
+    }else{
+      openDetail(row.dataset.id);
+    }
+    return;
+  }
   const c = e.target.closest('.card'); if(c && c.dataset.id) openDetail(c.dataset.id);
 });
 document.getElementById('drawer').addEventListener('click', e=>{ if(e.target.closest('#close')) closeDetail(); });
