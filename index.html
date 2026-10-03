@@ -91,6 +91,7 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .fishing-list td.tackle{font-size:13px;color:var(--ink);line-height:1.4}
 .fishing-list td.tackle small,.fishing-list td.num small{display:block;color:var(--ink-2);font-size:11px;font-weight:400;margin-top:2px;font-variant-numeric:tabular-nums}
 .fishing-list td.total{font-weight:700}
+.golf-list[data-cat="camping"] table{min-width:820px}
 .fishing-list th.check-col,.fishing-list td.check-col{width:48px;min-width:48px;text-align:center;padding-left:4px;padding-right:4px}
 .packing-check{width:20px;height:20px;vertical-align:middle;cursor:pointer;accent-color:var(--oil)}
 .packing-note{font-size:12px;color:var(--ink-2);margin-bottom:-8px}
@@ -243,7 +244,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-0005';
+const APP_BUILD = '20261004-0020';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -309,10 +310,12 @@ function loadPackingChecklist(){
     const saved = JSON.parse(localStorage.getItem(PACKING_STORAGE_KEY) || '{}');
     return {
       car: saved.car && typeof saved.car === 'object' ? saved.car : {},
-      bike: saved.bike && typeof saved.bike === 'object' ? saved.bike : {}
+      winter: saved.winter && typeof saved.winter === 'object' ? saved.winter : {},
+      bike: saved.bike && typeof saved.bike === 'object' ? saved.bike : {},
+      ul: saved.ul && typeof saved.ul === 'object' ? saved.ul : {}
     };
   }catch(_){
-    return {car:{}, bike:{}};
+    return {car:{}, winter:{}, bike:{}, ul:{}};
   }
 }
 let packingChecklist = loadPackingChecklist();
@@ -329,8 +332,29 @@ let packingSyncState = '未ログイン';
 let packingSyncBusy = false;
 let packingSyncAgain = false;
 
+const PACKING_MODES = ['car','winter','bike','ul'];
+const PACKING_DB_PREFIX = {
+  winter: '__winter__::',
+  ul: '__ul__::'
+};
 const packingItemKey = (v,e) => [v.id, e.maker||'', e.name||''].join('::');
 const packingChecked = (mode,key) => !!packingChecklist?.[mode]?.[key];
+function packingToDb(mode,key){
+  if(mode==='winter') return {mode:'car', key:PACKING_DB_PREFIX.winter + key};
+  if(mode==='ul') return {mode:'bike', key:PACKING_DB_PREFIX.ul + key};
+  return {mode, key};
+}
+function packingFromDb(row){
+  if(!row?.item_key) return null;
+  if(row.mode==='car' && row.item_key.startsWith(PACKING_DB_PREFIX.winter)){
+    return {mode:'winter', key:row.item_key.slice(PACKING_DB_PREFIX.winter.length)};
+  }
+  if(row.mode==='bike' && row.item_key.startsWith(PACKING_DB_PREFIX.ul)){
+    return {mode:'ul', key:row.item_key.slice(PACKING_DB_PREFIX.ul.length)};
+  }
+  if(row.mode==='car' || row.mode==='bike') return {mode:row.mode, key:row.item_key};
+  return null;
+}
 
 function savePackingLocal(){
   try{ localStorage.setItem(PACKING_STORAGE_KEY, JSON.stringify(packingChecklist)); }catch(_){}
@@ -357,10 +381,11 @@ function setPackingChecked(mode,key,checked){
   }
 }
 function packingStateFromRows(rows){
-  const state = {car:{}, bike:{}};
+  const state = {car:{}, winter:{}, bike:{}, ul:{}};
   (rows||[]).forEach(r=>{
-    if(r.checked && (r.mode==='car' || r.mode==='bike') && r.item_key){
-      state[r.mode][r.item_key] = true;
+    const decoded = packingFromDb(r);
+    if(r.checked && decoded){
+      state[decoded.mode][decoded.key] = true;
     }
   });
   return state;
@@ -399,13 +424,16 @@ async function fetchPackingRows(){
 async function flushPackingOps(ops){
   if(!ops.length || !packingUser) return;
   const now = new Date().toISOString();
-  const rows = ops.map(op=>({
-    user_id: packingUser.id,
-    mode: op.mode,
-    item_key: op.key,
-    checked: !!op.checked,
-    updated_at: now
-  }));
+  const rows = ops.map(op=>{
+    const db = packingToDb(op.mode, op.key);
+    return {
+      user_id: packingUser.id,
+      mode: db.mode,
+      item_key: db.key,
+      checked: !!op.checked,
+      updated_at: now
+    };
+  });
   const {error} = await sb
     .from('packing_checklist')
     .upsert(rows, {onConflict:'user_id,mode,item_key'});
@@ -421,7 +449,7 @@ async function syncPackingFromSupabase(){
   try{
     // Preserve checks created before Supabase was enabled and upload them once.
     if(!localStorage.getItem(PACKING_MIGRATED_KEY)){
-      for(const mode of ['car','bike']){
+      for(const mode of PACKING_MODES){
         for(const key of Object.keys(packingChecklist[mode]||{})){
           if(!packingPendingOps.some(x=>x.mode===mode && x.key===key)){
             queuePackingOp(mode,key,true);
@@ -780,8 +808,10 @@ function renderGrid(){
         const n = parseNote(e.note);
         const key = packingItemKey(v,e);
         return `<tr data-id="${esc(v.id)}">
-          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="car" data-pack-key="${esc(key)}" aria-label="車用チェック: ${esc(e.name)}" ${packingChecked('car',key)?'checked':''}></td>
-          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="bike" data-pack-key="${esc(key)}" aria-label="バイク用チェック: ${esc(e.name)}" ${packingChecked('bike',key)?'checked':''}></td>
+          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="car" data-pack-key="${esc(key)}" aria-label="車チェック: ${esc(e.name)}" ${packingChecked('car',key)?'checked':''}></td>
+          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="winter" data-pack-key="${esc(key)}" aria-label="厳冬チェック: ${esc(e.name)}" ${packingChecked('winter',key)?'checked':''}></td>
+          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="bike" data-pack-key="${esc(key)}" aria-label="バイクチェック: ${esc(e.name)}" ${packingChecked('bike',key)?'checked':''}></td>
+          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="ul" data-pack-key="${esc(key)}" aria-label="ULチェック: ${esc(e.name)}" ${packingChecked('ul',key)?'checked':''}></td>
           <td class="use">${n.tags.map(chip).join(' ')}</td>
           <td class="tackle">${esc(e.name)}<small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></td>
           <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
@@ -791,12 +821,12 @@ function renderGrid(){
       return `<section class="fish-sec">
         <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
         <div class="golf-list fishing-list" data-cat="camping"><table>
-          <colgroup><col style="width:48px"><col style="width:48px"><col style="width:20%"><col><col style="width:14%"><col style="width:13%"></colgroup>
-          <thead><tr><th class="check-col">車</th><th class="check-col">バイク</th><th>用途</th><th>道具</th><th class="num">重量</th><th class="num">価格</th></tr></thead>
+          <colgroup><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:18%"><col><col style="width:12%"><col style="width:12%"></colgroup>
+          <thead><tr><th class="check-col">車</th><th class="check-col">厳冬</th><th class="check-col">バイク</th><th class="check-col">UL</th><th>用途</th><th>道具</th><th class="num">重量</th><th class="num">価格</th></tr></thead>
           <tbody>${rows}</tbody>
         </table></div></section>`;
     }).join('');
-    g.innerHTML = `<div class="fish-wrap">${packingStatusHtml()}<div class="packing-note">車・バイク別のチェック状態をSupabaseへ保存。未ログイン・通信不可のときもこの端末に一時保存します。</div>${html}</div>`;
+    g.innerHTML = `<div class="fish-wrap">${packingStatusHtml()}<div class="packing-note">車・厳冬・バイク・ULの4パターンをSupabaseへ保存。未ログイン・通信不可のときもこの端末に一時保存します。</div>${html}</div>`;
     return;
   }
 
