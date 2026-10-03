@@ -104,9 +104,11 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .packing-sync .errtxt{color:#8E2A36}
 .fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
 .fish-sec h3{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--ink)}
-.camp-sec-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-.camp-sec-head h3{margin:0;flex:1}
-.camp-sec-thumb{width:96px;height:72px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:4px;flex:0 0 auto}
+.camp-item{display:flex;align-items:center;gap:10px;min-width:0}
+.camp-item-thumb{width:58px;height:58px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:4px;flex:0 0 auto}
+.camp-item-text{min-width:0}
+.camp-item-text .item-name{font-weight:700;color:var(--ink)}
+.camp-item-text small{display:block}
 .fishing-list td.use{white-space:normal;line-height:2}
 .use-chip{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--fishing);color:var(--ink);font-size:12px;font-weight:700;line-height:1.4}
 .fish-total{display:flex;justify-content:flex-end;gap:14px;align-items:baseline;color:var(--ink-2);font-size:13px}
@@ -247,7 +249,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-0035';
+const APP_BUILD = '20261004-0045';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -816,16 +818,13 @@ function renderGrid(){
           <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="bike" data-pack-key="${esc(key)}" aria-label="バイクチェック: ${esc(e.name)}" ${packingChecked('bike',key)?'checked':''}></td>
           <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="ul" data-pack-key="${esc(key)}" aria-label="ULチェック: ${esc(e.name)}" ${packingChecked('ul',key)?'checked':''}></td>
           <td class="use">${n.tags.map(chip).join(' ')}</td>
-          <td class="tackle">${esc(e.name)}<small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></td>
+          <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
           <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
           <td class="num">${e.price!=null?yen(e.price):'—'}</td>
         </tr>`;
       }).join('');
       return `<section class="fish-sec">
-        <div class="camp-sec-head">
-          ${v.photos?.main?`<img class="camp-sec-thumb" src="${esc(v.photos.main)}" alt="${esc(v.name)}" loading="lazy">`:''}
-          <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
-        </div>
+        <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
         <div class="golf-list fishing-list" data-cat="camping"><table>
           <colgroup><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:18%"><col><col style="width:12%"><col style="width:12%"></colgroup>
           <thead><tr><th class="check-col">車</th><th class="check-col">厳冬</th><th class="check-col">バイク</th><th class="check-col">UL</th><th>用途</th><th>道具</th><th class="num">重量</th><th class="num">価格</th></tr></thead>
