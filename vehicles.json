@@ -3969,9 +3969,9 @@
         "price": null
       },
       "specs": {
-        "点数": "33点",
-        "総重量目安": "約13.0kg",
-        "合計金額": "¥177,009"
+        "点数": "36点",
+        "総重量目安": "約13.4kg",
+        "合計金額": "¥231,009"
       },
       "customs": [],
       "equipment": [
@@ -4240,6 +4240,30 @@
           "note": "13g",
           "image": "https://evernew-global.com/assets/images/titanium/item-EBY280.jpg",
           "imageSource": "https://evernew-global.com/products/titanium/EBY280.html"
+        },
+        {
+          "name": "ALLES CHEF TOOL RWS0228",
+          "maker": "RATEL WORKS",
+          "price": 18000,
+          "note": "約214g / 6in1キッチンハサミ / ふるさと納税（東大阪市・寄付18,000円） / 2025-12-24申込",
+          "image": "https://ratelworks.jp/cms/wp-content/uploads/2025/03/rws0228_17.jpg",
+          "imageSource": "https://ratelworks.jp/product/gear-accessory/rws0228/"
+        },
+        {
+          "name": "CLEVER TONG 名栗黒檀 000969",
+          "maker": "FEDECA",
+          "price": 26000,
+          "note": "約70g / 縞黒檀 / ふるさと納税（三木市・寄付26,000円） / 2025-12-24申込",
+          "image": "https://store.fedeca.com/cdn/shop/files/tongnk.jpg?v=1707368550&width=2000",
+          "imageSource": "https://store.fedeca.com/products/000969"
+        },
+        {
+          "name": "ピッツ CS-370",
+          "maker": "snow peak",
+          "price": 10000,
+          "note": "70g / ステンレス（黒酸化発色） / ふるさと納税（三条市・寄付10,000円）",
+          "image": "https://reuse-shop.snowpeak.co.jp/cdn/shop/files/2601061000039_3407.jpg?v=1782365947&width=416",
+          "imageSource": "https://reuse-shop.snowpeak.co.jp/products/2601061000039"
         }
       ],
       "photos": {
