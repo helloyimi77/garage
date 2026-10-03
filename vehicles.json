@@ -3297,7 +3297,10 @@
           "name": "折り畳みコット",
           "maker": "テンマクデザイン",
           "price": 6000,
-          "note": "約5.0kg / 会社用"
+          "note": "約5.0kg / 会社用",
+          "image": "https://item-shopping.c.yimg.jp/i/n/whatnot_4981325528836_1",
+          "imageSource": "https://store.shopping.yahoo.co.jp/whatnot/4981325528836.html",
+          "imageApproximate": true
         },
         {
           "name": "バグプルーフスタンモック",
@@ -3335,7 +3338,9 @@
           "name": "エアーマット",
           "maker": "KOOLSEN",
           "price": 3000,
-          "note": "約0.5kg"
+          "note": "約0.5kg",
+          "image": "https://i.ytimg.com/vi/utLNPOG2Jgs/hqdefault.jpg",
+          "imageSource": "https://www.youtube.com/watch?v=utLNPOG2Jgs"
         },
         {
           "name": "コンパクト折りたたみシート",
@@ -3566,7 +3571,10 @@
           "name": "スパッタシート 24×16×3.5cm",
           "maker": "taiiti",
           "price": 1300,
-          "note": "300g / 耐火"
+          "note": "300g / 耐火",
+          "image": "https://item-shopping.c.yimg.jp/i/n/aimcorp_oudsp0001-30_3_d_20240229221957",
+          "imageSource": "https://store.shopping.yahoo.co.jp/aimcorp/oudsp0001-30.html",
+          "imageApproximate": true
         }
       ],
       "photos": {
@@ -3711,7 +3719,9 @@
           "name": "テーブルランタン",
           "maker": "雪丘工房",
           "price": 30000,
-          "note": "約0.2kg / オイル"
+          "note": "約0.2kg / オイル",
+          "image": "https://d1uzk9o9cg136f.cloudfront.net/f/16783328/rc/2024/09/06/3afacd5babc3cd734ad4c37a3d98a058c807fde2.jpg",
+          "imageSource": "https://tennenseikatsu.jp/_ct/17719830"
         },
         {
           "name": "武井バーナー 301A",
@@ -3808,7 +3818,9 @@
           "name": "折り畳み式ミニテーブル",
           "maker": "Boundless Voyage",
           "price": 1800,
-          "note": "約320g / UL"
+          "note": "約320g / UL",
+          "image": "https://uk.superbiker.hk/cdn/shop/products/000.jpg?v=1658114653",
+          "imageSource": "https://uk.superbiker.hk/products/%E9%88%A6%E5%90%88%E9%87%91-%E6%91%BA%E7%96%8A%E6%9E%B1-%E6%8A%98%E7%96%8A%E6%A1%8C-dragon-horse-x-boundless-voyage"
         },
         {
           "name": "ウッドパネルテーブル",
@@ -4071,7 +4083,9 @@
           "name": "トラメジーノ",
           "maker": "snow peak",
           "price": 12000,
-          "note": "約880g / ホットサンド"
+          "note": "約880g / ホットサンド",
+          "image": "https://bizweb.dktcdn.net/100/479/165/products/kep-lam-banh-cam-trai-du-lich-snowpeak-hot-sandwich-cooker-tramesino-gr-009r-13-1688436629809.jpg?v=1688436660503",
+          "imageSource": "https://procamping.vn/kep-lam-banh-cam-trai-du-lich-snowpeak-hot-sandwich-cooker-tramesino-gr-009r"
         },
         {
           "name": "チタンシェラカップ×2",
@@ -4085,7 +4099,10 @@
           "name": "アルミシェラカップ×2",
           "maker": "snow peak",
           "price": 1200,
-          "note": "約100g/個"
+          "note": "約100g/個",
+          "image": "https://i.ebayimg.com/images/g/jUUAAOSwLVZVhss2/s-l1200.jpg",
+          "imageSource": "https://ec.treasure-f.com/item/5501002038930410",
+          "imageApproximate": true
         },
         {
           "name": "ワッパークッカー",
@@ -4107,7 +4124,9 @@
           "name": "ソロセットチタン クッカーセット SCS-004TR",
           "maker": "snow peak",
           "price": 9000,
-          "note": "約265g"
+          "note": "約265g",
+          "image": "https://i.ebayimg.com/images/g/DucAAeSwqcRpKlzN/s-l1200.jpg",
+          "imageSource": "https://www.ebay.com/itm/187789123824"
         },
         {
           "name": "チタンシングルマグ 450",
@@ -4129,7 +4148,10 @@
           "name": "銅おちょこ",
           "maker": "不明",
           "price": 2000,
-          "note": "約50g"
+          "note": "約50g",
+          "image": "https://baseec-img-mng.akamaized.net/images/item/origin/b021a94d996c1ddbac2b02a4610bc936.jpg?im=Resize%2Cwidth%3D1200%2Ctype%3Dnormal&imformat=generic&q=90",
+          "imageSource": "https://shop.lt-entrepots.com/items/69022922",
+          "imageApproximate": true
         },
         {
           "name": "チタンダブルマグ 450",
@@ -4143,13 +4165,17 @@
           "name": "鉄板 250×165×4.5mm",
           "maker": "oka-d-art",
           "price": 6600,
-          "note": "1.5kg"
+          "note": "1.5kg",
+          "image": "https://item-shopping.c.yimg.jp/i/n/oka-d-art_ktmfgh45-aa",
+          "imageSource": "https://store.shopping.yahoo.co.jp/oka-d-art/ktmfgh45-aa.html"
         },
         {
           "name": "マルチグリドル 36cm",
           "maker": "ザイグル",
           "price": 7000,
-          "note": "約1.4kg"
+          "note": "約1.4kg",
+          "image": "https://shop.r10s.jp/matsucame/cabinet/fuj-02/fke0122_1.jpg",
+          "imageSource": "https://item.rakuten.co.jp/matsucame/fke0122a/"
         },
         {
           "name": "マルチグリドル 25cm",
@@ -4187,7 +4213,9 @@
           "name": "Ti 250 Cup NH ECA081",
           "maker": "EVERNEW",
           "price": 2420,
-          "note": "24g"
+          "note": "24g",
+          "image": "https://evernew-global.com/assets/images/titanium/item-ECA081.jpg",
+          "imageSource": "https://evernew-global.com/products/titanium/ECA081.html"
         },
         {
           "name": "Apex cup t0.2 チタンカップ ECAL731",
@@ -4209,7 +4237,9 @@
           "name": "mulTiDish マルチディッシュ チタン EBY280",
           "maker": "EVERNEW",
           "price": 1342,
-          "note": "13g"
+          "note": "13g",
+          "image": "https://evernew-global.com/assets/images/titanium/item-EBY280.jpg",
+          "imageSource": "https://evernew-global.com/products/titanium/EBY280.html"
         }
       ],
       "photos": {
@@ -4317,7 +4347,9 @@
           "name": "黒打 白紙鋼 腰鉈 120mm",
           "maker": "東周作",
           "price": 7100,
-          "note": "390g"
+          "note": "390g",
+          "image": "https://honmamon.itembox.cloud/product/009/000000000909/000000000909-01.jpg?size=l&t=20241206104532&w=ODAw",
+          "imageSource": "https://www.honmamon.jp/c/gr138/gr139/gr550/gr1500/4580149746909"
         },
         {
           "name": "関孫六 ダマスカス ペティ 120mm",
@@ -4398,19 +4430,26 @@
           "name": "シェルコン25",
           "maker": "snow peak",
           "price": 15000,
-          "note": "約3.5kg / 家用コンテナ"
+          "note": "約3.5kg / 家用コンテナ",
+          "image": "https://sundaymountain.itembox.cloud/product/017/000000001725/000000001725-01.jpg?size=l&t=20201204155718&w=ODAw",
+          "imageSource": "https://ec.snowpeak.co.jp/item/SNP0112A0338"
         },
         {
           "name": "シェルコン25 ブリッジ",
           "maker": "CAMP GEEGS",
           "price": null,
-          "note": "1.5kg / 家用"
+          "note": "1.5kg / 家用",
+          "image": "https://baseec-img-mng.akamaized.net/images/item/origin/ce5300ebe132437560490322c66e745a.jpg?im=Resize%2Cwidth%3D1280%2Ctype%3Dnormal&imformat=generic&q=90",
+          "imageSource": "https://campgeeks.official.ec/items/60226129",
+          "imageApproximate": true
         },
         {
           "name": "2WAYロングキャリーカート",
           "maker": "SAHARA",
           "price": 19800,
-          "note": "約11kg"
+          "note": "約11kg",
+          "image": "https://fieldsahara.online/cdn/shop/products/fieldsahara_carry1.jpg?v=1757057307&width=533",
+          "imageSource": "https://fieldsahara.online/collections/others"
         },
         {
           "name": "CAMP GEAR BAG",
@@ -4432,7 +4471,9 @@
           "name": "CUCINA BOX",
           "maker": "RATEL WORKS",
           "price": 4200,
-          "note": "400g / 料理道具"
+          "note": "400g / 料理道具",
+          "image": "https://item-shopping.c.yimg.jp/i/n/ratelworks_rws0078bk",
+          "imageSource": "https://store.shopping.yahoo.co.jp/ratelworks/rws0078bk.html"
         },
         {
           "name": "CUSHION GEAR CASE",
