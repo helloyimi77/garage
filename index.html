@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-0001';
+const APP_BUILD = '20261005-0008';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -503,7 +503,16 @@ const CAMP_PACKING_GROUPS = [
   {
     id:'home-storage',
     label:'家',
-    children:[]
+    children:[
+      {ref:{categoryId:'camp-cot-mat', itemName:'バグプルーフスタンモック'}},
+      {ref:{categoryId:'camp-cot-mat', itemName:'キャンプマット IXPE シングル'}},
+      {ref:{categoryId:'camp-chair', itemName:'スターゲイズ リクライナー ラグジュアリー'}},
+      {ref:{categoryId:'camp-lantern', itemName:'SOL-013C 530lm'}},
+      {ref:{categoryId:'camp-lantern', itemName:'EX-77 280lm'}},
+      {ref:{categoryId:'camp-lantern', itemName:'ビーコンライトLED 2.0'}},
+      {ref:{categoryId:'camp-misc', itemName:'シェルコン25'}},
+      {ref:{categoryId:'camp-misc', itemName:'シェルコン25 ブリッジ'}}
+    ]
   },
   {
     id:'office-storage',
