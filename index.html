@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2447';
+const APP_BUILD = '20261004-2502';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -354,6 +354,20 @@ const PACKING_DB_PREFIX = {
   ul: '__ul__::'
 };
 const CAMP_PACKING_GROUPS = [
+  {
+    id:'camp-gear-bag-greige',
+    ref:{categoryId:'camp-misc', itemName:'CAMP GEAR BAG グレージュ'},
+    children:[
+      {ref:{categoryId:'camp-knife', itemName:'サンガ OW-SG1-OD'}},
+      {ref:{categoryId:'camp-cooler', itemName:'クーラースタンド'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'マルチグリドル 25cm'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'SPテーブルウエア'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'ヤエン ストーブ レギ'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'トレックマスター ST-331'}},
+      {ref:{categoryId:'camp-lantern', itemName:'ギガパワー ランタン "天" オート'}},
+      {ref:{categoryId:'camp-lantern', itemName:'リトルランプ ノクターン'}}
+    ]
+  },
   {
     id:'side-storage-box',
     ref:{categoryId:'camp-misc', itemName:'SIDE STORAGE BOX'},
