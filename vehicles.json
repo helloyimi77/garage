@@ -3685,10 +3685,12 @@
         {
           "name": "リモコンランタン",
           "maker": "JOYOUS",
-          "price": 2600,
-          "note": "300g / USB",
-          "image": "https://images.nexusapp.co/assets/ab/a4/96/143157537.jpg",
-          "imageSource": "https://vicedeal.com/products/camping-lamp-usb-oplaadbare-camping-licht-outdoor-tent-licht-lantaarn-zonne-energie-inklapbare-lamp-zaklamp-emergency-torch"
+          "price": 2599,
+          "note": "5200mAh / USB Type-C充電 / リモコン付き / 4色切替 / ホワイト / 2022-12-01購入",
+          "image": "images/camping/joyous_remote_lantern_white.jpg",
+          "imageSource": "https://vicedeal.com/products/camping-lamp-usb-oplaadbare-camping-licht-outdoor-tent-licht-lantaarn-zonne-energie-inklapbare-lamp-zaklamp-emergency-torch",
+          "purchase_date": "2022-12-01",
+          "color": "ホワイト"
         },
         {
           "name": "ライトハウスマイクロ チャージ",
@@ -3777,6 +3779,15 @@
           "note": "600g / ハンガー",
           "image": "https://tokyocrafts.jp/cdn/shop/files/6-1_982e1cf1-3cdf-47de-a7d7-d615f546f72d-130886_1800x1800.jpg?v=1776508155",
           "imageSource": "https://tokyocrafts.jp/en/products/rental-025-sunset-hanger"
+        },
+        {
+          "name": "クラッシャブル ランタンシェード L 1124622",
+          "maker": "mont-bell",
+          "price": 2490,
+          "color": "ホワイト",
+          "note": "8g / Φ10×16.5cm / ヘッドランプ用ランタンシェード / ホワイト",
+          "image": "images/camping/montbell_crushable_lantern_shade_l_1124622.jpg",
+          "imageSource": "https://webshop.montbell.jp/goods/disp.php?product_id=1124622"
         }
       ],
       "photos": {
@@ -4113,12 +4124,12 @@
           "imageSource": "https://www.phantom-web.com/shopdetail/000000001416/"
         },
         {
-          "name": "SPテーブルウエア",
+          "name": "SPテーブルウェア プレート L TW-034",
           "maker": "snow peak",
           "price": 2000,
-          "note": "130g / プレート",
-          "image": "https://item-shopping.c.yimg.jp/i/n/snb-shop_sp-tw-021",
-          "imageSource": "https://store.shopping.yahoo.co.jp/snb-shop/sp-tw-021.html"
+          "note": "134g / ステンレス18-8 / φ212×18mm / プレート1枚",
+          "image": "https://img.snowpeak.co.jp/img/item/SNP01/SNP0105A0049/SNP0105A0049_x_c101.jpg",
+          "imageSource": "https://ec.snowpeak.co.jp/item/SNP0105A0049"
         },
         {
           "name": "ケトル No.1",
@@ -4336,7 +4347,8 @@
           "price": 550,
           "purchase_date": "2026-02-13",
           "note": "18-8ステンレス / 12g / 3.5×6.5×0.3cm / 食洗機対応 / 2026-02-13購入",
-          "imageSource": "https://www.simomura-kihan.co.jp/kogu/tea/detail---id-512.html"
+          "imageSource": "https://www.simomura-kihan.co.jp/kogu/tea/detail---id-512.html",
+          "image": "images/camping/kogu_chami_44111.jpg"
         },
         {
           "name": "茶考具 抹茶缶 47119",
@@ -4344,7 +4356,8 @@
           "price": null,
           "purchase_date": "2026-02-13",
           "note": "18-8ステンレス / 150ml / 約100g / 抹茶約40g・茶葉約30g / 2026-02-13購入",
-          "imageSource": "https://www.simomura-kihan.co.jp/kogu/tea/detail---id-753.html"
+          "imageSource": "https://www.simomura-kihan.co.jp/kogu/tea/detail---id-753.html",
+          "image": "images/camping/kogu_matcha_can_47119.jpg"
         },
         {
           "name": "五感で味わう急須 CHASTA 250ml",
@@ -4352,7 +4365,8 @@
           "price": 3499,
           "purchase_date": "2026-02-13",
           "note": "トライタン製 / 250ml / 透明 / 2026-02-13購入",
-          "imageSource": "https://www.kyoeiseicha.co.jp/chasta/"
+          "imageSource": "https://www.kyoeiseicha.co.jp/chasta/",
+          "image": "images/camping/chasta_250ml.jpg"
         },
         {
           "name": "Ti Plank B5 ECA622",
@@ -4674,9 +4688,10 @@
           "name": "キャンプシャトル",
           "maker": "Oregonian Camper",
           "price": 4500,
-          "note": "収納: マクライト2 / 豆炭コタツ用 火床中具 / 折りたたみワイヤーバスケット IGT / 'n アッシュバッグ M",
+          "note": "BLACK CAMO / 収納: マクライト2 / 豆炭コタツ用 火床中具 / 折りたたみワイヤーバスケット IGT / 'n アッシュバッグ M / NATURA マットブラック小型オイルランタン / サンセットハンガー",
           "image": "https://thumbnail.image.rakuten.co.jp/%400_mall/canpanera/cabinet/item119/item_o14130_0.jpg",
-          "imageSource": "https://camp-numa.com/v1/item/347929"
+          "imageSource": "https://item.rakuten.co.jp/santecdirect/4560116231881/",
+          "color": "BLACK CAMO"
         },
         {
           "name": "モールドグリルキャリー OCB2228 BC",
@@ -4693,8 +4708,9 @@
           "maker": "Oregonian Camper",
           "price": 3300,
           "color": "TIGER CAMO",
-          "note": "Mサイズ / TIGER CAMO",
-          "image": "images/camping/oregonian_semihard_m_tigercamo.jpg"
+          "note": "Mサイズ / TIGER CAMO / 収納: GD2 / UL1.5 / Goal Zero ライトハウスマイクロ チャージ / JOYOUS リモコンランタン / UL360 / HW-999H",
+          "image": "images/camping/oregonian_semihard_m_tigercamo.jpg",
+          "imageSource": "https://oliveoutdoor.theshop.jp/items/79155900"
         },
         {
           "name": "ストレージボックス S",
@@ -4748,7 +4764,7 @@
           "name": "CAMP GEAR BAG グレージュ",
           "maker": "RATEL WORKS",
           "price": 8700,
-          "note": "約2.2kg / RWS0056 / グレージュ / 2025-01-17購入 / 収納: サンガ OW-SG1-OD・クーラースタンド・マルチグリドル 25cm・SPテーブルウエア・ヤエン ストーブ レギ・トレックマスター ST-331・ギガパワー ランタン \"天\" オート・リトルランプ ノクターン",
+          "note": "約2.2kg / RWS0056 / グレージュ / 2025-01-17購入 / 収納: サンガ OW-SG1-OD・クーラースタンド・マルチグリドル 25cm・SPテーブルウェア プレート L TW-034・ヤエン ストーブ レギ・トレックマスター ST-331・ギガパワー ランタン \"天\" オート・リトルランプ ノクターン",
           "image": "https://item-shopping.c.yimg.jp/i/n/ratelworks_rws0056",
           "imageSource": "https://ratelworks.jp/product/bag_pouch/camp-gear-bag2/",
           "purchase_date": "2025-01-17",
