@@ -4656,13 +4656,20 @@
           "imageSource": "https://helinox.tokyo/products/tac-side-storage-slim-s-coyote-tan"
         },
         {
-          "name": "コーデュラ ギアバッグ 14 ブラック",
+          "name": "コーデュラ ギアバッグ 14 ブラック①",
           "maker": "Alpen outdoors",
           "price": 3499,
-          "note": "2個所有 / 収納: ワッパークッカー・ケトル No.1・コロダッチカプセル・コロダッチリフター",
+          "note": "収納: ワッパークッカー / ケトル No.1 / コロダッチカプセル / コロダッチリフター",
           "image": "https://img.alpen-group.jp/Contents/ProductSubImages/0/7522090705-0001_sub07_LL.jpg",
-          "imageSource": "https://store.alpen-group.jp/Form/Product/ProductDetail.aspx?bid=1766&pid=7522090705-0001&shop=0",
-          "quantity": 2
+          "imageSource": "https://store.alpen-group.jp/Form/Product/ProductDetail.aspx?bid=1766&pid=7522090705-0001&shop=0"
+        },
+        {
+          "name": "コーデュラ ギアバッグ 14 ブラック②",
+          "maker": "Alpen outdoors",
+          "price": 3499,
+          "note": "収納: NPクッカーケース深型 EBY233 / NPクッカーケース 400FD EBY647 / SIERRACUP CASE",
+          "image": "https://img.alpen-group.jp/Contents/ProductSubImages/0/7522090705-0001_sub07_LL.jpg",
+          "imageSource": "https://store.alpen-group.jp/Form/Product/ProductDetail.aspx?bid=1766&pid=7522090705-0001&shop=0"
         },
         {
           "name": "NPクッカーケース深型 EBY233",
