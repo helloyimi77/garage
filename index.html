@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2422';
+const APP_BUILD = '20261004-2438';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -354,6 +354,15 @@ const PACKING_DB_PREFIX = {
   ul: '__ul__::'
 };
 const CAMP_PACKING_GROUPS = [
+  {
+    id:'side-storage-box',
+    ref:{categoryId:'camp-misc', itemName:'SIDE STORAGE BOX'},
+    children:[
+      {ref:{categoryId:'camp-table', itemName:'折り畳み式ミニテーブル'}},
+      {ref:{categoryId:'camp-chair', itemName:'折りたたみ椅子'}},
+      {ref:{categoryId:'camp-cot-mat', itemName:'アウトドアマット コンパクト折りたたみシート'}}
+    ]
+  },
   {
     id:'mold-grill-carrier',
     ref:{categoryId:'camp-misc', itemName:'モールドグリルキャリー OCB2228 BC'},
