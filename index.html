@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2216';
+const APP_BUILD = '20261004-2231';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -377,78 +377,7 @@ function togglePackingExpanded(id){
 }
 
 const CAMP_PACKING_GROUPS = [
-  {
-    id:'oregonian-semihard-m',
-    ref:{categoryId:'camp-misc', itemName:'セミハードギアバッグ M'},
-    children:[
-      {ref:{categoryId:'camp-lantern', itemName:'GD2 超ミニ LEDライト'}},
-      {ref:{categoryId:'camp-lantern', itemName:'UL1.5 充電式LEDランタン'}},
-      {ref:{categoryId:'camp-lantern', itemName:'ライトハウスマイクロ チャージ'}},
-      {ref:{categoryId:'camp-lantern', itemName:'リモコンランタン'}},
-      {ref:{categoryId:'camp-lantern', itemName:'UL360 70lm'}},
-      {ref:{categoryId:'camp-lantern', itemName:'HW-999H 230lm'}}
-    ]
-  },
-  {
-    id:'camp-gear-bag-greige',
-    ref:{categoryId:'camp-misc', itemName:'CAMP GEAR BAG グレージュ'},
-    children:[
-      {ref:{categoryId:'camp-knife', itemName:'サンガ OW-SG1-OD'}},
-      {ref:{categoryId:'camp-cooler', itemName:'クーラースタンド'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'マルチグリドル 25cm'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'SPテーブルウェア プレート L TW-034'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'ヤエン ストーブ レギ'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'トレックマスター ST-331'}},
-      {ref:{categoryId:'camp-lantern', itemName:'ギガパワー ランタン "天" オート'}},
-      {ref:{categoryId:'camp-lantern', itemName:'リトルランプ ノクターン'}}
-    ]
-  },
-  {
-    id:'side-storage-box',
-    ref:{categoryId:'camp-misc', itemName:'SIDE STORAGE BOX'},
-    children:[
-      {ref:{categoryId:'camp-table', itemName:'折り畳み式ミニテーブル'}},
-      {ref:{categoryId:'camp-chair', itemName:'折りたたみ椅子'}},
-      {ref:{categoryId:'camp-cot-mat', itemName:'アウトドアマット コンパクト折りたたみシート'}}
-    ]
-  },
-  {
-    id:'mold-grill-carrier',
-    ref:{categoryId:'camp-misc', itemName:'モールドグリルキャリー OCB2228 BC'},
-    children:[
-      {ref:{categoryId:'camp-fire', itemName:'ユニセラTG-III No.615010'}}
-    ]
-  },
-  {
-    id:'flatburner-case',
-    ref:{categoryId:'camp-misc', itemName:'フラットバーナー GS-450R 専用 収納ケース'},
-    children:[
-      {ref:{categoryId:'camp-burner-cooker', itemName:'フラットバーナー'}}
-    ]
-  },
-  {
-    id:'camp-shuttle',
-    ref:{categoryId:'camp-misc', itemName:'キャンプシャトル'},
-    children:[
-      {ref:{categoryId:'camp-fire', itemName:'マクライト2'}},
-      {ref:{categoryId:'camp-stove', itemName:'豆炭コタツ用 火床中具'}},
-      {ref:{categoryId:'camp-table', itemName:'折りたたみワイヤーバスケット IGT'}},
-      {ref:{categoryId:'camp-misc', itemName:"'n アッシュバッグ M"}},
-      {ref:{categoryId:'camp-lantern', itemName:'マットブラック小型オイルランタン'}},
-      {ref:{categoryId:'camp-lantern', itemName:'サンセットハンガー'}}
-    ]
-  },
-  {
-    id:'cordura-gear-bag-1',
-    ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック②'},
-    children:[
-      {ref:{categoryId:'camp-burner-cooker', itemName:'ワッパークッカー'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'ケトル No.1'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'コロダッチカプセル CS-502R'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'コロダッチリフター CS-310'}}
-    ]
-  },
-  {
+{
     id:'cordura-gear-bag-2',
     ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック①'},
     children:[
@@ -494,6 +423,77 @@ const CAMP_PACKING_GROUPS = [
       {ref:{categoryId:'camp-burner-cooker', itemName:'茶考具 茶み 44111'}},
       {ref:{categoryId:'camp-burner-cooker', itemName:'茶考具 抹茶缶 47119'}},
       {ref:{categoryId:'camp-burner-cooker', itemName:'五感で味わう急須 CHASTA 250ml'}}
+    ]
+  },
+  {
+    id:'oregonian-semihard-m',
+    ref:{categoryId:'camp-misc', itemName:'セミハードギアバッグ M'},
+    children:[
+      {ref:{categoryId:'camp-lantern', itemName:'GD2 超ミニ LEDライト'}},
+      {ref:{categoryId:'camp-lantern', itemName:'UL1.5 充電式LEDランタン'}},
+      {ref:{categoryId:'camp-lantern', itemName:'ライトハウスマイクロ チャージ'}},
+      {ref:{categoryId:'camp-lantern', itemName:'リモコンランタン'}},
+      {ref:{categoryId:'camp-lantern', itemName:'UL360 70lm'}},
+      {ref:{categoryId:'camp-lantern', itemName:'HW-999H 230lm'}}
+    ]
+  },
+  {
+    id:'camp-gear-bag-greige',
+    ref:{categoryId:'camp-misc', itemName:'CAMP GEAR BAG グレージュ'},
+    children:[
+      {ref:{categoryId:'camp-knife', itemName:'サンガ OW-SG1-OD'}},
+      {ref:{categoryId:'camp-cooler', itemName:'クーラースタンド'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'マルチグリドル 25cm'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'SPテーブルウェア プレート L TW-034'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'ヤエン ストーブ レギ'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'トレックマスター ST-331'}},
+      {ref:{categoryId:'camp-lantern', itemName:'ギガパワー ランタン "天" オート'}},
+      {ref:{categoryId:'camp-lantern', itemName:'リトルランプ ノクターン'}}
+    ]
+  },
+  {
+    id:'flatburner-case',
+    ref:{categoryId:'camp-misc', itemName:'フラットバーナー GS-450R 専用 収納ケース'},
+    children:[
+      {ref:{categoryId:'camp-burner-cooker', itemName:'フラットバーナー'}}
+    ]
+  },
+  {
+    id:'cordura-gear-bag-1',
+    ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック②'},
+    children:[
+      {ref:{categoryId:'camp-burner-cooker', itemName:'ワッパークッカー'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'ケトル No.1'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'コロダッチカプセル CS-502R'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'コロダッチリフター CS-310'}}
+    ]
+  },
+  {
+    id:'camp-shuttle',
+    ref:{categoryId:'camp-misc', itemName:'キャンプシャトル'},
+    children:[
+      {ref:{categoryId:'camp-fire', itemName:'マクライト2'}},
+      {ref:{categoryId:'camp-stove', itemName:'豆炭コタツ用 火床中具'}},
+      {ref:{categoryId:'camp-table', itemName:'折りたたみワイヤーバスケット IGT'}},
+      {ref:{categoryId:'camp-misc', itemName:"'n アッシュバッグ M"}},
+      {ref:{categoryId:'camp-lantern', itemName:'マットブラック小型オイルランタン'}},
+      {ref:{categoryId:'camp-lantern', itemName:'サンセットハンガー'}}
+    ]
+  },
+  {
+    id:'mold-grill-carrier',
+    ref:{categoryId:'camp-misc', itemName:'モールドグリルキャリー OCB2228 BC'},
+    children:[
+      {ref:{categoryId:'camp-fire', itemName:'ユニセラTG-III No.615010'}}
+    ]
+  },
+  {
+    id:'side-storage-box',
+    ref:{categoryId:'camp-misc', itemName:'SIDE STORAGE BOX'},
+    children:[
+      {ref:{categoryId:'camp-table', itemName:'折り畳み式ミニテーブル'}},
+      {ref:{categoryId:'camp-chair', itemName:'折りたたみ椅子'}},
+      {ref:{categoryId:'camp-cot-mat', itemName:'アウトドアマット コンパクト折りたたみシート'}}
     ]
   }
 ];
