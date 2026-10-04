@@ -3518,10 +3518,17 @@
         {
           "name": "ウォータープルーフ スリーピングバッグカバー",
           "maker": "nanga",
-          "price": 5600,
-          "note": "420g",
-          "image": "https://item-shopping.c.yimg.jp/i/n/selectshopmu_n1bcbk14",
+          "price": 5623,
+          "note": "420g / N1BCBK14 / フリー / ブラック",
+          "image": "images/camping/nanga_sleeping_bag_cover_n1bcbk14.jpg",
           "imageSource": "https://store.shopping.yahoo.co.jp/selectshopmu/n1bcbk14.html"
+        },
+        {
+          "name": "インナーシーツ シュラフライナー",
+          "maker": "Naturehike",
+          "price": 2399,
+          "note": "超軽量 / コンパクト / 速乾 / 保温 / 吸湿 / 丸洗い可能 / 収納袋付き",
+          "image": "images/camping/naturehike_sleeping_bag_liner.jpg"
         }
       ],
       "photos": {
