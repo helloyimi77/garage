@@ -4420,6 +4420,15 @@
           "note": "約120g / スタッキング2",
           "image": "https://cdn.shopify.com/s/files/1/0271/3622/9443/files/ktn_480x480.jpg?v=1692930745",
           "imageSource": "https://store.fedeca.com/products/000956"
+        },
+        {
+          "name": "木柄 カービングフォーク＆ナイフ トラディショナル 2本セット",
+          "maker": "TRAMONTINA",
+          "price": null,
+          "purchase_date": "2023-11-24",
+          "note": "22299/012 / シルバー・ブラウン / 325mm / 2023-11-24購入",
+          "image": "images/camping/tramontina_22299_012.jpg",
+          "imageSource": "https://www.amazon.co.jp/dp/B01KZC0ENU"
         }
       ],
       "photos": {
@@ -4468,9 +4477,10 @@
           "name": "シェルコン25",
           "maker": "snow peak",
           "price": 15000,
-          "note": "約3.5kg / 家用コンテナ",
+          "note": "約3.5kg / 家用コンテナ / 2個所有",
           "image": "https://sundaymountain.itembox.cloud/product/017/000000001725/000000001725-01.jpg?size=l&t=20201204155718&w=ODAw",
-          "imageSource": "https://ec.snowpeak.co.jp/item/SNP0112A0338"
+          "imageSource": "https://ec.snowpeak.co.jp/item/SNP0112A0338",
+          "quantity": 2
         },
         {
           "name": "シェルコン25 ブリッジ",
