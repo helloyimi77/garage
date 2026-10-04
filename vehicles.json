@@ -4353,6 +4353,15 @@
           "purchase_date": "2026-02-13",
           "note": "トライタン製 / 250ml / 透明 / 2026-02-13購入",
           "imageSource": "https://www.kyoeiseicha.co.jp/chasta/"
+        },
+        {
+          "name": "Ti Plank B5 ECA622",
+          "maker": "EVERNEW",
+          "price": 5618,
+          "purchase_date": "2026-07-10",
+          "note": "まな板 / 純チタン / 257×182mm / 125g / 0.6mm厚 / 2026-07-10購入",
+          "image": "images/camping/evernew_ti_plank_b5_eca622.jpg",
+          "imageSource": "https://outdoor.evernew.co.jp/products/detail/5918"
         }
       ],
       "photos": {
