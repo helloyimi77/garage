@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2316';
+const APP_BUILD = '20261004-2328';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -378,8 +378,8 @@ const CAMP_PACKING_GROUPS = [
     ]
   },
   {
-    id:'cordura-gear-bag',
-    ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック'},
+    id:'cordura-gear-bag-1',
+    ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック①'},
     children:[
       {ref:{categoryId:'camp-burner-cooker', itemName:'ワッパークッカー'}},
       {ref:{categoryId:'camp-burner-cooker', itemName:'ケトル No.1'}},
@@ -388,36 +388,42 @@ const CAMP_PACKING_GROUPS = [
     ]
   },
   {
-    id:'stacking-2',
-    ref:{categoryId:'camp-misc', itemName:'SIERRACUP CASE'},
+    id:'cordura-gear-bag-2',
+    ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック②'},
     children:[
-      {ref:{categoryId:'camp-burner-cooker', itemName:'チタンシェラカップ×2'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'アルミシェラカップ×2'}},
-      {ref:{categoryId:'camp-knife', itemName:'カーボンスチール #9'}},
-      {ref:{categoryId:'camp-knife', itemName:'折畳式料理ナイフ 名栗ブラック'}},
-      {ref:{categoryId:'camp-knife', itemName:'Pocket Pal シャープナー PP1'}}
-    ]
-  },
-  {
-    id:'stacking-1',
-    ref:{categoryId:'camp-misc', itemName:'NPクッカーケース深型 EBY233'},
-    children:[
-      {ref:{categoryId:'camp-burner-cooker', itemName:'トレック900'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'ソロセットチタン クッカーセット SCS-004TR'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'チタンシングルマグ 450'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'真空断熱カップ 360ml'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'銅おちょこ'}}
-    ]
-  },
-  {
-    id:'stacking-3',
-    ref:{categoryId:'camp-misc', itemName:'NPクッカーケース 400FD EBY647'},
-    children:[
-      {ref:{categoryId:'camp-burner-cooker', itemName:'Ti 400FD Cup ECA530 チタン'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'Ti 250 Cup NH ECA081'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'Apex cup t0.2 チタンカップ ECAL731'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'Ti Demitasse 220 NH ECA544'}},
-      {ref:{categoryId:'camp-burner-cooker', itemName:'mulTiDish マルチディッシュ チタン EBY280'}}
+      {
+        id:'stacking-1',
+        ref:{categoryId:'camp-misc', itemName:'NPクッカーケース深型 EBY233'},
+        children:[
+          {ref:{categoryId:'camp-burner-cooker', itemName:'トレック900'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'ソロセットチタン クッカーセット SCS-004TR'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'チタンシングルマグ 450'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'真空断熱カップ 360ml'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'銅おちょこ'}}
+        ]
+      },
+      {
+        id:'stacking-3',
+        ref:{categoryId:'camp-misc', itemName:'NPクッカーケース 400FD EBY647'},
+        children:[
+          {ref:{categoryId:'camp-burner-cooker', itemName:'Ti 400FD Cup ECA530 チタン'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'Ti 250 Cup NH ECA081'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'Apex cup t0.2 チタンカップ ECAL731'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'Ti Demitasse 220 NH ECA544'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'mulTiDish マルチディッシュ チタン EBY280'}}
+        ]
+      },
+      {
+        id:'stacking-2',
+        ref:{categoryId:'camp-misc', itemName:'SIERRACUP CASE'},
+        children:[
+          {ref:{categoryId:'camp-burner-cooker', itemName:'チタンシェラカップ×2'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'アルミシェラカップ×2'}},
+          {ref:{categoryId:'camp-knife', itemName:'カーボンスチール #9'}},
+          {ref:{categoryId:'camp-knife', itemName:'折畳式料理ナイフ 名栗ブラック'}},
+          {ref:{categoryId:'camp-knife', itemName:'Pocket Pal シャープナー PP1'}}
+        ]
+      }
     ]
   }
 ];
