@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2208';
+const APP_BUILD = '20261004-2226';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -354,6 +354,13 @@ const PACKING_DB_PREFIX = {
   ul: '__ul__::'
 };
 const CAMP_PACKING_GROUPS = [
+  {
+    id:'flatburner-case',
+    ref:{categoryId:'camp-misc', itemName:'フラットバーナー GS-450R 専用 収納ケース'},
+    children:[
+      {ref:{categoryId:'camp-burner-cooker', itemName:'フラットバーナー'}}
+    ]
+  },
   {
     id:'camp-shuttle',
     ref:{categoryId:'camp-misc', itemName:'キャンプシャトル'},
