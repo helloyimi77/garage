@@ -102,6 +102,16 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .packing-sync input[type="email"]{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 10px;min-width:min(280px,70vw)}
 .packing-sync .ok{color:#1E6B45}
 .packing-sync .errtxt{color:#8E2A36}
+.camp-view-tabs{display:flex;gap:4px;align-self:flex-start;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:3px}
+.camp-view-tabs button{padding:7px 16px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.camp-view-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.pack-tree{display:flex;flex-direction:column;gap:10px}
+.pack-tree table{min-width:720px}
+.pack-tree tr.pack-parent{background:var(--camping)}
+.pack-tree td.pack-name{font-weight:700}
+.pack-tree td.pack-name.child{font-weight:500}
+.pack-depth{display:inline-block;width:18px;color:var(--ink-2)}
+.pack-hint{font-size:12px;color:var(--ink-2);margin-top:-4px}
 .fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
 .fish-sec h3{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--ink)}
 .camp-item{display:flex;align-items:center;gap:10px;min-width:0}
@@ -249,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-0145';
+const APP_BUILD = '20261004-1909';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -342,6 +352,31 @@ const PACKING_DB_PREFIX = {
   winter: '__winter__::',
   ul: '__ul__::'
 };
+const CAMP_PACKING_GROUPS = [
+  {
+    id:'camp-shuttle',
+    ref:{categoryId:'camp-misc', itemName:'キャンプシャトル'},
+    children:[
+      {ref:{categoryId:'camp-misc', itemName:'SIDE STORAGE BOX'}},
+      {ref:{categoryId:'camp-misc', itemName:'CUCINA BOX'}},
+      {
+        id:'cushion-gear-case',
+        ref:{categoryId:'camp-misc', itemName:'CUSHION GEAR CASE'},
+        children:[
+          {ref:{categoryId:'camp-burner-cooker', itemName:'ワッパークッカー'}}
+        ]
+      },
+      {
+        id:'sierracup-case',
+        ref:{categoryId:'camp-misc', itemName:'SIERRACUP CASE'},
+        children:[
+          {ref:{categoryId:'camp-burner-cooker', itemName:'チタンシェラカップ×2'}},
+          {ref:{categoryId:'camp-burner-cooker', itemName:'アルミシェラカップ×2'}}
+        ]
+      }
+    ]
+  }
+];
 const packingItemKey = (v,e) => [v.id, e.maker||'', e.name||''].join('::');
 const packingChecked = (mode,key) => !!packingChecklist?.[mode]?.[key];
 function packingToDb(mode,key){
@@ -412,9 +447,61 @@ function packingStatusHtml(){
     <button type="button" data-pack-action="login">ログインリンク送信</button>
   </div>`;
 }
+function findCampEquipment(ref){
+  const v = DATA.vehicles.find(x=>x.id===ref?.categoryId);
+  const equipment = v?.equipment||[];
+  const index = equipment.findIndex(e=>e.name===ref?.itemName);
+  if(!v || index<0) return null;
+  const e = equipment[index];
+  return {v,e,index,key:packingItemKey(v,e)};
+}
+function findPackingGroupById(id,nodes=CAMP_PACKING_GROUPS){
+  for(const node of nodes){
+    if(node.id===id) return node;
+    const hit = findPackingGroupById(id,node.children||[]);
+    if(hit) return hit;
+  }
+  return null;
+}
+function packingBranchKeys(node){
+  if(!node) return [];
+  const out = [];
+  const own = findCampEquipment(node.ref);
+  if(own) out.push(own.key);
+  (node.children||[]).forEach(child=>out.push(...packingBranchKeys(child)));
+  return [...new Set(out)];
+}
+function packingBranchState(mode,node){
+  const keys = packingBranchKeys(node);
+  const count = keys.filter(key=>packingChecked(mode,key)).length;
+  return {all:keys.length>0 && count===keys.length, some:count>0};
+}
+function setPackingBranchChecked(mode,node,checked){
+  const keys = packingBranchKeys(node);
+  if(!packingChecklist[mode]) packingChecklist[mode] = {};
+  keys.forEach(key=>{
+    if(checked) packingChecklist[mode][key] = true;
+    else delete packingChecklist[mode][key];
+    queuePackingOp(mode,key,checked);
+  });
+  savePackingLocal();
+  if(packingUser) syncPackingFromSupabase();
+  else {
+    packingSyncState = '未ログイン・端末内に保存';
+    updateVisiblePackingChecks();
+  }
+}
 function updateVisiblePackingChecks(){
   document.querySelectorAll('.packing-check').forEach(cb=>{
-    cb.checked = packingChecked(cb.dataset.packMode, cb.dataset.packKey);
+    if(cb.dataset.packBranch){
+      const node = findPackingGroupById(cb.dataset.packBranch);
+      const state = packingBranchState(cb.dataset.packMode,node);
+      cb.checked = state.all;
+      cb.indeterminate = state.some && !state.all;
+    }else{
+      cb.checked = packingChecked(cb.dataset.packMode, cb.dataset.packKey);
+      cb.indeterminate = false;
+    }
   });
   const box = document.querySelector('.packing-sync');
   if(box) box.outerHTML = packingStatusHtml();
@@ -547,7 +634,7 @@ async function initPackingAuth(){
 }
 
 let DATA = { vehicles: [] };
-let group = 'vehicle', cat = 'all', stat = 'active';
+let group = 'vehicle', cat = 'all', stat = 'active', campView = 'inventory';
 
 async function load(){
   try{
@@ -780,7 +867,7 @@ function renderGrid(){
     return;
   }
 
-  // Camping: 道具カテゴリごとのリスト表示（用途・燃料をラベル化）
+  // Camping: 所持品一覧とパッキングチェックを分離
   if(group==='hobby' && cat==='camping'){
     const CAMP_TAGS = [
       ['カーキャリア常備',['#D6E4F0','#1F4E79']],
@@ -806,32 +893,98 @@ function renderGrid(){
       return {tags, weight, memo: parts.join(' / ')};
     };
     const chip = ([t,c]) => `<span class="use-chip" style="background:${c[0]};color:${c[1]}">${esc(t)}</span>`;
-    const html = list.map(v => {
-      const eq = v.equipment||[];
-      if(!eq.length) return '';
-      const rows = eq.map((e,eqIndex) => {
-        const n = parseNote(e.note);
+    const tabs = `<div class="camp-view-tabs" role="tablist" aria-label="キャンプ表示">
+      <button type="button" data-camp-view="inventory" aria-pressed="${campView==='inventory'}">持ち物</button>
+      <button type="button" data-camp-view="packing" aria-pressed="${campView==='packing'}">パッキング</button>
+    </div>`;
+
+    if(campView==='inventory'){
+      const html = list.map(v => {
+        const eq = v.equipment||[];
+        if(!eq.length) return '';
+        const rows = eq.map((e,eqIndex) => {
+          const n = parseNote(e.note);
+          return `<tr data-id="${esc(v.id)}" data-equipment-index="${eqIndex}">
+            <td class="use">${n.tags.map(chip).join(' ')}</td>
+            <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
+            <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
+            <td class="num">${e.price!=null?yen(e.price):'—'}</td>
+          </tr>`;
+        }).join('');
+        return `<section class="fish-sec">
+          <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
+          <div class="golf-list fishing-list" data-cat="camping"><table>
+            <colgroup><col style="width:18%"><col><col style="width:12%"><col style="width:12%"></colgroup>
+            <thead><tr><th>用途</th><th>道具</th><th class="num">重量</th><th class="num">価格</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table></div></section>`;
+      }).join('');
+      g.innerHTML = `<div class="fish-wrap">${tabs}${html}</div>`;
+      return;
+    }
+
+    const modes = [['car','車'],['winter','厳冬'],['bike','バイク'],['ul','UL']];
+    const inputFor = (mode,key,label,branchId='') => {
+      const branch = branchId ? findPackingGroupById(branchId) : null;
+      const state = branch ? packingBranchState(mode,branch) : {all:packingChecked(mode,key),some:false};
+      return `<input class="packing-check" type="checkbox" data-pack-mode="${mode}" data-pack-key="${esc(key)}"${branchId?` data-pack-branch="${esc(branchId)}"`:''} aria-label="${esc(label)}" ${state.all?'checked':''}>`;
+    };
+    const renderPackNode = (node,depth=0) => {
+      const item = findCampEquipment(node.ref);
+      if(!item) return '';
+      const n = parseNote(item.e.note);
+      const hasChildren = (node.children||[]).length>0;
+      const checks = modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,item.key,`${label}チェック: ${item.e.name}`,hasChildren?node.id:'')}</td>`).join('');
+      const row = `<tr class="${hasChildren?'pack-parent':''}" data-id="${esc(item.v.id)}" data-equipment-index="${item.index}">
+        ${checks}
+        <td class="pack-name ${depth?'child':''}" style="padding-left:${12+depth*24}px">${depth?`<span class="pack-depth">↳</span>`:''}${esc(item.e.name)}<small style="display:block;color:var(--ink-2);font-weight:400">${esc(item.e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></td>
+        <td>${esc(item.v.name)}</td>
+      </tr>`;
+      return row + (node.children||[]).map(child=>renderPackNode(child,depth+1)).join('');
+    };
+    const groupedKeys = new Set();
+    const collectGrouped = node => {
+      const item = findCampEquipment(node.ref);
+      if(item) groupedKeys.add(item.key);
+      (node.children||[]).forEach(collectGrouped);
+    };
+    CAMP_PACKING_GROUPS.forEach(collectGrouped);
+    const groupRows = CAMP_PACKING_GROUPS.map(node=>renderPackNode(node)).join('');
+    const groupBlock = groupRows ? `<section class="fish-sec">
+      <h3>パッキンググループ</h3>
+      <div class="pack-hint">親にチェックすると、その中に入っている子もまとめて切り替わります。子の一部だけなら親は中間状態になります。</div>
+      <div class="golf-list fishing-list pack-tree" data-cat="camping"><table>
+        <colgroup><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:48px"><col><col style="width:18%"></colgroup>
+        <thead><tr><th class="check-col">車</th><th class="check-col">厳冬</th><th class="check-col">バイク</th><th class="check-col">UL</th><th>道具 / 親子関係</th><th>元カテゴリ</th></tr></thead>
+        <tbody>${groupRows}</tbody>
+      </table></div>
+    </section>` : '';
+
+    const singleBlocks = list.map(v=>{
+      const rows = (v.equipment||[]).map((e,eqIndex)=>{
         const key = packingItemKey(v,e);
+        if(groupedKeys.has(key)) return '';
+        const n = parseNote(e.note);
+        const checks = modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,key,`${label}チェック: ${e.name}`)}</td>`).join('');
         return `<tr data-id="${esc(v.id)}" data-equipment-index="${eqIndex}">
-          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="car" data-pack-key="${esc(key)}" aria-label="車チェック: ${esc(e.name)}" ${packingChecked('car',key)?'checked':''}></td>
-          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="winter" data-pack-key="${esc(key)}" aria-label="厳冬チェック: ${esc(e.name)}" ${packingChecked('winter',key)?'checked':''}></td>
-          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="bike" data-pack-key="${esc(key)}" aria-label="バイクチェック: ${esc(e.name)}" ${packingChecked('bike',key)?'checked':''}></td>
-          <td class="check-col"><input class="packing-check" type="checkbox" data-pack-mode="ul" data-pack-key="${esc(key)}" aria-label="ULチェック: ${esc(e.name)}" ${packingChecked('ul',key)?'checked':''}></td>
-          <td class="use">${n.tags.map(chip).join(' ')}</td>
+          ${checks}
           <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
           <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
-          <td class="num">${e.price!=null?yen(e.price):'—'}</td>
         </tr>`;
       }).join('');
+      if(!rows) return '';
       return `<section class="fish-sec">
-        <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
+        <h3>${esc(v.name)}</h3>
         <div class="golf-list fishing-list" data-cat="camping"><table>
-          <colgroup><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:18%"><col><col style="width:12%"><col style="width:12%"></colgroup>
-          <thead><tr><th class="check-col">車</th><th class="check-col">厳冬</th><th class="check-col">バイク</th><th class="check-col">UL</th><th>用途</th><th>道具</th><th class="num">重量</th><th class="num">価格</th></tr></thead>
+          <colgroup><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:48px"><col><col style="width:12%"></colgroup>
+          <thead><tr><th class="check-col">車</th><th class="check-col">厳冬</th><th class="check-col">バイク</th><th class="check-col">UL</th><th>道具</th><th class="num">重量</th></tr></thead>
           <tbody>${rows}</tbody>
-        </table></div></section>`;
+        </table></div>
+      </section>`;
     }).join('');
-    g.innerHTML = `<div class="fish-wrap">${packingStatusHtml()}<div class="packing-note">車・厳冬・バイク・ULの4パターンをSupabaseへ保存。未ログイン・通信不可のときもこの端末に一時保存します。</div>${html}</div>`;
+
+    g.innerHTML = `<div class="fish-wrap">${tabs}${packingStatusHtml()}<div class="packing-note">チェック状態は車・厳冬・バイク・ULの4パターンでSupabaseへ保存。未ログイン・通信不可のときも端末内に一時保存します。</div>${groupBlock}<section class="fish-sec"><h3>単品</h3></section>${singleBlocks}</div>`;
+    updateVisiblePackingChecks();
     return;
   }
 
@@ -1081,7 +1234,9 @@ document.getElementById('groupseg').addEventListener('click', e=>{
 });
 document.getElementById('tabs').addEventListener('click', e=>{
   const b = e.target.closest('.tab'); if(!b) return;
-  cat = b.dataset.c; renderTabs(); renderGrid();
+  cat = b.dataset.c;
+  if(cat==='camping') campView = 'inventory';
+  renderTabs(); renderGrid();
 });
 document.getElementById('seg').addEventListener('click', e=>{
   const b = e.target.closest('button'); if(!b) return;
@@ -1092,9 +1247,20 @@ document.getElementById('seg').addEventListener('click', e=>{
 document.getElementById('grid').addEventListener('change', e=>{
   const cb = e.target.closest('.packing-check');
   if(!cb) return;
-  setPackingChecked(cb.dataset.packMode, cb.dataset.packKey, cb.checked);
+  if(cb.dataset.packBranch){
+    const node = findPackingGroupById(cb.dataset.packBranch);
+    if(node) setPackingBranchChecked(cb.dataset.packMode,node,cb.checked);
+  }else{
+    setPackingChecked(cb.dataset.packMode, cb.dataset.packKey, cb.checked);
+  }
 });
 document.getElementById('grid').addEventListener('click', e=>{
+  const cv = e.target.closest('[data-camp-view]');
+  if(cv){
+    campView = cv.dataset.campView;
+    renderGrid();
+    return;
+  }
   const pa = e.target.closest('[data-pack-action]');
   if(pa){
     e.preventDefault();
