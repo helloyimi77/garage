@@ -113,6 +113,13 @@
           "maker": "ユピテル",
           "price": 29580,
           "note": "2026-06-11購入"
+        },
+        {
+          "name": "LEDフットランプキット（BT / 8色・調光）",
+          "maker": "AXIS PARTS",
+          "price": 9874,
+          "purchase_date": "2025-03-26",
+          "note": "レガシィ アウトバック BT（R3.12〜）専用 / 8色選択・調光機能 / 2025-03-26購入"
         }
       ],
       "photos": {
@@ -154,7 +161,15 @@
         "ホイール": "18インチ ブラック（X-BREAK専用）"
       },
       "customs": [],
-      "equipment": [],
+      "equipment": [
+        {
+          "name": "TERZO SARIS 3台積み サイクルキャリア EC16BK3",
+          "maker": "PIAA TERZO",
+          "price": 15991,
+          "purchase_date": "2021-10-12",
+          "note": "3台積み / ブラック / 自転車用サイクルキャリア / 2021-10-12購入"
+        }
+      ],
       "photos": {
         "main": "images/bs9-outback/bs9_01_main.jpg",
         "gallery": []
