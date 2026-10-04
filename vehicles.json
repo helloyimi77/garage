@@ -4478,34 +4478,58 @@
         {
           "name": "SIDE STORAGE BOX",
           "maker": "RATEL WORKS",
-          "price": 4200,
-          "note": "400g",
+          "price": 4250,
+          "note": "400g / GRAY / 2025-01-08購入",
           "image": "https://item-shopping.c.yimg.jp/i/n/ratelworks_rws0081bk",
-          "imageSource": "https://store.shopping.yahoo.co.jp/ratelworks/rws0081bk.html"
+          "imageSource": "https://store.shopping.yahoo.co.jp/ratelworks/rws0081bk.html",
+          "purchase_date": "2025-01-08",
+          "color": "GRAY"
         },
         {
           "name": "CUCINA BOX",
           "maker": "RATEL WORKS",
-          "price": 4200,
-          "note": "400g / 料理道具",
+          "price": 4360,
+          "note": "400g / 料理道具 / GRAY / 2024-12-25購入 / RWS0078",
           "image": "https://item-shopping.c.yimg.jp/i/n/ratelworks_rws0078bk",
-          "imageSource": "https://store.shopping.yahoo.co.jp/ratelworks/rws0078bk.html"
+          "imageSource": "https://store.shopping.yahoo.co.jp/ratelworks/rws0078bk.html",
+          "purchase_date": "2024-12-25",
+          "color": "GRAY"
         },
         {
           "name": "CUSHION GEAR CASE",
           "maker": "RATEL WORKS",
-          "price": 4700,
-          "note": "400g / ワッパークッカー用",
+          "price": 4730,
+          "note": "400g / ワッパークッカー用 / GRAY / 2024-12-25購入",
           "image": "https://thumbnail.image.rakuten.co.jp/%400_mall/marueidanboru/cabinet/bag/65465465.jpg",
-          "imageSource": "https://camp-numa.com/v1/item/366261"
+          "imageSource": "https://camp-numa.com/v1/item/366261",
+          "purchase_date": "2024-12-25",
+          "color": "GRAY"
         },
         {
           "name": "SIERRACUP CASE",
           "maker": "RATEL WORKS",
-          "price": 2000,
-          "note": "200g / スタッキング2",
+          "price": 2180,
+          "note": "200g / スタッキング2 / GRAY / 2024-12-25購入 / RWS0127",
           "image": "https://image.rakuten.co.jp/marueidanboru/cabinet/05389878/sierracup-case-2/sierracup-case-09.jpg",
-          "imageSource": "https://item.rakuten.co.jp/marueidanboru/rws0127/"
+          "imageSource": "https://item.rakuten.co.jp/marueidanboru/rws0127/",
+          "purchase_date": "2024-12-25",
+          "color": "GRAY"
+        },
+        {
+          "name": "CAMP SHOULDER BAG",
+          "maker": "RATEL WORKS",
+          "price": 5400,
+          "purchase_date": "2024-12-25",
+          "color": "GRAY",
+          "note": "GRAY / 2024-12-25購入 / RWS0113"
+        },
+        {
+          "name": "CED POUCH",
+          "maker": "RATEL WORKS",
+          "price": 2980,
+          "purchase_date": "2024-12-25",
+          "color": "GRAY",
+          "note": "小物収納・調味料・LEDランタン収納 / GRAY / 2024-12-25購入 / RWS0193"
         },
         {
           "name": "キャンプシャトル",
@@ -4559,9 +4583,11 @@
           "name": "CAMP GEAR BAG グレージュ",
           "maker": "RATEL WORKS",
           "price": 8700,
-          "note": "約2.2kg / RWS0056 / グレージュ",
+          "note": "約2.2kg / RWS0056 / グレージュ / 2025-01-17購入",
           "image": "https://item-shopping.c.yimg.jp/i/n/ratelworks_rws0056",
-          "imageSource": "https://ratelworks.jp/product/bag_pouch/camp-gear-bag2/"
+          "imageSource": "https://ratelworks.jp/product/bag_pouch/camp-gear-bag2/",
+          "purchase_date": "2025-01-17",
+          "color": "GRAY"
         }
       ],
       "photos": {
