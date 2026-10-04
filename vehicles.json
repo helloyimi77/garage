@@ -3598,6 +3598,15 @@
           "image": "https://item-shopping.c.yimg.jp/i/n/aimcorp_oudsp0001-30_3_d_20240229221957",
           "imageSource": "https://store.shopping.yahoo.co.jp/aimcorp/oudsp0001-30.html",
           "imageApproximate": true
+        },
+        {
+          "name": "ソロ タクティカル レジャーシート 200",
+          "maker": "KIRIRU",
+          "price": 3390,
+          "purchase_date": "2026-03-31",
+          "color": "ブラック",
+          "note": "両面 / 強撥水 / 一人用 / 200×73cm / ブラック / 2026-03-31購入",
+          "image": "images/camping/kiriru_solo_tactical_sheet_200.jpg"
         }
       ],
       "photos": {
@@ -4544,6 +4553,13 @@
           "note": "ポケットシャープナー / PP1 / 2025-02-02購入 / スタッキング2",
           "image": "https://cdn11.bigcommerce.com/s-gbalj0yay6/images/stencil/500x659/products/465/3210/pp1_002__90695.1722532458.jpg?c=1",
           "imageSource": "https://smithsproducts.com/pocket-pal-knife-sharpener-1/"
+        },
+        {
+          "name": "ツリー 薪割り手斧 グラスファイバー柄 380mm TEX-01",
+          "maker": "近与 (KONYO)",
+          "price": 1682,
+          "note": "薪割り用手斧 / グラスファイバー柄 / 380mm",
+          "image": "images/camping/konyo_tex01_hatchet.jpg"
         }
       ],
       "photos": {
