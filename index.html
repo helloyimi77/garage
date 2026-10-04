@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2414';
+const APP_BUILD = '20261004-2422';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -374,7 +374,8 @@ const CAMP_PACKING_GROUPS = [
     children:[
       {ref:{categoryId:'camp-fire', itemName:'マクライト2'}},
       {ref:{categoryId:'camp-stove', itemName:'豆炭コタツ用 火床中具'}},
-      {ref:{categoryId:'camp-table', itemName:'折りたたみワイヤーバスケット IGT'}}
+      {ref:{categoryId:'camp-table', itemName:'折りたたみワイヤーバスケット IGT'}},
+      {ref:{categoryId:'camp-misc', itemName:"'n アッシュバッグ M"}}
     ]
   },
   {
