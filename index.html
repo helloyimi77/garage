@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2024';
+const APP_BUILD = '20261004-2042';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -300,7 +300,8 @@ const CATS = {
 const VEHICLE_CATEGORY_ORDER = { car:0, bike:1, escooter:2, roadbike:3, horse:4 };
 const yen = n => (n == null || n === '' ? '—' : '¥' + Number(n).toLocaleString('ja-JP'));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const sum = (arr, k='price') => (arr||[]).reduce((a,x)=>a+(Number(x[k])||0),0);
+const qty = x => Math.max(1, Number(x?.quantity)||1);
+const sum = (arr, k='price') => (arr||[]).reduce((a,x)=>a+(Number(x[k])||0)*qty(x),0);
 const fmtDate = d => d ? d.replace(/-/g,'.') : '';
 const isSold = v => v.status !== 'active';
 
@@ -760,7 +761,7 @@ function renderGrid(){
       if(!list.length) return '';
       const c = CATS[k];
       const perItem = ['golf','airsoft','rc','plant'].includes(k);
-      const itemsCount = perItem ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).length,0);
+      const itemsCount = perItem ? list.length : list.reduce((a,v)=>a+(v.equipment||[]).reduce((n,e)=>n+qty(e),0),0);
       const unit = {golf:'本', airsoft:'丁', rc:'台', plant:'種'}[k] || '点';
       const setsCount = perItem ? '' : `${list.length}カテゴリ / `;
       const total = list.reduce((a,v)=>a+total_hobby(v),0);
@@ -928,15 +929,17 @@ function renderGrid(){
         if(!eq.length) return '';
         const rows = eq.map((e,eqIndex) => {
           const n = parseNote(e.note);
+          const q = qty(e);
           return `<tr data-id="${esc(v.id)}" data-equipment-index="${eqIndex}">
             <td class="use">${n.tags.map(chip).join(' ')}</td>
-            <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
+            <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}${q>1?` ×${q}`:''}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
             <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
-            <td class="num">${e.price!=null?yen(e.price):'—'}</td>
+            <td class="num">${e.price!=null?`${yen(e.price)}${q>1?` ×${q}`:''}`:'—'}</td>
           </tr>`;
         }).join('');
+        const eqCount = eq.reduce((a,e)=>a+qty(e),0);
         return `<section class="fish-sec">
-          <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eq.length}点 · ${yen(sum(eq))}</small></h3>
+          <h3>${esc(v.name)} <small style="color:var(--ink-2);font-weight:400">${eqCount}点 · ${yen(sum(eq))}</small></h3>
           <div class="golf-list fishing-list" data-cat="camping"><table>
             <colgroup><col style="width:18%"><col><col style="width:12%"><col style="width:12%"></colgroup>
             <thead><tr><th>用途</th><th>道具</th><th class="num">重量</th><th class="num">価格</th></tr></thead>
@@ -959,9 +962,10 @@ function renderGrid(){
       const n = parseNote(item.e.note);
       const hasChildren = (node.children||[]).length>0;
       const checks = modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,item.key,`${label}チェック: ${item.e.name}`,hasChildren?node.id:'')}</td>`).join('');
+      const q = qty(item.e);
       const row = `<tr class="${hasChildren?'pack-parent':''}" data-id="${esc(item.v.id)}" data-equipment-index="${item.index}">
         ${checks}
-        <td class="pack-name ${depth?'child':''}" style="padding-left:${12+depth*24}px">${depth?`<span class="pack-depth">↳</span>`:''}${esc(item.e.name)}<small style="display:block;color:var(--ink-2);font-weight:400">${esc(item.e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></td>
+        <td class="pack-name ${depth?'child':''}" style="padding-left:${12+depth*24}px"><div class="camp-item">${depth?`<span class="pack-depth">↳</span>`:''}${item.e.image?`<img class="camp-item-thumb" src="${esc(item.e.image)}" alt="${esc(item.e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(item.e.name)}${q>1?` ×${q}`:''}</div><small>${esc(item.e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
         <td>${esc(item.v.name)}</td>
       </tr>`;
       return row + (node.children||[]).map(child=>renderPackNode(child,depth+1)).join('');
@@ -989,10 +993,11 @@ function renderGrid(){
         const key = packingItemKey(v,e);
         if(groupedKeys.has(key)) return '';
         const n = parseNote(e.note);
+        const q = qty(e);
         const checks = modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,key,`${label}チェック: ${e.name}`)}</td>`).join('');
         return `<tr data-id="${esc(v.id)}" data-equipment-index="${eqIndex}">
           ${checks}
-          <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
+          <td class="tackle"><div class="camp-item">${e.image?`<img class="camp-item-thumb" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(e.name)}${q>1?` ×${q}`:''}</div><small>${esc(e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
           <td class="num" style="color:var(--ink-2);font-size:12px">${esc(n.weight)}</td>
         </tr>`;
       }).join('');
@@ -1108,7 +1113,7 @@ function openCampingItemDetail(categoryId, equipmentIndex){
       <p class="own"><b>所有中</b>${profileLabels.length?` ・ ${profileLabels.map(esc).join(' / ')}`:''}</p>
 
       <div class="money">
-        <div><span>購入価格</span><b>${e.price!=null?yen(e.price):'—'}</b></div>
+        <div><span>購入価格</span><b>${e.price!=null?`${yen(e.price)}${qty(e)>1?` ×${qty(e)} = ${yen(Number(e.price)*qty(e))}`:''}`:'—'}</b></div>
         <div><span>カテゴリ</span><b style="font-size:15px">${esc(v.name)}</b></div>
       </div>
 
@@ -1137,7 +1142,7 @@ function openDetail(id){
   const custRows = (v.customs||[]).map(x=>`<div class="item"><div class="p">${esc(x.part)}</div>
     <div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
-  const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${yen(x.price)}</td></tr>`).join('');
+  const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${qty(x)>1?` ×${qty(x)}`:''}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${x.price!=null?`${yen(x.price)}${qty(x)>1?` ×${qty(x)}`:''}`:'—'}</td></tr>`).join('');
   const gal = (v.photos?.gallery||[]).map(p=>{
     if(/\.(mp4|mov|webm)$/i.test(p)){
       return `<video src="${esc(p)}" controls playsinline preload="metadata" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:#000"></video>`;
