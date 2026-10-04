@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2226';
+const APP_BUILD = '20261004-2238';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -367,13 +367,7 @@ const CAMP_PACKING_GROUPS = [
     children:[
       {ref:{categoryId:'camp-misc', itemName:'SIDE STORAGE BOX'}},
       {ref:{categoryId:'camp-misc', itemName:'CUCINA BOX'}},
-      {
-        id:'cushion-gear-case',
-        ref:{categoryId:'camp-misc', itemName:'CUSHION GEAR CASE'},
-        children:[
-          {ref:{categoryId:'camp-burner-cooker', itemName:'ワッパークッカー'}}
-        ]
-      },
+      {ref:{categoryId:'camp-misc', itemName:'CUSHION GEAR CASE'}},
       {
         id:'stacking-2',
         ref:{categoryId:'camp-misc', itemName:'SIERRACUP CASE'},
@@ -383,7 +377,20 @@ const CAMP_PACKING_GROUPS = [
           {ref:{categoryId:'camp-knife', itemName:'カーボンスチール #9'}},
           {ref:{categoryId:'camp-knife', itemName:'折畳式料理ナイフ 名栗ブラック'}}
         ]
-      }
+      },
+      {ref:{categoryId:'camp-fire', itemName:'マクライト2'}},
+      {ref:{categoryId:'camp-stove', itemName:'豆炭コタツ用 火床中具'}},
+      {ref:{categoryId:'camp-table', itemName:'折りたたみワイヤーバスケット IGT'}}
+    ]
+  },
+  {
+    id:'cordura-gear-bag',
+    ref:{categoryId:'camp-misc', itemName:'コーデュラ ギアバッグ 14 ブラック'},
+    children:[
+      {ref:{categoryId:'camp-burner-cooker', itemName:'ワッパークッカー'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'ケトル No.1'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'コロダッチポット CS-501R'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'コロダッチリフター CS-310'}}
     ]
   },
   {
