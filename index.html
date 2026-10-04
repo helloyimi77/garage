@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-0008';
+const APP_BUILD = '20261005-0012';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -517,7 +517,10 @@ const CAMP_PACKING_GROUPS = [
   {
     id:'office-storage',
     label:'会社',
-    children:[]
+    children:[
+      {ref:{categoryId:'camp-cot-mat', itemName:'折り畳みコット'}},
+      {ref:{categoryId:'camp-burner-cooker', itemName:'チタンダブルマグ 450'}}
+    ]
   }
 ];
 const packingItemKey = (v,e) => [v.id, e.maker||'', e.name||''].join('::');
