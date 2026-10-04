@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2350';
+const APP_BUILD = '20261005-0001';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -499,6 +499,16 @@ const CAMP_PACKING_GROUPS = [
       {ref:{categoryId:'camp-chair', itemName:'折りたたみ椅子'}},
       {ref:{categoryId:'camp-cot-mat', itemName:'アウトドアマット コンパクト折りたたみシート'}}
     ]
+  },
+  {
+    id:'home-storage',
+    label:'家',
+    children:[]
+  },
+  {
+    id:'office-storage',
+    label:'会社',
+    children:[]
   }
 ];
 const packingItemKey = (v,e) => [v.id, e.maker||'', e.name||''].join('::');
@@ -1057,11 +1067,29 @@ function renderGrid(){
     };
     const renderPackNode = (node,depth=0,ancestors=[]) => {
       const item = findCampEquipment(node.ref);
-      if(!item) return '';
-      const n = parseNote(item.e.note);
+      const isVirtual = !item && !!node.label;
+      if(!item && !isVirtual) return '';
       const hasChildren = (node.children||[]).length>0;
       const expanded = hasChildren && packingExpanded.has(node.id);
       const hidden = ancestors.some(id=>!packingExpanded.has(id));
+
+      if(isVirtual){
+        const checks = hasChildren
+          ? modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,'',`${label}チェック: ${node.label}`,node.id)}</td>`).join('')
+          : modes.map(()=>'<td class="check-col"></td>').join('');
+        const disclosure = hasChildren
+          ? `<button type="button" class="pack-toggle" data-pack-toggle="${esc(node.id)}" aria-expanded="${expanded?'true':'false'}" aria-label="${expanded?'閉じる':'開く'}: ${esc(node.label)}"><span class="pack-toggle-icon">▶</span></button>`
+          : '';
+        const row = `<tr class="pack-parent pack-virtual ${hidden?'pack-row-hidden':''}" data-pack-node="${esc(node.id||'')}" data-pack-ancestors="${esc(ancestors.join(' '))}">
+          ${checks}
+          <td class="pack-name ${depth?'child':''}" style="padding-left:${12+depth*24}px"><div class="camp-item">${disclosure}<div class="camp-item-text"><div class="item-name">${esc(node.label)}</div><small>保管場所</small></div></div></td>
+          <td>パッキンググループ</td>
+        </tr>`;
+        const nextAncestors = hasChildren ? [...ancestors,node.id] : ancestors;
+        return row + (node.children||[]).map(child=>renderPackNode(child,depth+1,nextAncestors)).join('');
+      }
+
+      const n = parseNote(item.e.note);
       const checks = modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,item.key,`${label}チェック: ${item.e.name}`,hasChildren?node.id:'')}</td>`).join('');
       const q = qty(item.e);
       const disclosure = hasChildren
