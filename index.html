@@ -111,6 +111,11 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .pack-tree td.pack-name{font-weight:700}
 .pack-tree td.pack-name.child{font-weight:500}
 .pack-depth{display:inline-block;width:18px;color:var(--ink-2)}
+.pack-toggle{width:26px;height:26px;display:inline-grid;place-items:center;flex:0 0 auto;border:1px solid var(--line);border-radius:50%;background:var(--surface);font-size:14px;line-height:1;color:var(--ink-2);transition:transform .12s,border-color .12s}
+.pack-toggle:hover{border-color:var(--ink);color:var(--ink)}
+.pack-toggle[aria-expanded="true"] .pack-toggle-icon{transform:rotate(90deg)}
+.pack-toggle-icon{display:inline-block;transition:transform .12s}
+.pack-row-hidden{display:none}
 .pack-hint{font-size:12px;color:var(--ink-2);margin-top:-4px}
 .fish-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:22px}
 .fish-sec h3{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--ink)}
@@ -259,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2153';
+const APP_BUILD = '20261004-2204';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -353,6 +358,24 @@ const PACKING_DB_PREFIX = {
   winter: '__winter__::',
   ul: '__ul__::'
 };
+const PACKING_EXPANDED_KEY = 'garage_packing_expanded_v1';
+function loadPackingExpanded(){
+  try{
+    const v = JSON.parse(localStorage.getItem(PACKING_EXPANDED_KEY) || '[]');
+    return new Set(Array.isArray(v) ? v : []);
+  }catch(_){ return new Set(); }
+}
+let packingExpanded = loadPackingExpanded();
+function savePackingExpanded(){
+  try{ localStorage.setItem(PACKING_EXPANDED_KEY, JSON.stringify([...packingExpanded])); }catch(_){}
+}
+function togglePackingExpanded(id){
+  if(packingExpanded.has(id)) packingExpanded.delete(id);
+  else packingExpanded.add(id);
+  savePackingExpanded();
+  renderGrid();
+}
+
 const CAMP_PACKING_GROUPS = [
   {
     id:'oregonian-semihard-m',
@@ -1028,19 +1051,25 @@ function renderGrid(){
       const state = branch ? packingBranchState(mode,branch) : {all:packingChecked(mode,key),some:false};
       return `<input class="packing-check" type="checkbox" data-pack-mode="${mode}" data-pack-key="${esc(key)}"${branchId?` data-pack-branch="${esc(branchId)}"`:''} aria-label="${esc(label)}" ${state.all?'checked':''}>`;
     };
-    const renderPackNode = (node,depth=0) => {
+    const renderPackNode = (node,depth=0,ancestors=[]) => {
       const item = findCampEquipment(node.ref);
       if(!item) return '';
       const n = parseNote(item.e.note);
       const hasChildren = (node.children||[]).length>0;
+      const expanded = hasChildren && packingExpanded.has(node.id);
+      const hidden = ancestors.some(id=>!packingExpanded.has(id));
       const checks = modes.map(([mode,label])=>`<td class="check-col">${inputFor(mode,item.key,`${label}チェック: ${item.e.name}`,hasChildren?node.id:'')}</td>`).join('');
       const q = qty(item.e);
-      const row = `<tr class="${hasChildren?'pack-parent':''}" data-id="${esc(item.v.id)}" data-equipment-index="${item.index}">
+      const disclosure = hasChildren
+        ? `<button type="button" class="pack-toggle" data-pack-toggle="${esc(node.id)}" aria-expanded="${expanded?'true':'false'}" aria-label="${expanded?'閉じる':'開く'}: ${esc(item.e.name)}"><span class="pack-toggle-icon">▶</span></button>`
+        : (depth?`<span class="pack-depth">↳</span>`:'');
+      const row = `<tr class="${hasChildren?'pack-parent ':''}${hidden?'pack-row-hidden':''}" data-pack-node="${esc(node.id||'')}" data-pack-ancestors="${esc(ancestors.join(' '))}" data-id="${esc(item.v.id)}" data-equipment-index="${item.index}">
         ${checks}
-        <td class="pack-name ${depth?'child':''}" style="padding-left:${12+depth*24}px"><div class="camp-item">${depth?`<span class="pack-depth">↳</span>`:''}${item.e.image?`<img class="camp-item-thumb" src="${esc(item.e.image)}" alt="${esc(item.e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(item.e.name)}${q>1?` ×${q}`:''}</div><small>${esc(item.e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
+        <td class="pack-name ${depth?'child':''}" style="padding-left:${12+depth*24}px"><div class="camp-item">${disclosure}${item.e.image?`<img class="camp-item-thumb" src="${esc(item.e.image)}" alt="${esc(item.e.name)}" loading="lazy">`:''}<div class="camp-item-text"><div class="item-name">${esc(item.e.name)}${q>1?` ×${q}`:''}</div><small>${esc(item.e.maker||'')}${n.memo?` · ${esc(n.memo)}`:''}</small></div></div></td>
         <td>${esc(item.v.name)}</td>
       </tr>`;
-      return row + (node.children||[]).map(child=>renderPackNode(child,depth+1)).join('');
+      const nextAncestors = hasChildren ? [...ancestors,node.id] : ancestors;
+      return row + (node.children||[]).map(child=>renderPackNode(child,depth+1,nextAncestors)).join('');
     };
     const groupedKeys = new Set();
     const collectGrouped = node => {
@@ -1052,7 +1081,7 @@ function renderGrid(){
     const groupRows = CAMP_PACKING_GROUPS.map(node=>renderPackNode(node)).join('');
     const groupBlock = groupRows ? `<section class="fish-sec">
       <h3>パッキンググループ</h3>
-      <div class="pack-hint">親にチェックすると、その中に入っている子もまとめて切り替わります。子の一部だけなら親は中間状態になります。</div>
+      <div class="pack-hint">▶で中身を開閉できます。親にチェックすると中の子もまとめて切り替わり、子の一部だけなら親は中間状態になります。</div>
       <div class="golf-list fishing-list pack-tree" data-cat="camping"><table>
         <colgroup><col style="width:48px"><col style="width:48px"><col style="width:48px"><col style="width:48px"><col><col style="width:18%"></colgroup>
         <thead><tr><th class="check-col">車</th><th class="check-col">厳冬</th><th class="check-col">バイク</th><th class="check-col">UL</th><th>道具 / 親子関係</th><th>元カテゴリ</th></tr></thead>
@@ -1372,6 +1401,13 @@ document.getElementById('grid').addEventListener('click', e=>{
     return;
   }
   if(e.target.closest('.packing-check')) return;
+  const pt = e.target.closest('[data-pack-toggle]');
+  if(pt){
+    e.preventDefault();
+    e.stopPropagation();
+    togglePackingExpanded(pt.dataset.packToggle);
+    return;
+  }
   const j = e.target.closest('[data-jump]');
   if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   const row = e.target.closest('tr[data-id]');
