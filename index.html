@@ -259,7 +259,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261004-2301';
+const APP_BUILD = '20261004-2316';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -354,6 +354,13 @@ const PACKING_DB_PREFIX = {
   ul: '__ul__::'
 };
 const CAMP_PACKING_GROUPS = [
+  {
+    id:'mold-grill-carrier',
+    ref:{categoryId:'camp-misc', itemName:'モールドグリルキャリー OCB2228 BC'},
+    children:[
+      {ref:{categoryId:'camp-fire', itemName:'ユニセラTG-III No.615010'}}
+    ]
+  },
   {
     id:'flatburner-case',
     ref:{categoryId:'camp-misc', itemName:'フラットバーナー GS-450R 専用 収納ケース'},
