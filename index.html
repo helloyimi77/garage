@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-1606';
+const APP_BUILD = '20261005-1625';;
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -967,7 +967,7 @@ function renderGrid(){
       const parts=(m[1]||'').split(' / ');
       return {name:parts[0].trim(), detail:parts.slice(1).join(' / ').trim(), price:m[2]?`¥${m[2]}`:''};
     };
-    const row = (v, main, sub, price) => `<tr data-id="${esc(v.id)}">
+    const row = (v, main, sub, price, attrs='') => `<tr data-id="${esc(v.id)}" ${attrs}>
         <td class="tackle"><b>${esc(main)}</b>${sub?`<small>${esc(sub)}</small>`:''}</td>
         <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
@@ -988,21 +988,32 @@ function renderGrid(){
     let html = tackleSections.map(sec => {
       const rows = list.map(v => {
         const t = parseTackle(v.specs?.[sec.key]);
-        return t.name ? row(v, t.name, t.detail, t.price) : '';
+        return t.name ? row(
+          v,
+          t.name,
+          t.detail,
+          t.price,
+          `data-fishing-type="tackle" data-fishing-key="${esc(sec.key)}"`
+        ) : '';
       }).join('');
       return block(sec.label, rows);
     }).join('');
 
     const equipmentRows = kind => list.flatMap(v =>
-      (v.equipment||[])
-        .filter(e => (e.kind||'lure')===kind)
-        .map(e => {
-          const q=qty(e);
-          const main=[e.maker,e.name].filter(Boolean).join(' ');
-          const sub=[q>1?`×${q}`:'',e.note||''].filter(Boolean).join(' / ');
-          const price=e.price!=null ? yen((Number(e.price)||0)*q) : '';
-          return row(v, main, sub, price);
-        })
+      (v.equipment||[]).flatMap((e,eqIndex) => {
+        if((e.kind||'lure')!==kind) return [];
+        const q=qty(e);
+        const main=[e.maker,e.name].filter(Boolean).join(' ');
+        const sub=[q>1?`×${q}`:'',e.note||''].filter(Boolean).join(' / ');
+        const price=e.price!=null ? yen((Number(e.price)||0)*q) : '';
+        return [row(
+          v,
+          main,
+          sub,
+          price,
+          `data-fishing-type="equipment" data-equipment-index="${eqIndex}"`
+        )];
+      })
     ).join('');
 
     html += block('ルアー', equipmentRows('lure'));
@@ -1274,6 +1285,82 @@ function openCampingItemDetail(categoryId, equipmentIndex){
   document.getElementById('close').focus();
 }
 
+function openFishingItemDetail(categoryId, type, keyOrIndex){
+  const v = DATA.vehicles.find(x=>x.id===categoryId);
+  if(!v) return;
+
+  const labels = {
+    'ロッド':'ロッド',
+    'リール':'リール',
+    'ライン':'ライン',
+    'リーダー':'リーダー',
+    lure:'ルアー',
+    storage:'収納',
+    small:'小物'
+  };
+  const fishingHero = image => image
+    ? `<div class="hero" style="background:#fff"><img src="${esc(image)}" alt="" style="object-fit:contain"></div>`
+    : `<div class="hero" style="--tint:var(--fishing)"><span class="glyph">🎣</span></div>`;
+
+  let maker='', name='', label='', detail='', price=null, quantity=1, note='', image='', source='';
+
+  if(type==='tackle'){
+    const key=keyOrIndex;
+    const raw=v.specs?.[key];
+    if(!raw) return;
+    const m=String(raw).match(/^(.*?)\s*(?:\(¥([\d,]+)\))?\s*$/);
+    const parts=(m?.[1]||String(raw)).split(' / ');
+    name=(parts[0]||'').trim();
+    detail=parts.slice(1).join(' / ').trim();
+    price=m?.[2] ? Number(m[2].replace(/,/g,'')) : null;
+    label=labels[key]||key;
+    const first=name.split(/\s+/)[0]||'';
+    maker=/^(Shimano|Daiwa|Major|solfiesta|YGK|VARIVAS|DUEL)$/i.test(first) ? first : '';
+  }else{
+    const e=v.equipment?.[Number(keyOrIndex)];
+    if(!e) return;
+    maker=e.maker||'';
+    name=e.name||'';
+    label=labels[e.kind||'lure']||'釣り道具';
+    detail=e.spec||e.detail||'';
+    price=e.price!=null ? Number(e.price) : null;
+    quantity=qty(e);
+    note=e.note||'';
+    image=e.image||'';
+    if(e.imageSource){
+      source=`<section class="sec"><h3>画像元</h3><div class="memo"><a href="${esc(e.imageSource)}" target="_blank" rel="noopener noreferrer">元ページを開く ↗</a></div></section>`;
+    }
+  }
+
+  const priceText = price!=null
+    ? `${yen(price)}${quantity>1?` ×${quantity} = ${yen(price*quantity)}`:''}`
+    : '—';
+
+  document.getElementById('drawer').innerHTML = `
+    ${fishingHero(image)}
+    <button class="close" id="close" aria-label="閉じる">×</button>
+    <div class="d-body">
+      <div class="maker">${esc(maker||label)}</div>
+      <h2>${esc(name)}</h2>
+      <div class="grade">釣り / ${esc(label)}</div>
+      <p class="own"><b>所有中</b></p>
+
+      <div class="money">
+        <div><span>価格</span><b>${priceText}</b></div>
+        <div><span>カテゴリ</span><b style="font-size:15px">${esc(label)}</b></div>
+      </div>
+
+      ${detail?`<section class="sec"><h3>仕様</h3><div class="memo">${esc(detail)}</div></section>`:''}
+      ${note?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(note)}</div></section>`:''}
+      ${source}
+    </div>`;
+
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('drawer').scrollTop = 0;
+  document.getElementById('close').focus();
+}
+
 function openDetail(id){
   const v = DATA.vehicles.find(x=>x.id===id); if(!v) return;
   const c = CATS[v.category]||{};
@@ -1475,7 +1562,11 @@ document.getElementById('grid').addEventListener('click', e=>{
   if(j){ cat=j.dataset.jump; renderTabs(); renderGrid(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   const row = e.target.closest('tr[data-id]');
   if(row){
-    if(row.dataset.equipmentIndex !== undefined){
+    if(row.dataset.fishingType==='tackle'){
+      openFishingItemDetail(row.dataset.id, 'tackle', row.dataset.fishingKey);
+    }else if(row.dataset.fishingType==='equipment'){
+      openFishingItemDetail(row.dataset.id, 'equipment', Number(row.dataset.equipmentIndex));
+    }else if(row.dataset.equipmentIndex !== undefined){
       openCampingItemDetail(row.dataset.id, Number(row.dataset.equipmentIndex));
     }else{
       openDetail(row.dataset.id);
