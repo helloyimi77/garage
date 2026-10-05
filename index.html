@@ -959,7 +959,7 @@ function renderGrid(){
     return;
   }
 
-  // Fishing: 道具ごとのリスト表示
+  // Fishing: 魚種ではなく道具そのものをカテゴリ別に表示
   if(group==='hobby' && cat==='fishing'){
     const parseTackle = s => {
       if(!s) return {name:'',detail:'',price:''};
@@ -967,51 +967,48 @@ function renderGrid(){
       const parts=(m[1]||'').split(' / ');
       return {name:parts[0].trim(), detail:parts.slice(1).join(' / ').trim(), price:m[2]?`¥${m[2]}`:''};
     };
-    const useLabel = v => (v.name||'').replace(/釣り$/,'');
-    // 釣る魚（specs.ターゲット）ごとの色
-    const FISH_COLORS = {
-      'シーバス':    ['#D6E4F0','#1F4E79'],
-      '真鯛':        ['#F6D9DC','#8E2A36'],
-      'アジ':        ['#DCEFE3','#1E6B45'],
-      '五目':        ['#F3E7C9','#7A5A12'],
-      'エリアトラウト':['#E6DDF2','#553C8B'],
-    };
-    const chipStyle = v => {
-      const c = FISH_COLORS[v.specs?.['ターゲット']] || ['var(--fishing)','var(--ink)'];
-      return `background:${c[0]};color:${c[1]}`;
-    };
-    const SECTIONS = [
-      {key:'ロッド',  label:'竿'},
-      {key:'リール',  label:'リール'},
-      {key:'ライン',  label:'ライン'},
-      {key:'リーダー',label:'リーダー'},
-    ];
     const row = (v, main, sub, price) => `<tr data-id="${esc(v.id)}">
-        <td class="use"><span class="use-chip" style="${chipStyle(v)}" title="${esc(v.specs?.['ターゲット']||'')}">${esc(useLabel(v))}</span></td>
-        <td class="tackle">${esc(main)}${sub?`<small>${esc(sub)}</small>`:''}</td>
+        <td class="tackle"><b>${esc(main)}</b>${sub?`<small>${esc(sub)}</small>`:''}</td>
         <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
-    const block = (label, rows, foot='') => rows ? `<section class="fish-sec">
+    const block = (label, rows) => rows ? `<section class="fish-sec">
         <h3>${esc(label)}</h3>
         <div class="golf-list fishing-list" data-cat="fishing"><table>
-          <colgroup><col style="width:22%"><col><col style="width:18%"></colgroup>
-          <tbody>${rows}</tbody>${foot}
+          <colgroup><col><col style="width:22%"></colgroup>
+          <thead><tr><th>道具</th><th class="num">価格</th></tr></thead>
+          <tbody>${rows}</tbody>
         </table></div></section>` : '';
-    let html = SECTIONS.map(sec => {
+
+    const tackleSections = [
+      {key:'ロッド', label:'ロッド'},
+      {key:'リール', label:'リール'},
+      {key:'ライン', label:'ライン'},
+      {key:'リーダー', label:'リーダー'},
+    ];
+    let html = tackleSections.map(sec => {
       const rows = list.map(v => {
         const t = parseTackle(v.specs?.[sec.key]);
         return t.name ? row(v, t.name, t.detail, t.price) : '';
       }).join('');
       return block(sec.label, rows);
     }).join('');
-    const equipmentRows = kind => list.map(v => {
-      const eq = (v.equipment||[]).filter(e => (e.kind||'lure')===kind);
-      if(!eq.length) return '';
-      const names = eq.slice(0,3).map(e=>e.name).join('、') + (eq.length>3?` ほか${eq.length-3}点`:'');
-      return row(v, `${eq.length}点`, names, yen(sum(eq)));
-    }).join('');
+
+    const equipmentRows = kind => list.flatMap(v =>
+      (v.equipment||[])
+        .filter(e => (e.kind||'lure')===kind)
+        .map(e => {
+          const q=qty(e);
+          const main=[e.maker,e.name].filter(Boolean).join(' ');
+          const sub=[q>1?`×${q}`:'',e.note||''].filter(Boolean).join(' / ');
+          const price=e.price!=null ? yen((Number(e.price)||0)*q) : '';
+          return row(v, main, sub, price);
+        })
+    ).join('');
+
     html += block('ルアー', equipmentRows('lure'));
+    html += block('収納', equipmentRows('storage'));
     html += block('小物', equipmentRows('small'));
+
     const grand = list.reduce((a,v)=>a+total_hobby(v),0);
     html += `<div class="fish-total"><span>釣り道具 合計</span><b>${yen(grand)}</b></div>`;
     g.innerHTML = `<div class="fish-wrap">${html}</div>`;
@@ -1296,7 +1293,7 @@ function openDetail(id){
   const fishingEq = kind => (v.equipment||[]).filter(x => (x.kind||'lure')===kind);
   const fishingEqRows = kind => fishingEq(kind).map(x=>`<tr><th>${esc(x.name)}${qty(x)>1?` ×${qty(x)}`:''}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${x.price!=null?`${yen(x.price)}${qty(x)>1?` ×${qty(x)}`:''}`:'—'}</td></tr>`).join('');
   const fishingEquipmentSections = v.category==='fishing'
-    ? [['lure','ルアー'],['small','小物']].map(([kind,label])=>{
+    ? [['lure','ルアー'],['storage','収納'],['small','小物']].map(([kind,label])=>{
         const rows=fishingEqRows(kind), items=fishingEq(kind);
         return rows?`<section class="sec"><h3>${label} <small>${items.length}点 · ${yen(sum(items))}</small></h3><table>${rows}</table></section>`:'';
       }).join('')
@@ -1372,8 +1369,9 @@ function openDetail(id){
          </div>`
       : (v.category==='fishing'
         ? `<div class="money">
-            <div><span>ロッド一式</span><b>${yen(buy)}</b></div>
+            <div><span>タックル本体</span><b>${yen(buy)}</b></div>
             <div><span>ルアー</span><b>${yen(sum(fishingEq('lure')))}</b></div>
+            <div><span>収納</span><b>${yen(sum(fishingEq('storage')))}</b></div>
             <div><span>小物</span><b>${yen(sum(fishingEq('small')))}</b></div>
             <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
            </div>`
