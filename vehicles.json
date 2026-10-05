@@ -2703,169 +2703,197 @@
           "name": "PB-20 デイグリーン",
           "maker": "Coreman",
           "price": 1650,
-          "note": "レンジを定めてゆっくり巻き。リフトアンドフォール、フォールカウント"
+          "note": "レンジを定めてゆっくり巻き。リフトアンドフォール、フォールカウント",
+          "kind": "lure"
         },
         {
           "name": "VJ-16 イワシゴールド",
           "maker": "Coreman",
           "price": 2310,
-          "note": "活性高→高速巻き、低→低めのレンジ"
+          "note": "活性高→高速巻き、低→低めのレンジ",
+          "kind": "lure"
         },
         {
           "name": "VJ-16 ヒラメピンク",
           "maker": "Coreman",
           "price": 2310,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "BC-26 マコイワシ",
           "maker": "Coreman",
           "price": 2200,
-          "note": "ただ巻き"
+          "note": "ただ巻き",
+          "kind": "lure"
         },
         {
           "name": "RJ-10",
           "maker": "Coreman",
           "price": 1650,
-          "note": "ゆっくり。擦れ切り札"
+          "note": "ゆっくり。擦れ切り札",
+          "kind": "lure"
         },
         {
           "name": "Aizer125F 房州アジ",
           "maker": "BlueBlue",
           "price": 3410,
-          "note": "フローティングミノー。超低速のイレギュラーふらつき"
+          "note": "フローティングミノー。超低速のイレギュラーふらつき",
+          "kind": "lure"
         },
         {
           "name": "Blooowin80S フラッシュレッド",
           "maker": "BlueBlue",
           "price": 2700,
-          "note": "シンキングペンシル。1m潜行スローS字"
+          "note": "シンキングペンシル。1m潜行スローS字",
+          "kind": "lure"
         },
         {
           "name": "Blooowin80S アカキン",
           "maker": "BlueBlue",
           "price": 2700,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "Blooowin80S ブルーブルー",
           "maker": "BlueBlue",
           "price": 2700,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "Blooowin140S ピンクキャンディ",
           "maker": "BlueBlue",
           "price": 3300,
-          "note": "シンキングペンシル。1秒1回転"
+          "note": "シンキングペンシル。1秒1回転",
+          "kind": "lure"
         },
         {
           "name": "エクスセンス サルベージ 70S PKC",
           "maker": "Shimano",
           "price": 1650,
-          "note": "バイブレーション。ただ巻き+速度変化+トゥイッチ"
+          "note": "バイブレーション。ただ巻き+速度変化+トゥイッチ",
+          "kind": "lure"
         },
         {
           "name": "モアザン スライスリム 125F ライトニングパープル",
           "maker": "Daiwa",
           "price": 2200,
-          "note": "フローティングミノー。超ゆっくり漂う揺らぎ"
+          "note": "フローティングミノー。超ゆっくり漂う揺らぎ",
+          "kind": "lure"
         },
         {
           "name": "ガルバスリム80S ハッピーレモン",
           "maker": "Daiwa",
           "price": 1800,
-          "note": "シンキングペンシル。細身軽引き"
+          "note": "シンキングペンシル。細身軽引き",
+          "kind": "lure"
         },
         {
           "name": "セットアッパー 125S-DR Li LIチャートバック",
           "maker": "Daiwa",
           "price": 2200,
-          "note": "スローシンキング。5秒待ち1秒2-3回転"
+          "note": "スローシンキング。5秒待ち1秒2-3回転",
+          "kind": "lure"
         },
         {
           "name": "セットアッパー 125S-DR Li LIレッドヘッド",
           "maker": "Daiwa",
           "price": 2200,
-          "note": "スローシンキング"
+          "note": "スローシンキング",
+          "kind": "lure"
         },
         {
           "name": "エリア10 ミラージュイワシ",
           "maker": "ガイア",
           "price": 1800,
-          "note": "フローティングミノー。流れ任せドリフト"
+          "note": "フローティングミノー。流れ任せドリフト",
+          "kind": "lure"
         },
         {
           "name": "エリア10 荒川サンライズ",
           "maker": "ガイア",
           "price": 1800,
-          "note": "フローティングミノー"
+          "note": "フローティングミノー",
+          "kind": "lure"
         },
         {
           "name": "manic 115 江戸前パール",
           "maker": "DUO",
           "price": 1650,
-          "note": "シンキングミノー。スローリトリーブで流れに乗せる"
+          "note": "シンキングミノー。スローリトリーブで流れに乗せる",
+          "kind": "lure"
         },
         {
           "name": "manic slow 95 マッドピンクギーゴ",
           "maker": "DUO",
           "price": 1650,
-          "note": "スローシンキング。超ゆっくり"
+          "note": "スローシンキング。超ゆっくり",
+          "kind": "lure"
         },
         {
           "name": "feel120fg ブラックピンク",
           "maker": "reed",
           "price": 1650,
-          "note": "フローティングミノー。ゆっくり"
+          "note": "フローティングミノー。ゆっくり",
+          "kind": "lure"
         },
         {
           "name": "コモモ2 ピンク＆ピンク",
           "maker": "アムズデザイン",
           "price": 1870,
-          "note": "フローティングミノー。ただ巻き or トゥウィッチ"
+          "note": "フローティングミノー。ただ巻き or トゥウィッチ",
+          "kind": "lure"
         },
         {
           "name": "コルセア50 マットパープルパール",
           "maker": "エバーグリーン",
           "price": 1650,
-          "note": "シンキングペンシル。1秒1回転"
+          "note": "シンキングペンシル。1秒1回転",
+          "kind": "lure"
         },
         {
           "name": "謎のメタルジグ 20g",
           "maker": "",
           "price": 500,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "タックルボックス マルチ Sサイズ",
           "maker": "DRESS",
           "price": 1320,
-          "note": "2024-05-07 Amazon購入"
+          "note": "2024-05-07 Amazon購入",
+          "kind": "small"
         },
         {
           "name": "タックルボックスマルチ グレー S",
           "maker": "DRESS",
           "price": 1320,
-          "note": "2024-05-07 Amazon購入"
+          "note": "2024-05-07 Amazon購入",
+          "kind": "small"
         },
         {
           "name": "マルチホルダー EVO ブラック×グレー",
           "maker": "DRESS",
           "price": 1650,
-          "note": "2024-05-07 Amazon購入"
+          "note": "2024-05-07 Amazon購入",
+          "kind": "small"
         },
         {
           "name": "バッカンミニ 約17L ブラック",
           "maker": "DRESS",
           "price": 8461,
-          "note": "2024-05-07 Amazon購入 / メッシュポケット付き・ロッドホルダー"
+          "note": "2024-05-07 Amazon購入 / メッシュポケット付き・ロッドホルダー",
+          "kind": "small"
         },
         {
           "name": "ワンショルダーバッグ コーティングブラック",
           "maker": "Abu Garcia",
           "price": 3911,
-          "note": "2023-04-19 Amazon購入"
+          "note": "2023-04-19 Amazon購入",
+          "kind": "small"
         }
       ],
       "photos": {
@@ -2912,19 +2940,22 @@
           "name": "ビンビンスイッチ 35g ブライトオレンジ",
           "maker": "ジャッカル",
           "price": 1400,
-          "note": "リフトフォール"
+          "note": "リフトフォール",
+          "kind": "lure"
         },
         {
           "name": "ビンビンスイッチ 60g グリーンゴールド",
           "maker": "ジャッカル",
           "price": 1600,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ビンビンスイッチ 80g レッドゴールド",
           "maker": "ジャッカル",
           "price": 1800,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         }
       ],
       "photos": {
@@ -3005,79 +3036,92 @@
           "name": "月下美人 しずる ケイムラシラス",
           "maker": "Daiwa",
           "price": 770,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ナノラバ 10g ケイムラ ピンクシルバー",
           "maker": "メジャークラフト",
           "price": 900,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ナノラバ 10g ケイムラ グリーンゴールド",
           "maker": "メジャークラフト",
           "price": 900,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ナノラバ 5g グロー",
           "maker": "メジャークラフト",
           "price": 800,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ナノラバ 5g ケイムラ レッドゴールド",
           "maker": "メジャークラフト",
           "price": 800,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ナノラバ 1.5g ケイムラ グリーンゴールド",
           "maker": "メジャークラフト",
           "price": 700,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ナノラバ 1.5g ケイムラ レッドゴールド",
           "maker": "メジャークラフト",
           "price": 700,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "魚子バイブ 2g アカキンラメ",
           "maker": "ルーディーズ",
           "price": 800,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "月下美人プリズナー CV 12g ピンクイワシ",
           "maker": "ルーディーズ",
           "price": 1700,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ストーム 五目ボトム 3g 緑っぽい",
           "maker": "ラパラ",
           "price": 990,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ストーム 五目ミノー 2g 赤っぽい",
           "maker": "ラパラ",
           "price": 990,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "ストーム 五目スピン レインボー",
           "maker": "ラパラ",
           "price": 990,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         },
         {
           "name": "Lミノー 3.5g 33mm 青銀",
           "maker": "YO-ZURI",
           "price": 660,
-          "note": ""
+          "note": "",
+          "kind": "lure"
         }
       ],
       "photos": {
@@ -3160,19 +3204,22 @@
           "name": "ZEXUS ライト ZX-195",
           "maker": "ZEXUS",
           "price": 3300,
-          "note": ""
+          "note": "",
+          "kind": "small"
         },
         {
           "name": "リーディングアーム3",
           "maker": "Daiwa",
           "price": 3500,
-          "note": ""
+          "note": "",
+          "kind": "small"
         },
         {
           "name": "ライトビシ 40",
           "maker": "Daiwa",
           "price": 1500,
-          "note": ""
+          "note": "",
+          "kind": "small"
         }
       ],
       "photos": {
