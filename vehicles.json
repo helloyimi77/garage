@@ -2704,7 +2704,45 @@
           "maker": "Coreman",
           "price": 1650,
           "note": "レンジを定めてゆっくり巻き。リフトアンドフォール、フォールカウント",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "PB-20 POWERBLADE",
+            "summary": "ブレードの波動とフラッシングで広範囲を探れる20gクラスのブレードベイト。低重心設計で飛距離と安定したフォールを両立する。",
+            "specs": {
+              "全長": "105mm",
+              "重量": "20g",
+              "リング": "COREMAN オリジナル #1",
+              "フック": "がまかつ トレブル13 #10",
+              "ブレード": "COREMAN #2",
+              "システム": "BS-1310",
+              "登録カラー": "#017 デイグリーン",
+              "公式掲載価格": "1,500円（税別）"
+            },
+            "features": [
+              "ロングキャスト",
+              "低重心設計",
+              "ブレード波動＋フラッシング",
+              "BOOSTER SYSTEM"
+            ],
+            "source_name": "COREMAN 公式製品ページ",
+            "source_url": "https://www.coreman.jp/product_lure/pb-20-powerblade/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "広く投げてただ巻き。まずは一定速度でサーチする。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントでレンジを決め、同じ層を引く。"
+            },
+            {
+              "title": "変化",
+              "text": "反応が薄ければ巻き速度の変化やリフト＆フォールを入れる。"
+            }
+          ],
+          "image": "https://www.coreman.jp/wp-content/uploads/2025/05/ba46624e5bd45e29d41c8a5324a329ea-1024x311.jpg",
+          "imageSource": "https://www.coreman.jp/product_lure/pb-20-powerblade/"
         },
         {
           "name": "VJ-16 イワシゴールド",
@@ -2713,23 +2751,22 @@
           "note": "活性高→高速巻き、低→低めのレンジ",
           "kind": "lure",
           "official": {
-            "product": "VJ-16 バイブレーションジグヘッド",
-            "summary": "ジグヘッドとアルカリシャッドの組み合わせでボディ全体が細かく振動する、シーバス向けのバイブレーションジグヘッド。16gは水深3m前後のシャローを得意とする。",
+            "product": "VJ-16 VIBRATION JIGHEAD",
+            "summary": "ジグヘッドとアルカリシャッドの組み合わせでワーム全体が細かく振動する、シーバス向けのバイブレーションジグヘッド。16gは浅めのレンジをテンポよく探りやすい。",
             "specs": {
               "全長": "95mm",
               "重量": "ヘッド16g / ワーム3g",
               "リング": "COREMAN オリジナル #1",
               "フック": "がまかつ トレブル13 #10",
               "標準ワーム": "COREMAN アルカリシャッド 75mm",
-              "得意レンジ": "水深3m前後のシャロー",
-              "公式掲載価格": "1,400円（税別）",
-              "カラー": "#044 ゴールドヘッド / イワシゴールド"
+              "カラー": "#044 ゴールドヘッド / イワシゴールド",
+              "公式掲載価格": "1,400円（税別・公式掲載値）"
             },
             "features": [
-              "ワーム全体が細かく振動するVJアクション",
+              "VJアクション",
               "高い飛距離",
               "ナチュラルな波動",
-              "ワームをワンタッチで交換可能"
+              "ワーム交換式"
             ],
             "source_name": "COREMAN 公式製品ページ",
             "source_url": "https://www.coreman.jp/product_lure/vj-16-vibration-jighead/",
@@ -2739,19 +2776,19 @@
           "usage": [
             {
               "title": "基本",
-              "text": "まずはただ巻き。一定巻きの中に自発的な千鳥アクションが入り、食わせのきっかけを作る。"
+              "text": "まずはただ巻き。一定巻きの中に出る自発的なアクションで食わせる。"
             },
             {
               "title": "レンジ",
-              "text": "VJ-16は16gで浮き上がりが早く、水深3m前後のシャローを広く探るのが得意。"
+              "text": "着水後のカウントと巻き速度でレンジを調整。浅場はVJ-16の得意領域。"
             },
             {
               "title": "セット",
-              "text": "ワームはジグヘッドにまっすぐ刺す。装着後は必ずスイムチェックし、泳ぎが崩れたら刺し直す。"
+              "text": "ワームはまっすぐ刺し、泳ぎが崩れたら刺し直してスイムチェック。"
             },
             {
-              "title": "ベイト合わせ",
-              "text": "標準はアルカリシャッド75mm。ベイトサイズやレンジに応じてワームサイズを変える考え方も公式メソッドで紹介されている。"
+              "title": "活性",
+              "text": "高活性は速め、低活性は速度を落としてレンジを下げ気味に探る。"
             }
           ],
           "image": "https://www.coreman.jp/img/product/vj16/color-044_2020.jpg",
@@ -2764,22 +2801,22 @@
           "note": "",
           "kind": "lure",
           "official": {
-            "product": "VJ-16 バイブレーションジグヘッド",
-            "summary": "ジグヘッドとアルカリシャッドの組み合わせでボディ全体が細かく振動する、シーバス向けのバイブレーションジグヘッド。16gは水深3m前後のシャローを得意とする。",
+            "product": "VJ-16 VIBRATION JIGHEAD",
+            "summary": "ジグヘッドとアルカリシャッドの組み合わせでワーム全体が細かく振動する、シーバス向けのバイブレーションジグヘッド。16gは浅めのレンジをテンポよく探りやすい。",
             "specs": {
               "全長": "95mm",
               "重量": "ヘッド16g / ワーム3g",
               "リング": "COREMAN オリジナル #1",
               "フック": "がまかつ トレブル13 #10",
               "標準ワーム": "COREMAN アルカリシャッド 75mm",
-              "得意レンジ": "水深3m前後のシャロー",
-              "公式掲載価格": "1,400円（税別）"
+              "カラー": "ヒラメピンク（登録カラー）",
+              "公式掲載価格": "1,400円（税別・公式掲載値）"
             },
             "features": [
-              "ワーム全体が細かく振動するVJアクション",
+              "VJアクション",
               "高い飛距離",
               "ナチュラルな波動",
-              "ワームをワンタッチで交換可能"
+              "ワーム交換式"
             ],
             "source_name": "COREMAN 公式製品ページ",
             "source_url": "https://www.coreman.jp/product_lure/vj-16-vibration-jighead/",
@@ -2789,161 +2826,888 @@
           "usage": [
             {
               "title": "基本",
-              "text": "まずはただ巻き。一定巻きの中に自発的な千鳥アクションが入り、食わせのきっかけを作る。"
+              "text": "まずはただ巻き。一定巻きの中に出る自発的なアクションで食わせる。"
             },
             {
               "title": "レンジ",
-              "text": "VJ-16は16gで浮き上がりが早く、水深3m前後のシャローを広く探るのが得意。"
+              "text": "着水後のカウントと巻き速度でレンジを調整。浅場はVJ-16の得意領域。"
             },
             {
               "title": "セット",
-              "text": "ワームはジグヘッドにまっすぐ刺す。装着後は必ずスイムチェックし、泳ぎが崩れたら刺し直す。"
+              "text": "ワームはまっすぐ刺し、泳ぎが崩れたら刺し直してスイムチェック。"
             },
             {
-              "title": "ベイト合わせ",
-              "text": "標準はアルカリシャッド75mm。ベイトサイズやレンジに応じてワームサイズを変える考え方も公式メソッドで紹介されている。"
+              "title": "活性",
+              "text": "高活性は速め、低活性は速度を落としてレンジを下げ気味に探る。"
             }
-          ]
+          ],
+          "image": "https://www.coreman.jp/img/product/vj16/main-img2020.jpg",
+          "imageSource": "https://www.coreman.jp/product_lure/vj-16-vibration-jighead/"
         },
         {
           "name": "BC-26 マコイワシ",
           "maker": "Coreman",
           "price": 2200,
           "note": "ただ巻き",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "BC-26 BACKCHATTER",
+            "summary": "ブレードを備えた26gのバックチャター。飛距離を出しながら、ブレードの波動とフラッシングで効率よく広範囲を探る。",
+            "specs": {
+              "全長": "88mm",
+              "重量": "26g",
+              "リング": "#2",
+              "フック": "Gamakatsu×COREMAN CD21 #4",
+              "ブレード": "COREMAN #1+",
+              "カラー": "#001 マコイワシ",
+              "公式掲載価格": "1,500円（税別）"
+            },
+            "features": [
+              "ブレード波動",
+              "ロングキャスト",
+              "安定した直進性"
+            ],
+            "source_name": "COREMAN 公式製品ページ",
+            "source_url": "https://www.coreman.jp/product_lure/bc-26-backchatter/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "ミディアム〜ミディアムスローのただ巻きが基本。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントでレンジを合わせ、一定層を直線的に引く。"
+            },
+            {
+              "title": "変化",
+              "text": "巻き速度を少し変えてブレードの波動変化を出す。"
+            }
+          ],
+          "image": "https://www.coreman.jp/img/product/bc26/color-001b.jpg",
+          "imageSource": "https://www.coreman.jp/product_lure/bc-26-backchatter/"
         },
         {
           "name": "RJ-10",
           "maker": "Coreman",
           "price": 1650,
           "note": "ゆっくり。擦れ切り札",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "RJ-10 ROLLING JIGHEAD",
+            "summary": "ハイピッチなロールアクションでシャローを攻略する10gジグヘッド＋ワームのセット。コンパクトなヘッドと可動式ダブルフックが特徴。",
+            "specs": {
+              "全長": "85mm",
+              "重量": "ヘッド10g / ワーム3g",
+              "フック": "ダブル22 #6",
+              "標準ワーム": "ALKALI SHAD 75mm",
+              "公式掲載価格": "1,200円（税別）"
+            },
+            "features": [
+              "ハイピッチロール",
+              "可動式ダブルフック",
+              "シャロー対応",
+              "ワーム位置で泳ぎを調整可能"
+            ],
+            "source_name": "COREMAN 公式製品ページ",
+            "source_url": "https://www.coreman.jp/product_lure/rj-10-rollingjighead/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "スロー〜ミディアムのただ巻き。擦れた魚への食わせ寄り。"
+            },
+            {
+              "title": "レンジ",
+              "text": "浅いレンジをゆっくり通す。浮き上がりを利用して障害物の上も引きやすい。"
+            },
+            {
+              "title": "セット",
+              "text": "ワーム位置で泳ぎが変わるので、必ずスイムチェックして調整。"
+            }
+          ],
+          "image": "https://www.coreman.jp/img/product/rj10/main-img.jpg",
+          "imageSource": "https://www.coreman.jp/product_lure/rj-10-rollingjighead/"
         },
         {
           "name": "Aizer125F 房州アジ",
           "maker": "BlueBlue",
           "price": 3410,
           "note": "フローティングミノー。超低速のイレギュラーふらつき",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "AIZER 125F",
+            "summary": "飛距離と安定した飛行姿勢、明確な巻き感を持つシャローランナー。超低速域ではイレギュラーなふらつきが出る。",
+            "specs": {
+              "全長": "125mm",
+              "重量": "22g",
+              "リング": "#3",
+              "フック": "#4 ×3",
+              "レンジ": "5–30cm",
+              "タイプ": "フローティング",
+              "カラー": "#16 房州アジ",
+              "公式掲載価格": "2,360円（税別）"
+            },
+            "features": [
+              "高い飛距離",
+              "強めのウォブンロール",
+              "超低速域のふらつき",
+              "シャローレンジ"
+            ],
+            "source_name": "BlueBlue 公式製品ページ",
+            "source_url": "https://www.bluebluefishing.com/item/detail/004579/"
+          },
+          "usage": [
+            {
+              "title": "先発",
+              "text": "ポイント到着後の先発として広くサーチ。"
+            },
+            {
+              "title": "基本",
+              "text": "ゆっくり〜通常速度のただ巻き。巻き感を頼りに流れの変化を探す。"
+            },
+            {
+              "title": "食わせ",
+              "text": "アップクロス＋超低速で不規則なふらつきを出す。"
+            }
+          ],
+          "image": "https://www.bluebluefishing.com/files_thumbnail/item_aizer_125f_aiz125f_016_w500px_h100px.png",
+          "imageSource": "https://www.bluebluefishing.com/item/detail/004579/"
         },
         {
           "name": "Blooowin80S フラッシュレッド",
           "maker": "BlueBlue",
           "price": 2700,
           "note": "シンキングペンシル。1m潜行スローS字",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "Blooowin! 80S",
+            "summary": "80mmの細身シンキングミノー。スローリトリーブでは約1mレンジをS字軌道＋ナチュラルなウォブンロールで泳ぐ。",
+            "specs": {
+              "全長": "80mm",
+              "重量": "8g",
+              "タイプ": "シンキング",
+              "レンジ": "約100cm",
+              "フック": "#8 ×2",
+              "公式掲載価格": "1,930円（税別）"
+            },
+            "features": [
+              "タングステンウェイト",
+              "緩やかなS字軌道",
+              "スローで置いて流せる",
+              "細身シルエット"
+            ],
+            "source_name": "BlueBlue 公式製品ページ",
+            "source_url": "https://www.bluebluefishing.com/item/detail/000734/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "スローリトリーブで約1mレンジを通す。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れに乗せて『置いて流す』。ラインテンションを掛けすぎない。"
+            },
+            {
+              "title": "変化",
+              "text": "巻き速度を少し変えてS字とウォブンロールの出方を変える。"
+            }
+          ],
+          "image": "https://www.bluebluefishing.com/files_thumbnail/item_blooowin_80s_bl80s_24_w500px_h126px.png",
+          "imageSource": "https://www.bluebluefishing.com/item/detail/000734/"
         },
         {
           "name": "Blooowin80S アカキン",
           "maker": "BlueBlue",
           "price": 2700,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "Blooowin! 80S",
+            "summary": "80mmの細身シンキングミノー。スローリトリーブでは約1mレンジをS字軌道＋ナチュラルなウォブンロールで泳ぐ。",
+            "specs": {
+              "全長": "80mm",
+              "重量": "8g",
+              "タイプ": "シンキング",
+              "レンジ": "約100cm",
+              "フック": "#8 ×2",
+              "公式掲載価格": "1,930円（税別）"
+            },
+            "features": [
+              "タングステンウェイト",
+              "緩やかなS字軌道",
+              "スローで置いて流せる",
+              "細身シルエット"
+            ],
+            "source_name": "BlueBlue 公式製品ページ",
+            "source_url": "https://www.bluebluefishing.com/item/detail/000734/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "スローリトリーブで約1mレンジを通す。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れに乗せて『置いて流す』。ラインテンションを掛けすぎない。"
+            },
+            {
+              "title": "変化",
+              "text": "巻き速度を少し変えてS字とウォブンロールの出方を変える。"
+            }
+          ],
+          "image": "https://www.bluebluefishing.com/files_thumbnail/item_blooowin_80s_bl80s_09_w500px_h126px.png",
+          "imageSource": "https://www.bluebluefishing.com/item/detail/000734/"
         },
         {
           "name": "Blooowin80S ブルーブルー",
           "maker": "BlueBlue",
           "price": 2700,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "Blooowin! 80S",
+            "summary": "80mmの細身シンキングミノー。スローリトリーブでは約1mレンジをS字軌道＋ナチュラルなウォブンロールで泳ぐ。",
+            "specs": {
+              "全長": "80mm",
+              "重量": "8g",
+              "タイプ": "シンキング",
+              "レンジ": "約100cm",
+              "フック": "#8 ×2",
+              "公式掲載価格": "1,930円（税別）"
+            },
+            "features": [
+              "タングステンウェイト",
+              "緩やかなS字軌道",
+              "スローで置いて流せる",
+              "細身シルエット"
+            ],
+            "source_name": "BlueBlue 公式製品ページ",
+            "source_url": "https://www.bluebluefishing.com/item/detail/000734/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "スローリトリーブで約1mレンジを通す。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れに乗せて『置いて流す』。ラインテンションを掛けすぎない。"
+            },
+            {
+              "title": "変化",
+              "text": "巻き速度を少し変えてS字とウォブンロールの出方を変える。"
+            }
+          ],
+          "image": "https://www.bluebluefishing.com/files_thumbnail/item_blooowin_80s_bl80s_01_w500px_h126px.png",
+          "imageSource": "https://www.bluebluefishing.com/item/detail/000734/"
         },
         {
           "name": "Blooowin140S ピンクキャンディ",
           "maker": "BlueBlue",
           "price": 3300,
           "note": "シンキングペンシル。1秒1回転",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "Blooowin! 140S",
+            "summary": "140mm・23gのシンキングミノー。強いウォブンロールと大きなS字軌道、ジャーク時の横っ飛びダートが特徴。",
+            "specs": {
+              "全長": "140mm",
+              "重量": "23g",
+              "タイプ": "シンキング",
+              "レンジ": "約100cm",
+              "リング": "#3",
+              "フック": "#4 ×3",
+              "公式掲載価格": "2,680円（税別）"
+            },
+            "features": [
+              "高い飛距離",
+              "大きなS字軌道",
+              "強いウォブンロール",
+              "ジャーキング対応"
+            ],
+            "source_name": "BlueBlue 公式製品ページ",
+            "source_url": "https://www.bluebluefishing.com/item/detail/000713/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "1秒1回転前後を基準にただ巻き。引き抵抗を感じながらレンジをキープ。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れの中では巻き過ぎず、ルアーを置くイメージで流す。"
+            },
+            {
+              "title": "ジャーク",
+              "text": "反応が薄い時は連続ジャークで横っ飛びダートを出してスイッチを入れる。"
+            }
+          ],
+          "image": "https://www.bluebluefishing.com/files_thumbnail/item_blooowin_140s_bl06_w500px_h93px.png",
+          "imageSource": "https://www.bluebluefishing.com/item/detail/000713/"
         },
         {
           "name": "エクスセンス サルベージ 70S PKC",
           "maker": "Shimano",
           "price": 1650,
           "note": "バイブレーション。ただ巻き+速度変化+トゥイッチ",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "EXSENCE Salvage 70S",
+            "summary": "シーバス用シンキングバイブレーション。70mmクラスでレンジを刻みやすく、ただ巻きを中心にスピード変化やトゥイッチで使える。",
+            "specs": {
+              "全長": "70mm",
+              "重量": "16g（現行70S系）",
+              "タイプ": "シンキング",
+              "フック": "#6 ×2",
+              "登録カラー": "PKC",
+              "注記": "所有個体の世代は未特定。現行シリーズ公式情報を参照。"
+            },
+            "features": [
+              "バイブレーション",
+              "レンジサーチ",
+              "巻き速度でアクション変化"
+            ],
+            "source_name": "SHIMANO 公式製品ページ",
+            "source_url": "https://fish.shimano.com/ja-JP/product/lure/seabass/vibration_blade/a155f00000c5cqtqaf_p.html"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "まずはただ巻き。"
+            },
+            {
+              "title": "速度",
+              "text": "速め・普通・遅めを試して反応するスピードを探す。"
+            },
+            {
+              "title": "変化",
+              "text": "等速巻きの途中に短いトゥイッチを入れる。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着底またはカウント後に巻き始め、狙う層を変える。"
+            }
+          ],
+          "image": "https://dassets2.shimano.com/content/dam/Shimanofish/Common/Productsrelated/cg2SHIFGlobalLURE/SICPlanningProducts/Product/PRD_a155F00000C5CqtQAF_p_main.jpg/jcr:content/renditions/cq5dam.web.481.481.jpeg",
+          "imageSource": "https://fish.shimano.com/ja-JP/product/lure/seabass/vibration_blade/a155f00000c5cqtqaf_p.html"
         },
         {
           "name": "モアザン スライスリム 125F ライトニングパープル",
           "maker": "Daiwa",
           "price": 2200,
           "note": "フローティングミノー。超ゆっくり漂う揺らぎ",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "MORETHAN SLY SLIM 125F",
+            "summary": "水面〜水面直下をI字系の波紋で引ける125mmフローティングミノー。水平姿勢を保ちながら超スローで漂わせる使い方が得意。",
+            "specs": {
+              "全長": "125mm",
+              "重量": "9.8g",
+              "タイプ": "フローティング",
+              "レンジ": "水面〜約5cm",
+              "フック": "#8",
+              "リング": "#2",
+              "登録カラー": "ライトニングパープル",
+              "公式掲載価格": "2,100円（税別）"
+            },
+            "features": [
+              "水面レンジ",
+              "I字系V波紋",
+              "超スロー対応"
+            ],
+            "source_name": "DAIWA 公式製品ページ",
+            "source_url": "https://www.daiwa.com/jp/product/mmwjc24"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "超ゆっくり。ただ巻きというより水面を漂わせる感覚。"
+            },
+            {
+              "title": "姿勢",
+              "text": "ラインを張り過ぎず、水平姿勢で水面直下をキープ。"
+            },
+            {
+              "title": "流れ",
+              "text": "流れがある場所では巻き量を減らしてドリフト。"
+            }
+          ],
+          "image": "https://390386bd-1bf0-4900-aa10-cac1793c9a23-afd-dqdkdpcqgcc6hahm.z01.azurefd.net/-/media/Project/globeride/daiwa_com_jp/resources/fishing/item/lure/sea_le/morethan_sly_slim/__icsFiles/afieldfile/2022/11/19/MT_SlySlim_125F_LightningPurple.jpg?rev=50b4603b43ba49dea113474ab12859be",
+          "imageSource": "https://www.daiwa.com/jp/product/mmwjc24"
         },
         {
           "name": "ガルバスリム80S ハッピーレモン",
           "maker": "Daiwa",
           "price": 1800,
           "note": "シンキングペンシル。細身軽引き",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "MORETHAN GALVA SLIM 80S",
+            "summary": "細身・軽い引き心地のシンキングペンシル。トップレンジを幅広い速度で引ける。",
+            "specs": {
+              "全長": "80mm",
+              "重量": "10g",
+              "タイプ": "シンキング",
+              "フック": "#10",
+              "登録カラー": "ハッピーレモン",
+              "公式掲載価格": "1,900円（税別）"
+            },
+            "features": [
+              "トップレンジ",
+              "幅広い速度域",
+              "軽い引き抵抗",
+              "クイックレスポンス"
+            ],
+            "source_name": "DAIWA 公式製品ページ",
+            "source_url": "https://www.daiwa.com/jp/product/fik7l68"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "トップレンジをただ巻き。遅めから速めまで幅広く試せる。"
+            },
+            {
+              "title": "食わせ",
+              "text": "表層を細身シルエットで通し、速度差で反応を出す。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れがある場所はラインを持たせて流す。"
+            }
+          ],
+          "image": "https://390386bd-1bf0-4900-aa10-cac1793c9a23-afd-dqdkdpcqgcc6hahm.z01.azurefd.net/-/media/Project/globeride/daiwa_com_jp/resources/fishing/item/lure/sea_le/morethan_galva_s/__icsFiles/afieldfile/2018/10/23/MT_GalvaSlim_80S_HappyLemon.jpg?rev=b68c499013204fe3b57cee0eac09076b",
+          "imageSource": "https://www.daiwa.com/jp/product/fik7l68"
         },
         {
           "name": "セットアッパー 125S-DR Li LIチャートバック",
           "maker": "Daiwa",
           "price": 2200,
           "note": "スローシンキング。5秒待ち1秒2-3回転",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "SHORELINE SHINER Z SETUPPER 125S-DR LI",
+            "summary": "飛距離と2m超の潜行性能を両立したスローシンキングダイバー。レーザーインパクトで広範囲へ光を届ける。",
+            "specs": {
+              "全長": "125mm",
+              "重量": "28.2g",
+              "タイプ": "スローシンキング",
+              "最大潜行": "2m OVER",
+              "フック": "#6",
+              "リング": "#3",
+              "公式掲載価格": "2,400円（税別）"
+            },
+            "features": [
+              "レーザーインパクト",
+              "ロングキャスト",
+              "レンジキープ",
+              "タイトウォブンロール",
+              "自発的なチドリアクション"
+            ],
+            "source_name": "DAIWA 公式製品ページ",
+            "source_url": "https://www.daiwa.com/jp/product/hrrx9qs"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャスト後に狙うレンジまで入れてただ巻き。"
+            },
+            {
+              "title": "速度",
+              "text": "ミディアム〜速め。青物狙いは速巻きも有効。"
+            },
+            {
+              "title": "深場",
+              "text": "足元や堤防の中層を2m前後まで潜らせて探る。"
+            },
+            {
+              "title": "操作",
+              "text": "基本は巻くだけ。余計なロッド操作を入れず泳ぎを安定させる。"
+            }
+          ],
+          "image": "https://390386bd-1bf0-4900-aa10-cac1793c9a23-afd-dqdkdpcqgcc6hahm.z01.azurefd.net/-/media/Project/globeride/daiwa_com_jp/001_product_photo/lure/001/hrrx9qs_SETUPPER125SDR-LI_LI/SETUPPER125SDR-LI_LI_CHART_BACK_4550133415173.jpg?rev=59d00ff2750240938c8e999d21f80eaa",
+          "imageSource": "https://www.daiwa.com/jp/product/hrrx9qs"
         },
         {
           "name": "セットアッパー 125S-DR Li LIレッドヘッド",
           "maker": "Daiwa",
           "price": 2200,
           "note": "スローシンキング",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "SHORELINE SHINER Z SETUPPER 125S-DR LI",
+            "summary": "飛距離と2m超の潜行性能を両立したスローシンキングダイバー。レーザーインパクトで広範囲へ光を届ける。",
+            "specs": {
+              "全長": "125mm",
+              "重量": "28.2g",
+              "タイプ": "スローシンキング",
+              "最大潜行": "2m OVER",
+              "フック": "#6",
+              "リング": "#3",
+              "公式掲載価格": "2,400円（税別）"
+            },
+            "features": [
+              "レーザーインパクト",
+              "ロングキャスト",
+              "レンジキープ",
+              "タイトウォブンロール",
+              "自発的なチドリアクション"
+            ],
+            "source_name": "DAIWA 公式製品ページ",
+            "source_url": "https://www.daiwa.com/jp/product/hrrx9qs"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャスト後に狙うレンジまで入れてただ巻き。"
+            },
+            {
+              "title": "速度",
+              "text": "ミディアム〜速め。青物狙いは速巻きも有効。"
+            },
+            {
+              "title": "深場",
+              "text": "足元や堤防の中層を2m前後まで潜らせて探る。"
+            },
+            {
+              "title": "操作",
+              "text": "基本は巻くだけ。余計なロッド操作を入れず泳ぎを安定させる。"
+            }
+          ],
+          "image": "https://390386bd-1bf0-4900-aa10-cac1793c9a23-afd-dqdkdpcqgcc6hahm.z01.azurefd.net/-/media/Project/globeride/daiwa_com_jp/001_product_photo/lure/001/hrrx9qs_SETUPPER125SDR-LI_LI/SETUPPER125SDR-LI_LI_RED_HEAD_4550133415234.jpg?rev=0c4f55613a2341a2aabfc497f103cf9c",
+          "imageSource": "https://www.daiwa.com/jp/product/hrrx9qs"
         },
         {
           "name": "エリア10 ミラージュイワシ",
           "maker": "ガイア",
           "price": 1800,
           "note": "フローティングミノー。流れ任せドリフト",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "AREA10（旧製品）",
+            "summary": "GAEAのフローティングミノー。所有個体の公式製品ページは現在確認できないため、GARAGE登録情報のみ掲載。",
+            "specs": {
+              "タイプ": "フローティングミノー",
+              "カラー": "ミラージュイワシ",
+              "公式確認": "旧製品ページ未確認"
+            },
+            "features": [
+              "ドリフト向き",
+              "表層〜浅いレンジを意識した使い方"
+            ],
+            "source_name": "公式ページ未確認"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "川や流れのある場所で、糸フケだけ取る程度にゆっくり巻く。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れに任せて漂わせる。風があればラインを持たせてドリフト。"
+            },
+            {
+              "title": "狙い",
+              "text": "潮目やストラクチャーへ流し込む。"
+            }
+          ],
+          "image": ""
         },
         {
           "name": "エリア10 荒川サンライズ",
           "maker": "ガイア",
           "price": 1800,
           "note": "フローティングミノー",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "AREA10（旧製品）",
+            "summary": "GAEAのフローティングミノー。所有個体の公式製品ページは現在確認できないため、GARAGE登録情報のみ掲載。",
+            "specs": {
+              "タイプ": "フローティングミノー",
+              "カラー": "荒川サンライズ",
+              "公式確認": "旧製品ページ未確認"
+            },
+            "features": [
+              "ドリフト向き",
+              "表層〜浅いレンジを意識した使い方"
+            ],
+            "source_name": "公式ページ未確認"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "川や流れのある場所で、糸フケだけ取る程度にゆっくり巻く。"
+            },
+            {
+              "title": "ドリフト",
+              "text": "流れに任せて漂わせる。風があればラインを持たせてドリフト。"
+            },
+            {
+              "title": "狙い",
+              "text": "潮目やストラクチャーへ流し込む。"
+            }
+          ],
+          "image": ""
         },
         {
           "name": "manic 115 江戸前パール",
           "maker": "DUO",
           "price": 1650,
           "note": "シンキングミノー。スローリトリーブで流れに乗せる",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "Bay RUF MANIC 115",
+            "summary": "水面直下0〜0.2mをマイクロバイブレーション＋タイトロールで引けるシンキングペンシル。",
+            "specs": {
+              "全長": "115mm",
+              "重量": "16g",
+              "タイプ": "シンキング",
+              "レンジ": "0–0.2m",
+              "フック": "#8",
+              "リング": "#2",
+              "アクション": "マイクロバイブレーション / タイトロール",
+              "登録カラー": "江戸前パール"
+            },
+            "features": [
+              "高い飛距離",
+              "表層攻略",
+              "微細な波動"
+            ],
+            "source_name": "DUO 公式製品ページ",
+            "source_url": "https://www.duo-inc.co.jp/product/28?productVariantId=38"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "スローリトリーブで水面直下を一定に引く。"
+            },
+            {
+              "title": "流れ",
+              "text": "巻き過ぎず流れに乗せる。"
+            },
+            {
+              "title": "変化",
+              "text": "トゥイッチや軽いジャークで一瞬だけ軌道を崩す。"
+            }
+          ],
+          "image": "https://duo-assets.s3.ap-northeast-1.amazonaws.com/product_variants/main_images/1763628246/manic_115_hook_2025.jpg",
+          "imageSource": "https://www.duo-inc.co.jp/product/28?productVariantId=38"
         },
         {
           "name": "manic slow 95 マッドピンクギーゴ",
           "maker": "DUO",
           "price": 1650,
           "note": "スローシンキング。超ゆっくり",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "Bay RUF MANIC SLOW 95",
+            "summary": "デッドスローの表層攻略に特化した95mmスローシンキングモデル。",
+            "specs": {
+              "全長": "95mm",
+              "重量": "7g",
+              "タイプ": "スローシンキング",
+              "レンジ": "0–0.2m",
+              "フック": "#10",
+              "リング": "#1.5",
+              "登録カラー": "マッドピンクギーゴ"
+            },
+            "features": [
+              "デッドスロー対応",
+              "表層レンジ",
+              "微波動"
+            ],
+            "source_name": "DUO 公式製品ページ",
+            "source_url": "https://www.duo-inc.co.jp/product/28?productVariantId=41"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "超ゆっくり。水面直下を外さない速度で巻く。"
+            },
+            {
+              "title": "流れ",
+              "text": "流れを受ける場所では巻き量を減らし、漂わせる。"
+            },
+            {
+              "title": "食わせ",
+              "text": "バチや小型ベイトを意識して波動を強くしすぎない。"
+            }
+          ],
+          "image": "https://duo-assets.s3.ap-northeast-1.amazonaws.com/product_variants/main_images/1763629472/manicslow_95_hook_2026.jpg",
+          "imageSource": "https://www.duo-inc.co.jp/product/28?productVariantId=41"
         },
         {
           "name": "feel120fg ブラックピンク",
           "maker": "reed",
           "price": 1650,
           "note": "フローティングミノー。ゆっくり",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "reed feel 120FG",
+            "summary": "フィールシリーズのフローティングモデル。水面をゆっくり引き波で見せ、テイルスライドで食わせる。",
+            "specs": {
+              "全長": "120mm",
+              "重量": "6.7g",
+              "タイプ": "フローティング",
+              "フック": "#12",
+              "リング": "#1",
+              "アクション": "テイルスライド",
+              "レンジ": "水面",
+              "登録カラー": "ブラックピンク",
+              "公式価格": "1,800円（税別）"
+            },
+            "features": [
+              "水面攻略",
+              "引き波",
+              "テイルスライド",
+              "デッドスロー対応"
+            ],
+            "source_name": "Pazdesign 公式製品ページ",
+            "source_url": "https://www.pazdesign.co.jp/products/reed/feel120fg/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "デッドスロー〜スローで水面に引き波を出す。"
+            },
+            {
+              "title": "流れ",
+              "text": "アップ〜クロスへ投げ、流れに馴染ませながら巻く。"
+            },
+            {
+              "title": "表層",
+              "text": "魚が水面だけを意識している時は沈めず、水面レンジを維持。"
+            }
+          ],
+          "image": "https://www.pazdesign.co.jp/products/reed/feel120fg/img/05.jpg",
+          "imageSource": "https://www.pazdesign.co.jp/products/reed/feel120fg/"
         },
         {
           "name": "コモモ2 ピンク＆ピンク",
           "maker": "アムズデザイン",
           "price": 1870,
           "note": "フローティングミノー。ただ巻き or トゥウィッチ",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "ima komomo II",
+            "summary": "水面直下をスネーキングアクションで攻略するフローティングミノー。デッドスローではローリング寄り、速度を上げると蛇行感が強くなる。",
+            "specs": {
+              "全長": "110mm",
+              "重量": "15g",
+              "タイプ": "フローティング",
+              "レンジ": "0–20cm",
+              "アクション": "ローリング＋ウォブリング",
+              "フック": "#3",
+              "リング": "#3",
+              "カラー": "#K211-116 ピンク＆ピンク"
+            },
+            "features": [
+              "水面直下",
+              "スネーキング",
+              "カップで水を受ける",
+              "表層アピール"
+            ],
+            "source_name": "ima 公式製品ページ",
+            "source_url": "https://www.ima-ams.co.jp/product/products/detail/32"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "水面直下をただ巻き。"
+            },
+            {
+              "title": "デッドスロー",
+              "text": "速度を落とすと高ピッチなローリングで見せる。"
+            },
+            {
+              "title": "アピール",
+              "text": "カップで水を受けるので、軽く入力してスプラッシュを入れる使い方もできる。"
+            }
+          ],
+          "image": "",
+          "imageSource": "https://www.ima-ams.co.jp/product/products/detail/32"
         },
         {
           "name": "コルセア50 マットパープルパール",
           "maker": "エバーグリーン",
           "price": 1650,
           "note": "シンキングペンシル。1秒1回転",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "EVERGREEN Corsair 50",
+            "summary": "50mm・3.3gの小型シンキングペンシル。浅いレンジをタイトなテールスイングで攻略する。",
+            "specs": {
+              "全長": "50mm",
+              "重量": "3.3g",
+              "タイプ": "シンキング",
+              "アクション": "タイトテールスイング",
+              "レンジ": "10–50cm",
+              "フック": "#14",
+              "リング": "#0",
+              "推奨PE": "0.2–0.4号",
+              "推奨リーダー": "フロロ4–8lb",
+              "カラー": "#769 マットパープルパール",
+              "公式価格": "1,200円（税別）"
+            },
+            "features": [
+              "小型シルエット",
+              "表層〜浅いレンジ",
+              "タイトアクション"
+            ],
+            "source_name": "EVERGREEN 公式製品ページ",
+            "source_url": "https://www.evergreen-fishing.com/goods_list/Corsair50.html"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "1秒1回転程度を基準にただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "沈めるカウントを変えて10〜50cm前後を刻む。"
+            },
+            {
+              "title": "場所",
+              "text": "港湾・磯・サーフなど小型ベイトがいる場所で使う。"
+            }
+          ],
+          "image": "https://www.evergreen-fishing.com/resizeimg/imageresize.php?h=768&image=..%2Fimages_set02%2Fgoods_images%2Fgoods_detail%2F119380769%2F119380769_01.jpg&w=768",
+          "imageSource": "https://www.evergreen-fishing.com/goods_list/Corsair50.html"
         },
         {
           "name": "謎のメタルジグ 20g",
           "maker": "",
           "price": 500,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "メーカー不明 メタルジグ",
+            "summary": "メーカー・製品名を特定できていない20gメタルジグ。公式情報は設定しない。",
+            "specs": {
+              "重量": "20g",
+              "メーカー": "不明",
+              "公式確認": "特定不可"
+            },
+            "features": [
+              "汎用メタルジグ"
+            ]
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャスト後にカウントして狙うレンジへ入れる。"
+            },
+            {
+              "title": "ただ巻き",
+              "text": "一定速度で巻いて広くサーチ。"
+            },
+            {
+              "title": "リフト＆フォール",
+              "text": "底〜中層で持ち上げて落とし、フォールで食わせる。"
+            }
+          ],
+          "image": ""
         },
         {
           "name": "タックルボックス マルチ Sサイズ",
@@ -3103,7 +3867,41 @@
           "uses": [
             "タイラバ",
             "五目"
-          ]
+          ],
+          "official": {
+            "product": "TG BINBIN SWITCH",
+            "summary": "コンパクトなタングステンヘッドとスライド構造を持つタイラバ系ルアー。落下が速く、巻きでも姿勢が安定しやすい。",
+            "specs": {
+              "登録重量": "35g",
+              "素材": "タングステン",
+              "用途": "タイラバ / 五目",
+              "カラー": "ブライトオレンジ"
+            },
+            "features": [
+              "コンパクトシルエット",
+              "高速フォール",
+              "スライド構造",
+              "幅広い魚種に対応"
+            ],
+            "source_name": "JACKALL 公式製品ページ",
+            "source_url": "https://www.jackall.co.jp/saltwater/products/lure/tairubber/tg-binbin-switch/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "着底させて一定速度で巻き上げる。"
+            },
+            {
+              "title": "フォール",
+              "text": "巻き上げ後に再度落とし、フォール中のバイトも拾う。"
+            },
+            {
+              "title": "五目",
+              "text": "底付近でリフト＆フォール。真鯛以外の根魚・青物も狙える。"
+            }
+          ],
+          "image": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/TG_BINBIN_SWITCH_F-0280-1.png",
+          "imageSource": "https://www.jackall.co.jp/saltwater/products/lure/tairubber/tg-binbin-switch/"
         },
         {
           "name": "ビンビンスイッチ 60g グリーンゴールド",
@@ -3114,7 +3912,41 @@
           "uses": [
             "タイラバ",
             "五目"
-          ]
+          ],
+          "official": {
+            "product": "TG BINBIN SWITCH",
+            "summary": "コンパクトなタングステンヘッドとスライド構造を持つタイラバ系ルアー。落下が速く、巻きでも姿勢が安定しやすい。",
+            "specs": {
+              "登録重量": "60g",
+              "素材": "タングステン",
+              "用途": "タイラバ / 五目",
+              "カラー": "グリーンゴールド"
+            },
+            "features": [
+              "コンパクトシルエット",
+              "高速フォール",
+              "スライド構造",
+              "幅広い魚種に対応"
+            ],
+            "source_name": "JACKALL 公式製品ページ",
+            "source_url": "https://www.jackall.co.jp/saltwater/products/lure/tairubber/tg-binbin-switch/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "着底させて一定速度で巻き上げる。"
+            },
+            {
+              "title": "フォール",
+              "text": "巻き上げ後に再度落とし、フォール中のバイトも拾う。"
+            },
+            {
+              "title": "五目",
+              "text": "底付近でリフト＆フォール。真鯛以外の根魚・青物も狙える。"
+            }
+          ],
+          "image": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/TG_BINBIN_SWITCH_F-0155.png",
+          "imageSource": "https://www.jackall.co.jp/saltwater/products/lure/tairubber/tg-binbin-switch/"
         },
         {
           "name": "ビンビンスイッチ 80g レッドゴールド",
@@ -3125,7 +3957,41 @@
           "uses": [
             "タイラバ",
             "五目"
-          ]
+          ],
+          "official": {
+            "product": "TG BINBIN SWITCH",
+            "summary": "コンパクトなタングステンヘッドとスライド構造を持つタイラバ系ルアー。落下が速く、巻きでも姿勢が安定しやすい。",
+            "specs": {
+              "登録重量": "80g",
+              "素材": "タングステン",
+              "用途": "タイラバ / 五目",
+              "カラー": "レッドゴールド"
+            },
+            "features": [
+              "コンパクトシルエット",
+              "高速フォール",
+              "スライド構造",
+              "幅広い魚種に対応"
+            ],
+            "source_name": "JACKALL 公式製品ページ",
+            "source_url": "https://www.jackall.co.jp/saltwater/products/lure/tairubber/tg-binbin-switch/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "着底させて一定速度で巻き上げる。"
+            },
+            {
+              "title": "フォール",
+              "text": "巻き上げ後に再度落とし、フォール中のバイトも拾う。"
+            },
+            {
+              "title": "五目",
+              "text": "底付近でリフト＆フォール。真鯛以外の根魚・青物も狙える。"
+            }
+          ],
+          "image": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/TG_BINBIN_SWITCH_F-0069.png",
+          "imageSource": "https://www.jackall.co.jp/saltwater/products/lure/tairubber/tg-binbin-switch/"
         }
       ],
       "photos": {
@@ -3303,7 +4169,39 @@
           "maker": "Daiwa",
           "price": 770,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "月下美人 しらすJ 系（登録名: しずる）",
+            "summary": "登録名は『月下美人 しずる』だが、公式で近い製品は3ジョイントの『月下美人 しらすJ』。55SS/55Sのどちらかは未特定。",
+            "specs": {
+              "登録カラー": "ケイムラシラス",
+              "候補": "しらすJ 55SS / 55S",
+              "55SS": "55mm / 2.5g / スローシンキング",
+              "55S": "55mm / 3g / シンキング",
+              "公式確認": "所有個体の型番未特定"
+            },
+            "features": [
+              "3ジョイント",
+              "小型ベイト模倣",
+              "ライトソルト向け"
+            ],
+            "source_name": "DAIWA 月下美人シリーズ"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "ゆっくりただ巻きでジョイントのナチュラルな動きを出す。"
+            },
+            {
+              "title": "フォール",
+              "text": "シンキング系ならカウントしてレンジを入れ、巻き始める。"
+            },
+            {
+              "title": "注意",
+              "text": "55SS/55Sが未特定なので、沈下速度は現物に合わせて調整。"
+            }
+          ],
+          "image": "https://390386bd-1bf0-4900-aa10-cac1793c9a23-afd-dqdkdpcqgcc6hahm.z01.azurefd.net/-/media/Project/globeride/daiwa_com_jp/resources/fishing/item/lure/salt_le/Gekkabijin_shirasu/__icsFiles/afieldfile/2020/08/01/GekkabijinShirasuJ55SS_KeimuraShirasui.jpg?rev=262ea0fe737b463a9811ab18b81e074e"
         },
         {
           "name": "ナノラバ 10g ケイムラ ピンクシルバー",
@@ -3314,7 +4212,44 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "Major Craft ナノラバ",
+            "summary": "ライトゲーム用の小型ラバージグ。低重心で安定したフォールをし、カーリーテールの波動で魚種を問わず狙える。",
+            "specs": {
+              "登録重量": "10g",
+              "カラー": "ケイムラ ピンクシルバー",
+              "公式価格": "730円（税別）"
+            },
+            "features": [
+              "投げて巻くだけ",
+              "安定フォール",
+              "カーリーテール",
+              "多魚種対応"
+            ],
+            "source_name": "Major Craft 公式製品ページ",
+            "source_url": "https://www.majorcraft.co.jp/lure/narb/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャストしてただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントで層を決めてから巻く。"
+            },
+            {
+              "title": "フォール",
+              "text": "反応が薄ければリフト＆フォール。フォール中も当たりを意識。"
+            },
+            {
+              "title": "重量",
+              "text": "軽量は浅場・アジング、5〜10gは風や深場・五目で使いやすい。"
+            }
+          ],
+          "image": "https://www.majorcraft.co.jp/wp-content/uploads/2025/04/nano-rubber_pake-300x300.png",
+          "imageSource": "https://www.majorcraft.co.jp/lure/narb/"
         },
         {
           "name": "ナノラバ 10g ケイムラ グリーンゴールド",
@@ -3325,7 +4260,44 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "Major Craft ナノラバ",
+            "summary": "ライトゲーム用の小型ラバージグ。低重心で安定したフォールをし、カーリーテールの波動で魚種を問わず狙える。",
+            "specs": {
+              "登録重量": "10g",
+              "カラー": "ケイムラ グリーンゴールド",
+              "公式価格": "730円（税別）"
+            },
+            "features": [
+              "投げて巻くだけ",
+              "安定フォール",
+              "カーリーテール",
+              "多魚種対応"
+            ],
+            "source_name": "Major Craft 公式製品ページ",
+            "source_url": "https://www.majorcraft.co.jp/lure/narb/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャストしてただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントで層を決めてから巻く。"
+            },
+            {
+              "title": "フォール",
+              "text": "反応が薄ければリフト＆フォール。フォール中も当たりを意識。"
+            },
+            {
+              "title": "重量",
+              "text": "軽量は浅場・アジング、5〜10gは風や深場・五目で使いやすい。"
+            }
+          ],
+          "image": "https://www.majorcraft.co.jp/wp-content/uploads/2025/04/nano-rubber_pake-300x300.png",
+          "imageSource": "https://www.majorcraft.co.jp/lure/narb/"
         },
         {
           "name": "ナノラバ 5g グロー",
@@ -3336,7 +4308,44 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "Major Craft ナノラバ",
+            "summary": "ライトゲーム用の小型ラバージグ。低重心で安定したフォールをし、カーリーテールの波動で魚種を問わず狙える。",
+            "specs": {
+              "登録重量": "5g",
+              "カラー": "グロー",
+              "公式価格": "670円（税別）"
+            },
+            "features": [
+              "投げて巻くだけ",
+              "安定フォール",
+              "カーリーテール",
+              "多魚種対応"
+            ],
+            "source_name": "Major Craft 公式製品ページ",
+            "source_url": "https://www.majorcraft.co.jp/lure/narb/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャストしてただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントで層を決めてから巻く。"
+            },
+            {
+              "title": "フォール",
+              "text": "反応が薄ければリフト＆フォール。フォール中も当たりを意識。"
+            },
+            {
+              "title": "重量",
+              "text": "軽量は浅場・アジング、5〜10gは風や深場・五目で使いやすい。"
+            }
+          ],
+          "image": "https://www.majorcraft.co.jp/wp-content/uploads/2025/04/nano-rubber_pake-300x300.png",
+          "imageSource": "https://www.majorcraft.co.jp/lure/narb/"
         },
         {
           "name": "ナノラバ 5g ケイムラ レッドゴールド",
@@ -3347,7 +4356,44 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "Major Craft ナノラバ",
+            "summary": "ライトゲーム用の小型ラバージグ。低重心で安定したフォールをし、カーリーテールの波動で魚種を問わず狙える。",
+            "specs": {
+              "登録重量": "5g",
+              "カラー": "ケイムラ レッドゴールド",
+              "公式価格": "670円（税別）"
+            },
+            "features": [
+              "投げて巻くだけ",
+              "安定フォール",
+              "カーリーテール",
+              "多魚種対応"
+            ],
+            "source_name": "Major Craft 公式製品ページ",
+            "source_url": "https://www.majorcraft.co.jp/lure/narb/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャストしてただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントで層を決めてから巻く。"
+            },
+            {
+              "title": "フォール",
+              "text": "反応が薄ければリフト＆フォール。フォール中も当たりを意識。"
+            },
+            {
+              "title": "重量",
+              "text": "軽量は浅場・アジング、5〜10gは風や深場・五目で使いやすい。"
+            }
+          ],
+          "image": "https://www.majorcraft.co.jp/wp-content/uploads/2025/04/nano-rubber_pake-300x300.png",
+          "imageSource": "https://www.majorcraft.co.jp/lure/narb/"
         },
         {
           "name": "ナノラバ 1.5g ケイムラ グリーンゴールド",
@@ -3358,7 +4404,44 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "Major Craft ナノラバ",
+            "summary": "ライトゲーム用の小型ラバージグ。低重心で安定したフォールをし、カーリーテールの波動で魚種を問わず狙える。",
+            "specs": {
+              "登録重量": "1.5g",
+              "カラー": "ケイムラ グリーンゴールド",
+              "公式価格": "590円（税別）"
+            },
+            "features": [
+              "投げて巻くだけ",
+              "安定フォール",
+              "カーリーテール",
+              "多魚種対応"
+            ],
+            "source_name": "Major Craft 公式製品ページ",
+            "source_url": "https://www.majorcraft.co.jp/lure/narb/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャストしてただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントで層を決めてから巻く。"
+            },
+            {
+              "title": "フォール",
+              "text": "反応が薄ければリフト＆フォール。フォール中も当たりを意識。"
+            },
+            {
+              "title": "重量",
+              "text": "軽量は浅場・アジング、5〜10gは風や深場・五目で使いやすい。"
+            }
+          ],
+          "image": "https://www.majorcraft.co.jp/wp-content/uploads/2025/04/nano-rubber_pake-300x300.png",
+          "imageSource": "https://www.majorcraft.co.jp/lure/narb/"
         },
         {
           "name": "ナノラバ 1.5g ケイムラ レッドゴールド",
@@ -3369,7 +4452,44 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "Major Craft ナノラバ",
+            "summary": "ライトゲーム用の小型ラバージグ。低重心で安定したフォールをし、カーリーテールの波動で魚種を問わず狙える。",
+            "specs": {
+              "登録重量": "1.5g",
+              "カラー": "ケイムラ レッドゴールド",
+              "公式価格": "590円（税別）"
+            },
+            "features": [
+              "投げて巻くだけ",
+              "安定フォール",
+              "カーリーテール",
+              "多魚種対応"
+            ],
+            "source_name": "Major Craft 公式製品ページ",
+            "source_url": "https://www.majorcraft.co.jp/lure/narb/"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャストしてただ巻き。"
+            },
+            {
+              "title": "レンジ",
+              "text": "着水後のカウントで層を決めてから巻く。"
+            },
+            {
+              "title": "フォール",
+              "text": "反応が薄ければリフト＆フォール。フォール中も当たりを意識。"
+            },
+            {
+              "title": "重量",
+              "text": "軽量は浅場・アジング、5〜10gは風や深場・五目で使いやすい。"
+            }
+          ],
+          "image": "https://www.majorcraft.co.jp/wp-content/uploads/2025/04/nano-rubber_pake-300x300.png",
+          "imageSource": "https://www.majorcraft.co.jp/lure/narb/"
         },
         {
           "name": "魚子バイブ 2g アカキンラメ",
@@ -3380,14 +4500,81 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "RUDIE'S 魚子バイブ",
+            "summary": "港周りの多魚種を狙えるマイクロバイブ。特にアジ・メバルなどライトゲームで使いやすく、強い波動で存在感を出す。",
+            "specs": {
+              "登録重量": "2g",
+              "カラー": "アカキンラメ",
+              "JAN": "4589647912069",
+              "用途": "五目 / アジング"
+            },
+            "features": [
+              "マイクロバイブレーション",
+              "強い波動",
+              "港の多魚種対応"
+            ],
+            "source_name": "RUDIE'S 公式製品ページ",
+            "source_url": "https://rudies.co.jp/?product=%E9%AD%9A%E5%AD%90%E3%83%90%E3%82%A4%E3%83%96"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "ただ巻きでレンジを横に探る。"
+            },
+            {
+              "title": "ボトム",
+              "text": "底付近では2〜3回振動させてからテンションを抜き、落とす。"
+            },
+            {
+              "title": "レンジ",
+              "text": "カウントを変えてアジ・メバルのいる層を探す。"
+            }
+          ],
+          "image": "",
+          "imageSource": "https://rudies.co.jp/?product=%E9%AD%9A%E5%AD%90%E3%83%90%E3%82%A4%E3%83%96"
         },
         {
           "name": "月下美人プリズナー CV 12g ピンクイワシ",
           "maker": "DAIWA",
           "price": 1700,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "DAIWA 月下美人 プリズナー",
+            "summary": "アジ・メバルだけでなくカサゴ、メッキ、カマス、ショゴなども狙えるライトソルト用メタルジグ。所有個体の『CV 12g』は旧型で、現行公式ラインナップとは重量が異なる。",
+            "specs": {
+              "登録個体": "CV 12g / ピンクイワシ（旧型）",
+              "現行公式重量": "3g / 5g / 7g / 10g / 13g",
+              "現行13g全長": "50mm",
+              "公式確認": "12g旧型の完全一致スペックは未確認"
+            },
+            "features": [
+              "アシストフック",
+              "リアトレブル",
+              "多魚種対応",
+              "フォールで誘える"
+            ],
+            "source_name": "DAIWA 公式製品ページ",
+            "source_url": "https://www.daiwa.com/jp/product/teuc0l0"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "キャスト後に沈め、ただ巻きまたはリフト＆フォール。"
+            },
+            {
+              "title": "フォール",
+              "text": "アジ・メバルはフォール中のバイトを意識してラインを見て取る。"
+            },
+            {
+              "title": "根掛かり",
+              "text": "根掛かりが多い場所ではリアトレブルを外す運用も公式推奨。"
+            }
+          ],
+          "image": "",
+          "imageSource": "https://www.daiwa.com/jp/product/teuc0l0"
         },
         {
           "name": "ストーム 五目ボトム 3g 緑っぽい",
@@ -3398,7 +4585,37 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "STORM Gomoku Bottom（旧モデル）",
+            "summary": "底〜中層をフォールとバイブレーションで探るGomoku系ルアー。所有個体3gの国内旧モデル公式ページは現在確認できない。",
+            "specs": {
+              "登録重量": "3g",
+              "登録カラー": "緑っぽい",
+              "公式確認": "旧国内モデルの完全一致ページ未確認"
+            },
+            "features": [
+              "ボトム攻略",
+              "フォール",
+              "バイブレーション"
+            ],
+            "source_name": "Rapala / STORM 旧Gomokuシリーズ"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "着底させて小さく持ち上げ、フォール。"
+            },
+            {
+              "title": "中層",
+              "text": "カウントで層を合わせ、ただ巻きでも使う。"
+            },
+            {
+              "title": "五目",
+              "text": "底にいる根魚からアジ系まで、反応するレンジを広く探る。"
+            }
+          ],
+          "image": ""
         },
         {
           "name": "ストーム 五目ミノー 2g 赤っぽい",
@@ -3409,7 +4626,36 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "STORM Gomoku Minnow（旧モデル）",
+            "summary": "Gomokuシリーズの小型ミノー。所有個体2gの国内旧モデル公式ページは現在確認できない。",
+            "specs": {
+              "登録重量": "2g",
+              "登録カラー": "赤っぽい",
+              "公式確認": "旧国内モデルの完全一致ページ未確認"
+            },
+            "features": [
+              "小型ミノー",
+              "ライトゲーム",
+              "多魚種対応"
+            ]
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "スロー〜通常速度のただ巻き。"
+            },
+            {
+              "title": "変化",
+              "text": "短いトゥイッチを混ぜてリアクションを狙う。"
+            },
+            {
+              "title": "レンジ",
+              "text": "沈むタイプなら着水後のカウントで層を調整。"
+            }
+          ],
+          "image": ""
         },
         {
           "name": "ストーム 五目スピン レインボー",
@@ -3420,14 +4666,78 @@
           "uses": [
             "五目",
             "アジング"
-          ]
+          ],
+          "official": {
+            "product": "STORM Gomoku Spin",
+            "summary": "小型ボディ＋テールブレードのフラッシングと振動で多魚種を狙うGomokuシリーズ。",
+            "specs": {
+              "登録カラー": "レインボー",
+              "公式確認": "所有個体の重量・国内旧型番は未特定"
+            },
+            "features": [
+              "テールブレード",
+              "フラッシング",
+              "フォールでもアピール",
+              "レンジ調整しやすい"
+            ]
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "ただ巻きでブレードを回し、広くサーチ。"
+            },
+            {
+              "title": "深さ",
+              "text": "速く巻けば浅く、遅く巻けば深く通しやすい。"
+            },
+            {
+              "title": "フォール",
+              "text": "巻きを止めて落とし、ブレードのフラッシュで誘う。"
+            }
+          ],
+          "image": ""
         },
         {
           "name": "Lミノー 3.5g 33mm 青銀",
           "maker": "YO-ZURI",
           "price": 660,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "official": {
+            "product": "YO-ZURI L-MINNOW 33",
+            "summary": "小型ながらしっかり泳ぐ33mmシンキングミノー。ワイドウォブリングで小魚を演出する。",
+            "specs": {
+              "全長": "33mm",
+              "重量": "3.5g",
+              "タイプ": "シンキング",
+              "レンジ": "約50cm",
+              "アクション": "Wide Wobbling",
+              "登録カラー": "青銀"
+            },
+            "features": [
+              "小型シンキングミノー",
+              "ワイドウォブリング",
+              "ライトゲーム"
+            ],
+            "source_name": "DUEL / YO-ZURI 公式製品ページ",
+            "source_url": "https://duel.co.jp/english/products/detail.html?pid=1164"
+          },
+          "usage": [
+            {
+              "title": "基本",
+              "text": "ただ巻きで約50cm前後のレンジを引く。"
+            },
+            {
+              "title": "トゥイッチ",
+              "text": "小刻みなトゥイッチで不規則な動きを入れる。"
+            },
+            {
+              "title": "レンジ",
+              "text": "沈める時間を変えてアジ・メバル・五目の層を探る。"
+            }
+          ],
+          "image": "https://duel.co.jp/storage/product/ajax-upload1698020215uvE0cZBpLR1UAgfX.jpg",
+          "imageSource": "https://duel.co.jp/english/products/detail.html?pid=1164"
         }
       ],
       "photos": {
