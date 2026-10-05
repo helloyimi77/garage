@@ -124,6 +124,11 @@ main{max-width:1120px;margin:12px auto 0;padding:0 20px 60px}
 .camp-item-text{min-width:0}
 .camp-item-text .item-name{font-weight:700;color:var(--ink)}
 .camp-item-text small{display:block}
+.fish-item{display:flex;align-items:center;gap:10px;min-width:0}
+.fish-thumb{width:50px;height:50px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:4px;flex:0 0 auto}
+.fish-thumb-placeholder{width:50px;height:50px;display:grid;place-items:center;background:var(--fishing);border:1px solid var(--line);border-radius:4px;flex:0 0 auto;font-size:20px}
+.fish-item-text{min-width:0}
+.fish-item-text b{display:block}
 .fishing-list td.use{white-space:normal;line-height:2}
 .use-chip{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--fishing);color:var(--ink);font-size:12px;font-weight:700;line-height:1.4}
 .fish-total{display:flex;justify-content:flex-end;gap:14px;align-items:baseline;color:var(--ink-2);font-size:13px}
@@ -264,7 +269,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-1823';;;;;;;;;
+const APP_BUILD = '20261005-1842';;;;;;;;;;
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -984,11 +989,19 @@ function renderGrid(){
       const labels = Array.isArray(uses) && uses.length ? uses : [useLabel(v)];
       return labels.map(label => `<span class="use-chip" style="${chipStyle(label)}">${esc(label)}</span>`).join(' ');
     };
-    const row = (v, main, sub, price, attrs='', uses=null) => `<tr data-id="${esc(v.id)}" ${attrs}>
+    const row = (v, main, sub, price, attrs='', uses=null, thumb=null) => {
+      const text=`<div class="fish-item-text"><b>${esc(main)}</b>${sub?`<small>${esc(sub)}</small>`:''}</div>`;
+      const tackle=thumb===null
+        ? text
+        : `<div class="fish-item">${thumb
+            ? `<img class="fish-thumb" src="${esc(thumb)}" alt="" loading="lazy" onerror="this.outerHTML='<span class=\'fish-thumb-placeholder\'>🎣</span>'">`
+            : '<span class="fish-thumb-placeholder">🎣</span>'}${text}</div>`;
+      return `<tr data-id="${esc(v.id)}" ${attrs}>
         <td class="use">${useChips(v, uses)}</td>
-        <td class="tackle"><b>${esc(main)}</b>${sub?`<small>${esc(sub)}</small>`:''}</td>
+        <td class="tackle">${tackle}</td>
         <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
+    };
     const block = (label, rows) => rows ? `<section class="fish-sec">
         <h3>${esc(label)}</h3>
         <div class="golf-list fishing-list" data-cat="fishing"><table>
@@ -1028,7 +1041,8 @@ function renderGrid(){
           sub,
           price,
           `data-fishing-type="equipment" data-equipment-index="${eqIndex}"`,
-          e.uses
+          e.uses,
+          kind==='lure' ? (e.image||'') : null
         )];
       })
     ).join('');
