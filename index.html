@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-1654';;;;
+const APP_BUILD = '20261005-1718';;;;;
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -995,8 +995,6 @@ function renderGrid(){
     const tackleSections = [
       {key:'ロッド', label:'ロッド'},
       {key:'リール', label:'リール'},
-      {key:'ライン', label:'ライン'},
-      {key:'リーダー', label:'リーダー'},
     ];
     let html = tackleSections.map(sec => {
       const rows = list.map(v => {
@@ -1315,7 +1313,7 @@ function openFishingItemDetail(categoryId, type, keyOrIndex){
     ? `<div class="hero" style="background:#fff"><img src="${esc(image)}" alt="" style="object-fit:contain"></div>`
     : `<div class="hero" style="--tint:var(--fishing)"><span class="glyph">🎣</span></div>`;
 
-  let maker='', name='', label='', detail='', price=null, quantity=1, note='', image='', source='', officialSpecs='', featureHtml='';
+  let maker='', name='', label='', detail='', price=null, quantity=1, note='', image='', source='', officialSpecs='', featureHtml='', setupHtml='';
 
   if(type==='tackle'){
     const key=keyOrIndex;
@@ -1336,15 +1334,18 @@ function openFishingItemDetail(categoryId, type, keyOrIndex){
       name=official.model||name;
       detail=official.summary||detail;
       const rows=Object.entries(official.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
-      officialSpecs=rows?`<section class="sec"><h3>公式スペック</h3><table>${rows}</table></section>`:'';
+      const specHeading=official.spec_heading||'公式スペック';
+      officialSpecs=rows?`<section class="sec"><h3>${esc(specHeading)}</h3><table>${rows}</table></section>`:'';
+      const setupRows=Object.entries(official.setup||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
+      setupHtml=setupRows?`<section class="sec"><h3>ラインシステム</h3><table>${setupRows}</table></section>`:'';
       featureHtml=(official.features||[]).length
         ? `<section class="sec"><h3>特徴</h3><div class="memo">${official.features.map(esc).join(' / ')}</div></section>`
         : '';
       const links=[
         official.source_url ? `<a href="${esc(official.source_url)}" target="_blank" rel="noopener noreferrer">${esc(official.source_name||'メーカー公式')} ↗</a>` : '',
-        official.source_url_2 ? `<a href="${esc(official.source_url_2)}" target="_blank" rel="noopener noreferrer">公式サービス情報 ↗</a>` : ''
+        official.source_url_2 ? `<a href="${esc(official.source_url_2)}" target="_blank" rel="noopener noreferrer">${esc(official.source_name_2||'参考情報')} ↗</a>` : ''
       ].filter(Boolean).join('<br>');
-      source=links?`<section class="sec"><h3>公式情報</h3><div class="memo">${links}</div></section>`:'';
+      source=links?`<section class="sec"><h3>情報元</h3><div class="memo">${links}</div></section>`:'';
     }
   }else{
     const e=v.equipment?.[Number(keyOrIndex)];
@@ -1381,6 +1382,7 @@ function openFishingItemDetail(categoryId, type, keyOrIndex){
       </div>
 
       ${detail?`<section class="sec"><h3>概要</h3><div class="memo">${esc(detail)}</div></section>`:''}
+      ${setupHtml}
       ${officialSpecs}
       ${featureHtml}
       ${note?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(note)}</div></section>`:''}
