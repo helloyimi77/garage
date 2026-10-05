@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-1625';;
+const APP_BUILD = '20261005-1636';;;
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -967,15 +967,28 @@ function renderGrid(){
       const parts=(m[1]||'').split(' / ');
       return {name:parts[0].trim(), detail:parts.slice(1).join(' / ').trim(), price:m[2]?`¥${m[2]}`:''};
     };
+    const useLabel = v => (v.name||'').replace(/釣り$/,'');
+    const FISH_COLORS = {
+      'シーバス': ['#D6E4F0','#1F4E79'],
+      '真鯛': ['#F6D9DC','#8E2A36'],
+      'アジ': ['#DCEFE3','#1E6B45'],
+      '五目': ['#F3E7C9','#7A5A12'],
+      'エリアトラウト': ['#E6DDF2','#553C8B'],
+    };
+    const chipStyle = v => {
+      const col = FISH_COLORS[v.specs?.['ターゲット']] || ['var(--fishing)','var(--ink)'];
+      return `background:${col[0]};color:${col[1]}`;
+    };
     const row = (v, main, sub, price, attrs='') => `<tr data-id="${esc(v.id)}" ${attrs}>
+        <td class="use"><span class="use-chip" style="${chipStyle(v)}" title="${esc(v.specs?.['ターゲット']||'')}">${esc(useLabel(v))}</span></td>
         <td class="tackle"><b>${esc(main)}</b>${sub?`<small>${esc(sub)}</small>`:''}</td>
         <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
     const block = (label, rows) => rows ? `<section class="fish-sec">
         <h3>${esc(label)}</h3>
         <div class="golf-list fishing-list" data-cat="fishing"><table>
-          <colgroup><col><col style="width:22%"></colgroup>
-          <thead><tr><th>道具</th><th class="num">価格</th></tr></thead>
+          <colgroup><col style="width:22%"><col><col style="width:18%"></colgroup>
+          <thead><tr><th>用途</th><th>道具</th><th class="num">価格</th></tr></thead>
           <tbody>${rows}</tbody>
         </table></div></section>` : '';
 
