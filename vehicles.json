@@ -2936,6 +2936,21 @@
           ],
           "source_name": "SHIMANO 公式製品ページ",
           "source_url": "https://fish.shimano.com/ja-JP/product/rod/shoresalt/seabass/a075f00003e2ce4qaa.html"
+        },
+        "リール": {
+          "maker": "SHIMANO",
+          "model": "アルテグラ C3000HG",
+          "summary": "C3000HGのハイギアスピニング。所有個体の世代は未特定のため、現行25アルテグラの数値は流用していません。",
+          "setup": {
+            "使用ライン": "PE1号 8本編み xブレイド アップグレード ペンタグラム",
+            "リーダー": "フロロ4号 16lb"
+          },
+          "specs": {
+            "世代": "未特定"
+          },
+          "spec_heading": "登録情報",
+          "source_name": "SHIMANO 公式サービス（現行・旧型確認用）",
+          "source_url": "https://www.shimanofishingservice.jp/price.php?f_p_cate1_id=1&f_p_cate2_id=13"
         }
       }
     },
@@ -3023,6 +3038,40 @@
           "source_name": "SHIMANO 公式製品ページ / 公式サービス",
           "source_url": "https://fish.shimano.com/zh-CN/product/rod/saltwater/others/a075f00003u1yijqae.html",
           "source_url_2": "https://www.shimanofishingservice.jp/price.php?f_p_cate1_id=6&f_p_cate2_id=208"
+        },
+        "リール": {
+          "maker": "SHIMANO",
+          "model": "12-13 エアノス 2500S",
+          "summary": "浅溝2500番の汎用スピニング。GARAGE登録の「13Aernos 2500S」はSHIMANO公式サービス上では「12-13エアノス 2500S」系列として掲載。",
+          "setup": {
+            "使用ライン": "PE1号",
+            "リーダー": "16lb"
+          },
+          "specs": {
+            "ギア比": "5.2",
+            "実用ドラグ力": "3.0kg",
+            "最大ドラグ力": "4.0kg",
+            "自重": "265g",
+            "最大巻上長": "73cm / ハンドル1回転",
+            "PE糸巻量": "0.6号-200m / 0.8号-150m / 1号-110m",
+            "ナイロン糸巻量": "5lb-110m / 6lb-95m / 8lb-70m",
+            "フロロ糸巻量": "4lb-130m / 5lb-100m / 6lb-80m",
+            "ハンドル長": "50mm",
+            "ベアリング": "2/1",
+            "スプール": "45.0mm / ストローク14.5mm",
+            "商品コード": "030016",
+            "シマノコード": "5SB36E027"
+          },
+          "spec_heading": "製品スペック",
+          "features": [
+            "AR-Cスプール",
+            "海水対応",
+            "左右ハンドル対応"
+          ],
+          "source_name": "SHIMANO 公式サービス（型番確認）",
+          "source_url": "https://www.shimanofishingservice.jp/price.php?f_p_cate1_id=1&f_p_cate2_id=20",
+          "source_name_2": "販売時スペック資料",
+          "source_url_2": "https://store.shopping.yahoo.co.jp/f-marin/4969363030016.html"
         }
       }
     },
@@ -3061,7 +3110,41 @@
         "main": "images/fishing-tairaba/fishing_01_2026-09-24.jpg",
         "gallery": []
       },
-      "memo": "ロッド・リール・ライン等の定価目安"
+      "memo": "ロッド・リール・ライン等の定価目安",
+      "tackle_details": {
+        "リール": {
+          "maker": "DAIWA",
+          "model": "ライトゲーム ICV 150H",
+          "summary": "小型液晶カウンターを搭載した船ライトゲーム向け両軸リール。右ハンドルモデル。",
+          "setup": {
+            "使用ライン": "PE 0.8（推定）",
+            "リーダー": "16lbくらい"
+          },
+          "specs": {
+            "ギア比": "6.3",
+            "自重": "280g",
+            "最大巻上長": "71cm / ハンドル1回転",
+            "最大ドラグ力": "4kg",
+            "PE糸巻量": "2号-200m / 3号-130m",
+            "ナイロン糸巻量": "3号-160m / 4号-120m",
+            "ベアリング": "3/1",
+            "ハンドル": "右",
+            "メーカー品番": "00614805"
+          },
+          "spec_heading": "製品スペック",
+          "features": [
+            "小型液晶カウンター",
+            "遠心ブレーキ",
+            "ONE PUSH ON CLUTCH",
+            "スーパースプールフリー",
+            "コマセタイマー"
+          ],
+          "source_name": "DAIWA 公式取扱説明書",
+          "source_url": "https://www.daiwa.com/ja/resources/fishing/support/a_service/reel/lightgameICV150H.pdf",
+          "source_name_2": "販売時スペック資料",
+          "source_url_2": "https://www.naturum.co.jp/product/?itemcd=2701469"
+        }
+      }
     },
     {
       "id": "fishing-ajing",
@@ -3223,6 +3306,39 @@
           ],
           "source_name": "SHIMANO 公式製品ページ",
           "source_url": "https://fish.shimano.com/ja-JP/product/rod/lightsalt/a075f00003xggqpqaq.html"
+        },
+        "リール": {
+          "maker": "DAIWA",
+          "model": "20 クレスト LT2000S",
+          "summary": "LTコンセプト採用のライトゲーム向け浅溝2000番。アジング、メバリング、エリアトラウトなどに対応。",
+          "setup": {
+            "使用ライン": "エステル0.4 月下美人type-e白",
+            "リーダー": "月下美人ワンタッチ0.8 / 月下美人フロロリーダー0.8"
+          },
+          "specs": {
+            "ギア比": "5.2",
+            "自重": "215g",
+            "巻取り長さ": "68cm / ハンドル1回転",
+            "最大ドラグ力": "5kg",
+            "ナイロン糸巻量": "3lb-150m",
+            "PE糸巻量": "0.4号-200m",
+            "ハンドルアーム長": "45mm",
+            "ベアリング": "4/1",
+            "スプール径": "42mm",
+            "ボディ素材": "DS4",
+            "スプール": "薄肉アルミ",
+            "メーカー希望本体価格": "6,400円",
+            "JAN": "4960652309400"
+          },
+          "features": [
+            "LT CONCEPT",
+            "ATD",
+            "LC-ABS",
+            "タフデジギア",
+            "ソルト対応"
+          ],
+          "source_name": "DAIWA 公式製品ページ",
+          "source_url": "https://www.daiwa.com/jp/product/nwl7zus"
         }
       }
     },
