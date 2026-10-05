@@ -4607,9 +4607,9 @@
         "price": null
       },
       "specs": {
-        "点数": "16点",
+        "点数": "24点",
         "総重量目安": "約21.9kg",
-        "合計金額": "¥100,299"
+        "合計金額": "¥138,819"
       },
       "customs": [],
       "equipment": [
@@ -4811,6 +4811,13 @@
           "note": "OD缶同時収納 / 約440g / 40×22×26cm / 2024-11-26購入",
           "image": "https://futurefox-online.com/cdn/shop/files/top_0165bdfa-3e5d-4531-94d8-81e514f058f4.jpg?v=1718069002&width=416",
           "imageSource": "https://futurefox-online.com/products/flatburner-case"
+        },
+        {
+          "name": "吊り下げ扇風機 10000mAh LEDライト付き",
+          "maker": "BTWDIRECT",
+          "price": 2829,
+          "purchase_date": "2025-10-10",
+          "note": "10000mAh / LEDライト付き / 4段階風量 / 静音設計 / USB充電 / 二脚スタンド / 天井吊り下げ / リモコン操作 / ホワイト / 2025-10-10購入"
         }
       ],
       "photos": {
