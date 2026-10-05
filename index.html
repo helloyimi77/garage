@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-1748';;;;;;;
+const APP_BUILD = '20261005-1812';;;;;;;;
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -1319,7 +1319,7 @@ function openFishingItemDetail(categoryId, type, keyOrIndex){
     ? `<div class="hero" style="background:#fff"><img src="${esc(image)}" alt="" style="object-fit:contain"></div>`
     : `<div class="hero" style="--tint:var(--fishing)"><span class="glyph">🎣</span></div>`;
 
-  let maker='', name='', label='', detail='', price=null, quantity=1, note='', image='', source='', officialSpecs='', featureHtml='', setupHtml='';
+  let maker='', name='', label='', detail='', price=null, quantity=1, note='', image='', source='', officialSpecs='', featureHtml='', setupHtml='', usageHtml='';
 
   if(type==='tackle'){
     const key=keyOrIndex;
@@ -1364,8 +1364,27 @@ function openFishingItemDetail(categoryId, type, keyOrIndex){
     quantity=qty(e);
     note=e.note||'';
     image=e.image||'';
-    if(e.imageSource){
+
+    const official=e.official;
+    if(official){
+      detail=official.summary||detail;
+      const specRows=Object.entries(official.specs||{}).map(([k,val])=>`<tr><th>${esc(k)}</th><td>${esc(val)}</td></tr>`).join('');
+      officialSpecs=specRows?`<section class="sec"><h3>公式スペック</h3><table>${specRows}</table></section>`:'';
+      featureHtml=(official.features||[]).length
+        ? `<section class="sec"><h3>特徴</h3><div class="memo">${official.features.map(esc).join(' / ')}</div></section>`
+        : '';
+      const links=[
+        official.source_url ? `<a href="${esc(official.source_url)}" target="_blank" rel="noopener noreferrer">${esc(official.source_name||'メーカー公式')} ↗</a>` : '',
+        official.method_url ? `<a href="${esc(official.method_url)}" target="_blank" rel="noopener noreferrer">${esc(official.method_name||'公式メソッド')} ↗</a>` : ''
+      ].filter(Boolean).join('<br>');
+      source=links?`<section class="sec"><h3>情報元</h3><div class="memo">${links}</div></section>`:'';
+    }else if(e.imageSource){
       source=`<section class="sec"><h3>画像元</h3><div class="memo"><a href="${esc(e.imageSource)}" target="_blank" rel="noopener noreferrer">元ページを開く ↗</a></div></section>`;
+    }
+
+    if(Array.isArray(e.usage) && e.usage.length){
+      const rows=e.usage.map(x=>`<tr><th>${esc(x.title||'')}</th><td>${esc(x.text||'')}</td></tr>`).join('');
+      usageHtml=`<section class="sec"><h3>使い方</h3><table>${rows}</table></section>`;
     }
   }
 
@@ -1391,7 +1410,8 @@ function openFishingItemDetail(categoryId, type, keyOrIndex){
       ${setupHtml}
       ${officialSpecs}
       ${featureHtml}
-      ${note?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(note)}</div></section>`:''}
+      ${usageHtml}
+      ${note?`<section class="sec"><h3>${label==='ルアー'?'自分メモ':'メモ'}</h3><div class="memo">${esc(note)}</div></section>`:''}
       ${source}
     </div>`;
 
