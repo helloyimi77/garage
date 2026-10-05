@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-0024';
+const APP_BUILD = '20261005-0025';
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -1004,12 +1004,14 @@ function renderGrid(){
       }).join('');
       return block(sec.label, rows);
     }).join('');
-    const lureRows = list.filter(v=>(v.equipment||[]).length).map(v => {
-      const eq = v.equipment;
+    const equipmentRows = kind => list.map(v => {
+      const eq = (v.equipment||[]).filter(e => (e.kind||'lure')===kind);
+      if(!eq.length) return '';
       const names = eq.slice(0,3).map(e=>e.name).join('、') + (eq.length>3?` ほか${eq.length-3}点`:'');
       return row(v, `${eq.length}点`, names, yen(sum(eq)));
     }).join('');
-    html += block('ルアー・小物', lureRows);
+    html += block('ルアー', equipmentRows('lure'));
+    html += block('小物', equipmentRows('small'));
     const grand = list.reduce((a,v)=>a+total_hobby(v),0);
     html += `<div class="fish-total"><span>釣り道具 合計</span><b>${yen(grand)}</b></div>`;
     g.innerHTML = `<div class="fish-wrap">${html}</div>`;
@@ -1291,6 +1293,14 @@ function openDetail(id){
     <div class="y">${yen(x.price)}</div>
     <div class="m">${x.type?`<span class="chip">${esc(x.type)}</span>`:''}${esc(x.maker)}${x.date?` / ${fmtDate(x.date)}`:''}</div>${x.note?`<div class="n">${esc(x.note)}</div>`:''}</div>`).join('');
   const eqRows = (v.equipment||[]).map(x=>`<tr><th>${esc(x.name)}${qty(x)>1?` ×${qty(x)}`:''}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${x.price!=null?`${yen(x.price)}${qty(x)>1?` ×${qty(x)}`:''}`:'—'}</td></tr>`).join('');
+  const fishingEq = kind => (v.equipment||[]).filter(x => (x.kind||'lure')===kind);
+  const fishingEqRows = kind => fishingEq(kind).map(x=>`<tr><th>${esc(x.name)}${qty(x)>1?` ×${qty(x)}`:''}${x.note?`<br><small style="color:var(--ink-2);font-weight:400">${esc(x.note)}</small>`:''}</th><td>${esc(x.maker)}</td><td class="num">${x.price!=null?`${yen(x.price)}${qty(x)>1?` ×${qty(x)}`:''}`:'—'}</td></tr>`).join('');
+  const fishingEquipmentSections = v.category==='fishing'
+    ? [['lure','ルアー'],['small','小物']].map(([kind,label])=>{
+        const rows=fishingEqRows(kind), items=fishingEq(kind);
+        return rows?`<section class="sec"><h3>${label} <small>${items.length}点 · ${yen(sum(items))}</small></h3><table>${rows}</table></section>`:'';
+      }).join('')
+    : '';
   const gal = (v.photos?.gallery||[]).map(p=>{
     if(/\.(mp4|mov|webm)$/i.test(p)){
       return `<video src="${esc(p)}" controls playsinline preload="metadata" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:#000"></video>`;
@@ -1360,11 +1370,18 @@ function openDetail(id){
           <div><span>装備品</span><b>${yen(sum(v.equipment))}</b></div>
           <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
          </div>`
-      : `<div class="money">
-          <div><span>${v.category==='fishing'?'ロッド一式':'点数'}</span><b>${v.category==='fishing'?yen(buy):(v.equipment||[]).length+'点'}</b></div>
-          <div><span>${v.category==='fishing'?'ルアー・小物':'合計金額'}</span><b>${v.category==='fishing'?yen(sum(v.equipment)):yen(sum(v.equipment))}</b></div>
-          <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
-         </div>`)
+      : (v.category==='fishing'
+        ? `<div class="money">
+            <div><span>ロッド一式</span><b>${yen(buy)}</b></div>
+            <div><span>ルアー</span><b>${yen(sum(fishingEq('lure')))}</b></div>
+            <div><span>小物</span><b>${yen(sum(fishingEq('small')))}</b></div>
+            <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
+           </div>`
+        : `<div class="money">
+            <div><span>点数</span><b>${(v.equipment||[]).length+'点'}</b></div>
+            <div><span>合計金額</span><b>${yen(sum(v.equipment))}</b></div>
+            <div class="total"><span>合計</span><b>${yen(buy+sum(v.equipment))}</b></div>
+           </div>`))
     : `<div class="money">
         <div><span>購入価格</span><b>${yen(buy)}</b></div>
         <div><span>カスタム合計</span><b>${yen(cust)}</b></div>
@@ -1386,7 +1403,8 @@ function openDetail(id){
       ${raceSection}
       ${!isHorse && v.group!=='hobby'?`<section class="sec"><h3>カスタム <small>現在の構成</small></h3>${custRows?`<div class="cust">${custRows}</div>`:'<div class="none">ノーマル</div>'}</section>
       <section class="sec"><h3>装備品</h3>${eqRows?`<table>${eqRows}</table>`:'<div class="none">未登録</div>'}</section>`:''}
-      ${v.group==='hobby' && v.category!=='golf' && eqRows?`<section class="sec"><h3>${v.category==='fishing'?'ルアー・小物':(v.category==='airsoft'||v.category==='rc')?'装備品':'内訳'} <small>${(v.equipment||[]).length}点</small></h3><table>${eqRows}</table></section>`:''}
+      ${v.group==='hobby' && v.category==='fishing'?fishingEquipmentSections:''}
+      ${v.group==='hobby' && v.category!=='golf' && v.category!=='fishing' && eqRows?`<section class="sec"><h3>${(v.category==='airsoft'||v.category==='rc')?'装備品':'内訳'} <small>${(v.equipment||[]).length}点</small></h3><table>${eqRows}</table></section>`:''}
       ${gal?`<section class="sec"><h3>ギャラリー</h3><div class="gallery">${gal}</div></section>`:''}
       ${v.memo?`<section class="sec"><h3>メモ</h3><div class="memo">${esc(v.memo)}</div></section>`:''}
     </div>`;
