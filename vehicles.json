@@ -3014,21 +3014,33 @@
           "maker": "ジャッカル",
           "price": 1400,
           "note": "リフトフォール",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "タイラバ",
+            "五目"
+          ]
         },
         {
           "name": "ビンビンスイッチ 60g グリーンゴールド",
           "maker": "ジャッカル",
           "price": 1600,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "タイラバ",
+            "五目"
+          ]
         },
         {
           "name": "ビンビンスイッチ 80g レッドゴールド",
           "maker": "ジャッカル",
           "price": 1800,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "タイラバ",
+            "五目"
+          ]
         }
       ],
       "photos": {
@@ -3213,53 +3225,81 @@
           "maker": "メジャークラフト",
           "price": 900,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ナノラバ 10g ケイムラ グリーンゴールド",
           "maker": "メジャークラフト",
           "price": 900,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ナノラバ 5g グロー",
           "maker": "メジャークラフト",
           "price": 800,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ナノラバ 5g ケイムラ レッドゴールド",
           "maker": "メジャークラフト",
           "price": 800,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ナノラバ 1.5g ケイムラ グリーンゴールド",
           "maker": "メジャークラフト",
           "price": 700,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ナノラバ 1.5g ケイムラ レッドゴールド",
           "maker": "メジャークラフト",
           "price": 700,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "魚子バイブ 2g アカキンラメ",
           "maker": "ルーディーズ",
           "price": 800,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "月下美人プリズナー CV 12g ピンクイワシ",
-          "maker": "ルーディーズ",
+          "maker": "DAIWA",
           "price": 1700,
           "note": "",
           "kind": "lure"
@@ -3269,21 +3309,33 @@
           "maker": "ラパラ",
           "price": 990,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ストーム 五目ミノー 2g 赤っぽい",
           "maker": "ラパラ",
           "price": 990,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "ストーム 五目スピン レインボー",
           "maker": "ラパラ",
           "price": 990,
           "note": "",
-          "kind": "lure"
+          "kind": "lure",
+          "uses": [
+            "五目",
+            "アジング"
+          ]
         },
         {
           "name": "Lミノー 3.5g 33mm 青銀",
