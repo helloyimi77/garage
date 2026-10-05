@@ -2903,7 +2903,41 @@
           "images/fishing-seabass/seabass_02_gallery.jpg"
         ]
       },
-      "memo": "ロッド・リール・ライン等の定価目安"
+      "memo": "ロッド・リール・ライン等の定価目安",
+      "tackle_details": {
+        "ロッド": {
+          "maker": "SHIMANO",
+          "model": "23 ディアルーナ S96ML",
+          "summary": "操作性と遠投性のバランスに優れた9'6\"のテクニカルモデル。ミノー、シンキングペンシル、バイブレーション、35gまでのメタルジグに対応。",
+          "specs": {
+            "全長": "9'6\" / 2.90m",
+            "継ぎ方式": "逆並継",
+            "継数": "2本",
+            "仕舞寸法": "148.6cm",
+            "自重": "137g",
+            "先径": "1.7mm",
+            "ルアーウェイト": "MAX 35g",
+            "適合ライン（ナイロン）": "6–28lb",
+            "適合ライン（PE）": "0.6–1.5号",
+            "グリップ": "カーボンモノコック",
+            "リールシート位置": "407mm",
+            "リールシート": "UPLOCK",
+            "カーボン含有率": "99.7%",
+            "メーカー希望本体価格": "31,000円（税別）",
+            "商品コード": "355324",
+            "JAN": "4969363355324"
+          },
+          "features": [
+            "スパイラルX",
+            "ハイパワーX",
+            "カーボンモノコックグリップ",
+            "パーフェクションシートXT",
+            "SiCガイドリング"
+          ],
+          "source_name": "SHIMANO 公式製品ページ",
+          "source_url": "https://fish.shimano.com/ja-JP/product/rod/shoresalt/seabass/a075f00003e2ce4qaa.html"
+        }
+      }
     },
     {
       "id": "fishing-gomoku",
@@ -2929,7 +2963,7 @@
       "specs": {
         "ターゲット": "五目",
         "エリア": "どこでも",
-        "ロッド": "Shimano トラスティック S610-710ML / 7'1\"/4ピース/6-28g (¥20,600)",
+        "ロッド": "Shimano 10トラスティック S610-710ML / 2.40m/4ピース/6-28g (¥20,600)",
         "リール": "Shimano 13Aernos 2500S (¥6,000)",
         "ライン": "PE1号",
         "リーダー": "16lb"
@@ -2962,7 +2996,35 @@
         "main": "images/fishing-gomoku/fishing_01_2026-09-24.jpg",
         "gallery": []
       },
-      "memo": "ロッド・リール・ライン等の定価目安"
+      "memo": "ロッド・リール・ライン等の定価目安",
+      "tackle_details": {
+        "ロッド": {
+          "maker": "SHIMANO",
+          "model": "10 トラスティック S610-710ML",
+          "summary": "携帯性を重視した4ピースのモバイルロッド。#3セクションを30cm/60cmで交換できる可変構成を採用。",
+          "specs": {
+            "全長": "2.40m（最大）",
+            "継数": "4本",
+            "仕舞寸法": "64cm",
+            "自重": "171g",
+            "先径": "2.1mm",
+            "ルアーウェイト": "6–28g",
+            "適合ライン（ナイロン）": "6–16lb",
+            "リールシート位置": "274mm",
+            "カーボン含有率": "85%",
+            "メーカー希望本体価格": "20,600円（税別・日本公式サービス掲載）",
+            "商品コード": "338549"
+          },
+          "features": [
+            "Fujiステンレスフレーム・アルコナイトガイド",
+            "専用ロッドケース・ロッド袋",
+            "#3セクション30cm/60cm交換式"
+          ],
+          "source_name": "SHIMANO 公式製品ページ / 公式サービス",
+          "source_url": "https://fish.shimano.com/zh-CN/product/rod/saltwater/others/a075f00003u1yijqae.html",
+          "source_url_2": "https://www.shimanofishingservice.jp/price.php?f_p_cate1_id=6&f_p_cate2_id=208"
+        }
+      }
     },
     {
       "id": "fishing-tairaba",
@@ -3130,7 +3192,39 @@
           "images/fishing-ajing/ajing_01_main.jpg"
         ]
       },
-      "memo": "ロッド・リール・ライン等の定価目安"
+      "memo": "ロッド・リール・ライン等の定価目安",
+      "tackle_details": {
+        "ロッド": {
+          "maker": "SHIMANO",
+          "model": "ソアレ SS アジング S58UL-S",
+          "summary": "ショートレングスによる高感度と、曲がりながら掛けにいける調子を両立。障害物の少ない漁港周りやディープのフォールゲームにも適したモデル。",
+          "specs": {
+            "全長": "5'8\" / 1.73m",
+            "継ぎ方式": "逆並継",
+            "継数": "2本",
+            "仕舞寸法": "89cm",
+            "自重": "51g",
+            "先径": "0.8mm",
+            "ルアーウェイト": "0.4–8g",
+            "適合ライン（ナイロン・フロロ）": "1–3lb",
+            "適合ライン（PE）": "0.1–0.6号",
+            "リールシート位置": "174mm",
+            "リールシート": "DOWNLOCK",
+            "カーボン含有率": "99.5%",
+            "メーカー希望本体価格": "29,500円（税別）",
+            "商品コード": "354334",
+            "JAN": "4969363354334"
+          },
+          "features": [
+            "スパイラルX",
+            "ハイパワーX",
+            "ハイレスポンスソリッド",
+            "CI4+"
+          ],
+          "source_name": "SHIMANO 公式製品ページ",
+          "source_url": "https://fish.shimano.com/ja-JP/product/rod/lightsalt/a075f00003xggqpqaq.html"
+        }
+      }
     },
     {
       "id": "fishing-area",
@@ -3138,8 +3232,8 @@
       "category": "fishing",
       "status": "active",
       "name": "管理釣り場",
-      "maker": "Major craft",
-      "model": "Tralara",
+      "maker": "Major Craft",
+      "model": "トラパラ",
       "year": null,
       "grade": "",
       "color": "",
@@ -3156,7 +3250,7 @@
       "specs": {
         "ターゲット": "エリアトラウト",
         "エリア": "淡水/海",
-        "ロッド": "Major craft Tralara TPS-562UL / 5'6\"/2ピース/1-4g (¥7,500)",
+        "ロッド": "Major Craft トラパラ TPS-562UL / 5'6\"/2ピース/1-4g (¥7,500)",
         "リール": "",
         "ライン": "",
         "リーダー": ""
@@ -3167,7 +3261,29 @@
         "main": "",
         "gallery": []
       },
-      "memo": "ロッド・リール・ライン等の定価目安"
+      "memo": "ロッド・リール・ライン等の定価目安",
+      "tackle_details": {
+        "ロッド": {
+          "maker": "Major Craft",
+          "model": "トラパラ TPS-562UL",
+          "summary": "エリアトラウト向けULモデル。1–4gのルアー、2–4lbラインに対応するレギュラーアクション。",
+          "specs": {
+            "全長": "5'6\"",
+            "継数": "2本",
+            "ルアーウェイト": "1–4g",
+            "適合ライン": "2–4lb",
+            "アクション": "R（Regular）",
+            "メーカー希望本体価格": "7,500円（税別）",
+            "JAN": "4560350840900"
+          },
+          "features": [
+            "エリアモデル",
+            "レギュラーアクション"
+          ],
+          "source_name": "Major Craft 公式旧製品資料",
+          "source_url": "https://www.majorcraft.co.jp/wp-content/uploads/2018/02/2018_2.pdf"
+        }
+      }
     },
     {
       "id": "fishing-choinage",
