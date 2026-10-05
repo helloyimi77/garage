@@ -264,7 +264,7 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const APP_BUILD = '20261005-1733';;;;;;
+const APP_BUILD = '20261005-1748';;;;;;;
 (async()=>{
   try{
     const r = await fetch('version.json?_=' + Date.now(), {cache:'no-store'});
@@ -970,17 +970,22 @@ function renderGrid(){
     const useLabel = v => (v.name||'').replace(/釣り$/,'');
     const FISH_COLORS = {
       'シーバス': ['#D6E4F0','#1F4E79'],
-      '真鯛': ['#F6D9DC','#8E2A36'],
-      'アジ': ['#DCEFE3','#1E6B45'],
+      'タイラバ': ['#F6D9DC','#8E2A36'],
+      'アジング': ['#DCEFE3','#1E6B45'],
       '五目': ['#F3E7C9','#7A5A12'],
-      'エリアトラウト': ['#E6DDF2','#553C8B'],
+      '管理釣り場': ['#E6DDF2','#553C8B'],
+      'ちょい投げ': ['#E6E6E6','#444'],
     };
-    const chipStyle = v => {
-      const col = FISH_COLORS[v.specs?.['ターゲット']] || ['var(--fishing)','var(--ink)'];
+    const chipStyle = label => {
+      const col = FISH_COLORS[label] || ['var(--fishing)','var(--ink)'];
       return `background:${col[0]};color:${col[1]}`;
     };
-    const row = (v, main, sub, price, attrs='') => `<tr data-id="${esc(v.id)}" ${attrs}>
-        <td class="use"><span class="use-chip" style="${chipStyle(v)}" title="${esc(v.specs?.['ターゲット']||'')}">${esc(useLabel(v))}</span></td>
+    const useChips = (v, uses) => {
+      const labels = Array.isArray(uses) && uses.length ? uses : [useLabel(v)];
+      return labels.map(label => `<span class="use-chip" style="${chipStyle(label)}">${esc(label)}</span>`).join(' ');
+    };
+    const row = (v, main, sub, price, attrs='', uses=null) => `<tr data-id="${esc(v.id)}" ${attrs}>
+        <td class="use">${useChips(v, uses)}</td>
         <td class="tackle"><b>${esc(main)}</b>${sub?`<small>${esc(sub)}</small>`:''}</td>
         <td class="num">${price?esc(price):'—'}</td>
       </tr>`;
@@ -1022,7 +1027,8 @@ function renderGrid(){
           main,
           sub,
           price,
-          `data-fishing-type="equipment" data-equipment-index="${eqIndex}"`
+          `data-fishing-type="equipment" data-equipment-index="${eqIndex}"`,
+          e.uses
         )];
       })
     ).join('');
