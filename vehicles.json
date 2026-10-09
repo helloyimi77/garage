@@ -5445,7 +5445,7 @@
         "price": null
       },
       "specs": {
-        "点数": "18点",
+        "点数": "20点",
         "総重量目安": "約7.0kg",
         "合計金額": "¥204,825"
       },
@@ -5605,6 +5605,14 @@
           "note": "8g / Φ10×16.5cm / ヘッドランプ用ランタンシェード / ホワイト",
           "image": "images/camping/montbell_crushable_lantern_shade_l_1124622.jpg",
           "imageSource": "https://webshop.montbell.jp/goods/disp.php?product_id=1124622"
+        },
+        {
+          "name": "パイルドライバー",
+          "maker": "snow peak",
+          "price": null,
+          "note": "LT-004 / 地面に打ち込むランタンスタンド / 収納時110cm・最大240cm / 約1.7kg",
+          "image": "https://item-shopping.c.yimg.jp/i/n/snowpeak_snp0104a0137",
+          "imageSource": "https://store.shopping.yahoo.co.jp/snowpeak/snp0104a0137.html"
         }
       ],
       "photos": {
